@@ -101,6 +101,19 @@ public class UsersController {
 		return "users/pwd_update";
 	}
 	
+	//비밀번호 찾기폼 요청 처리
+	@GetMapping("/users/pwd_findform")
+	public String PwdFindForm() {
+		return "users/pwd_findform";
+	}
+	
+	//비밀번호 찾기 요청 처리
+	@PostMapping("/users/pwd_find")
+	public String pwdUdate(UsersDto dto, Model model) {
+		service.findUserPwd(dto, model);
+		return "users/pwd_find";
+	}
+	
 	//개인정보 수정폼 요청 처리
 	@GetMapping("/users/updateform")
 	public String updateform(HttpSession session, Model model) {
