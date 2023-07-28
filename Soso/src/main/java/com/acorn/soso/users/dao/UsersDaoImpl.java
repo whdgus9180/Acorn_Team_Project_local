@@ -16,12 +16,9 @@ public class UsersDaoImpl implements UsersDao{
 	 * 매개변수로 전달되는 아이디가 DB에 이미 존재하는지 여부를 리턴하는 메소드
 	 */
 	@Override
-	public boolean isExist(String inputId) {
-		//전달된 아이디로 select해서
-		UsersDto dto = session.selectOne("users.getData", inputId);
-		//아이디 존재 여부를 알아내서(null이면 존재하지 않고, null이 아니면 존재한다.)
-		boolean isExist = dto == null ? false : true;
-		return isExist;
+	public int isExist(String inputId) {
+		//DB에 저장된 같은 아이디가 0이면 존재하지 않는 아이디
+		return session.selectOne("users.isExist", inputId);
 	}
 
 	@Override
@@ -38,10 +35,7 @@ public class UsersDaoImpl implements UsersDao{
 	
 	@Override
 	public void updatePwd(UsersDto dto) {
-		int rowCount = session.update("users.updatePwd", dto);
-		if(rowCount == 0) {
-			
-		}
+		session.update("users.updatePwd", dto);
 	}
 
 	@Override

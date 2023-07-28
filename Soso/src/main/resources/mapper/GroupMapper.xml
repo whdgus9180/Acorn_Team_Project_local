@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="group">
+	<!-- 검색 기능을 위한 -->
+	<sql id="searchCondition">
+		<choose>
+			<when test="title != null and caption != null">
+				WHERE title LIKE '%'||#{title}||'%' OR caption LIKE '%'||#{caption}||'%'
+			</when>
+			<when test="title != null">
+				WHERE title LIKE '%'||#{title}||'%'
+			</when>
+			<when test="writer != null">
+				WHERE writer LIKE '%'||#{writer}||'%'
+			</when>
+		</choose>
+	</sql>
+
+	<!-- 리스트  -->
+	<select id="getList" parameterType="groupDto" resultType="groupDto">
+		SELECT *
+		FROM   
+		   (SELECT result1.*, ROWNUM as rnum
+		   FROM
+		      (SELECT num, writer, title, caption, imagePath, regdate
+		      FROM board_group
+		      <include refid="searchCondition"/>
+		      ORDER BY num DESC) result1)
+      <![CDATA[ 
+	  WHERE rnum >= #{startRowNum} AND rnum <= #{endRowNum}
+	  ]]>
+   </select>
+   
+   <select id="getRanking" parameterType="groupDto" resultType="groupDto">
+        SELECT result.*, r.rate
+        FROM (
+            SELECT result1.*, ROWNUM AS rnum
+            FROM (
+                SELECT num, writer, title, caption, imagePath, regdate
+                FROM board_group
+                ORDER BY num DESC
+            ) result1
+        ) result
+        INNER JOIN (
+            SELECT title, ROUND(AVG(rate), 2) AS rate
+            FROM board_review
+            GROUP BY title
+        ) r ON result.title = r.title
+        ORDER BY r.rate DESC
+   </select>
+   
+   <select id="getCount" parameterType="groupDto" resultType="int">
+      SELECT NVL(MAX(ROWNUM), 0)
+      FROM board_group
+      <include refid="searchCondition"/>
+   </select>
+   
+   <insert id="insert" parameterType="groupDto">
+      INSERT INTO board_group
+      (num, writer, title, caption, imagePath, regdate)
+      VALUES(board_group_seq.NEXTVAL, #{writer}, #{title}, #{caption}, #{imagePath}, SYSDATE)
+   </insert>
+   
+   <select id="getData" parameterType="int" resultType="groupDto">
+		SELECT *
+		FROM
+		   (SELECT num, writer, title, caption, imagePath, regdate,
+		      LAG(num, 1, 0) OVER (ORDER BY num DESC) AS prevNum,
+		      LEAD(num, 1, 0) OVER (ORDER BY num DESC) AS nextNum
+		   FROM board_group
+		   ORDER BY num DESC)
+		WHERE num = #{num}
+   </select>
+   
+   <select id="getData2" parameterType="string" resultType="groupDto">
+		SELECT *
+		FROM
+		   (SELECT num, writer, title, caption, imagePath, regdate,
+		      LAG(num, 1, 0) OVER (ORDER BY num DESC) AS prevNum,
+		      LEAD(num, 1, 0) OVER (ORDER BY num DESC) AS nextNum
+		   FROM board_group
+		   ORDER BY num DESC)
+		WHERE title = #{title}
+   </select>
+   <update id="update" parameterType="groupDto">
+   		UPDATE board_group
+   		SET title = #{title}, caption=#{caption}, imagePath=#{imagePath}
+   		WHERE num = #{num}
+   </update>
+   <delete id="delete" parameterType="int">
+   		DELETE FROM board_group
+   		WHERE num=#{num}
+   </delete>
+</mapper>
