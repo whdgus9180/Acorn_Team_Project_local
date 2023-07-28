@@ -15,12 +15,15 @@ import com.acorn.soso.interceptor.LoginInterceptor;
  * 	    주로 Resource Handler, Interceptor, view page 관련 설정을 여기서 한다.
  * 3. 설정에 관련된 클래스에는 @Configuration 어노테이션을 붙여야 한다.
  */
+import com.acorn.soso.interceptor.PwdAuthInterceptor;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer{
 	
 	@Autowired 
 	LoginInterceptor loginInter;
+	@Autowired
+	PwdAuthInterceptor pwdAuthInter;
 	
 	//Interceptor를 추가할 때 오버라이드 하는 메소드
 	@Override
@@ -33,6 +36,8 @@ public class WebConfig implements WebMvcConfigurer{
 				.excludePathPatterns("/users/loginform", "/users/login", 
 						"/users/signup_form", "/users/signup",
 						"/users/pwd_findform","/users/pwd_find");
+		registry.addInterceptor(pwdAuthInter)
+				.addPathPatterns("/users/updateform", "/users/pwd_updateform");
 	}
 	
 	@Override

@@ -164,4 +164,21 @@ public class UsersController {
 		service.deleteUser(session, model);
 		return "users/delete";
 	}
+	
+	//비밀번호 인증 폼 요청 처리
+	@GetMapping("/users/pwd_authform")
+	public String pwdAuthform() {
+		return "users/pwd_authform";
+	}
+	
+	@PostMapping("/users/pwd_auth")
+	public String pwdAuth(Model model, UsersDto dto, String url, HttpSession session) {
+		service.pwdAuth(dto, session, model);
+
+		String encodeUrl = URLEncoder.encode(url);
+		model.addAttribute("url", url);
+		model.addAttribute("encodedUrl", encodeUrl);
+		
+		return "users/pwd_auth";
+	}
 }

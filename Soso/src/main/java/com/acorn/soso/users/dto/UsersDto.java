@@ -19,5 +19,4 @@ public class UsersDto {
 	private String profile;
 	private String regdate;
 	private String newPwd;
-	
 }

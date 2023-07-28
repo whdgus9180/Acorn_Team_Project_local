@@ -46,18 +46,26 @@ public class UsersServiceImpl implements UsersService{
 	public boolean isExist(String id) {
 		return dao.isExist(id) != 0;
 	}
+	
+	//비밀번호 확인
+	@Override
+	public boolean isSamePwd(UsersDto dto) {
+		//DB에 저장된 회원번호 얻어오기
+		UsersDto resultdto = dao.getData(dto.getId());
+		//DB에 저장된 암호화된 비밀번호
+		String encodedPwd = resultdto.getPwd();
+		//클라이언트가 입력한 비밀번호
+		String inputPwd = dto.getPwd();
+		//두 비밀번호가 일치하는지 확인
+		boolean isValid = BCrypt.checkpw(inputPwd, encodedPwd);
+		
+		return isValid;
+	}
 
 	@Override
 	public void loginprocess(UsersDto dto, HttpSession session) {
-		//입력한 정보가 맞는지 여부
-		boolean isValid = false;
-		//아이디를 이용해서 회원정보를 얻어온다.
-		UsersDto resultDto = dao.getData(dto.getId());
-		//만일 select 된 회원 정보가 존재하고
-		if(resultDto != null) {
-			//BCrypt 클래스의 static 메소드를 이용해서 입력한 비밀번호와 암호화해서 저장된 비밀번호 일치 여부를 알아내야 한다.
-			isValid = BCrypt.checkpw(dto.getPwd(), resultDto.getPwd());
-		}
+		//login, update등 에서 중복되어 사용하므로 따로 메소드로 구성하여 재사용
+		Boolean isValid = isSamePwd(dto);
 		
 		//만일 유효한 정보이면
 		if(isValid) {
@@ -79,14 +87,10 @@ public class UsersServiceImpl implements UsersService{
 	public void updateUserPwd(HttpSession session, UsersDto dto, Model model) {
 		//세션 영역에서 로그인된 아이디 읽어오기
 		String id = (String)session.getAttribute("id");
-		//DB에 저장된 회원번호 얻어오기
-		UsersDto resultdto = dao.getData(id);
-		//DB에 저장된 암호화된 비밀번호
-		String encodedPwd = resultdto.getPwd();
-		//클라이언트가 입력한 비밀번호
-		String inputPwd = dto.getPwd();
-		//두 비밀번호가 일치하는지 확인
-		boolean isValid = BCrypt.checkpw(inputPwd, encodedPwd);
+		dto.setId(id); //id값을 담아서 메소드로 보냄
+		
+		Boolean isValid = isSamePwd(dto);
+		
 		if(isValid) {
 			//새로운 비밀번호를 암호화 한다.
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -234,5 +238,16 @@ public class UsersServiceImpl implements UsersService{
 		//ModelAndView 객체에 탈퇴한 회원의 아이디를 담아준다.
 		model.addAttribute("id", id);
 	}
+
+	@Override
+	public void pwdAuth(UsersDto dto, HttpSession session, Model model) {
+		//세션 영역에서 로그인된 아이디 읽어오기
+		String id = (String)session.getAttribute("id");
+		dto.setId(id); //id값을 담아서 메소드로 보냄
+		
+		Boolean isValid = isSamePwd(dto);
+		model.addAttribute("isSuccess",isValid);
+	}
+	
 	
 }
