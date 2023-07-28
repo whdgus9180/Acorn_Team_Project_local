@@ -21,16 +21,15 @@
 		<div class="collapse navbar-collapse" id="navbarText">
 			<ul class="navbar-nav me-auto">
 									<!-- EL로 Jsp에서 넘겨받은 파라미터값을 바로 받아서 활용할 수 있다. -->
-				<li class="nav-item"><a id="intro"
-					class="nav-link ${param.current eq 'cafe' ? 'active' : ''}"
-					href="${pageContext.request.contextPath}/intro/intro_main">소개</a>
-				</li>
 				<li class="nav-item"><a id="group_list"
 					class="nav-link ${param.current eq 'file_list' ? 'active' : ''}"
-					href="${pageContext.request.contextPath}/group/list">모임 찾기</a></li>
-				<li class="nav-item"><a id="#_#"
-					class="nav-link ${param.current eq 'gallery_list' ? 'active' : ''}"
-					href="${pageContext.request.contextPath}/#/#">다른 페이지</a></li>
+					href="${pageContext.request.contextPath}/group/list">소모임 찾기</a></li>
+				<li class="nav-item"><a id="group_managing_admin"
+					class="nav-link ${param.current eq 'group_managing_admin' ? 'active' : ''}"
+					href="${pageContext.request.contextPath}/group_managing/admin_main">내 소모임 관리하기</a></li>
+				<li class="nav-item"><a id="group_managing_user"
+					class="nav-link ${param.current eq 'group_managing_user' ? 'active' : ''}"
+					href="${pageContext.request.contextPath}/group_managing/user_main">가입한 소모임 보기</a></li>
 			</ul>
 			<div class="navbar-nav">
 				<c:choose>
