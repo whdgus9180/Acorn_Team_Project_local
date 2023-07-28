@@ -56,3 +56,30 @@ CREATE TABLE board_gallery(
 );
 
 CREATE SEQUENCE board_gallery_seq;
+
+--모임 테이블
+CREATE TABLE board_group (
+  num NUMBER PRIMARY KEY,
+  writer VARCHAR2(100), -- 모임 주최
+  title VARCHAR2(100), -- 모임의 이름
+  caption VARCHAR2(200), -- 모임의 설명
+  imagePath VARCHAR2(100), -- 모임의 대표 이미지 경로
+  regdate DATE -- 업로드 날짜
+);
+-- 그룹 프라이머리 키
+CREATE SEQUENCE board_group_seq;
+
+--소모임 리뷰를 등록할 테이블
+CREATE TABLE board_review(
+    num NUMBER PRIMARY KEY, -- 후기 고유 번호
+    title VARCHAR2(200), -- 소모임 이름(이걸로 join)
+    writer VARCHAR2(100), -- 후기 작성자
+    review VARCHAR2(600), -- 리뷰 남기기
+    ref_group NUMBER, -- 리뷰 그룹의 멤
+    rate NUMBER, -- 별점
+    regdate DATE, --리뷰등록일자
+    CONSTRAINT rate_range CHECK (rate >= 0 AND rate <= 5)-- 별점 제한사항 등록
+);
+
+-- 리뷰의 글번호를 얻어낼 시퀀스
+CREATE SEQUENCE review_seq;
