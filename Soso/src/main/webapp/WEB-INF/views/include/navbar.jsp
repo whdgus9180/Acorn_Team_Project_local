@@ -27,7 +27,7 @@
 				</li>
 				<li class="nav-item"><a id="group_list"
 					class="nav-link ${param.current eq 'file_list' ? 'active' : ''}"
-					href="${pageContext.request.contextPath}/movie/list">모임 찾기</a></li>
+					href="${pageContext.request.contextPath}/group/list">모임 찾기</a></li>
 				<li class="nav-item"><a id="#_#"
 					class="nav-link ${param.current eq 'gallery_list' ? 'active' : ''}"
 					href="${pageContext.request.contextPath}/#/#">다른 페이지</a></li>

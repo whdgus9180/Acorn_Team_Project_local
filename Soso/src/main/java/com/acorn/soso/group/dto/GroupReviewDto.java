@@ -1,4 +1,4 @@
-package com.acorn.soso.movie.dto;
+package com.acorn.soso.group.dto;
 
 import org.apache.ibatis.type.Alias;
 
@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Alias("reviewDto")
-public class MovieReviewDto {
+public class GroupReviewDto {
 	private int num;
 	private String title;
 	private String writer;
@@ -24,6 +24,4 @@ public class MovieReviewDto {
 	private int rate;
 	private int startRowNum;
 	private int endRowNum;
-	
-	
 }

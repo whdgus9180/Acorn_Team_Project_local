@@ -33,10 +33,10 @@
 <body>
 <div class="container">
       <h1>이미지 업데이트</h1>
-         <form action="${pageContext.request.contextPath}/movie/update" method="post" 
+         <form action="${pageContext.request.contextPath}/group/update" method="post" 
                         enctype="multipart/form-data">
             <div>
-               <label for="title">영화 제목</label>
+               <label for="title">소모임 제목</label>
                <input type="text" name="title" id="title" value="${dto.title }"/>
             </div>
             
@@ -44,7 +44,7 @@
                   accept=".jpg, .jpeg, .png, .JPG, .JPEG"/>
                   
            <div>
-           		<label for="caption">영화 설명</label>
+           		<label for="caption">소모임 설명</label>
            		<textarea name="caption" id="caption" cols="30" rows="10">${dto.caption }</textarea>
 
            </div>

@@ -170,7 +170,7 @@
             <a href="${pageContext.request.contextPath }/">Home</a>
          </li>
          <li class="breadcrumb-item">
-            <a href="${pageContext.request.contextPath }/movie/list">영화 목록</a>
+            <a href="${pageContext.request.contextPath }/group/list">소모임 목록</a>
          </li>
          <li class="breadcrumb-item active">상세보기</li>
       </ul>
@@ -311,7 +311,7 @@
          <c:choose>
             <c:when test="${dto.prevNum ne 0 }">
                <li class="page-item mr-3">
-                     <a class="page-link" href="${pageContext.request.contextPath}/movie/detail?num=${dto.prevNum}">&larr; Prev</a>
+                     <a class="page-link" href="${pageContext.request.contextPath}/group/detail?num=${dto.prevNum}">&larr; Prev</a>
                </li>
             </c:when>
             <c:otherwise>
@@ -323,7 +323,7 @@
          <c:choose>
             <c:when test="${dto.nextNum ne 0 }">
                <li class="page-item">
-                     <a class="page-link" href="${pageContext.request.contextPath}/movie/detail?num=${dto.nextNum}">Next &rarr;</a>
+                     <a class="page-link" href="${pageContext.request.contextPath}/group/detail?num=${dto.nextNum}">Next &rarr;</a>
                </li>
             </c:when>
             <c:otherwise>
@@ -351,7 +351,7 @@
                e.preventDefault();
                //로그인 폼으로 이동 시킨다.
                location.href=
-                  "${pageContext.request.contextPath}/member/loginform?url=${pageContext.request.contextPath}/movie/detail?num=${dto.num}";
+                  "${pageContext.request.contextPath}/member/loginform?url=${pageContext.request.contextPath}/group/detail?num=${dto.num}";
             }
          });
       
@@ -477,7 +477,7 @@
                   const isMove=confirm("로그인이 필요 합니다. 로그인 페이지로 이동 하시겠습니까?");
                   if(isMove){
                      location.href=
-                        "${pageContext.request.contextPath}/memeber/loginform?url=${pageContext.request.contextPath}/movie/detail?num=${dto.num}";
+                        "${pageContext.request.contextPath}/memeber/loginform?url=${pageContext.request.contextPath}/group/detail?num=${dto.num}";
                   }
                   return;
                }

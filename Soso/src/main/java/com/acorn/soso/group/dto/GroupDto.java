@@ -1,4 +1,4 @@
-package com.acorn.soso.movie.dto;
+package com.acorn.soso.group.dto;
 
 import org.apache.ibatis.type.Alias;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Alias("movieDto")
-public class MovieDto {
+@Alias("groupDto")
+public class GroupDto {
 	//영화에 관련한 필드값을 담아두기 위한 DTO이다.
 	
 	//영화 번호
