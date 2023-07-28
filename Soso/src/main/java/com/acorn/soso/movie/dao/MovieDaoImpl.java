@@ -1,0 +1,68 @@
+package com.acorn.soso.movie.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.acorn.soso.movie.dto.MovieDto;
+
+@Repository
+public class MovieDaoImpl implements MovieDao{
+	
+	@Autowired
+	private SqlSession session;
+
+	@Override
+	public List<MovieDto> getList(MovieDto dto) {
+		return session.selectList("movie.getList", dto);
+	}
+	//랭킹 리스트
+	@Override
+	public List<MovieDto> getRanking(MovieDto dto) {
+		return session.selectList("movie.getRanking", dto);
+	}
+
+
+	@Override
+	public void insert(MovieDto dto) {
+		session.insert("movie.insert", dto);
+		
+	}
+
+	@Override
+	public MovieDto getData(int num) {
+		return session.selectOne("movie.getData", num);
+	}
+
+	@Override
+	public int thumsupCount() {
+		return 0;
+	}
+
+	@Override
+	public int thumsdownCount() {
+		return 0;
+	}
+
+	@Override
+	public void delete(int num) {
+		session.delete("movie.delete", num);
+	}
+
+	@Override
+	public void update(MovieDto dto) {
+		session.update("movie.update", dto);
+	}
+
+	@Override
+	public MovieDto getData(String title) {
+		return session.selectOne("movie.getData2", title);
+	}
+
+	@Override
+	public int getCount(MovieDto dto) {
+		return session.selectOne("movie.getCount", dto);
+	}
+}
