@@ -21,6 +21,29 @@
 		<h1>회원 가입</h1>
 		<form action="${pageContext.request.contextPath}/users/signup" method="post" id="myForm">
 			<div>
+				<label class="control-label" for="userName">이름(닉네임)</label>
+				<input class="form-control" type="text" name="userName" id="userName"/>		
+			</div>
+			<div>
+				<label class="control-label" for="birth">생년월일</label>
+				<input class="form-control" type="date" name="birth" id="birth"/>		
+			</div>
+			<fieldset>
+			      <legend>성별 체크</legend>
+			      <div class="form-check">
+			          <input class="form-check-input" type="radio" id="one" name="gender" checked>
+			          <label class="form-check-label" for="one">남</label>
+			      </div>
+			      <div class="form-check">
+			          <input class="form-check-input" type="radio" id="two" name="gender">
+			          <label class="form-check-label" for="two">여</label>
+			      </div>
+			      <div class="form-check">
+			          <input class="form-check-input" type="radio" id="three" name="gender">
+			          <label class="form-check-label" for="three">비공개</label>
+			      </div>
+			</fieldset>
+			<div>
 				<label class="control-label" for="id">아이디</label>
 				<input class="form-control" type="text" name="id" id="id"/>		
 			</div>
@@ -36,6 +59,21 @@
 				<label class="control-label" for="email">이메일</label>
 				<input class="form-control" type="text" name="email" id="email"/>
 			</div>
+			<fieldset>
+                <legend>장르</legend>
+                <label>
+                    <input type="checkbox" name="genre" value="soccer"> 축구
+                </label>
+                <label>
+                    <input type="checkbox" name="genre" value="baking"> 베이킹
+                </label>
+                <label>
+                    <input type="checkbox" name="genre" value="piano"> 피아노
+                </label>
+                <label>
+                    <input type="checkbox" name="genre" value="etc"> 기타
+                </label>                
+            </fieldset>
 			<button class="btn btn-primary mt-3" type="submit">가입</button>
 		</form>
 	</div>	
