@@ -15,7 +15,7 @@
                 <p><strong>${id }</strong> 님의 임시 비밀번호가 발급되었습니다.</p>
                 <p>임시비밀번호 : <strong>${tmpPwd}</strong></p>
                 <p>로그인후 마이페이지에서 비밀번호 변경이 가능합니다.</p>
-                <a href="${pageContext.request.contextPath}/users/loginform"></a>
+                <p><a href="${pageContext.request.contextPath}/users/loginform">로그인 하러 가기</a></p>
             </c:when>
             <c:otherwise>
                 <p>
