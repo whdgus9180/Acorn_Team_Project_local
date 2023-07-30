@@ -39,6 +39,12 @@ public class GroupController {
 		return "group/test";
 	}
 	
+	@GetMapping("/group/group_in")
+	public String groupIn() {
+		
+		return "group/group_in";
+	}
+	
 	//리뷰 삭제
 	@RequestMapping("/group/review_delete")
 	@ResponseBody

@@ -39,7 +39,7 @@
 			</div>
 		</div>
 		<div class="d-flex mb-3">
-			<div class="p-2 flex-grow-1">호스트의 자기소개</div>
+			<div class="p-2 flex-grow-1">호스트의 한마디</div>
 			<div class="p-2 flex-grow-1">호스트 소개 이미지</div>
 		</div>
 		<div>
