@@ -46,20 +46,23 @@
 			<h4 class="mx-1 my-1">이 모임에서는 이런 책들을 읽어요</h4>
 			<div class="d-flex">
 				<div class="card mx-1 my-1" style="width: 9rem;">
-					<img src="..." class="card-img-top" alt="..." />
-					<div class="card-body"></div>
+					<div class="card-body">
+						<img src="${pageContext.request.contextPath}/images/0.png" class="card-img-top" alt="..." />
+					</div>
 					<h5 class="card-title">책 이름1</h5>
 					<p class="card-text">여기에 책 설명이 출력될 예정입니다.</p>
 				</div>
 				<div class="card mx-1 my-1" style="width: 9rem;">
-					<img src="..." class="card-img-top" alt="..." />
-					<div class="card-body"></div>
+					<div class="card-body">
+						<img src="${pageContext.request.contextPath}/images/1.png" class="card-img-top" alt="..." />
+					</div>
 					<h5 class="card-title">책 이름2</h5>
 					<p class="card-text">여기에 책 설명이 출력될 예정입니다.</p>
 				</div>
 				<div class="card mx-1 my-1" style="width: 9rem; height: 18rem;">
-					<img src="..." class="card-img-top" alt="..." />
-					<div class="card-body"></div>
+					<div class="card-body">
+						<img src="${pageContext.request.contextPath}/images/2.png" class="card-img-top" alt="..." />
+					</div>
 					<h5 class="card-title">책 이름3</h5>
 					<p class="card-text">여기에 책 설명이 출력될 예정입니다.</p>
 				</div>

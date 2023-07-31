@@ -18,6 +18,7 @@
 			<label class="control-label" for="warnning">주의사항</label>
 			<input class="form-control mb-3" type="text" name="warnning" id="warnning" value="여기에 각 조에 대한 주의사항 출력"/>
 			<label class="control-label" for="id"></label>
+			<!-- 나중에 hidden으로 바꾸고 올리기 -->
 			<input class="form-control mb-3" type="text" name="id" id="id" value="세션아이디" readonly />
 			<label class="control-label" for="intro">자기소개</label>			
 			<textarea class="form-control mb-3" name="intro" id="" cols="30" rows="10"></textarea>
