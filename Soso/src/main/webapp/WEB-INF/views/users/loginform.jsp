@@ -13,7 +13,11 @@
     <link href="${pageContext.request.contextPath}/resources/css/floating-labels.css" rel="stylesheet">
 </head>
 
-<body class="bg-light">
+<body>
+    <jsp:include page="/WEB-INF/views/include/navbar.jsp">
+        <jsp:param value="login" name="current"/>
+    </jsp:include>
+    
     <div class="div-signin d-grid gap-2">
         <form class="form-signin" action="${pageContext.request.contextPath}/users/login" method="post">
             <h1 class="h3 mb-3 font-weight-normal" style="width: 30rem">로그인</h1>
