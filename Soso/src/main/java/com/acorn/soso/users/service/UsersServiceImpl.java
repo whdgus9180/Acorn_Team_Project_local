@@ -88,10 +88,7 @@ public class UsersServiceImpl implements UsersService{
 		//세션 영역에서 로그인된 아이디 읽어오기
 		String id = (String)session.getAttribute("id");
 		dto.setId(id); //id값을 담아서 메소드로 보냄
-		
-		Boolean isValid = isSamePwd(dto);
-		
-		if(isValid) {
+
 			//새로운 비밀번호를 암호화 한다.
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 			String encodedNewPwd = encoder.encode(dto.getNewPwd());
@@ -103,9 +100,8 @@ public class UsersServiceImpl implements UsersService{
 			dao.updatePwd(dto);
 			//로그아웃 처리
 			session.removeAttribute("id");
-		}
-		//작업의 성공여부를 ModelAndView 객체에 담아 놓는다(결국 HttpServletRequest에 담긴다)
-		model.addAttribute("isSuccess", isValid);
+
+
 		//로그인된 아이디도 담아준다.
 		model.addAttribute("id", id);
 	}
