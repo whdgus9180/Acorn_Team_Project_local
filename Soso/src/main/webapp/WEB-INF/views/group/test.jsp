@@ -72,21 +72,29 @@
 		<div>
 			<h4 class="mx-1 my-1">이 모임에 참석한 사람들의 후기입니다.</h4>
 			<div class="d-flex flex-column mb-3">
-				<div class="card mx-1 my-1">
+				<c:forEach var="tmp" items="${list}">
+					<div class="card mx-1 my-1">
+						<div class="card-body">
+							<p class="card-text">${tmp.review}</p>
+						</div>
+					</div>
+				</c:forEach>
+			
+<%-- 				<div class="card mx-1 my-1">
 					<div class="card-body">
-						후기1
+						<p class="card-text">${list[0].review}</p>
 					</div>
 				</div>
 				<div class="card mx-1 my-1">
 					<div class="card-body">
-						후기2
+						<p class="card-text">${list[1].review}</p>
 					</div>
 				</div>
 				<div class="card mx-1 my-1">
 					<div class="card-body">
-						후기3
+						<p class="card-text">${list[2].review}</p>
 					</div>
-				</div>				
+				</div> --%>
 			</div>
 		</div>
 		<div>
