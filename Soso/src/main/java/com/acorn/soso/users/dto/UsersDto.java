@@ -23,6 +23,5 @@ public class UsersDto {
 	private String userName;
 	private String birth;
 	private String gender;
-	private String genre;
 
 }
