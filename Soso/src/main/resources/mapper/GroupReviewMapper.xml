@@ -10,8 +10,8 @@
             (SELECT num, title, writer, review, ref_group, rate,
                 board_review.regdate, profile
             FROM board_review
-            INNER JOIN board_member
-            ON board_review.writer=board_member.id
+            INNER JOIN users
+            ON board_review.writer=users.id
             WHERE ref_group=#{ref_group}
             ORDER BY board_review.regdate desc, num ASC) result1)
       WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}   

@@ -34,7 +34,7 @@
 				<span>여기에 모임 소개 작성</span>
 				<div class="d-flex flex-row-reverse" style="border : 0px;">
 					<div class="p-2"><button type="button" class="btn btn-outline-danger">찜하기</button></div>
-					<div class="p-2"><button type="button" class="btn btn-outline-primary">가입하기</button></div>
+					<div class="p-2"><button type="button" class="btn btn-outline-primary"><a href="${pageContext.request.contextPath}/group/group_in">가입하기</a></button></div>
 				</div>
 			</div>
 		</div>
