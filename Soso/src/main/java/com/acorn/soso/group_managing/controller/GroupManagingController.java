@@ -18,4 +18,8 @@ public class GroupManagingController {
 	public String group_insertForm() {
 		return "group_managing/group_insertForm";
 	}
+	@GetMapping("/group_managing/group_updateForm")
+	public String group_updateForm() {
+		return "group_managing/group_updateForm";
+	}
 }
