@@ -22,4 +22,12 @@ public class GroupManagingController {
 	public String group_updateForm() {
 		return "group_managing/group_updateForm";
 	}
+	@GetMapping("/group_managing/applicantList")
+	public String group_applicantList() {
+		return "group_managing/applicantList";
+	}
+	@GetMapping("/group_managing/memberList")
+	public String group_memberList() {
+		return "group_managing/memberList";
+	}
 }

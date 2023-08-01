@@ -48,7 +48,7 @@
 			</fieldset>
 			<div>
 				<label class="form-label" for="group_totalNum">소모임 정원</label>
-				<input class="form-control" type="number" name="group_totalNum" placeholder="최대 30명까지...">
+				<input class="form-control" type="number" name="group_totalNum" placeholder="최대 30명까지..." min="1" max="30">
 			</div>
 			<div>
 				<label class="form-lable" for="group_caption">소모임 소개말</label>
