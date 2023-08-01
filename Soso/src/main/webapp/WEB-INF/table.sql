@@ -6,6 +6,11 @@ CREATE TABLE users(
     profile VARCHAR2(100), --프로필 이미지 경로를 저장할 칼럼
     regdate DATE
 );
+-- 사용자(회원) 정보 테이블 수정
+ALTER TABLE users ADD username VARCHAR2(20) UNIQUE; -- 사용자 별명 (추후 drop가능성 있음)
+ALTER TABLE users ADD birth DATE; -- 생년월일
+ALTER TABLE users ADD gender VARCHAR2(20) CHECK( GENDER IN('남', '여', '비공개')); -- 성별
+ALTER TABLE users ADD Genre NUMBER; -- 선호 장르 (소모임 카테고리화 / 추천시스템에서 사용)
 
 -- 업로드된 파일의 정보를 저장할 테이블
 CREATE TABLE board_file(

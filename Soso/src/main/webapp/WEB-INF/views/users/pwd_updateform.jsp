@@ -21,10 +21,6 @@
 	<div class="container">
 		<form action="${pageContext.request.contextPath}/users/pwd_update" method="post" id="myForm">
 			<div>
-				<label class="form-label" for="pwd">기존 비밀 번호</label>
-				<input class="form-control" type="password" name="pwd" id="pwd"/>
-			</div>
-			<div>
 				<label class="form-label" for="newPwd">새 비밀번호</label>
 				<input class="form-control" type="password" name="newPwd" id="newPwd"/>
 			</div>

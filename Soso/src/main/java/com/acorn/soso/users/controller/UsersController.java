@@ -171,6 +171,7 @@ public class UsersController {
 		return "users/pwd_authform";
 	}
 	
+	//비밀번호 인증 요청 처리
 	@PostMapping("/users/pwd_auth")
 	public String pwdAuth(Model model, UsersDto dto, String url, HttpSession session) {
 		service.pwdAuth(dto, session, model);

@@ -19,7 +19,7 @@
         <c:otherwise>
             <p>
                 이전 비밀번호가 일치하지 않습니다.
-                <a href="loginform?url=${requestScope.encodedUrl }">다시 시도</a>
+                <a href="pwd_authform?url=${requestScope.encodedUrl }">다시 시도</a>
             </p>
         </c:otherwise>
     </c:choose>
