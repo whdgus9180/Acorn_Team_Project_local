@@ -7,11 +7,15 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.acorn.soso.group.dao.GroupReviewDao;
 import com.acorn.soso.group.dto.GroupDto;
 import com.acorn.soso.group.dto.GroupReviewDto;
 import com.acorn.soso.group.service.GroupService;
@@ -31,6 +35,20 @@ public class GroupController {
 		map.put("isSuccess", true);
 		return map;
 	}
+	
+	//test페이지 불러오면서 후기글 불러오기 위한 service 호출
+	@GetMapping("/group/test")
+	public String test(HttpServletRequest request, Model model) {
+		service.reviewList(request, model);
+		return "group/test";
+	}
+	
+	@GetMapping("/group/group_in")
+	public String groupIn() {
+		
+		return "group/group_in";
+	}
+	
 	//리뷰 삭제
 	@RequestMapping("/group/review_delete")
 	@ResponseBody

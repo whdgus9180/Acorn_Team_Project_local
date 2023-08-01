@@ -54,6 +54,7 @@
 	</jsp:include>
 <div class="container">
       <a href="${pageContext.request.contextPath}/group/upload_form">소모임 신청하러 가기</a>
+      <a href="${pageContext.request.contextPath}/group/test?num=1">테스트 페이지 가기</a>
       <h1>소모임 목록 입니다.</h1>
       <div class="row">
       <c:forEach var="tmp" items="${list }">

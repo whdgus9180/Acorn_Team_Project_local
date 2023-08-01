@@ -60,4 +60,10 @@ public class GroupReviewDaoImpl implements GroupReviewDao{
 		return session.selectOne("groupReview.getEqual", dto);
 	}
 
+
+	@Override
+	public List<GroupReviewDto> reviewList(int num) {
+		return session.selectList("groupReview.reviewList", num);
+	}
+
 }

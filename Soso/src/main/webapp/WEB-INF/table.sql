@@ -88,3 +88,16 @@ CREATE TABLE board_review(
 
 -- 리뷰의 글번호를 얻어낼 시퀀스
 CREATE SEQUENCE review_seq;
+
+-- 소모임 가입을 위한 관리 테이블
+CREATE TABLE board_join_group( -- 테이블 이름
+memNum NUMBER PRIMARY KEY,--소모임 멤버 넘버
+groupNum NUMBER, -- group테이블의 pk
+isjoin NUMBER NOT NULL, -- 0:승인, 1:대기, 2:거부 및 탈퇴
+regdate DATE, -- 가입 신청 날짜
+joindate DATE, -- 가입 허락 날짜
+exdate DATE -- 탈퇴 날짜
+)
+
+-- 소모임 회원 PK
+CREATE SEQUENCE join_seq;

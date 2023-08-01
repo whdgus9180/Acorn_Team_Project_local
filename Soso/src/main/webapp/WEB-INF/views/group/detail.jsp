@@ -143,41 +143,16 @@
       }
    }
 
-   /* Grid Layout */
-		.container{
-		  display: grid;
-  		  grid-template-columns: 1fr 1fr;
-		  grid-gap: 20px;
-		}
-		.card {
-		  grid-column: 1 / span 1;
-		}
-		.comments {
-		  grid-column: 2 / span 1;
-		}
-		.comment-form {
-		  grid-column: 2 / span 1;
-		}
 </style>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/navbar.jsp"></jsp:include>
 <div class="container">
-   <nav>
-      <ul class="breadcrumb">
-         <li class="breadcrumb-item">
-            <a href="${pageContext.request.contextPath }/">Home</a>
-         </li>
-         <li class="breadcrumb-item">
-            <a href="${pageContext.request.contextPath }/group/list">소모임 목록</a>
-         </li>
-         <li class="breadcrumb-item active">상세보기</li>
-      </ul>
-   </nav>
    <div class="card mb-3">
       <img class="card-img-top" src="${pageContext.request.contextPath}${dto.imagePath}"/>
       <div class="card-body">
+      	 <p class="card-text">${dto.title}</p>
          <p class="card-text">${dto.caption}</p>
          <p class="card-text">by <strong>${dto.writer}</strong></p>
          <p><small>${dto.regdate}</small></p>

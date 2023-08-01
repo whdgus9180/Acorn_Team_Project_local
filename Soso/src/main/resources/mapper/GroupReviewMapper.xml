@@ -10,11 +10,17 @@
             (SELECT num, title, writer, review, ref_group, rate,
                 board_review.regdate, profile
             FROM board_review
-            INNER JOIN board_member
-            ON board_review.writer=board_member.id
+            INNER JOIN users
+            ON board_review.writer=users.id
             WHERE ref_group=#{ref_group}
             ORDER BY board_review.regdate desc, num ASC) result1)
       WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}   
+   </select>
+   <!-- 디테일 페이지에 보여주기 위한 댓글 -->
+   <select id="reviewList" parameterType="int" resultType="reviewDto">
+   		SELECT num, title, writer, review FROM board_review
+   		WHERE ref_group=#{num}
+   		ORDER BY num
    </select>
    <select id="getCount" parameterType="int" resultType="int">
       SELECT NVL(MAX(ROWNUM), 0)

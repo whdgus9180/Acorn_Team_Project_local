@@ -2,6 +2,7 @@ package com.acorn.soso.group.service;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.acorn.soso.group.dto.GroupDto;
@@ -20,7 +21,7 @@ public interface GroupService {
 	public void getDetail(ModelAndView mView, int num);
 	//모임 업데이트(request로 수정사항을 받아서 dto에 저장한 다음에 전송)
 	public void update(GroupDto dto, HttpServletRequest request);
-	//모임 삭제-> 번호를 매개로 해서 삭
+	//모임 삭제-> 번호를 매개로 해서 삭제
 	public void delete(int num);
 	
 	//리뷰에 관련한 기능
@@ -34,5 +35,7 @@ public interface GroupService {
 	public void moreReview(HttpServletRequest request);
 	//평점 평균
 	public void avgRate(String title);
+	//detail 페이지에 리뷰 보이게 하기 위한 리뷰 리스트 호출
+	public void reviewList(HttpServletRequest request, Model model);
 	
 }
