@@ -390,12 +390,12 @@ public class GroupServiceImpl implements GroupService{
 	}
 	//num을 가져와서 리뷰 리스트를 불러온 다음에 model에 담아서 돌려주기
 	@Override
-	public void reviewList(HttpServletRequest request) {
+	public void reviewList(HttpServletRequest request, Model model) {
 		//request를 통해서 num을 가져온다.
 		int num = Integer.parseInt(request.getParameter("num"));
 		//revieDto를 이용해서리스트에 담은 다음
-		List<GroupReviewDto> list = reviewdao.getList2(num);
+		List<GroupReviewDto> list = reviewdao.reviewList(num);
 		//request에 담아주기
-		request.setAttribute("list", list);
+		model.addAttribute("list", list);
 	}
 }

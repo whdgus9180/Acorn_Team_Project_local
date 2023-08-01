@@ -62,8 +62,8 @@ public class GroupReviewDaoImpl implements GroupReviewDao{
 
 
 	@Override
-	public List<GroupReviewDto> getList2(int num) {
-		return session.selectList("groupReview.getList2", num);
+	public List<GroupReviewDto> reviewList(int num) {
+		return session.selectList("groupReview.reviewList", num);
 	}
 
 }

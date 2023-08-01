@@ -73,7 +73,7 @@
 			<h4 class="mx-1 my-1">이 모임에 참석한 사람들의 후기입니다.</h4>
 			<div class="d-flex flex-column mb-3">
 			<!-- forEach를 사용해서 댓글 출력(나중에는 분기 써서 댓글이 없을 때는 다른 페이지 표시하) -->
-				<c:forEach var="tmp" items="${list}">
+				<c:forEach var="tmp" items="${list}" end="2">
 					<div class="card mx-1 my-1">
 						<div class="card-body">
 							<p class="card-text">${tmp.review}</p>

@@ -36,6 +36,6 @@ public interface GroupService {
 	//평점 평균
 	public void avgRate(String title);
 	//detail 페이지에 리뷰 보이게 하기 위한 리뷰 리스트 호출
-	public void reviewList(HttpServletRequest request);
+	public void reviewList(HttpServletRequest request, Model model);
 	
 }

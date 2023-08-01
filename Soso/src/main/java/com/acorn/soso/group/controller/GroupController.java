@@ -38,8 +38,8 @@ public class GroupController {
 	
 	//test페이지 불러오면서 후기글 불러오기 위한 service 호출
 	@GetMapping("/group/test")
-	public String test(HttpServletRequest request) {
-		service.reviewList(request);
+	public String test(HttpServletRequest request, Model model) {
+		service.reviewList(request, model);
 		return "group/test";
 	}
 	

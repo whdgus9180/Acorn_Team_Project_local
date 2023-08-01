@@ -17,7 +17,7 @@
       WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}   
    </select>
    <!-- 디테일 페이지에 보여주기 위한 댓글 -->
-   <select id="getList2" parameterType="int" resultType="reviewDto">
+   <select id="reviewList" parameterType="int" resultType="reviewDto">
    		SELECT num, title, writer, review FROM board_review
    		WHERE ref_group=#{num}
    		ORDER BY num

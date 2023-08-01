@@ -24,5 +24,5 @@ public interface GroupReviewDao {
 	//리뷰가 이미 존재하는지 확인하는 메소드
 	public GroupReviewDto getEqual(GroupReviewDto dto);
 	//디테일에 리뷰를 보여주기 위한 후기 리스트 호
-	public List<GroupReviewDto> getList2(int num);
+	public List<GroupReviewDto> reviewList(int num);
 }
