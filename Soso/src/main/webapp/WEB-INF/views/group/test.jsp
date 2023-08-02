@@ -34,7 +34,7 @@
 				<span>여기에 모임 소개 작성</span>
 				<div class="d-flex flex-row-reverse" style="border : 0px;">
 					<div class="p-2"><button type="button" class="btn btn-outline-danger">찜하기</button></div>
-					<div class="p-2"><button type="button" class="btn btn-outline-primary"><a href="${pageContext.request.contextPath}/group/group_in">가입하기</a></button></div>
+					<div class="p-2"><button type="button" class="btn btn-outline-primary"><a href="${pageContext.request.contextPath}/group/group_in?num=1">가입하기</a></button></div>
 				</div>
 			</div>
 		</div>
@@ -73,13 +73,24 @@
 			<h4 class="mx-1 my-1">이 모임에 참석한 사람들의 후기입니다.</h4>
 			<div class="d-flex flex-column mb-3">
 			<!-- forEach를 사용해서 댓글 출력(나중에는 분기 써서 댓글이 없을 때는 다른 페이지 표시하) -->
-				<c:forEach var="tmp" items="${list}" end="2">
-					<div class="card mx-1 my-1">
-						<div class="card-body">
-							<p class="card-text">${tmp.review}</p>
+				<c:choose>
+					<c:when test="${empty list}">
+						<div class="card mx-1 my-1">
+							<div class="card-body">
+								<p class="card-text">아직 후기가 없어요</p>
+							</div>
 						</div>
-					</div>
-				</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<c:forEach var="tmp" items="${list}" end="2">
+							<div class="card mx-1 my-1">
+								<div class="card-body">
+									<p class="card-text">${tmp.review}</p>
+								</div>
+							</div>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 		<div>
