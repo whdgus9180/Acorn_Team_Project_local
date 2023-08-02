@@ -160,8 +160,8 @@ public class UsersController {
 	
 	//아이디 찾기 요청 처리
 	@PostMapping("/users/id_find")
-	public String IdFind() {
-		//service.findUserId();
+	public String IdFind(UsersDto dto, Model model) {
+		service.findUserId(dto, model);
 		return "users/id_find";
 	}
 	
