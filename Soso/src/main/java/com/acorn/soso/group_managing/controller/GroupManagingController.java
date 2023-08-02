@@ -35,6 +35,11 @@ public class GroupManagingController {
 		return "group_managing/group_updateForm";
 	}
 	
+	@GetMapping("/group_managing/group_userdetail")
+	public String group_userdetail() {
+		return "group_managing/group_userdetail";
+	}
+	
 	@GetMapping("/group_managing/applicantList")
 	public String group_applicantList(GroupManagingDto dto, HttpServletRequest request) {
 		dto.setGroupNum(1);
