@@ -42,7 +42,7 @@
 				<table class="table table-borderless">
 					<tr>
 						<th>이름</th>
-						<td>${name }</td>
+						<td>${dto.userName }</td>
 					</tr>
 					<tr>
 						<th>아이디</th>
