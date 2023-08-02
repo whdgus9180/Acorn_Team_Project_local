@@ -27,20 +27,26 @@
 	
 	<div class="container">
 		<h1 class="text-center">가입 정보</h1>
-		<div class="row">
-			<div class="col-8">
-				<table class="table table-bordered">
+		<div class="row border">
+			<div class="col-2">
+				<c:choose>
+					<c:when test="${empty dto.profile }">
+						<i class="bi bi-person-circle" style="font-size:100px" id="profileImage"></i>
+					</c:when>
+					<c:otherwise>
+						<img id="profileImage" src="${pageContext.request.contextPath}${dto.profile}" />
+					</c:otherwise>
+				</c:choose>
+			</div>
+			<div class="col-5">
+				<table class="table table-borderless">
 					<tr>
-		
+						<th>이름</th>
+						<td>${name }</td>
 					</tr>
 					<tr>
 						<th>아이디</th>
 						<td>${id }</td>
-					</tr>
-					<tr>
-					<tr>
-						<th>비밀번호</th>
-						<td><a class="btn btn-secondary btn-sm" href="${pageContext.request.contextPath}/users/pwd_updateform">수정하기</a></td>
 					</tr>
 					<tr>
 						<th>이메일</th>
@@ -52,19 +58,25 @@
 					</tr>
 				</table>
 			</div>
-			<div class="col-4">
-				<c:choose>
-					<c:when test="${empty dto.profile }">
-						<i class="bi bi-person-circle" style="font-size:100px" id="profileImage"></i>
-					</c:when>
-					<c:otherwise>
-						<img id="profileImage" src="${pageContext.request.contextPath}${dto.profile}" />
-					</c:otherwise>
-				</c:choose>
+			<div class="col-5">
+				<table class="table table-borderless">
+					<tr>
+						<th>비밀번호</th>
+						<td><a class="btn btn-secondary btn-sm" href="${pageContext.request.contextPath}/users/pwd_updateform">수정하기</a></td>
+					</tr>
+					<tr>
+						<th>생일</th>
+						<td>${dto.birth }</td>
+					</tr>
+					<tr>
+						<th>성별</th>
+						<td>${dto.gender }</td>
+					</tr>
+				</table>
+				<a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/users/updateform">개인정보 수정</a>
+				<a class="btn btn-outline-danger" href="javascript:deleteConfirm()">탈퇴</a>
 			</div>
 		</div>
-		<a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/users/updateform">개인정보 수정</a>
-		<a class="btn btn-outline-danger" href="javascript:deleteConfirm()">탈퇴</a>
 	</div>
 	<script>
 		function deleteConfirm() {
