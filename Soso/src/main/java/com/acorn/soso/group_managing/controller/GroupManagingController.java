@@ -22,4 +22,8 @@ public class GroupManagingController {
 	public String group_updateForm() {
 		return "group_managing/group_updateForm";
 	}
+	@GetMapping("/group_managing/group_userdetail")
+	public String group_userdetail() {
+		return "group_managing/group_userdetail";
+	}
 }
