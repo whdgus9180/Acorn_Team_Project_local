@@ -58,7 +58,7 @@
             <label><input type="checkbox" id="autoLogin"> 자동 로그인</label>
         </div>
         
-        <a href="">아이디 찾기</a>
+        <a href="${pageContext.request.contextPath}/users/id_findform">아이디 찾기</a>
         <a href="${pageContext.request.contextPath}/users/pwd_findform">비밀번호 찾기</a>
     </div>
     
