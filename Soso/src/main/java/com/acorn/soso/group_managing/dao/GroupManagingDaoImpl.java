@@ -18,4 +18,16 @@ public class GroupManagingDaoImpl implements GroupManagingDao{
 	public List<GroupManagingDto> getApplicantList(GroupManagingDto dto) {
 		return session.selectList("groupManaging.getApplicantList", dto);
 	}
+	
+	@Override
+	public List<GroupManagingDto> getMemberList(GroupManagingDto dto) {
+		return session.selectList("groupManaging.getMemberList", dto);
+	}
+
+	@Override
+	public void joinApprove(int num) {
+		session.update("groupManaging.joinApprove", num);
+	}
+
+	
 }
