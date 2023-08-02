@@ -39,7 +39,6 @@ public class GroupManagingController {
 	public String group_userdetail() {
 		return "group_managing/group_userdetail";
 	}
-	
 	@GetMapping("/group_managing/applicantList")
 	public String group_applicantList(GroupManagingDto dto, HttpServletRequest request) {
 		dto.setGroupNum(1);
@@ -47,8 +46,7 @@ public class GroupManagingController {
 		service.getApplicantList(dto, request);
 		
 		return "group_managing/applicantList";
-	}
-	
+  }
 	@GetMapping("/group_managing/memberList")
 	public String group_memberList() {
 		return "group_managing/memberList";
