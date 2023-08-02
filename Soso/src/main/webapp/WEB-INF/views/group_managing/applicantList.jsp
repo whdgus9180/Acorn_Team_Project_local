@@ -48,8 +48,8 @@
 						<div class="mt-3">${tmp.regdate}</div>
 						<div class="mb-3"><a class="link" href="${pageContext.request.contextPath}/cafe/list">회원 정보 보기</a></div>
 						<div class="d-flex mt-1 justify-content-around">
-							<div><a style=width:100px" class="btn btn-primary me-3" href="${pageContext.request.contextPath}/group_managing/group_updateForm">가입 승인</a></div>
-							<div><a style="width:100px" class="btn btn-secondary me-3" href="${pageContext.request.contextPath}/group_managing/group_updateForm">가입 거절</a></div>
+							<div><a style=width:100px" class="btn btn-primary me-3" href="${pageContext.request.contextPath}/group_managing/joinApprove?num=${tmp.memNum}">가입 승인</a></div>
+							<div><a style="width:100px" class="btn btn-secondary me-3" href="${pageContext.request.contextPath}/group_managing/joinReject?num=${tmp.memNum}">가입 거절</a></div>
 						</div>
 					</div>
 				</div>
