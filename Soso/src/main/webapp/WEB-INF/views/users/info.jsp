@@ -80,77 +80,103 @@
 		
 		<div>
 			<h3>활동 내역</h3>
-			<ul class="nav justify-content-end">
+			<ul class="nav justify-content-end nav-tabs">
 				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="#">작성글</a>
+					<a class="nav-link" id="writingList" href="#">작성글</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">작성댓글</a>
+					<a class="nav-link" id="commentList" href="#">작성댓글</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">문의사항</a>
+					<a class="nav-link" id="supportList" href="#">문의사항</a>
 				</li>
 			</ul>
-			<table class="table table-striped">
-				<thead class="table-dark">
-					<tr>
-						<th>소모임 명</th>
-						<th>글 제목</th>
-						<th>작성일</th>
-					</tr>
-				</thead>
-				<tbody>
-					<!-- 임시 데이터 -->
-					<tr>
-						<td>책 나눔 모임</td>
-						<td>
-							<a href="">글 제목 / 클릭시 해당 글로 이동</a>
-						</td>
-						<td>2023.08.02 16:15:30</td>
-					</tr>
-					
-					<%-- <c:forEach var="tmp" items="${list }">
-						<tr>
-							<td>${tmp.num }</td>
-							<td>${tmp.writer }</td>
-							<td>
-								<a href="detail?num=${tmp.num }&condition=${condition}&keyword=${encodedK}">${tmp.title }</a>
-							</td>
-							<td>${tmp.viewCount }</td>
-							<td>${tmp.regdate }</td>
-						</tr>
-					</c:forEach> --%>
-				</tbody>
-			</table>
-			<nav>
-				<ul class="pagination">
-					<%--
-						startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
-						&condition=${condition}&keyword=${encodedK}
-					 --%>
-					<c:if test="${startPageNum ne 1 }">
-						<li class="page-item">
-							<a class="page-link animate__animated" href="list?pageNum=${startPageNum-1 }&condition=${condition}&keyword=${encodedK}">Prev</a>
-						</li>
-					</c:if>
-					<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
-						<li class="page-item ${pageNum eq i ? 'active' : '' }">
-							<a class="page-link animate__animated" href="list?pageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
-						</li>
-					</c:forEach>
-					<%--
-						마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
-					 --%>
-					<c:if test="${endPageNum lt totalPageCount }">
-						<li class="page-item">
-							<a class="page-link animate__animated" href="list?pageNum=${endPageNum+1 }&condition=${condition}&keyword=${encodedK}">Next</a>
-						</li>
-					</c:if>				
-				</ul>
-			</nav>
+			
+			<div id="Parse_Area"gt;lt;/div>
 		</div>
 	</div>
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
 	<script>
+		//작성글 클릭 시 writing_list 페이지 로딩
+		$("#writingList").click(function() {
+			$.ajax({
+	            type : "GET", //전송방식을 지정한다 (POST,GET)
+	            url : "${pageContext.request.contextPath}/users/info/writing_list",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+	            dataType : "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+	            error : function(){
+	                console.log("통신실패");
+	            },
+	            success : function(Parse_data){
+	                $("#Parse_Area").html(Parse_data); //div에 받아온 값을 넣는다.
+	                console.log("통신 데이터 값 : " + Parse_data);
+	            }
+	            
+        	});
+			
+			$(this).attr("class","nav-link active")
+			$("#commentList").attr("class","nav-link");
+			$("#supportList").attr("class","nav-link");
+		});
+		
+		//작성 댓글 클릭 시 comment_list 페이지 로딩
+		$("#commentList").click(function() {
+	        $.ajax({
+	            type : "GET", //전송방식을 지정한다 (POST,GET)
+	            url : "${pageContext.request.contextPath}/users/info/comment_list",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+	            dataType : "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+	            error : function(){
+	                console.log("통신실패");
+	            },
+	            success : function(Parse_data){
+	                $("#Parse_Area").html(Parse_data); //div에 받아온 값을 넣는다.
+	            }
+	            
+        	});
+	        
+	        $(this).attr("class","nav-link active");
+	        $("#writingList").attr("class","nav-link");
+	        $("#supportList").attr("class","nav-link");
+		})
+		
+		//문의사항 클릭 시 support_list 페이지 로딩 
+		$("#supportList").click(function() {
+	        $.ajax({
+	            type : "GET", //전송방식을 지정한다 (POST,GET)
+	            url : "${pageContext.request.contextPath}/users/info/support_list",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+	            dataType : "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+	            error : function(){
+	                console.log("통신실패");
+	            },
+	            success : function(Parse_data){
+	                $("#Parse_Area").html(Parse_data); //div에 받아온 값을 넣는다.
+	            }
+	            
+        	});
+	        
+	        $(this).attr("class","nav-link active");
+	        $("#writingList").attr("class","nav-link");
+	        $("#commentList").attr("class","nav-link");
+	        
+		})
+		
+		//화면 로딩 시 writing_list 페이지 로딩
+		$(document).ready(function() {
+			$.ajax({
+	            type : "GET", //전송방식을 지정한다 (POST,GET)
+	            url : "${pageContext.request.contextPath}/users/info/writing_list",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+	            dataType : "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+	            error : function(){
+	                console.log("통신실패");
+	            },
+	            success : function(Parse_data){
+	                $("#Parse_Area").html(Parse_data); //div에 받아온 값을 넣는다.
+	            }
+	            
+        	});
+			
+			$("#writingList").attr("class","nav-link active");
+		});
+    
 		function deleteConfirm() {
 			const isDelete = confirm("${id} 님 탈퇴 하시겠습니까?");
 			if (isDelete) {
