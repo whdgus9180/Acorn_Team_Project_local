@@ -17,6 +17,10 @@
         </div>
         
         <form action="${pageContext.request.contextPath}/users/id_find" class="card p-2 needs-validation" method="post">
+        	<div class="mb-2">
+                <label for="userName" class="control-label">이름</label>
+                <input type="text" class="form-control" name="userName" id="userName"/>
+            </div>
             <div class="mb-2">
                 <label for="email" class="control-label">이메일</label>
                 <input type="text" class="form-control" name="email" id="email"/>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/support_main</title>
+<title>/support_inquire</title>
 <style>
 	.main_content{
 		margin: 100px auto 90px;
@@ -70,7 +70,6 @@
 	.faq{
 		display: inline-block;
 	}
-	
 	.head{
 		background-image:url("https://static.onoffmix.com/images/pc/default/notice_bg.png");
 		height:360px;
@@ -91,11 +90,11 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/navbar.jsp">
-	<jsp:param value="support_main" name="current"/>
+	<jsp:param value="support_inquire" name="current"/>
 </jsp:include>
 	<div class="head">
-		<h2>고객센터</h2>
-		<p class="sub_text">서비스 이용 중 불편 했던 점이나 궁금한 점을 빠르고 친절하게 안내해 드리겠습니다.</p>
+		<h2>문의사항</h2>
+		<p class="sub_text">소모임에 궁금한 점이 있다면 문의해주세요.</p>
 	</div>
 	<!-- 메인 메뉴바 시작 -->
 	<ul class="nav justify-content-center">
@@ -117,7 +116,7 @@
 		<div class="main_content">
 			<section class="area_faq">
 			<h3 class="faq">자주하는 질문 10</h3>
-			<a class="faq_more" href="${pageContext.request.contextPath }/support/support_faq">주제별 FAQ 더보기</a>
+			<a class="faq_more" href="">주제별 FAQ 더보기</a>
 			<ul>
 				<li>
 					<span class="faq_category">모임신청</span>
@@ -163,7 +162,7 @@
 			</section>
 			<section class="notice">
 				<h3 class="title">공지사항</h3>
-				<a class="view_more" href="${pageContext.request.contextPath }/support/support_notice">더보기</a>
+				<a class="view_more" href="">더보기</a>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
 						<a href="">[공지] 비어있음</a>
@@ -203,6 +202,7 @@
 			</section>
 		</div>
 	</div>
+		
 </body>
 </html>
 

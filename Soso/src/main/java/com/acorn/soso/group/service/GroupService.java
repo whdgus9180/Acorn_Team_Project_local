@@ -1,6 +1,7 @@
 package com.acorn.soso.group.service;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,5 +38,8 @@ public interface GroupService {
 	public void avgRate(String title);
 	//detail 페이지에 리뷰 보이게 하기 위한 리뷰 리스트 호출
 	public void reviewList(HttpServletRequest request, Model model);
+	
+	//소모임 가입에 관련한 기능
+	public void joinGroup(HttpServletRequest request);
 	
 }

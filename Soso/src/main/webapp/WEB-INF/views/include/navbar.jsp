@@ -22,7 +22,7 @@
 			<ul class="navbar-nav me-auto">
 									<!-- EL로 Jsp에서 넘겨받은 파라미터값을 바로 받아서 활용할 수 있다. -->
 				<li class="nav-item"><a id="group_list"
-					class="nav-link ${param.current eq 'file_list' ? 'active' : ''}"
+					class="nav-link ${param.current eq 'group_list' ? 'active' : ''}"
 					href="${pageContext.request.contextPath}/group/list">소모임 찾기</a></li>
 				<li class="nav-item"><a id="group_managing_admin"
 					class="nav-link ${param.current eq 'group_managing_admin' ? 'active' : ''}"

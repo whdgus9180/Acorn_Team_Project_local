@@ -15,4 +15,6 @@ public interface UsersDao {
 	public void update(UsersDto dto);
 	//회원정보를 삭제하는 메소드
 	public void delete(String id);
+	//인자로 전달하는 이름에 해당하는 정보를 리턴하는 메소드
+	public UsersDto getId(String userName);
 }
