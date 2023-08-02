@@ -10,7 +10,6 @@ CREATE TABLE users(
 ALTER TABLE users ADD username VARCHAR2(20) UNIQUE; -- 사용자 별명 (추후 drop가능성 있음)
 ALTER TABLE users ADD birth DATE; -- 생년월일
 ALTER TABLE users ADD gender VARCHAR2(20) CHECK( GENDER IN('남', '여', '비공개')); -- 성별
-ALTER TABLE users ADD Genre NUMBER; -- 선호 장르 (소모임 카테고리화 / 추천시스템에서 사용)
 
 -- 업로드된 파일의 정보를 저장할 테이블
 CREATE TABLE board_file(
@@ -93,6 +92,9 @@ CREATE SEQUENCE review_seq;
 CREATE TABLE board_join_group( -- 테이블 이름
 memNum NUMBER PRIMARY KEY,--소모임 멤버 넘버
 groupNum NUMBER, -- group테이블의 pk
+memId VARCHAR2(40) UNIQUE, -- 가입자의 아이디를 unique로 줘서 중복가입 불가하게 함
+memNick VARCHAR2(20), -- 가입자의 닉네임
+intro VARCHAR2(500),-- 자기소개
 isjoin NUMBER NOT NULL, -- 0:승인, 1:대기, 2:거부 및 탈퇴
 regdate DATE, -- 가입 신청 날짜
 joindate DATE, -- 가입 허락 날짜

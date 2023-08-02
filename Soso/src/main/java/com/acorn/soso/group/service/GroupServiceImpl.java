@@ -5,6 +5,7 @@ import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.acorn.soso.exception.DonEqualException;
 import com.acorn.soso.exception.NotDeleteException;
 import com.acorn.soso.group.dao.GroupDao;
+import com.acorn.soso.group.dao.GroupJoinDao;
 import com.acorn.soso.group.dao.GroupReviewDao;
 import com.acorn.soso.group.dto.GroupDto;
+import com.acorn.soso.group.dto.GroupJoinDto;
 import com.acorn.soso.group.dto.GroupReviewDto;
 
 @Service
@@ -27,6 +30,9 @@ public class GroupServiceImpl implements GroupService{
 	
 	@Autowired
 	private GroupReviewDao reviewdao;
+	
+	@Autowired
+	private GroupJoinDao joindao;
 
 	@Override
 	public void getList(HttpServletRequest request) {
@@ -397,5 +403,27 @@ public class GroupServiceImpl implements GroupService{
 		List<GroupReviewDto> list = reviewdao.reviewList(num);
 		//request에 담아주기
 		model.addAttribute("list", list);
+	}
+	
+	//소모임 가입을 위한 join
+	@Override
+	public void joinGroup(HttpServletRequest request) {
+		//request를 통해서 num을 가져온다.(num은 소모임의 번호이다)
+		int groupNum = Integer.parseInt(request.getParameter("num"));
+		//session 영역에 있는 id를 가져온다.
+		String id =(String)request.getSession().getAttribute("id");
+		//memNick, intro를 가져온다.
+		String nick = request.getParameter("nick");
+		String intro = request.getParameter("intro");
+		//DTO를하나 만들어서 form에 담겨온 데이터를 담아온다.
+		GroupJoinDto dto = new GroupJoinDto();
+		dto.setGroupNum(groupNum);
+		dto.setMemId(id);
+		dto.setMemNick(nick);
+		dto.setIntro(intro);
+		
+		//num을 이용해서 가입시키기
+		joindao.insert(dto);
+		
 	}
 }

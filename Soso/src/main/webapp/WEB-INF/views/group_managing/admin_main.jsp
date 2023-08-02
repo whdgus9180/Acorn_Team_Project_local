@@ -5,15 +5,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내가 만든 소모임 관리하기</title>
+<title>내가 만든 소모임</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
 <style>
-	.layoutBox{
-		width: 700px;
-		height: 200px;
-		border: 1px solid black;
-		margin-bottom: 20px;
-		border-radius: 10px;
+	.container{
+		width: 992px;
+	}
+	.card-image{
+		width: 120px;
+		height: 120px;
+		border-radius: 50%;
 	}
 </style>
 </head>
@@ -22,35 +23,103 @@
 		<jsp:param value="group_managing_admin" name="current"/>
 	</jsp:include>
 	<div class="container">
-		<h2 class="text-center">내가 만든 소모임 리스트</h2>
-		<div class="d-flex flex-column align-items-center">
+		<div class="m-2 mt-4 mb-3 border-bottom border-dark">
+			<div class="ms-3 fw-bold fs-2">내 소모임 관리하기</div>
 			<div class="d-flex justify-content-end">
-				<a href="${pageContext.request.contextPath}/group_managing/group_insertForm">내 소모임 만들기</a>
+				<div class="mb-2">
+					<a class="link-dark fw-bold fs-5" href="${pageContext.request.contextPath}/group_managing/group_insertForm">개설하기</a>
+				</div>
 			</div>
-			<div class="layoutBox">
-				<div class="d-flex justify-content-between">
-					<div>
-						<div>소모임 이름</div>
-						<div>소모임 개설 날짜 : 2023.07.28</div>
-						<div>소모임 평점 표시</div>
-						<div>[소모임 사진]</div>
-						<div>소모임 소개 내용</div>
+		</div>
+		<div class="d-flex ms-4 mb-5">
+			<div class="col-2 me-2"><a style="text-decoration: none; color:rgb(65, 75, 178)" class="fw-bolder fs-5" href="#">진행 중</a></div>
+			<div><a style="text-decoration: none;" class="link-dark fw-bold fs-5" href="#">종료</a></div>
+		</div>
+		<div class="ms-2 me-2 row row-cols-2 g-4">
+			<div class="border border-2 border-dark-subtle col">
+				<div class="d-flex justify-content-end align-items-center mt-3 me-3">
+					<div>❤ 123</div>
+				</div>
+				<div class="d-flex pt-3 ps-5 pe-5 pb-5">
+					<div class="col-3 me-5">
+						<div><img class="card-image" src="https://plus.unsplash.com/premium_photo-1667251758255-514ef43844fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Ym9va3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=400&q=60"/></div>
+						<div class="text-center mt-4"><a class="link-dark fw-bolder" href="${pageContext.request.contextPath}/group_managing/memberList">10 / 40</a></div>
 					</div>
-					<div>
-						<div><a href="${pageContext.request.contextPath}/group_managing/group_updateForm">소모임 정보 수정하기</a></div>
-						<div><a href="${pageContext.request.contextPath}/group_managing/memberList">소모임 인원현황 : 10 / 40</a></div>
-						<div><a href="${pageContext.request.contextPath}/group_managing/applicantList">소모임 가입 신청 인원 관리하기</a></div>
-						<div><a href="${pageContext.request.contextPath}/cafe/list">소모임 게시판 가기</a></div>
+					<div class="col">
+						<h4 style="font-weight:600">소모임 명</h4>
+						<div class="mt-3">DATE: 2023-07-28</div>
+						<div class="mt-2">⭐⭐⭐⭐</div>
+						<div class="mb-3"><a class="link" href="${pageContext.request.contextPath}/cafe/list">게시판 가기</a></div>
+						<div class="d-flex mt-1">
+							<div><a class="btn btn-primary me-4" href="${pageContext.request.contextPath}/group_managing/group_updateForm">정보 수정</a></div>
+							<div><a class="btn btn-success col" href="${pageContext.request.contextPath}/group_managing/applicantList">가입 관리</a></div>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="layoutBox">
-				
+			<div class="border border-2 border-dark-subtle col">
+				<div class="d-flex justify-content-end align-items-center mt-3 me-3">
+					<div>❤ 123</div>
+				</div>
+				<div class="d-flex pt-3 ps-5 pe-5 pb-5">
+					<div class="col-3 me-5">
+						<div><img class="card-image" src="https://plus.unsplash.com/premium_photo-1667251758255-514ef43844fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Ym9va3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=400&q=60"/></div>
+						<div class="text-center mt-4"><a class="link-dark fw-bolder" href="${pageContext.request.contextPath}/group_managing/memberList">10 / 40</a></div>
+					</div>
+					<div class="col">
+						<h4 style="font-weight:600">소모임 명</h4>
+						<div class="mt-3">DATE: 2023-07-28</div>
+						<div class="mt-2">⭐⭐⭐⭐⭐</div>
+						<div class="mb-3"><a class="link" href="${pageContext.request.contextPath}/cafe/list">게시판 가기</a></div>
+						<div class="d-flex mt-1">
+							<div><a class="btn btn-primary me-4" href="${pageContext.request.contextPath}/group_managing/group_updateForm">정보 수정</a></div>
+							<div><a class="btn btn-success col" href="${pageContext.request.contextPath}/group_managing/applicantList">가입 관리</a></div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="layoutBox">
-				
+			<div class="border border-2 border-dark-subtle col">
+				<div class="d-flex justify-content-end align-items-center mt-3 me-3">
+					<div>❤ 123</div>
+				</div>
+				<div class="d-flex pt-3 ps-5 pe-5 pb-5">
+					<div class="col-3 me-5">
+						<div><img class="card-image" src="https://plus.unsplash.com/premium_photo-1667251758255-514ef43844fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Ym9va3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=400&q=60"/></div>
+						<div class="text-center mt-4"><a class="link-dark fw-bolder" href="${pageContext.request.contextPath}/group_managing/memberList">10 / 40</a></div>
+					</div>
+					<div class="col">
+						<h4 style="font-weight:600">소모임 명</h4>
+						<div class="mt-3">DATE: 2023-07-28</div>
+						<div class="mt-2">⭐⭐</div>
+						<div class="mb-3"><a class="link mb-2" href="${pageContext.request.contextPath}/cafe/list">게시판 가기</a></div>
+						<div class="d-flex mt-1">
+							<div><a class="btn btn-primary me-4" href="${pageContext.request.contextPath}/group_managing/group_updateForm">정보 수정</a></div>
+							<div><a class="btn btn-success col" href="${pageContext.request.contextPath}/group_managing/applicantList">가입 관리</a></div>
+						</div>
+					</div>
+				</div>
 			</div>
-			
+			<div class="border border-2 border-dark-subtle col">
+				<div class="d-flex justify-content-end align-items-center mt-3 me-3">
+					<div>❤ 123</div>
+				</div>
+				<div class="d-flex pt-3 ps-5 pe-5 pb-5">
+					<div class="col-3 me-5">
+						<div><img class="card-image" src="https://plus.unsplash.com/premium_photo-1667251758255-514ef43844fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Ym9va3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=400&q=60"/></div>
+						<div class="text-center mt-4"><a class="link-dark fw-bolder" href="${pageContext.request.contextPath}/group_managing/memberList">10 / 40</a></div>
+					</div>
+					<div class="col">
+						<h4 style="font-weight:600">소모임 명</h4>
+						<div class="mt-3">DATE: 2023-07-28</div>
+						<div class="mt-2">⭐⭐⭐</div>
+						<div class="mb-3"><a class="link " href="${pageContext.request.contextPath}/cafe/list">게시판 가기</a></div>
+						<div class="d-flex mt-1">
+							<div><a class="btn btn-primary me-4" href="${pageContext.request.contextPath}/group_managing/group_updateForm">정보 수정</a></div>
+							<div><a class="btn btn-success col" href="${pageContext.request.contextPath}/group_managing/applicantList">가입 관리</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

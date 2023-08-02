@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +35,16 @@ public class GroupController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("isSuccess", true);
 		return map;
+	}
+	
+	//소모임 가입 신청
+	@PostMapping("/group/join")
+	//num값을 가져오기 위한 request
+	//정보를 담기 위한 model
+	public String join(HttpServletRequest request) {
+		service.joinGroup(request);
+		//insert하면 리다일렉트->나중에 호출한 곳으로 돌아가는 로직 구상
+		return "redirect:/";
 	}
 	
 	//test페이지 불러오면서 후기글 불러오기 위한 service 호출
