@@ -33,4 +33,10 @@
 		DELETE FROM users
 		WHERE id = #{id}
 	</delete>
+	
+	<select id="getId" parameterType="string" resultType="usersDto">
+		SELECT id, email
+		FROM users
+		WHERE userName=#{userName}
+	</select>
 </mapper>
