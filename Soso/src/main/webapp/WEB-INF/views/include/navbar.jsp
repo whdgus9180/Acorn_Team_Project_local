@@ -30,6 +30,9 @@
 				<li class="nav-item"><a id="group_managing_user"
 					class="nav-link ${param.current eq 'group_managing_user' ? 'active' : ''}"
 					href="${pageContext.request.contextPath}/group_managing/user_main">가입한 소모임 보기</a></li>
+				<li class="nav-item"><a id="support_main"
+					class="nav-link ${param.current eq 'support_main' ? 'active' : ''}"
+					href="${pageContext.request.contextPath}/support/support_main">고객센터</a></li>
 			</ul>
 			<div class="navbar-nav">
 				<c:choose>

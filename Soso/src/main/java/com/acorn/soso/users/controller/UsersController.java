@@ -101,19 +101,6 @@ public class UsersController {
 		return "users/pwd_update";
 	}
 	
-	//비밀번호 찾기폼 요청 처리
-	@GetMapping("/users/pwd_findform")
-	public String PwdFindForm() {
-		return "users/pwd_findform";
-	}
-	
-	//비밀번호 찾기 요청 처리
-	@PostMapping("/users/pwd_find")
-	public String pwdUdate(UsersDto dto, Model model) {
-		service.findUserPwd(dto, model);
-		return "users/pwd_find";
-	}
-	
 	//개인정보 수정폼 요청 처리
 	@GetMapping("/users/updateform")
 	public String updateform(HttpSession session, Model model) {
@@ -163,6 +150,32 @@ public class UsersController {
 		 */
 		service.deleteUser(session, model);
 		return "users/delete";
+	}
+	
+	//아이디 찾기 폼 요청 처리
+	@GetMapping("/users/id_findform")
+	public String IdFindForm() {
+		return "users/id_findform";
+	}
+	
+	//아이디 찾기 요청 처리
+	@PostMapping("/users/id_find")
+	public String IdFind() {
+		//service.findUserId();
+		return "users/id_find";
+	}
+	
+	//비밀번호 찾기폼 요청 처리
+	@GetMapping("/users/pwd_findform")
+	public String PwdFindForm() {
+		return "users/pwd_findform";
+	}
+	
+	//비밀번호 찾기 요청 처리
+	@PostMapping("/users/pwd_find")
+	public String PwdFind(UsersDto dto, Model model) {
+		service.findUserPwd(dto, model);
+		return "users/pwd_find";
 	}
 	
 	//비밀번호 인증 폼 요청 처리
