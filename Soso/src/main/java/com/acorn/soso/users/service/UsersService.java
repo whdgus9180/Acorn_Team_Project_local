@@ -21,5 +21,6 @@ public interface UsersService {
 	public void updateUser(UsersDto dto, HttpSession session);
 	public void deleteUser(HttpSession session, Model model);
 	public void findUserPwd(UsersDto dto, Model model);
+	public void findUserId(UsersDto dto, Model model); // id찾기
 	public void pwdAuth(UsersDto dto, HttpSession session, Model model);
 }

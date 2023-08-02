@@ -105,6 +105,70 @@ public class UsersServiceImpl implements UsersService{
 		//로그인된 아이디도 담아준다.
 		model.addAttribute("id", id);
 	}
+
+	@Override
+	public Map<String, Object> saveProfileImage(HttpServletRequest request, MultipartFile mFile) {
+		//업로드된 파일에 대한 정보를 MultipartFile 객체를 이용해서 얻어낼수 있다.   
+	      
+	      //원본 파일명
+	      String orgFileName=mFile.getOriginalFilename();
+	      
+	      //절대로 중복되지 않는 유일한 파일명을 구성한다.
+	      String saveFileName=UUID.randomUUID().toString()+orgFileName;
+	      // 파일을 저장할 폴더까지의 실제경로
+	      String realPath=fileLocation;
+	      // upload 폴더가 존재하지 않을경우 만들기 위한 File 객체 생성
+	      File upload=new File(realPath);
+	      if(!upload.exists()) {//만일 존재 하지 않으면
+	         upload.mkdir(); //만들어준다.
+	      }
+	      try {
+	         //파일을 저장할 전체 경로를 구성한다.  
+	         String savePath=realPath+File.separator+saveFileName;
+	         //임시폴더에 업로드된 파일을 원하는 파일을 저장할 경로에 전송한다.
+	         mFile.transferTo(new File(savePath));
+	      }catch(Exception e) {
+	         e.printStackTrace();
+	      }
+	      
+	      // json 문자열을 출력하기 위한 Map 객체 생성하고 정보 담기 
+	      Map<String, Object> map=new HashMap<String, Object>();
+	      map.put("imagePath", "/users/images/"+saveFileName);
+	      
+	      return map;
+	}
+
+	@Override
+	public void updateUser(UsersDto dto, HttpSession session) {
+		//로그인된 아이디 얻어오기
+		String id = (String)session.getAttribute("id");
+		//dto에 아이디도 담기
+		dto.setId(id);
+		//dao를 이용해서 수정반영
+		dao.update(dto);
+	}
+
+	@Override
+	public void deleteUser(HttpSession session, Model model) {
+		//로그인된 아이디 얻어와서
+		String id = (String)session.getAttribute("id");
+		//헤당 정보를 DB에서 삭제하고
+		dao.delete(id);
+		//로그아웃 처리도 한다.
+		session.removeAttribute("id");
+		//ModelAndView 객체에 탈퇴한 회원의 아이디를 담아준다.
+		model.addAttribute("id", id);
+	}
+
+	@Override
+	public void pwdAuth(UsersDto dto, HttpSession session, Model model) {
+		//세션 영역에서 로그인된 아이디 읽어오기
+		String id = (String)session.getAttribute("id");
+		dto.setId(id); //id값을 담아서 메소드로 보냄
+		
+		Boolean isValid = isSamePwd(dto);
+		model.addAttribute("isSuccess",isValid);
+	}
 	
 	//임시 비밀번호 발급 (비밀번호 찾기)
 	@Override
@@ -180,70 +244,26 @@ public class UsersServiceImpl implements UsersService{
 		model.addAttribute("isSuccess", isValid);
 		model.addAttribute("id",id);
 	}
-
+	
 	@Override
-	public Map<String, Object> saveProfileImage(HttpServletRequest request, MultipartFile mFile) {
-		//업로드된 파일에 대한 정보를 MultipartFile 객체를 이용해서 얻어낼수 있다.   
-	      
-	      //원본 파일명
-	      String orgFileName=mFile.getOriginalFilename();
-	      
-	      //절대로 중복되지 않는 유일한 파일명을 구성한다.
-	      String saveFileName=UUID.randomUUID().toString()+orgFileName;
-	      // 파일을 저장할 폴더까지의 실제경로
-	      String realPath=fileLocation;
-	      // upload 폴더가 존재하지 않을경우 만들기 위한 File 객체 생성
-	      File upload=new File(realPath);
-	      if(!upload.exists()) {//만일 존재 하지 않으면
-	         upload.mkdir(); //만들어준다.
-	      }
-	      try {
-	         //파일을 저장할 전체 경로를 구성한다.  
-	         String savePath=realPath+File.separator+saveFileName;
-	         //임시폴더에 업로드된 파일을 원하는 파일을 저장할 경로에 전송한다.
-	         mFile.transferTo(new File(savePath));
-	      }catch(Exception e) {
-	         e.printStackTrace();
-	      }
-	      
-	      // json 문자열을 출력하기 위한 Map 객체 생성하고 정보 담기 
-	      Map<String, Object> map=new HashMap<String, Object>();
-	      map.put("imagePath", "/users/images/"+saveFileName);
-	      
-	      return map;
-	}
-
-	@Override
-	public void updateUser(UsersDto dto, HttpSession session) {
-		//로그인된 아이디 얻어오기
-		String id = (String)session.getAttribute("id");
-		//dto에 아이디도 담기
-		dto.setId(id);
-		//dao를 이용해서 수정반영
-		dao.update(dto);
-	}
-
-	@Override
-	public void deleteUser(HttpSession session, Model model) {
-		//로그인된 아이디 얻어와서
-		String id = (String)session.getAttribute("id");
-		//헤당 정보를 DB에서 삭제하고
-		dao.delete(id);
-		//로그아웃 처리도 한다.
-		session.removeAttribute("id");
-		//ModelAndView 객체에 탈퇴한 회원의 아이디를 담아준다.
+	public void findUserId(UsersDto dto, Model model) {
+		//입력받은 email의 정보를 resultDto에 담는다
+		String userName = dto.getUserName();
+		UsersDto resultDto = dao.getId(userName);
+		
+		boolean isValid = false;
+		
+		//입력한 이름이 존재하는 이름일때
+		if(resultDto != null) {
+			//입력한 이메일과 회원가입 시 입력한 이메일이 같을경우 유효함
+			isValid = dto.getEmail().equals(resultDto.getEmail());
+		}
+		String id = "";
+		if(isValid) {
+			id = resultDto.getId();
+		}
+		
+		model.addAttribute("isSuccess", isValid);
 		model.addAttribute("id", id);
 	}
-
-	@Override
-	public void pwdAuth(UsersDto dto, HttpSession session, Model model) {
-		//세션 영역에서 로그인된 아이디 읽어오기
-		String id = (String)session.getAttribute("id");
-		dto.setId(id); //id값을 담아서 메소드로 보냄
-		
-		Boolean isValid = isSamePwd(dto);
-		model.addAttribute("isSuccess",isValid);
-	}
-	
-	
 }
