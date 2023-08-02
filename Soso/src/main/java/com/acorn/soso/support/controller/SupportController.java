@@ -11,4 +11,22 @@ public class SupportController {
 		
 		return "support/support_main";
 	}
+	
+	@GetMapping("/support/support_faq")
+	public String support_faq() {
+		
+		return "support/support_faq";
+	}
+	
+	@GetMapping("/support/support_notice")
+	public String support_notice() {
+		
+		return "support/support_notice";
+	}
+	
+	@GetMapping("/support/support_inquire")
+	public String support_inquire() {
+		
+		return "support/support_inquire";
+	}
 }
