@@ -12,6 +12,7 @@
 	  background-size: cover;
 	  background-repeat: no-repeat;
 	  background-position: center 35%;
+	  height: 360px;
 	  
 	}
    .img-wrapper{
