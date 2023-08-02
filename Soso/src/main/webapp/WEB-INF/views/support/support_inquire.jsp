@@ -70,10 +70,17 @@
 	.faq{
 		display: inline-block;
 	}
-	.container h2{
-		text-align:center;
+	.head{
+		background-image:url("https://static.onoffmix.com/images/pc/default/notice_bg.png");
+		height:360px;
+		background-size:cover;
+		overflow:hidden;
 	}
-	.container p.sub_text{
+	.head h2{
+		text-align:center;
+		margin:116px auto 20px;
+	}
+	.head p{
 		text-align:center;
 	}
 </style>
@@ -85,7 +92,7 @@
 <jsp:include page="/WEB-INF/views/include/navbar.jsp">
 	<jsp:param value="support_inquire" name="current"/>
 </jsp:include>
-	<div class="container">
+	<div class="head">
 		<h2>문의사항</h2>
 		<p class="sub_text">소모임에 궁금한 점이 있다면 문의해주세요.</p>
 	</div>
