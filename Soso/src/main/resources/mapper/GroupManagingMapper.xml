@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="groupManaging">
+	<select id="getApplicantList" parameterType="groupManagingDto" resultType="groupManagingDto">
+		SELECT *
+		FROM   
+		   (SELECT result1.*, ROWNUM as rnum
+		   FROM
+		      (SELECT memnum, memid, memnick, intro, regdate
+		      FROM board_join_group
+		      WHERE groupnum = #{groupNum} AND #{isJoin} = 1
+		      ORDER BY memnum DESC) result1)
+   </select>
+</mapper>
