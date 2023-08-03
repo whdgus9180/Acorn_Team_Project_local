@@ -19,4 +19,5 @@ public class JjimDto {
 	private int groupNum;
 	//찜 사용자의 아이디를 등록하기 위한 필드
 	private String memId;
+	
 }
