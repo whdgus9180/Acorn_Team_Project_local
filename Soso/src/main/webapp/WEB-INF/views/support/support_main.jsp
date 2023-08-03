@@ -83,6 +83,7 @@
 	}
 	.head p{
 		text-align:center;
+		font-size:20px;
 	}
 </style>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -90,9 +91,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/navbar.jsp">
-	<jsp:param value="support_main" name="current"/>
-</jsp:include>
 	<div class="head">
 		<h2>고객센터</h2>
 		<p class="sub_text">서비스 이용 중 불편 했던 점이나 궁금한 점을 빠르고 친절하게 안내해 드리겠습니다.</p>
@@ -203,7 +201,6 @@
 			</section>
 		</div>
 	</div>
-	 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>
 

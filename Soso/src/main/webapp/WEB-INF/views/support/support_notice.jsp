@@ -82,6 +82,7 @@
 	}
 	.head p{
 		text-align:center;
+		font-size:20px;
 	}
 </style>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -89,12 +90,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/navbar.jsp">
-	<jsp:param value="support_notice" name="current"/>
-</jsp:include>
 	<div class="head">
 		<h2>공지사항</h2>
-		<p class="sub_text">소모임에서 알려드립니다.</p>
+		<p class="sub_text">BookMate에서 알려드립니다.</p>
 	</div>
 	<!-- 메인 메뉴바 시작 -->
 	<ul class="nav justify-content-center">
@@ -114,95 +112,105 @@
 	<!-- 메인 메뉴바 끝 -->
 	<div class="container">
 		<div class="main_content">
-			<section class="area_faq">
-			<h3 class="faq">자주하는 질문 10</h3>
-			<a class="faq_more" href="">주제별 FAQ 더보기</a>
-			<ul>
-				<li>
-					<span class="faq_category">모임신청</span>
-					<p>빈공간입니다.</p>
-				</li>
-				<li>
-					<span class="faq_category">회원</span>
-					<p>빈공간입니다.</p>
-				</li>
-				<li>
-					<span class="faq_category">회원</span>
-					<p>빈공간입니다.</p>
-				</li>
-				<li>
-					<span class="faq_category">모임개설</span>
-					<p>빈공간입니다.</p>
-				</li>
-				<li>
-					<span class="faq_category">모임개설</span>
-					<p>빈공간입니다.</p>
-				</li>
-				<li>
-					<span class="faq_category">모임해산</span>
-					<p>빈공간입니다.</p>
-				</li>
-				<li>
-					<span class="faq_category">모임해산</span>
-					<p>빈공간입니다.</p>
-				</li>
-				<li>
-					<span class="faq_category">회원</span>
-					<p>빈공간입니다.</p>
-				</li>
-				<li>
-					<span class="faq_category">회원</span>
-					<p>빈공간입니다.</p>
-				</li>
-				<li>
-					<span class="faq_category">회원</span>
-					<p>빈공간입니다.</p>
-				</li>
-			</ul>
-			</section>
-			<section class="notice">
-				<h3 class="title">공지사항</h3>
-				<a class="view_more" href="">더보기</a>
-				<ul class="list-group list-group-flush">
-					<li class="list-group-item">
-						<a href="">[공지] 비어있음</a>
-					</li>
-					<li class="list-group-item">
-						<a href="">[공지] 비어있음</a>
-					</li>
-					<li class="list-group-item">
-						<a href="">[공지] 비어있음</a>
-					</li>
-					<li class="list-group-item">
-						<a href="">[공지] 비어있음</a>
-					</li>
-					<li class="list-group-item">
-						<a href="">[공지] 비어있음</a>
-					</li>
-				</ul>
-			</section>
-			<section class="area_contact">
-				<h3 class="title">소모임 운영시간 및 연락처</h3>
-				<dl>
-					<dt>상담시간</dt>
-					<dd>
-						월~금요일
-						<span>9:00 ~ 17:30</span>
-						<span>(Break Time 12:00~13:00)</span>
-					</dd>
-					<dd>
-						<span>메일문의</span>
-						<span>tttmmm100@naver.com</span>
-					</dd>
-					<dd>
-						<span>전화문의</span>
-						"02-3500-3050"
-					</dd>
-				</dl>
-			</section>
+			<h3 class="faq">공지사항</h3>
+			<table class="table">
+				<thead class="table-light">
+					<tr>
+						<th>번호</th>
+						<th>분류</th>
+						<th>제목</th>
+						<th>작성일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>공지</td>
+						<td>[비회원] 신청 업데이트 안내</td>
+						<td>2023.08.03</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>공지</td>
+						<td>[비회원] 신청 업데이트 안내</td>
+						<td>2023.08.03</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>공지</td>
+						<td>[비회원] 신청 업데이트 안내</td>
+						<td>2023.08.03</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>공지</td>
+						<td>[비회원] 신청 업데이트 안내</td>
+						<td>2023.08.03</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>공지</td>
+						<td>[비회원] 신청 업데이트 안내</td>
+						<td>2023.08.03</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>공지</td>
+						<td>[비회원] 신청 업데이트 안내</td>
+						<td>2023.08.03</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>공지</td>
+						<td>[비회원] 신청 업데이트 안내</td>
+						<td>2023.08.03</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
-		
+	<div>
+		<nav>
+			<ul class="pagination">
+				<%--
+					startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
+					&condition=${condition}&keyword=${encodedK}
+				 --%>
+				<c:if test="${startPageNum ne 1 }">
+					<li class="page-item">
+						<a class="page-link animate__animated" href="list?pageNum=${startPageNum-1 }&condition=${condition}&keyword=${encodedK}">Prev</a>
+					</li>
+				</c:if>
+				<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+					<li class="page-item ${pageNum eq i ? 'active' : '' }">
+						<a class="page-link animate__animated" href="list?pageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
+					</li>
+				</c:forEach>
+				<%--
+					마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
+				 --%>
+				<c:if test="${endPageNum lt totalPageCount }">
+					<li class="page-item">
+						<a class="page-link animate__animated" href="list?pageNum=${endPageNum+1 }&condition=${condition}&keyword=${encodedK}">Next</a>
+					</li>
+				</c:if>				
+			</ul>
+		</nav>
+		<script>
+			document.querySelectorAll(".pagination a").forEach(function(item){
+				//item 은 a 의 참조값이다 모든 a 요소에 mouseover 이벤트가 발생했을때 실행할 함수 등록
+				item.addEventListener("mouseover", function(e){
+					//애니메이션 클래스를 추가해서 애니메이션이 동작하도록한다.
+					e.target.classList.add("animate__swing");
+				});
+				//item 은 a 의 참조값이다 모든 a 요소에 animationend 이벤트가 발생했을때 실행할 함수 등록
+				item.addEventListener("animationend", function(e){
+					//애니메이션 클래스를 제거해서 다음번에 추가 되면 다시 애니매이션이 동작 되도록한다.
+					e.target.classList.remove("animate__swing");
+				});
+			});
+		</script>
+	</div>
 </body>
 </html>
 
