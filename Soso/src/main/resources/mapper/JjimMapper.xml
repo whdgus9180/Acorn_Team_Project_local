@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jjim">
+	<!-- 찜 테이블에 두 값을 넣어준다. -->
+	<insert id="insert" parameterType="jjimDto">
+		INSERT INTO board_jjim
+		(groupNum, memId)
+		VALUES (#{groupNum}, #{memId})
+	</insert>
+	<!-- 그룹넘버와 아이디를 조회하여 둘 다 조건이 맞는 곳 삭제(둘 중 하나만 맞으면 삭제되지 않음) -->
+	<delete id="delete" parameterType="jjimDto">
+		DELETE FROM board_jjim
+		WHERE groupNum = #{groupNum} AND memId = #{memId} 
+	</delete>
+	<!-- dto로부터 값을 가져와서 값이 있는지 null인지 확인한다. -->
+	<select id="getData" parameterType="jjimDto" resultType="jjimDto">
+		SELECT groupNum, memId
+		FROM board_jjim
+		WHERE groupNum = #{groupNum} AND memId = #{memId} 
+	</select>
+</mapper>
+

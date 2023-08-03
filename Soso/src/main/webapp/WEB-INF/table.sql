@@ -103,3 +103,9 @@ exdate DATE -- 탈퇴 날짜
 
 -- 소모임 회원 PK
 CREATE SEQUENCE join_seq;
+
+-- 찜 기능을 위한 테이블
+CREATE TABLE board_jjim(-- 찜 테이블
+groupNum NUMBER, -- 소모임의 테이블 넘버를 저장할 칼럼
+memId VARCHAR2(40) -- 찜하기 버튼 누른 사람의 id
+)
