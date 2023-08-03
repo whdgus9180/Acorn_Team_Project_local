@@ -20,6 +20,12 @@ public class GroupManagingController {
 		return "group_managing/admin_main";
 	}
 	
+	@GetMapping("/group_managing/joinApprove")
+	public String joinApprove(int num) {
+		service.joinApprove(num);
+		return "group_managing/joinApprove";
+	}
+	
 	@GetMapping("/group_managing/user_main")
 	public String user_main() {
 		return "group_managing/user_main";
@@ -39,16 +45,19 @@ public class GroupManagingController {
 	public String group_userdetail() {
 		return "group_managing/group_userdetail";
 	}
+	
 	@GetMapping("/group_managing/applicantList")
 	public String group_applicantList(GroupManagingDto dto, HttpServletRequest request) {
 		dto.setGroupNum(1);
-		dto.setIsJoin(1);
 		service.getApplicantList(dto, request);
 		
 		return "group_managing/applicantList";
-  }
+	}
+	
 	@GetMapping("/group_managing/memberList")
-	public String group_memberList() {
+	public String group_memberList(GroupManagingDto dto, HttpServletRequest request) {
+		dto.setGroupNum(1);
+		service.getMemberList(dto, request);
 		return "group_managing/memberList";
 	}
 }

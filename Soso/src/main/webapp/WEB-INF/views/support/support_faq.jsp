@@ -81,10 +81,17 @@
 	.search{
 		margin-top:20px;
 	}
-	.container h2{
-		text-align:center;
+	.head{
+		background-image:url("https://static.onoffmix.com/images/pc/default/notice_bg.png");
+		height:360px;
+		background-size:cover;
+		overflow:hidden;
 	}
-	.container p.sub_text{
+	.head h2{
+		text-align:center;
+		margin:116px auto 20px;
+	}
+	.head p{
 		text-align:center;
 	}
 </style>
@@ -96,7 +103,7 @@
 <jsp:include page="/WEB-INF/views/include/navbar.jsp">
 	<jsp:param value="support_faq" name="current"/>
 </jsp:include>
-	<div class="container">
+	<div class="head">
 		<h2>자주하는 질문</h2>
 		<p class="sub_text">서비스 이용 중 불편 했던 점이나 궁금한 점을 빠르고 친절하게 안내해 드리겠습니다.</p>
 	</div>
