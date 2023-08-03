@@ -13,9 +13,6 @@
 	}
 </style>
 <body>
-	<jsp:include page="/WEB-INF/views/include/navbar.jsp">
-		<jsp:param value="group_managing" name="current"/>
-	</jsp:include>
 	<h3 class="text-center fw-bold mt-5 pt-5 mb-3">소모임 정보 수정</h3>
 	<div class="container pt-5">
 		<form action="${pageContext.request.contextPath}/group_managing/group_update" method="post" id="myForm">

@@ -7,27 +7,9 @@
 <meta charset="UTF-8">
 <title>내가 만든 소모임</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
-<style>
-	.container{
-		width: 992px;
-	}
-	.card-image{
-		width: 120px;
-		height: 120px;
-		border-radius: 50%;
-	}
-	#wrapper{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        column-gap: 40px;
-        row-gap: 40px;
-    }
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/group_managing_admin_main.css" />
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/include/navbar.jsp">
-		<jsp:param value="group_managing_admin" name="current"/>
-	</jsp:include>
 	<div class="container">
 		<div class="m-2 mt-4 mb-3 border-bottom border-dark">
 			<div class="ms-3 fw-bold fs-2">내 소모임 관리하기</div>
@@ -49,7 +31,7 @@
 				<div class="d-flex pt-3 p-3">
 					<div class="col-3 me-5">
 						<div><img class="card-image" src="https://plus.unsplash.com/premium_photo-1667251758255-514ef43844fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Ym9va3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=400&q=60"/></div>
-						<div class="text-center mt-4"><a class="link-dark fw-bolder" href="${pageContext.request.contextPath}/group_managing/memberList">10 / 40</a></div>
+						<div class="text-center mt-4"><a class="link-dark fw-bolder" href="${pageContext.request.contextPath}/group_managing/memberList">${memberCount} / 40</a></div>
 					</div>
 					<div class="">
 						<h4 style="font-weight:600">소모임 명</h4>
@@ -65,6 +47,5 @@
 			</div>
 		</div>
 	</div>
-	 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>

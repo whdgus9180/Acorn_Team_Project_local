@@ -8,6 +8,9 @@
 <title>가입 승인</title>
 </head>
 <body>
-
+	<script>
+		alert("가입 승인 되었습니다.");
+		location.href="${pageContext.request.contextPath}/group_managing/applicatntList";
+	</script>
 </body>
 </html>

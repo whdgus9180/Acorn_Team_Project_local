@@ -44,9 +44,6 @@
 </style>
 </head>
 <body>
-   <jsp:include page="/WEB-INF/views/include/navbar.jsp">
-      <jsp:param value="group_managing_user" name="current"/>
-   </jsp:include>
    <div class="container">
      
          <ul>
@@ -136,6 +133,5 @@
          </c:choose>         
        </ul>
     </nav>
-     <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>
