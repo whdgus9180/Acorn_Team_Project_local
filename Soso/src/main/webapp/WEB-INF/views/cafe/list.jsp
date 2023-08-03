@@ -9,11 +9,16 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+
+
 </head>
 <body>
 	<div class="container">
-		<a href="${pageContext.request.contextPath }/cafe/insertform">새글 작성</a>
-		<h3>카페 글 목록 입니다.</h3>
+		<h3>소모임 게시판</h3>
+		<div style="width:100%; text-align:right;">
+		<a style="text-align: right" href="${pageContext.request.contextPath }/cafe/insertform">글쓰기</a>
+		</div>
 		<table class="table table-striped">
 			<thead class="table-dark">
 				<tr>

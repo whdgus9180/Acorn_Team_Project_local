@@ -68,6 +68,7 @@
          <button class="btn btn-primary mt-3" type="submit" disabled>가입</button>
       </form>
    </div>   
+    <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
    <script>
    		let isuserNameValid=false;
