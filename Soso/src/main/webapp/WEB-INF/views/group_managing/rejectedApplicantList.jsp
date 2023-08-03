@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>소모임 가입 신청자 관리</title>
+<title>가입 거절 지원자 리스트</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
 <style>
 	.container{
@@ -27,7 +27,7 @@
 <body>
 	<div class="container">
 		<div class="m-2 mt-4 mb-3 border-bottom border-dark">
-			<div class="ms-3 fw-bold fs-2 mb-4">Applicant</div>
+			<div class="ms-3 fw-bold fs-2 mb-4">Rejected Applicant</div>
 		</div>
 		<div class="d-flex ms-4 mb-5">
 			<div class="col-2 me-2"><a style="text-decoration: none; color:rgb(65, 75, 178)" class="fw-bolder fs-5" href="${pageContext.request.contextPath}/group_managing/applicantList">신청 중</a></div>
@@ -46,7 +46,6 @@
 						<div class="mb-3"><a class="link" href="${pageContext.request.contextPath}/cafe/list">회원 정보 보기</a></div>
 						<div class="d-flex mt-1 justify-content-around">
 							<div><a style=width:100px" class="btn btn-primary me-3" href="${pageContext.request.contextPath}/group_managing/joinApprove?num=${tmp.memNum}">가입 승인</a></div>
-							<div><a style="width:100px" class="btn btn-secondary me-3" href="${pageContext.request.contextPath}/group_managing/reject?num=${tmp.memNum}">가입 거절</a></div>
 						</div>
 					</div>
 				</div>
