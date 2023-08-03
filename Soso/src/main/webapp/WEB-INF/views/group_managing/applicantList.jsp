@@ -25,16 +25,13 @@
 </style>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/include/navbar.jsp">
-		<jsp:param value="home" name="current"/>
-	</jsp:include>
 	<div class="container">
 		<div class="m-2 mt-4 mb-3 border-bottom border-dark">
 			<div class="ms-3 fw-bold fs-2 mb-4">Applicant</div>
 		</div>
 		<div class="d-flex ms-4 mb-5">
-			<div class="col-2 me-2"><a style="text-decoration: none; color:rgb(65, 75, 178)" class="fw-bolder fs-5" href="#">신청 중</a></div>
-			<div><a style="text-decoration: none;" class="link-dark fw-bold fs-5" href="#">거절</a></div>
+			<div class="col-2 me-2"><a style="text-decoration: none; color:rgb(65, 75, 178)" class="fw-bolder fs-5" href="${pageContext.request.contextPath}/group_managing/applicantList">신청 중</a></div>
+			<div><a style="text-decoration: none;" class="link-dark fw-bold fs-5" href="${pageContext.request.contextPath}/group_managing/rejectedApplicantList">거절</a></div>
 		</div>
 		<div id="wrapper" class="ms-2 me-2">
 			<c:forEach var="tmp" items="${list}">

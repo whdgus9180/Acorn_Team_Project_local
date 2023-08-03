@@ -25,9 +25,6 @@
 </style>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/include/navbar.jsp">
-		<jsp:param value="home" name="current"/>
-	</jsp:include>
 	<div class="container">
 		<div class="m-2 mt-4 mb-3 border-bottom border-dark">
 			<div class="ms-3 fw-bold fs-2 mb-4">Kicked Member</div>
