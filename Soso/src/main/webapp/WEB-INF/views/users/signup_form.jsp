@@ -23,8 +23,8 @@
          <div>
             <label class="control-label" for="userName">이름(닉네임)</label>
             <input class="form-control" type="text" name="userName" id="userName"/>  
-            <small class="form-text text-muted">최소 2자 이상 16자 이하, 영어 또는 숫자 또는 한글을 입력하세요.</small>
-          	<div class="invalid-feedback">아이디를 확인하세요.</div>
+            <small class="form-text text-muted">2~16자의 영어 또는 숫자 또는 한글만 사용가능합니다.</small>
+          	<div class="invalid-feedback">이름을 확인하세요.</div>
          </div>
          <div>
             <label class="control-label" for="birth">생년월일</label>
@@ -47,7 +47,9 @@
          </fieldset>
          <div>
             <label class="control-label" for="id">아이디</label>
-            <input class="form-control" type="text" name="id" id="id"/>      
+            <input class="form-control" type="text" name="id" id="id"/> 
+            <small class="form-text text-muted">2~15자의 영문 소문자로 시작하고 영어소문자, 숫자만 사용가능합니다.</small>
+          	<div class="invalid-feedback">아이디를 확인하세요.</div>     
          </div>
          <div>
             <label class="control-label" for="pwd">비밀번호</label>
@@ -89,7 +91,25 @@
    		  
    		  checkFormState();
    		});
-   
+   		
+   		let isIdValid=false;
+   		$("#id").on("input", () => {
+   		  const Id = $("#id").val();
+   		  const reg = /^[a-z][a-z0-9]{1,14}$/;
+   		  isIdValid = reg.test(Id);
+   		  
+   		  if (Id !== '') {
+   		    if (isIdValid) {
+   		      $("#id").removeClass("is-invalid").addClass("is-valid");
+   		      $(".invalid-feedback.user-name-feedback").hide();
+   		    } else {
+   		      $("#id").removeClass("is-valid").addClass("is-invalid");
+   		      $(".invalid-feedback.user-name-feedback").show();
+   		    }
+   		  }
+   		  
+   		  checkFormState();
+   		});
    
    		let isPwdValid=false;
 	   	//비밀번호 입력란과 비밀번호 확인란에 입력했을때 실행할 함수 등록(다중선택)
@@ -148,7 +168,7 @@
    		
    		//폼 전체의 유효성 여부를 판단해서 제출버튼의 disabled 속성을 관리하는 함수 
    		function checkFormState(){
-   		   if(isuserNameValid && isEmailValid && isPwdValid){
+   		   if(isuserNameValid && isIdValid && isEmailValid && isPwdValid){
    		      $("button[type=submit]").removeAttr("disabled");
    		   }else{
    		      //속성명만 추가할때는 value 에 빈 문자열을 작성하면 된다.
