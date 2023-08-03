@@ -7,22 +7,7 @@
 <meta charset="UTF-8">
 <title>가입 거절 지원자 리스트</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
-<style>
-	.container{
-		width: 992px;
-	}
-	.card-image{
-		width: 100px;
-		height: 100px;
-		border-radius: 50%;
-	}
-	#wrapper{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        column-gap: 40px;
-        row-gap: 40px;
-    }
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/group_managing_admin_main.css" />
 </head>
 <body>
 	<div class="container">
