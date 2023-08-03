@@ -29,5 +29,9 @@ public class GroupManagingDaoImpl implements GroupManagingDao{
 		session.update("groupManaging.joinApprove", num);
 	}
 
+	@Override
+	public int getMemberCount(int num) {
+		return session.selectOne("groupManaging.getMemberCount", num);
+	}
 	
 }

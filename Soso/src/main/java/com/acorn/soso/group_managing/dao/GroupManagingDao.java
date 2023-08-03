@@ -11,4 +11,6 @@ public interface GroupManagingDao {
 	public List<GroupManagingDto> getApplicantList(GroupManagingDto dto);
 	//소모임 가입 승인하기
 	public void joinApprove(int num);
+	//소모임 가입자 숫자 불러오기
+	public int getMemberCount(int num);
 }

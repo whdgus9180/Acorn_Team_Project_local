@@ -8,4 +8,5 @@ public interface GroupManagingService {
 	public void getMemberList(GroupManagingDto dto, HttpServletRequest request);
 	public void getApplicantList(GroupManagingDto dto, HttpServletRequest request);
 	public void joinApprove(int num);
+	public void getMemberCount(int num, HttpServletRequest request);
 }

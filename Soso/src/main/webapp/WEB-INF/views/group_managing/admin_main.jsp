@@ -49,7 +49,7 @@
 				<div class="d-flex pt-3 p-3">
 					<div class="col-3 me-5">
 						<div><img class="card-image" src="https://plus.unsplash.com/premium_photo-1667251758255-514ef43844fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Ym9va3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=400&q=60"/></div>
-						<div class="text-center mt-4"><a class="link-dark fw-bolder" href="${pageContext.request.contextPath}/group_managing/memberList">10 / 40</a></div>
+						<div class="text-center mt-4"><a class="link-dark fw-bolder" href="${pageContext.request.contextPath}/group_managing/memberList">${memberCount} / 40</a></div>
 					</div>
 					<div class="">
 						<h4 style="font-weight:600">소모임 명</h4>

@@ -32,5 +32,11 @@ public class GroupManagingServiceImpl implements GroupManagingService{
 	public void getMemberList(GroupManagingDto dto, HttpServletRequest request) {
 		List<GroupManagingDto> list = dao.getMemberList(dto);
 		request.setAttribute("list", list);
+	}
+
+	@Override
+	public void getMemberCount(int num, HttpServletRequest request) {
+		int memberCount = dao.getMemberCount(num);
+		request.setAttribute("memberCount", memberCount);
 	}	
 }

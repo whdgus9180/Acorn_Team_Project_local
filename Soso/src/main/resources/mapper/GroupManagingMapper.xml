@@ -22,6 +22,11 @@
 		      WHERE groupnum = #{groupNum} AND isJoin = 1
 		      ORDER BY memnum DESC) result1)
    	</select>
+   	<select id="getMemberCount" parameterType="int" resultType="int">
+    	SELECT NVL(MAX(ROWNUM), 0)
+      	FROM board_join_group
+      	WHERE groupnum = #{num} AND isJoin = 0
+   	</select>
    	<update id="joinApprove" parameterType="int">
    		UPDATE board_join_group
    		SET isJoin = 0
