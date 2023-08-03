@@ -16,10 +16,6 @@
 }
 </style>
 <body>
-	<jsp:include page="/WEB-INF/views/include/navbar.jsp">
-		<jsp:param value="home" name="current"/>
-	</jsp:include>
-	
 	<div class="container">
 		<h1 class="mb-3 mt-3">소모임 제목</h1>
 		<div class="d-flex flex-row mb-3">
@@ -33,7 +29,21 @@
 				<span>모임 소개</span><br/>
 				<span>여기에 모임 소개 작성</span>
 				<div class="d-flex flex-row-reverse" style="border : 0px;">
-					<div class="p-2"><button type="button" class="btn btn-outline-danger">찜하기</button></div>
+					<div class="p-2">
+						<c:choose>
+							<c:when test="${empty jjim }">
+								<form action="${pageContext.request.contextPath}/group/jjim?num=1" method="post">
+									<input type="text" name="num" value="1" hidden />
+									<button type="submit" class="btn btn-outline-danger">찜하기</button></div>
+								</form>
+							</c:when>
+							<c:otherwise>
+								<form action="${pageContext.request.contextPath}/group/jjim?num=1" method="post">
+									<input type="text" name="num" value="1" hidden />
+									<button type="submit" class="btn btn-outline-danger">찜 취소</button></div>
+								</form>
+							</c:otherwise>
+						</c:choose>
 					<div class="p-2"><button type="button" class="btn btn-outline-primary"><a href="${pageContext.request.contextPath}/group/group_in?num=1">가입하기</a></button></div>
 				</div>
 			</div>
@@ -100,7 +110,6 @@
 			</div>
 		</div>
 	</div>
-	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>
 </html>

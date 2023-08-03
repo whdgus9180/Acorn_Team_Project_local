@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.acorn.soso.group.dao.GroupReviewDao;
 import com.acorn.soso.group.dto.GroupDto;
 import com.acorn.soso.group.dto.GroupReviewDto;
+import com.acorn.soso.group.dto.JjimDto;
 import com.acorn.soso.group.service.GroupService;
 
 @Controller
@@ -26,6 +27,14 @@ public class GroupController {
 
 	@Autowired
 	private GroupService service;
+	
+	//찜하기 기능 구현(ajax없이)
+	@PostMapping("/group/jjim")
+	//id값과 num값을 받아오기 위해 request만들기
+	public String jjim(HttpServletRequest request) {
+		service.jjim(request);
+		return "redirect:/group/test?num=1";
+	}
 		
 	//리뷰 수정 요청 처리(json)
 	@RequestMapping("/group/review_update")
@@ -51,6 +60,7 @@ public class GroupController {
 	@GetMapping("/group/test")
 	public String test(HttpServletRequest request, Model model) {
 		service.reviewList(request, model);
+		service.knowjjim(request);
 		return "group/test";
 	}
 	
