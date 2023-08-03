@@ -1,0 +1,247 @@
+@charset "utf-8";
+
+@import url("font.css");
+@import url("layout.css");
+
+
+
+/* base */
+*{padding: 0; margin: 0; font-family: 'Noto Sans KR', "맑은 고딕", "Apple SD Gothic Neo", sans-serif; font-size: 18px; color: #333; letter-spacing: -0.07rem; box-sizing: border-box;}
+h1,h2,h3,h4,h5,h6{ line-height: 4rem; font-weight: 400; }
+p,span,a{ line-height: 1.7rem; }
+li{list-style: none;}
+a{text-decoration: none; display: block;}
+img{border: none; display: block;}
+input{outline: none;background-color: transparent;}
+button { cursor: pointer; }
+
+
+.inner-wrap{ 
+    width: 1400px; 
+    max-width: 100%;
+    margin: 0 auto; 
+}
+
+
+
+
+
+
+
+
+/* header */
+.panel{ display: none; }
+header{ 
+    position: fixed; top: 0; z-index: 300; 
+    width: 100%; height: 100px;  
+    padding: 35px 60px; box-sizing: border-box;
+    transition: 0.3s ease-in-out; 
+    background-color: rgba(209, 199, 177, 0.947);
+	border-bottom: 1px solid #fff;
+}
+header > *{ color: #fff; height: 30px; }
+header h1{ float: left; width: 15%; height: 100%; object-fit: contain; }
+header h1 > a{
+    width: 100%; height: 150%; position: relative;
+    bottom: 8px;
+}
+header h1 img{ height: 100%; }
+
+header .inner-wrap { height: 100%; display: flex; justify-content: space-between; }
+
+
+
+.gnb{ width: 57%; height: 100%; margin: 0 auto;  }
+.gnb > ul{ float: right; width: 100%; height: 100%; line-height: 30px;}
+.gnb > ul > li{ 
+    float: left; 
+    position: relative; 
+    width: 20%; height: 100%;
+    text-align: center;
+}
+
+.member{ float: right; width: 15%; height: 100%;  }
+.member .memberWrap{ float: right; height: 100%;  }
+.member .memberWrap a{ float: left; height: 100%; margin-right: 1.875rem; color:#fff;}
+
+/* mainNav & subNav */
+.mainNav{ position: relative; display: block; width: 100%; height: 100%; color: #fff; letter-spacing: -0.02rem; }
+.gnb .subNav { display: none; position: absolute; top: 65px; left: 0; z-index: 1010; width: 100%; height: 100%; padding: 30px 0; text-align: center; }
+.gnb .subNav li{ width: 100%; padding: 5px; }
+.gnb .subNav a{ color: #fff; font-weight: 300; }
+.gnb .subNav a:hover{ font-weight: 500;  }
+
+.gnb > ul > li:hover .mainNav::after{ position: absolute; content: ''; width: 100%; height: 3px; background-color: #fff; bottom: -37px; left: 0; z-index: 5000; transition: 0.3s; }
+.gnb > ul > li:hover .subNav{ display: block; }
+
+
+
+
+
+
+
+
+
+
+
+
+/* footer */
+footer{width: 100%; border-top: 1px solid #ccc; padding: 30px 0;}
+footer .inner-wrap { display: flex; align-items: center; }
+footer .logo { position: relative; width: 210px; }
+footer .logo:after { content: ''; position: absolute; z-index: 1; right: -30px; bottom: 0; width: 1px; height: 100%; background-color: #ccc; }
+footer ul{ width: 100%; padding-left: 60px; }
+footer ul li a{display: inline;}
+footer br { display: none; } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*=========================== ~1180 ==================================*/
+/*=========================== ~1180 ==================================*/
+@media screen and (max-width: 1180px) {
+    *{font-size: 16px;}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/*=========================== tablet ==============================*/
+@media screen and (max-width: 1025px){
+    *{ font-size: 14px; }
+    
+    /* header */
+    header{ height: 80px; padding: 20px 30px; box-sizing: border-box; }
+    header h1 > a {height: 100%; bottom: 0px;}
+    header .gnb{ display: none; }
+    header .subBg{ opacity: 0; }
+    header h1, .sns{ width: 50%; }
+	.sns .iconWrap img{ height: auto; }
+	.sns .iconWrap a { display: flex; align-items: center; }
+
+    /* panel */
+    .panel{ 
+        display: block; 
+        position: fixed; top: 80px; right: -100%; z-index: 6100;
+        width: 100%; height: 100%; overflow-y: auto; 
+        background-color: rgba(0, 89, 81, 0);
+        transition: 0.6s ease-in-out; 
+    }
+    .panel.active{ right: 0; }
+    
+    /* panel - pGnb */
+    .pGnb{ width: 100%; padding: 60px; box-sizing: border-box; }
+    .pGnb li{ width: 50%;  margin-bottom: 20px; }
+    .pGnb .mainNav{ position: relative; font-size: 1.75rem; margin-bottom: 40px; }
+
+    .pGnb .subNav{ display: none; width: 100%; padding: 0 0 30px 30px; overflow: hidden; }
+    .pGnb > ul > li:nth-child(3) .subNav li{ width: 100%; }
+    .pGnb .subNav a{ font-size: 1.25rem;  color: #fff; text-align: left; }
+    
+    /* sns - btn */
+    .sns .btn{ position: relative; width: 25px; transform: rotateZ(180deg); }
+    .sns .btn.active{ transform: rotateZ(0deg); transition: all 0.4s 0.2s; }
+    .sns .btn.active .circle01{ 
+        position: absolute; left:0; top:50%; 
+        transform: rotate(45deg);
+        width: 100%; height: 1px; 
+    }
+    .sns .btn.active .circle02{ transform: scaleX(0); }
+    .sns .btn.active .circle03{ 
+        position: absolute; left: 0; top: 50%;
+        transform: rotate(-45deg); 
+        width: 100%; height: 1px; 
+    }
+    
+    .sns .iconWrap a:last-child{ display: block; padding: 12px 0; box-sizing: border-box; }
+
+    footer { padding: 30px 15px; }
+}
+
+
+
+
+
+/*=========================== mobile ==============================*/
+@media screen and (max-width: 767px){
+    *{ font-size: 16px; }
+    header{ padding: 20px 10px; }
+    
+    /* pGnb */
+    .pGnb{ padding: 30px; }
+    .pGnb li{ margin-bottom: 30px; }
+    .pGnb .subNav{ padding: 0 30px; }
+    .pGnb .subNav li{line-height: 60px; width: 100%; }
+
+
+    footer .inner-wrap { display: flex; flex-direction: column; align-items: center; }
+    footer .logo { width: 120px; margin-bottom: 15px; }
+    footer .logo img { width: 100%; }
+    footer .logo:after { display: none; }
+    footer ul { padding: 0; }
+    footer ul > * { text-align: center; }
+    footer br { display: block; }
+}
+
+
+
+/*=========================== ~414 ==================================*/
+/*=========================== ~414 ==================================*/
+@media screen and (max-width: 414px) {
+    *{font-size: 14px;}
+
+    footer { padding: 30px 10px; } 
+
+}
+
+
+
+/* ============================ iphone567 ============================= */
+/* ============================ iphone567 ============================= */
+@media screen and (max-width: 375px){
+    *{ font-size: 12px; }
+    header h1 { display: flex; vertical-align: middle; }
+    header h1 img { width: 100px; }
+    .sns .iconWrap img { width: 22px; }
+    .home a img {width: 16px; }
+
+}
+
+
+
+
+/*===========================iphone5 & se==================================*/
+/*===========================iphone5 & se==================================*/
+@media screen and (max-width: 320px){
+}
+
+
+
+
+
+/*===========================gallaxy fold==================================*/
+/*===========================gallaxy fold==================================*/
+@media screen and (max-width: 280px){
+}

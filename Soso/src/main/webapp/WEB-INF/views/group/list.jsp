@@ -6,6 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="${path }/resources/css/swiper-bundle.min.css" type="text/css">
+    <link rel="stylesheet" href="${path }/resources/css/common.css" type="text/css">
+    <link rel="stylesheet" href="${path }/resources/css/main.css" type="text/css">
+    <link rel="stylesheet" href="${path }/resources/css/brand_map.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <script src="${path }/resources/js/jquery-1.12.0.min.js"></script>
+    <script src="${path }/resources/js/jquery.easing.1.3.js"></script>
+    <script src="${path }/resources/js/swiper-bundle.min.js"></script>
+    <script src="${path }/resources/js/common.js"></script>
+    <script src="${path }/resources/js/main.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <style>
    /* card 이미지 부모요소의 높이 지정 */
@@ -52,10 +65,31 @@
 	<jsp:include page="/WEB-INF/views/include/navbar.jsp">
 		<jsp:param value="home" name="current"/>
 	</jsp:include>
+	
+	<main>
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                    <div class="swiper-slide main01 main-img"></div> 
+                    <div class="swiper-slide main02 main-img"></div> 
+                    <div class="swiper-slide main03 main-img"></div> 
+            </div>
+            <div id="box">
+                <span class="text" >소모임 목록</span>
+            </div>
+              <!-- 08-02 수정중 -->
+            <!-- <div class="slide-btn">
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-play-stop-btn">
+                    <img class="play-btn" src="./images/play-btn.svg" alt="play-slide">
+                </div>
+            </div> -->
+        </div>
+    </main>
 <div class="container">
       <a href="${pageContext.request.contextPath}/group/upload_form">소모임 신청하러 가기</a>
       <a href="${pageContext.request.contextPath}/group/test?num=1">테스트 페이지 가기</a>
-      <h1>소모임 목록 입니다.</h1>
+      
       <div class="row">
       <c:forEach var="tmp" items="${list }">
          <div class="col-sm-6 col-md-4 col-lg-3">

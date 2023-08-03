@@ -61,7 +61,7 @@
         <a href="${pageContext.request.contextPath}/users/id_findform">아이디 찾기</a>
         <a href="${pageContext.request.contextPath}/users/pwd_findform">비밀번호 찾기</a>
     </div>
-    
+     <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
     <script>

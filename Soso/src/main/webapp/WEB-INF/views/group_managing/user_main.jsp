@@ -48,7 +48,7 @@
       <jsp:param value="group_managing_user" name="current"/>
    </jsp:include>
    <div class="container">
-      <h3 class="text-center">유저가 가입한 소모임을 관리하는 페이지</h3>
+     
          <ul>
             <li>
                <a href="${pageContext.request.contextPath }" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">메인 페이지</a>
@@ -136,5 +136,6 @@
          </c:choose>         
        </ul>
     </nav>
+     <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>
