@@ -44,12 +44,12 @@
 						<div><img class="card-image" src="https://plus.unsplash.com/premium_photo-1667251758255-514ef43844fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Ym9va3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=400&q=60"/></div>
 					</div>
 					<div class="col pt-4">
-						<h4 style="font-weight:600">${tmp.memId}</h4>
+						<h4 style="font-weight:600">${tmp.memNick}</h4>
 						<div class="mt-3">${tmp.regdate}</div>
 						<div class="mb-3"><a class="link" href="${pageContext.request.contextPath}/cafe/list">회원 정보 보기</a></div>
 						<div class="d-flex mt-1 justify-content-around">
 							<div><a style=width:100px" class="btn btn-primary me-3" href="${pageContext.request.contextPath}/group_managing/joinApprove?num=${tmp.memNum}">가입 승인</a></div>
-							<div><a style="width:100px" class="btn btn-secondary me-3" href="${pageContext.request.contextPath}/group_managing/joinReject?num=${tmp.memNum}">가입 거절</a></div>
+							<div><a style="width:100px" class="btn btn-secondary me-3" href="${pageContext.request.contextPath}/group_managing/reject?num=${tmp.memNum}">가입 거절</a></div>
 						</div>
 					</div>
 				</div>

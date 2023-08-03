@@ -12,6 +12,16 @@
 		      WHERE groupnum = #{groupNum} AND isJoin = 0
 		      ORDER BY memnum DESC) result1)
    	</select>
+   	<select id="getKickedMemberList" parameterType="groupManagingDto" resultType="groupManagingDto">
+		SELECT *
+		FROM   
+		   (SELECT result1.*, ROWNUM as rnum
+		   FROM
+		      (SELECT memnum, memid, memnick, intro, regdate
+		      FROM board_join_group
+		      WHERE groupnum = #{groupNum} AND isJoin = 4
+		      ORDER BY memnum DESC) result1)
+   	</select>
 	<select id="getApplicantList" parameterType="groupManagingDto" resultType="groupManagingDto">
 		SELECT *
 		FROM   
@@ -22,6 +32,16 @@
 		      WHERE groupnum = #{groupNum} AND isJoin = 1
 		      ORDER BY memnum DESC) result1)
    	</select>
+   	<select id="getRejectedApplicantList" parameterType="groupManagingDto" resultType="groupManagingDto">
+		SELECT *
+		FROM   
+		   (SELECT result1.*, ROWNUM as rnum
+		   FROM
+		      (SELECT memnum, memid, memnick, intro, regdate
+		      FROM board_join_group
+		      WHERE groupnum = #{groupNum} AND isJoin = 2
+		      ORDER BY memnum DESC) result1)
+   	</select>
    	<select id="getMemberCount" parameterType="int" resultType="int">
     	SELECT NVL(MAX(ROWNUM), 0)
       	FROM board_join_group
@@ -30,6 +50,21 @@
    	<update id="joinApprove" parameterType="int">
    		UPDATE board_join_group
    		SET isJoin = 0
+   		WHERE memNum = #{num}
+   	</update>
+   	<update id="kick" parameterType="int">
+   		UPDATE board_join_group
+   		SET isJoin = 4
+   		WHERE memNum = #{num}
+   	</update>
+   	<update id="reject" parameterType="int">
+   		UPDATE board_join_group
+   		SET isJoin = 2
+   		WHERE memNum = #{num}
+   	</update>
+   	<update id="dropOut" parameterType="int">
+   		UPDATE board_join_group
+   		SET isJoin = 3
    		WHERE memNum = #{num}
    	</update>
 </mapper>

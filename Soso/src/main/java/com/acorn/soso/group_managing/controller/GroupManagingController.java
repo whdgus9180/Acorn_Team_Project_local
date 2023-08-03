@@ -63,4 +63,36 @@ public class GroupManagingController {
 		service.getMemberList(dto, request);
 		return "group_managing/memberList";
 	}
+	
+	@GetMapping("/group_managing/kickedMemberList")
+	public String group_kickedMemberList(GroupManagingDto dto, HttpServletRequest request) {
+		dto.setGroupNum(1);
+		service.getKickedMemberList(dto, request);
+		return "group_managing/kickedMemberList";
+	}
+	
+	@GetMapping("/group_managing/rejectedApplicantList")
+	public String group_rejectedApplicantList(GroupManagingDto dto, HttpServletRequest request) {
+		dto.setGroupNum(1);
+		service.getRejectedApplicantList(dto, request);
+		return "group_managing/rejectedApplicantList";
+	}
+	
+	@GetMapping("/group_managing/kick")
+	public String kick(int num) {
+		service.kick(num);
+		return "redirect:/group_managing/memberList";
+	}
+	
+	@GetMapping("/group_managing/reject")
+	public String reject(int num) {
+		service.reject(num);
+		return "/group_managing/applicantList";
+	}
+	
+	@GetMapping("/group_managing/dropOut")
+	public String dropOut(int num) {
+		service.dropOut(num);
+		return "redirect:/group_managing/memberList";
+	}
 }

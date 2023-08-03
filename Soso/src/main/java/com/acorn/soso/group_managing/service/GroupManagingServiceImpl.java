@@ -22,6 +22,12 @@ public class GroupManagingServiceImpl implements GroupManagingService{
 		List<GroupManagingDto> list = dao.getApplicantList(dto);
 		request.setAttribute("list", list);
 	}
+	
+	@Override
+	public void getRejectedApplicantList(GroupManagingDto dto, HttpServletRequest request) {
+		List<GroupManagingDto> list = dao.getRejectedApplicantList(dto);
+		request.setAttribute("list", list);
+	}	
 
 	@Override
 	public void joinApprove(int num) {
@@ -33,10 +39,34 @@ public class GroupManagingServiceImpl implements GroupManagingService{
 		List<GroupManagingDto> list = dao.getMemberList(dto);
 		request.setAttribute("list", list);
 	}
+	
+	@Override
+	public void getKickedMemberList(GroupManagingDto dto, HttpServletRequest request) {
+		List<GroupManagingDto> list = dao.getKickedMemberList(dto);
+		request.setAttribute("list", list);
+		
+	}
 
 	@Override
 	public void getMemberCount(int num, HttpServletRequest request) {
 		int memberCount = dao.getMemberCount(num);
 		request.setAttribute("memberCount", memberCount);
-	}	
+	}
+
+	@Override
+	public void kick(int num) {
+		dao.kick(num);
+	}
+
+	@Override
+	public void reject(int num) {
+		dao.reject(num);
+	}
+
+	@Override
+	public void dropOut(int num) {
+		dao.dropOut(num);
+	}
+
+	
 }
