@@ -22,7 +22,9 @@
       <form action="${pageContext.request.contextPath}/users/signup" method="post" id="myForm">
          <div>
             <label class="control-label" for="userName">이름(닉네임)</label>
-            <input class="form-control" type="text" name="userName" id="userName"/>      
+            <input class="form-control" type="text" name="userName" id="userName"/>  
+            <small class="form-text text-muted">최소 2자 이상 16자 이하, 영어 또는 숫자 또는 한글을 입력하세요.</small>
+          	<div class="invalid-feedback">아이디를 확인하세요.</div>
          </div>
          <div>
             <label class="control-label" for="birth">생년월일</label>
@@ -56,7 +58,7 @@
          <div>
             <label class="control-label" for="pwd2">비밀번호 확인</label>
             <input class="form-control" type="password" name="pwd2" id="pwd2"/>
-            <div class="invalid-feedback">비밀 번호를 확인 하세요</div> 
+            <div class="invalid-feedback">비밀번호가 일치하지 않습니다.</div> 
          </div>
          <div>
             <label class="control-label" for="email">이메일</label>
@@ -68,25 +70,45 @@
    </div>   
    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
    <script>
+   		let isuserNameValid=false;
+   		$("#userName").on("input", () => {
+   		  const userName = $("#userName").val();
+   		  const reg= /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/;
+   		  isuserNameValid = reg.test(userName);
+   		  
+	   	if (userName !== '') {
+	      if (isuserNameValid) {
+	  		 $("#userName").removeClass("is-invalid").addClass("is-valid");
+	  		 $(".invalid-feedback.user-name-feedback").hide();
+	  	  } else {
+	  		 $("#userName").removeClass("is-valid").addClass("is-invalid");
+	  		 $(".invalid-feedback.user-name-feedback").show();
+	  	  }
+	    }
+   		  
+   		  checkFormState();
+   		});
+   
+   
    		let isPwdValid=false;
 	   	//비밀번호 입력란과 비밀번호 확인란에 입력했을때 실행할 함수 등록(다중선택)
 	   	$("#pwd").on("input", () => {
-				  const pwd = $("#pwd").val();
-				  const reg = /^(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/;
-				  isPwdValid = reg.test(pwd);
-				  
-				  if (pwd !== '') {
-				    if (isPwdValid) {
-				      $("#pwd").removeClass("is-invalid").addClass("is-valid");
-				      $(".invalid-feedback.pwd-feedback").hide();
-				    } else {
-				      $("#pwd").removeClass("is-valid").addClass("is-invalid");
-				      $(".invalid-feedback.pwd-feedback").show();
-				    }
-				  }
-				  
-				  checkFormState();
-				});
+		  const pwd = $("#pwd").val();
+		  const reg = /^(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+		  isPwdValid = reg.test(pwd);
+		  
+		  if (pwd !== '') {
+		    if (isPwdValid) {
+		      $("#pwd").removeClass("is-invalid").addClass("is-valid");
+		      $(".invalid-feedback.pwd-feedback").hide();
+		    } else {
+		      $("#pwd").removeClass("is-valid").addClass("is-invalid");
+		      $(".invalid-feedback.pwd-feedback").show();
+		    }
+		  }
+		  
+		  checkFormState();
+		});
 	   	
 	   	$("#pwd2").on("input", () => {
 	   	  const pwd = $("#pwd").val();
@@ -106,32 +128,32 @@
 	   	
 	   	let isEmailValid=false;
 	   	$("#email").on("input", (e) => {
-		   	  const inputEmail = $(e.target).val();
-		   	  const reg = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
-		   	  isEmailValid = reg.test(inputEmail);
-		   	  
-		   	  if (inputEmail !== '') {
-		   	    if (isEmailValid) {
-		   	      $(e.target).removeClass("is-invalid").addClass("is-valid");
-		   	      $(".invalid-feedback.email-feedback").hide();
-		   	    } else {
-		   	      $(e.target).removeClass("is-valid").addClass("is-invalid");
-		   	      $(".invalid-feedback.email-feedback").show();
-		   	    }
-		   	  }
-		   	  
-		   	  checkFormState();
-		   	});
+	   	  const inputEmail = $(e.target).val();
+	   	  const reg = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+	   	  isEmailValid = reg.test(inputEmail);
+	   	  
+	   	  if (inputEmail !== '') {
+	   	    if (isEmailValid) {
+	   	      $(e.target).removeClass("is-invalid").addClass("is-valid");
+	   	      $(".invalid-feedback.email-feedback").hide();
+	   	    } else {
+	   	      $(e.target).removeClass("is-valid").addClass("is-invalid");
+	   	      $(".invalid-feedback.email-feedback").show();
+	   	    }
+	   	  }
+	   	  
+	   	  checkFormState();
+	   	});
    		
    		//폼 전체의 유효성 여부를 판단해서 제출버튼의 disabled 속성을 관리하는 함수 
    		function checkFormState(){
-   		   if(isEmailValid && isPwdValid){
+   		   if(isuserNameValid && isEmailValid && isPwdValid){
    		      $("button[type=submit]").removeAttr("disabled");
    		   }else{
    		      //속성명만 추가할때는 value 에 빈 문자열을 작성하면 된다.
    		      $("button[type=submit]").attr("disabled", "");
    		   }
-   		}
+   		} 
    </script>
    
 </body>
