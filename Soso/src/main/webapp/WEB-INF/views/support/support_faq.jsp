@@ -12,6 +12,7 @@
 		box-sizing: border-box;
 		width: 100%;
 		min-height: 260px;
+		max-width:1300px;
 	}
 	.area_faq ul{
 		padding: 37px 40px 13px;
@@ -65,18 +66,39 @@
 	.tab_content ul{
 		margin-top: 20px;
 	}
-	.tab_content li{
+	.tab_content ul li{
 		border-bottom: 1px solid gray;
-		box-sizing:border-box;
-		width:100%;
-		position:relative;
-		display:inline-block;
 	}
-	.tab_content li span{
-		display:inline-block;
+	.dropbox{
+		box-sizing: border-box;
+		width: 100%;
+		position: relative;
+		display: inline-block;
 	}
-	.tab_content li span p{
-		display:inline-block;
+	.dropbox .title_area{
+		box-sizing: border-box;
+		width: 100%;
+		line-height: 61px;
+		position: relative;
+		
+	}
+	.dropbox .title_area .category{
+		width: 150px;
+		height: auto;
+		box-sizing: border-box;
+		display: inline-block;
+		text-align: center;
+		vertical-align: middle;
+		font-size:20px;
+	}
+	.dropbox .title_area .detail{
+		width: 800px;
+		font-weight: normal;
+		vertical-align: middle;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		display: inline-block;
 	}
 	.search{
 		margin-top:20px;
@@ -93,16 +115,65 @@
 	}
 	.head p{
 		text-align:center;
+		font-size:20px;
 	}
+
+	.search .search_form{
+		height: 60px;
+		display: flex;
+		padding: 3px 0;
+		box-sizing: border-box;
+		background-color: white;
+		flex-wrap: wrap;
+		justify-content:center;
+	}
+	.search_main{
+		width: 500px;
+		height:100%;
+		padding:0 20px;
+		font-size: 18px;
+		border: 1px solid gray;
+		border-right: none;
+		background-color: white;
+	}
+	.search_cs{
+		background:url("https://static.onoffmix.com/images/pc/svg/search_2.svg") no-repeat center center;
+		width:72px;
+		height:100%;
+		border: 1px solid gray;
+		border-left: none;
+		text: none;
+	}
+	
+	.tab_section .tab_menu{
+		margin: 60px 0 80px;
+		padding:0;
+		border-right:1px solid gray;
+		border-bottom: 1px solid gray;
+		box-sizing: border-box;
+		display: flex;
+		justify-content:center;
+		flex-wrap: wrap;
+	}
+	.tab_menu li{
+		width:20%;
+		height:50px;
+		box-sizing: border-box;
+		border-top:1px solid gray;
+		border-left: 1px solid gray;
+		display: inline-block;
+		font-size: 16px;
+		line-height: 50px;
+		text-align: center;
+	}
+	
+	
 </style>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/navbar.jsp">
-	<jsp:param value="support_faq" name="current"/>
-</jsp:include>
 	<div class="head">
 		<h2>자주하는 질문</h2>
 		<p class="sub_text">서비스 이용 중 불편 했던 점이나 궁금한 점을 빠르고 친절하게 안내해 드리겠습니다.</p>
@@ -125,81 +196,98 @@
 	<!-- 메인 메뉴바 끝 -->
 	<!-- 검색 창 시작 -->
 	<div class="search">
-		<form action="" class="d-flex" role="search">
-			<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-			<button class="btn btn-outline-success" type="submit">Search</button>
+		<form action="" class="search_form" method="get">
+			<input type="text" name="" id="" class="search_main" placeholder="예) 회원가입, 로그인, 결제 등" />
+			<input type="submit" class="search_cs" value="" />
 		</form>
 	</div>
 	<!-- 검색 창 끝 -->
-	<div class="container">
 		<div class="main_content">
-			<ul id="tab_menu" class="list-group list-group-horizontal">
-				<li class="list-group-item">
+			<section class="tab_section">
+			<ul class="tab_menu">
+				<li class="active">
 					<a href="">자주하는 질문 전체(10)</a>
 				</li>
-				<li class="list-group-item">
+				<li class="">
 					<a href="">회원(3)</a>
 				</li>
-				<li class="list-group-item">
+				<li class="">
 					<a href="">모임신청(4)</a>
 				</li>
-				<li class="list-group-item">
+				<li class="">
 					<a href="">모임개설(5)</a>
 				</li>
-				<li class="list-group-item">
+				<li class="">
 					<a href="">기타(3)</a>
 				</li>
 			</ul>
-
+			</section>
 			<h3 class="faq">자주하는 질문 전체(10)</h3>
 			<div class="tab_content">
 			<ul>
 				<li class="dropbox">
 					<div class="title_area">
-						<span class="faq_category">모임신청</span>
-						<p class="detial">빈공간입니다.</p>
+						<span class="category">회원</span>
+						<h5 class="detail">회원가입의 조건이 있나요?</h5>
 					</div>
 				</li>
 				<li class="dropbox">
-					<span class="faq_category">회원</span>
-					<p class="detial">빈공간입니다.</p>
+					<div class="title_area">
+						<span class="category">회원</span>
+						<h5 class="detail">회원가입의 조건이 있나요?</h5>
+					</div>
 				</li>
 				<li class="dropbox">
-					<span class="faq_category">회원</span>
-					<p class="detial">빈공간입니다.</p>
+					<div class="title_area">
+						<span class="category">회원</span>
+						<h5 class="detail">회원가입의 조건이 있나요?</h5>
+					</div>
 				</li>
 				<li class="dropbox">
-					<span class="faq_category">모임개설</span>
-					<p class="detial">빈공간입니다.</p>
+					<div class="title_area">
+						<span class="category">회원</span>
+						<h5 class="detail">회원가입의 조건이 있나요?</h5>
+					</div>
 				</li>
 				<li class="dropbox">
-					<span class="faq_category">모임개설</span>
-					<p class="detial">빈공간입니다.</p>
+					<div class="title_area">
+						<span class="category">회원</span>
+						<h5 class="detail">회원가입의 조건이 있나요?</h5>
+					</div>
 				</li>
 				<li class="dropbox">
-					<span class="faq_category">모임해산</span>
-					<p class="detial">빈공간입니다.</p>
+					<div class="title_area">
+						<span class="category">회원</span>
+						<h5 class="detail">회원가입의 조건이 있나요?</h5>
+					</div>
 				</li>
 				<li class="dropbox">
-					<span class="faq_category">모임해산</span>
-					<p class="detial">빈공간입니다.</p>
+					<div class="title_area">
+						<span class="category">회원</span>
+						<h5 class="detail">회원가입의 조건이 있나요?</h5>
+					</div>
 				</li>
 				<li class="dropbox">
-					<span class="faq_category">회원</span>
-					<p class="detial">빈공간입니다.</p>
+					<div class="title_area">
+						<span class="category">회원</span>
+						<h5 class="detail">회원가입의 조건이 있나요?</h5>
+					</div>
 				</li>
 				<li class="dropbox">
-					<span class="faq_category">회원</span>
-					<p class="detial">빈공간입니다.</p>
+					<div class="title_area">
+						<span class="category">회원</span>
+						<h5 class="detail">회원가입의 조건이 있나요?</h5>
+					</div>
 				</li>
 				<li class="dropbox">
-					<span class="faq_category">회원</span>
-					<p class="detial">빈공간입니다.</p>
+					<div class="title_area">
+						<span class="category">회원</span>
+						<h5 class="detail">회원가입의 조건이 있나요?</h5>
+					</div>
 				</li>
 			</ul>
 			</div>
 		</div>
-	</div>
 	<div>
 		<nav>
 			<ul class="pagination">

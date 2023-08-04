@@ -12,6 +12,7 @@
 		box-sizing: border-box;
 		width: 100%;
 		min-height: 260px;
+		max-width:1300px;
 	}
 	.area_faq ul{
 		padding: 37px 40px 13px;
@@ -82,6 +83,28 @@
 	}
 	.head p{
 		text-align:center;
+		font-size:20px;
+	}
+	.tab_section .tab_menu{
+		margin: 60px 0 80px;
+		padding:0;
+		border-right:1px solid gray;
+		border-bottom: 1px solid gray;
+		box-sizing: border-box;
+		display: flex;
+		justify-content:center;
+		flex-wrap: wrap;
+	}
+	.tab_menu li{
+		width:33.3%;
+		height:50px;
+		box-sizing: border-box;
+		border-top:1px solid gray;
+		border-left: 1px solid gray;
+		display: inline-block;
+		font-size: 16px;
+		line-height: 50px;
+		text-align: center;
 	}
 </style>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -89,12 +112,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/navbar.jsp">
-	<jsp:param value="support_inquire" name="current"/>
-</jsp:include>
 	<div class="head">
 		<h2>문의사항</h2>
-		<p class="sub_text">소모임에 궁금한 점이 있다면 문의해주세요.</p>
+		<p class="sub_text">BookMate에 궁금한 점이 있다면 문의해주세요.</p>
 	</div>
 	<!-- 메인 메뉴바 시작 -->
 	<ul class="nav justify-content-center">
@@ -112,11 +132,24 @@
 		</li>
 	</ul>
 	<!-- 메인 메뉴바 끝 -->
+
 	<div class="container">
 		<div class="main_content">
+			<section class="tab_section">
+			<ul class="tab_menu">
+				<li class="active">
+					<a href="">문의하기</a>
+				</li>
+				<li class="">
+					<a href="">오류접수</a>
+				</li>
+				<li class="">
+					<a href="">나의 문의 내역</a>
+				</li>
+			</ul>
+			</section>
 			<section class="area_faq">
-			<h3 class="faq">자주하는 질문 10</h3>
-			<a class="faq_more" href="">주제별 FAQ 더보기</a>
+			<h3 class="faq">1:1 문의하기</h3>
 			<ul>
 				<li>
 					<span class="faq_category">모임신청</span>

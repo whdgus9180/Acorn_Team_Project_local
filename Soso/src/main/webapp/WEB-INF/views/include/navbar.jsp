@@ -23,7 +23,7 @@
         <nav class="pGnb">
             <ul>
                 <li>
-                    <a href="#" class="mainNav">ABOUT</a>
+                    <a href="#" class="mainNav">북메이트 찾기</a>
                     <ul class="subNav">
                         <li><a href="#">list1</a></li>
                         <li><a href="#">list2</a></li>
@@ -72,13 +72,13 @@
             <nav class="gnb">
                 <ul>
                     <li>
-                        <a href="${pageContext.request.contextPath}/group/list" class="mainNav">소모임 가입</a>
+                        <a href="${pageContext.request.contextPath}/group/list" class="mainNav">북메이트 찾기</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/group_managing/admin_main" class="mainNav">소모임 관리</a>
+                        <a href="${pageContext.request.contextPath}/group_managing/admin_main" class="mainNav">관리</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/group_managing/user_main" class="mainNav">소모임 보기</a>
+                        <a href="${pageContext.request.contextPath}/group_managing/user_main" class="mainNav">나의 북메이트</a>
                     </li>
                     <li>
                         <a href="${pageContext.request.contextPath}/support/support_main" class="mainNav">고객센터</a>
