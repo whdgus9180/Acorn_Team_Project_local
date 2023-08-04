@@ -14,24 +14,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Alias("groupDto")
 public class GroupDto {
-	//영화에 관련한 필드값을 담아두기 위한 DTO이다.
 	
-	//영화 번호
+	//소모임 번호
 	private int num;
 	//작성자
 	private String writer;
-	//영화 타이틀
+	//소모임 타이틀
 	private String title;
-	//영화에 대한 설명
+	//소모임에 대한 설명
 	private String caption;
-	//영화 포스터 이미지 패스
+	//소모임 대표 이미지
 	private String imagePath;
-	//게시글 올린 날짜
+	//소모임 개설일
 	private String regdate;
-	//추천수
-	private int thumsup;
-	//비추수
-	private int thumsdown;
 	//게시글 페이징 처리를 위한 필드
 	private int startRowNum;
 	private int endRowNum;
