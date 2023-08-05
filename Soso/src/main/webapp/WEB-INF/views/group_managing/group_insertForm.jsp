@@ -21,37 +21,24 @@
 				<input class="form-control" type="text" name="groupName" id="groupName" placeholder="Add text..."/>		
 			</div>
 			<div class="d-flex mb-3">
-				<fieldset class="form-control col me-4">
-	                <label>
-	                    <input type="checkbox" name="genre" value="novel"> 소설
-	                </label>
-	                <label>
-	                    <input type="checkbox" name="genre" value="essay"> 수필
-	                </label>
-	                <label>
-	                    <input type="checkbox" name="genre" value="self-improve"> 자기계발
-	                </label>
-	                <label>
-	                    <input type="checkbox" name="genre" value="etc"> 기타
-	                </label>                
-	            </fieldset>
-	            <div class="col">
-					<input class="form-control" type="number" name="group_totalNum" min="1" max="30">
+				<select name="genre" id="genre" class="form-select col me-4">
+					<option selected>장르 선택</option>
+					<option value="self_improve">자기계발</option>
+					<option value="humanity_history_art">인문/역사/예술</option>
+					<option value="business_economics">경영/경제/</option>
+					<option value="literature">문학</option>
+					<option value="etc">기타</option>
+				</select>
+	            <div class="form-group col">
+					<input class="form-control" type="number" name="group_maxNum" min="1" max="10">
 				</div>
 			</div>
 			<div class="d-flex mb-4">
-				<fieldset class="form-control col me-4">
-				      <div class="d-flex">
-					      <div class="form-check me-2">
-					          <input class="form-check-input" type="radio" id="one" name="onOff" checked>
-					          <label class="form-check-label" for="one">온라인</label>
-					      </div>
-					      <div class="form-check">
-					          <input class="form-check-input" type="radio" id="two" name="onOff">
-					          <label class="form-check-label" for="two">오프라인</label>
-					      </div>
-				      </div>
-				</fieldset>
+				<select name="onOff" id="onOff" class="form-select col me-4">
+					<option selected>온/오프라인 선택</option>
+					<option value="online">온라인</option>
+					<option value="offline">오프라인</option>
+				</select>
 				<div class="col">
 					<input class="form-control" type="file" placeholder="이미지 파일을 선택해주세요 "/>
 				</div>
