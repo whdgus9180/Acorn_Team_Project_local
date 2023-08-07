@@ -34,8 +34,10 @@ public class GroupController {
 	public Map<String, Object> jjim2(HttpServletRequest request) {
 		boolean isSuccess = service.jjim2(request); // 서비스 메서드의 리턴 값을 받아옴
 		//responseBody가 애초에 json문자열을 돌려주겠다는 거니 그걸 통보해야한다.
+//		int jjimCount = service.jjimCount(request);//서비스 메소드의 리턴 값을 받아옴
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("isSuccess", isSuccess);
+//		map.put("jjimCount", jjimCount);
 		return map;
 	}
 	

@@ -19,5 +19,10 @@
 		FROM board_jjim
 		WHERE groupNum = #{groupNum} AND memId = #{memId} 
 	</select>
+<!-- 	<select id="getCount" parameterMap="int" resultType="int">
+	    SELECT COUNT(*) AS rowCount
+	    FROM board_jjim
+	    WHERE groupNum = #{groupNum}
+	</select> -->
 </mapper>
 

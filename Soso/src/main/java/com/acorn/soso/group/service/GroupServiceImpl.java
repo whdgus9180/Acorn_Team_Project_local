@@ -493,4 +493,12 @@ public class GroupServiceImpl implements GroupService{
 			return false;
 		}
 	}
+
+//	@Override
+//	public int jjimCount(HttpServletRequest request) {
+//		//num을 통해 groupNum을 알아낸다.
+//		int groupNum = Integer.parseInt(request.getParameter("num"));
+//		int jjimCount = jjimdao.getCount(groupNum);
+//		return jjimCount;
+//	}
 }
