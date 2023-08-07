@@ -222,7 +222,7 @@
 				</li>
 			</ul>
 			</section>
-			<h3 class="faq">자주하는 질문 전체(10)</h3>
+			<h3 class="faq">모임개설(5)</h3>
 			<div class="tab_content">
 			<ul>
 				<li class="dropbox">
