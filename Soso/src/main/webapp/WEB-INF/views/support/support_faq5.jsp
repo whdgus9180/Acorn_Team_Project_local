@@ -227,8 +227,8 @@
 			<ul>
 				<li class="dropbox">
 					<div class="title_area">
-						<span class="category">회원</span>
-						<h5 class="detail">회원가입의 조건이 있나요?</h5>
+						<span class="category">기타</span>
+						<h5 class="detail">불량 유저 신고는 어떻게 하나요?</h5>
 					</div>
 				</li>
 				<li class="dropbox">

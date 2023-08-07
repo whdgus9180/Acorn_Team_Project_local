@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>/support_inquire</title>
 <style>
+
 	.main_content{
 		margin: 100px auto 90px;
 		box-sizing: border-box;
@@ -14,65 +15,9 @@
 		min-height: 260px;
 		max-width:1300px;
 	}
-	.area_faq ul{
-		padding: 37px 40px 13px;
-		box-sizing: border-box;
-		border-top: 2px solid #3d4652;
-		border-bottom: 1px solid #3d4642;
-	}
-	.area_faq ul li{
-		margin-bottom: 27px;
-		box-sizing: border-box;
-		display: inline-block;
-		width: 49%;
-		font-size: 14px;
-	}
-	.area_faq ul li .faq_category{
-		margin-right: 40px;
-		width: 100px;
-		color: #666;
-		display: inline-block;
-	}
-	.area_faq ul li p{
-		width: 440px;
-		display: inline-block;
-	}
-	.notice{
-		width:630px;
-		height:290px;
-		display: inline-block;
-	}
-	.notice .view_more{
-		float: right;
-		margin-right: 50px;
-		display: inline-block;
-		font-size: 14px;
-	}
-	.notice h3.title{
-		padding-bottom: 16px;
-		display: inline-block;
-	}
-	.area_contact{
-		width: 630px;
-		height: 290px;
-		padding: 51px;
-		float: right;
-		display: inline-block;
-		box-sizing: border-box;
-		border: 1px solid gray;
-		
-	}
-	.area_faq .faq_more{
-		float: right;
-		margin-right: 50px;
-		display: inline-block;
-		font-size: 14px;
-	}
-	.faq{
-		display: inline-block;
-	}
+	<!-- 상단 배너 시작 -->
 	.head{
-		background-image:url("https://static.onoffmix.com/images/pc/default/notice_bg.png");
+		background-image:url("https://static.onoffmix.com/images/pc/default/inquire_bg.png");
 		height:360px;
 		background-size:cover;
 		overflow:hidden;
@@ -85,6 +30,8 @@
 		text-align:center;
 		font-size:20px;
 	}
+	<!-- 상단 배너 끝-->
+	<!-- 메인 메뉴바 시작 -->
 	.tab_section .tab_menu{
 		margin: 60px 0 80px;
 		padding:0;
@@ -105,6 +52,51 @@
 		font-size: 16px;
 		line-height: 50px;
 		text-align: center;
+	}
+	<!-- 메인 메뉴바 끝 -->
+	
+	<!-- 폼양식 시작 -->
+	.area-form{
+		margin: 14px 0 0;
+		border-top: 3px solid #333;
+	}
+	
+	
+	<!-- 이름 폼 레이아웃 -->
+	.area-form .row-wrap{
+		padding:20px 50px;
+		width: 100%
+		height: auto;
+		border-bottom: 1px solid gray;
+		box-sizing: border-box;
+		overflow: hidden;
+	}
+	
+	.row-wrap>div.input-name{
+		float: left;
+		width: 50%;
+	}
+	.row-wrap>div{
+		height: auto;
+		position: relative;
+	}
+	h4.label{
+		display: inline-block;
+		width: 120px;
+		font-size: 16px;
+		line-height:48px;
+	}
+	.area-form input{
+		width:300px;
+		height:48px;
+		padding: 0 20px;
+		background-color: white;
+		font-size: 14px;
+	}
+	<!-- 연락처 폼 레이아웃 -->
+	.row-wrap>div.input-phone{
+		float: left;
+		width: 50%;
 	}
 </style>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -135,104 +127,38 @@
 
 	<div class="container">
 		<div class="main_content">
-			<section class="tab_section">
 			<ul class="tab_menu">
 				<li class="active">
-					<a href="">문의하기</a>
+					<a href="${pageContext.request.contextPath }/support/support_inquire">문의하기</a>
 				</li>
 				<li class="">
-					<a href="">오류접수</a>
+					<a href="">신고접수</a>
 				</li>
 				<li class="">
 					<a href="">나의 문의 내역</a>
 				</li>
 			</ul>
-			</section>
-			<section class="area_faq">
-			<h3 class="faq">1:1 문의하기</h3>
-			<ul>
-				<li>
-					<span class="faq_category">모임신청</span>
-					<p>빈공간입니다.</p>
-				</li>
-				<li>
-					<span class="faq_category">회원</span>
-					<p>빈공간입니다.</p>
-				</li>
-				<li>
-					<span class="faq_category">회원</span>
-					<p>빈공간입니다.</p>
-				</li>
-				<li>
-					<span class="faq_category">모임개설</span>
-					<p>빈공간입니다.</p>
-				</li>
-				<li>
-					<span class="faq_category">모임개설</span>
-					<p>빈공간입니다.</p>
-				</li>
-				<li>
-					<span class="faq_category">모임해산</span>
-					<p>빈공간입니다.</p>
-				</li>
-				<li>
-					<span class="faq_category">모임해산</span>
-					<p>빈공간입니다.</p>
-				</li>
-				<li>
-					<span class="faq_category">회원</span>
-					<p>빈공간입니다.</p>
-				</li>
-				<li>
-					<span class="faq_category">회원</span>
-					<p>빈공간입니다.</p>
-				</li>
-				<li>
-					<span class="faq_category">회원</span>
-					<p>빈공간입니다.</p>
-				</li>
-			</ul>
-			</section>
-			<section class="notice">
-				<h3 class="title">공지사항</h3>
-				<a class="view_more" href="">더보기</a>
-				<ul class="list-group list-group-flush">
-					<li class="list-group-item">
-						<a href="">[공지] 비어있음</a>
-					</li>
-					<li class="list-group-item">
-						<a href="">[공지] 비어있음</a>
-					</li>
-					<li class="list-group-item">
-						<a href="">[공지] 비어있음</a>
-					</li>
-					<li class="list-group-item">
-						<a href="">[공지] 비어있음</a>
-					</li>
-					<li class="list-group-item">
-						<a href="">[공지] 비어있음</a>
-					</li>
-				</ul>
-			</section>
-			<section class="area_contact">
-				<h3 class="title">소모임 운영시간 및 연락처</h3>
-				<dl>
-					<dt>상담시간</dt>
-					<dd>
-						월~금요일
-						<span>9:00 ~ 17:30</span>
-						<span>(Break Time 12:00~13:00)</span>
-					</dd>
-					<dd>
-						<span>메일문의</span>
-						<span>tttmmm100@naver.com</span>
-					</dd>
-					<dd>
-						<span>전화문의</span>
-						"02-3500-3050"
-					</dd>
-				</dl>
-			</section>
+			<h3 class="inquire">1:1 문의하기</h3>
+			<form class="area-form" method="post">
+				<div class="row-wrap">
+					<div class="input-name">
+						<h4 class="label">이름</h4>
+						<input type="text" id="name" class="name" placeholder="이름을 입력해주세요..."/>
+					</div>
+					<div class="input-phone">
+						<h4 class="label">연락처</h4>
+						<input type="tel" class="phone-main" placeholder="연락처를 입력해주세요..." />
+					</div>
+				</div>
+				<div class="row-wrap"></div>
+				<div class="row-wrap"></div>
+				<div class="row-wrap"></div>
+				<div class="row-wrap"></div>
+				<div class="row-wrap"></div>
+			</form>
+	
+		
+			
 		</div>
 	</div>
 		
