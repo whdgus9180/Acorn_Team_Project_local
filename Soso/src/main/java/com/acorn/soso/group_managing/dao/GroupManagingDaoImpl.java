@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.acorn.soso.group.dto.GroupDto;
 import com.acorn.soso.group_managing.dto.GroupManagingDto;
 
 @Repository
@@ -13,6 +14,11 @@ public class GroupManagingDaoImpl implements GroupManagingDao{
 	
 	@Autowired
 	private SqlSession session;
+	
+	@Override
+	public List<GroupDto> getGroupList(String manager_id) {
+		return session.selectList("groupManaging.getGroupList", manager_id);
+	}
 
 	@Override
 	public List<GroupManagingDto> getApplicantList(GroupManagingDto dto) {
@@ -58,4 +64,6 @@ public class GroupManagingDaoImpl implements GroupManagingDao{
 	public void dropOut(int num) {
 		session.update("groupManaging.dropOut", num);
 	}
+
+	
 }

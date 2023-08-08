@@ -17,9 +17,10 @@
 	<div class="container pt-5">
 		<form action="${pageContext.request.contextPath}/group/insert" method="post" id="myForm" enctype="multipart/form-data">
 			<div class="mb-2">
-				<label class="control-label fw-bold" for="groupName">TITLE</label>
-				<input class="form-control" type="text" name="name" id="groupName" placeholder="Add text..."/>
-				<input class="form-control" type="text" name="caption" id="caption" placeholder="매니저의 한마디!"/>		
+				<label class="control-label fw-bold mb-2" for="groupName">TITLE</label>
+				<input class="form-control mb-2" type="text" name="name" id="groupName" placeholder="Add text..."/>
+				<label class="control-label fw-bold" for="caption">이 소모임을 한줄로 표현해주세요!</label>
+				<input class="form-control mb-3" type="text" name="caption" id="caption" placeholder="Add text..." />		
 			</div>
 			<div class="d-flex mb-3">
 				<select name="genre" id="genre" class="form-select col me-4">
@@ -35,7 +36,7 @@
 						name="max_people" min="2" max="8" placeholder="최대 모임 회원 수를 지정해주세요">
 				</div>
 			</div>
-			<div class="d-flex mb-4">
+			<div class="d-flex mb-3">
 				<select name="on_off" id="on_off" class="form-select col me-4">
 					<option selected>온/오프라인 선택</option>
 					<option value = 0>온라인</option>
@@ -45,27 +46,27 @@
 					<input name="image" class="form-control" type="file" placeholder="이미지 파일을 선택해주세요 "/>
 				</div>
 			</div>
-			<div class="d-flex mb-4">
+			<div class="d-flex mb-3">
 				<div class="col me-4">
-					<label for="start_dt">모임시작일자</label>
+					<label class="fw-bold" for="ended_dt">모임 모집 마감 일자</label>
+					<input class="form-control" type="date" name="deadline_dt" />
+				</div>
+				<div class="col me-4">
+					<label class="fw-bold" for="start_dt">모임 활동 시작 일자</label>
 					<input class="form-control" type="date" name="start_dt" />
 				</div>
-				<div class="col me-4">
-					<label for="ended_dt">모임 활동 종료 일자</label>
-					<input class="form-control" type="date" name="ended_dt" />
-				</div>
 				<div class="col">
-					<label for="ended_dt">모임 모집 마감 일자</label>
-					<input class="form-control" type="date" name="deadline_dt" />
+					<label class="fw-bold" for="ended_dt">모임 활동 종료 일자</label>
+					<input class="form-control" type="date" name="ended_dt" />
 				</div>
 			</div>
 			<div class="d-flex mb-4">
 				<div class="col me-4">
-					<label for="meeting_loc">모임 장소</label>
+					<label class="fw-bold" for="meeting_loc">모임 장소</label>
 					<input class="form-control" type="text" name="meeting_loc" />
 				</div>
 				<div class="col">
-					<label for="meeting_time">모임 시간</label>
+					<label class="fw-bold" for="meeting_time">모임 시간</label>
 					<input class="form-control" type="time" name="meeting_time" />
 				</div>
 			</div>

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.acorn.soso.group.dto.GroupDto;
 import com.acorn.soso.group_managing.dao.GroupManagingDao;
 import com.acorn.soso.group_managing.dto.GroupManagingDto;
 
@@ -15,6 +16,12 @@ public class GroupManagingServiceImpl implements GroupManagingService{
 	
 	@Autowired
 	GroupManagingDao dao;
+	
+	@Override
+	public void getGroupList(String manager_id, HttpServletRequest request) {
+		List<GroupDto> list = dao.getGroupList(manager_id);
+		request.setAttribute("list", list);
+	}
 	
 	//소모임 가입 신청자 리스트 불러오기
 	@Override
@@ -67,6 +74,8 @@ public class GroupManagingServiceImpl implements GroupManagingService{
 	public void dropOut(int num) {
 		dao.dropOut(num);
 	}
+
+	
 
 	
 }

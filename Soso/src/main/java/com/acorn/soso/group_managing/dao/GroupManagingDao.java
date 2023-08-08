@@ -2,9 +2,12 @@ package com.acorn.soso.group_managing.dao;
 
 import java.util.List;
 
+import com.acorn.soso.group.dto.GroupDto;
 import com.acorn.soso.group_managing.dto.GroupManagingDto;
 
 public interface GroupManagingDao {
+	//개설한 소모임 리스트 불러오기
+	public List<GroupDto> getGroupList(String manager_id);
 	//소모임 가입 멤버 목록 불러오기
 	public List<GroupManagingDto> getMemberList(GroupManagingDto dto);
 	//소모임 추방 멤버 목록 불러오기
