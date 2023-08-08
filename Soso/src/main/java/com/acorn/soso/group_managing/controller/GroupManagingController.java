@@ -6,7 +6,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import com.acorn.soso.group.dto.GroupDto;
 import com.acorn.soso.group.service.GroupService;
 import com.acorn.soso.group_managing.dao.GroupManagingDao;
 import com.acorn.soso.group_managing.dto.GroupManagingDto;
@@ -43,8 +45,18 @@ public class GroupManagingController {
 	}
 	
 	@GetMapping("/group_managing/group_updateForm")
-	public String group_updateForm() {
+	public String group_updateForm(int num, HttpServletRequest request, HttpSession session) {
+		String manager_id = (String)session.getAttribute("id");
+		GroupDto dto = service.getGroupData(num, request);
+		if(dto.getManager_id().equals(manager_id)) {
+			
+		}
 		return "group_managing/group_updateForm";
+	}
+	@PostMapping("/group_managing/group_update")
+	public String group_update(GroupDto dto, HttpServletRequest request) {
+		service.updateGroupData(dto, request);
+		return "redirect:/group_managing/admin_main";
 	}
 	
 	@GetMapping("/group_managing/group_userdetail")
