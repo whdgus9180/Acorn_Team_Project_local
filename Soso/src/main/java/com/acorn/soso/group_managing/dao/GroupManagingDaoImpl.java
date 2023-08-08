@@ -19,7 +19,17 @@ public class GroupManagingDaoImpl implements GroupManagingDao{
 	public List<GroupDto> getGroupList(String manager_id) {
 		return session.selectList("groupManaging.getGroupList", manager_id);
 	}
-
+	
+	@Override
+	public GroupDto getGroupData(int num) {
+		return session.selectOne("groupManaging.getGroupData", num);
+	}
+	
+	@Override
+	public void updateGroupData(GroupDto dto) {
+		session.update("groupManaging.updateGroupData", dto);
+	}
+	
 	@Override
 	public List<GroupManagingDto> getApplicantList(GroupManagingDto dto) {
 		return session.selectList("groupManaging.getApplicantList", dto);
@@ -64,6 +74,10 @@ public class GroupManagingDaoImpl implements GroupManagingDao{
 	public void dropOut(int num) {
 		session.update("groupManaging.dropOut", num);
 	}
+
+	
+
+	
 
 	
 }
