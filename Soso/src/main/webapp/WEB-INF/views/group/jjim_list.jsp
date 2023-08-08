@@ -13,38 +13,22 @@
         display : grid;
         gap : 10px;
       }
-      .item:nth-child(1){
-        border: 1px dotted green;
-        /* 1번 라인에서 2칸 */
-        grid-column : 1 / span 1;
-        /* 1번 라인에서 3칸 */
-        grid-row : 1 / span 2;
-        margin: 10px;
-      }
-      .item:nth-child(2){
-        border: 1px dotted blue;
-        margin: 5px;
-      }
-      .item:nth-child(4){
-        border: 1px dotted blue;
-        margin: 5px;
-      }
-      .item:nth-child(3){
-        border: 1px dotted green;
-        /* 1번 라인에서 2칸 */
-        grid-column : 3 / span 1;
-        /* 1번 라인에서 3칸 */
-        grid-row : 1 / span 2;
-        margin: 10px;
-      }
     </style>
   </head>
 <body>
     <div class="container">
-        <div class="item">여기에 소모임 이미지</div>
-        <div class="item">소모임 작성자 / 소모임 제목</div>
-        <div class="item">찜 UX 표시</div>
-        <div class="item">소모임 상세내역</div>
+    	<c:forEach var="tmp" items="${list }">
+    		<div class="item"><img src="#" alt="" />이미지</div>
+	        <div class="item">${tmp.writer} / ${tmp.title}</div>
+	        <div class="item">
+	       		<span>여기에 찜 하트 표시(누르면 제거)</span>
+	        </div>
+	        <div class="item">${tmp.caption}</div>
+    	</c:forEach>
     </div>
+    	<!-- jQuery 라이브러리를 로드 -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+	</script>
 </body>
 </html>

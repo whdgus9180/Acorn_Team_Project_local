@@ -31,10 +31,8 @@ public class GroupController {
 	//찜기능 목록 불러오기 위한 컨트롤러
 	@GetMapping("/group/jjim_list")
 	public String jjimList(HttpServletRequest request) {
-		
 		//찜 목록을 불러오기 위한 서비스
 		service.getJjimList(request);
-		
 		//찜 리스트로 간다
 		return "group/jjim_list";
 	}

@@ -135,7 +135,7 @@
 	    // 요청 방식
 	    method: "get",
 	    // num이라는 파라미터를 request 영역에 담아둔다. 1은 테스트용 값
-	    data: { "num": 22 },
+	    data: { "num": 1 },
 	    success: function(data){
 	    // 서버에서 반환된 응답 데이터를 이용하여 원하는 처리를 한다.
 	    // data 여부에 따라 클라이언트에게 표시해준다.

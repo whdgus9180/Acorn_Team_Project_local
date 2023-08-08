@@ -92,4 +92,5 @@
    		DELETE FROM board_group
    		WHERE num=#{num}
    </delete>
+   
 </mapper>

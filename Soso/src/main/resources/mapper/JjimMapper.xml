@@ -27,7 +27,8 @@
 	    FROM board_jjim
 	    WHERE groupNum = #{groupNum}
 	</select>
-	<!--찜의 목록을 불러오기 위한 sql문.오류나면 group으로 가즈아 -->
+	
+	<!--찜의 목록을 불러오기 위한 sql문.-->
 	<select id="getList" parameterType="string" resultType="groupDto">
 	    SELECT num, writer, title, caption, imagePath, regdate
 	    FROM board_group
