@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.acorn.soso.group.dto.GroupDto;
 import com.acorn.soso.group.dto.JjimDto;
 
 @Repository
@@ -28,8 +29,13 @@ public class JjimDaoImpl implements JjimDao{
 		return session.selectOne("jjim.getData", dto);
 	}
 
-//	@Override
-//	public int getCount(int groupNum) {
-//		return session.selectOne("jjim.getCount", groupNum);
-//	}
+	@Override
+	public int jjimCount(int groupNum) {
+		return session.selectOne("jjim.getCount", groupNum);
+	}
+
+	@Override
+	public List<GroupDto> jjimList(String memId) {
+		return session.selectList("jjim.getList", memId);
+	}
 }

@@ -49,6 +49,8 @@ public interface GroupService {
 	//찜 여부 확인
 	public void knowjjim(HttpServletRequest request);
 	//찜 총 카운트
-//	public int jjimCount(HttpServletRequest request);
+	public int jjimCount(HttpServletRequest request);
+	//찜 리스트 출력
+	public void getJjimList(HttpServletRequest request);
 	
 }

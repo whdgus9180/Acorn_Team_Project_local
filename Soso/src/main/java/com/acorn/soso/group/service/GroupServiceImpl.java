@@ -494,11 +494,22 @@ public class GroupServiceImpl implements GroupService{
 		}
 	}
 
-//	@Override
-//	public int jjimCount(HttpServletRequest request) {
-//		//num을 통해 groupNum을 알아낸다.
-//		int groupNum = Integer.parseInt(request.getParameter("num"));
-//		int jjimCount = jjimdao.getCount(groupNum);
-//		return jjimCount;
-//	}
+	@Override
+	public int jjimCount(HttpServletRequest request) {
+		//num을 통해 groupNum을 알아낸다.
+		int groupNum = Integer.parseInt(request.getParameter("num"));
+		int jjimCount = jjimdao.jjimCount(groupNum);
+		return jjimCount;
+	}
+
+	@Override
+	public void getJjimList(HttpServletRequest request) {
+		//session 영역에 있는 id값으로
+		String memId =(String)request.getSession().getAttribute("id");
+		//memId로 얻어낸 groupDto의 list를 알아낸 다음에
+		List<GroupDto> list = jjimdao.jjimList(memId);
+        //request 영역에 담아주기
+        request.setAttribute("list", list);
+	
+	}
 }

@@ -38,6 +38,7 @@
 									  <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
 									</svg>
 								</div>
+								<div id="jjimNum">${jjimCount }</div>
 							</c:when>
 							<c:otherwise>
 								<div class="p-2 heart" id="emptyHeart">
@@ -45,11 +46,12 @@
 									  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
 									</svg>
 								</div>
+								<div id="jjimNum">${jjimCount }</div>
 							</c:otherwise>
 						</c:choose>
 					</div>
 					<button id="jjim" hidden>찜하기 버튼 테스트</button>
-					<div class="p-2"><button type="button" class="btn btn-outline-primary"><a href="${pageContext.request.contextPath}/group/group_in?num=1">가입하기</a></button></div>
+					<div class="p-2"><button type="button" class="btn btn-outline-primary"><a href="${pageContext.request.contextPath}/group/group_in?num=">가입하기</a></button></div>
 				</div>
 			</div>
 		</div>
@@ -129,19 +131,22 @@
 	  //ajax로 요청한다.
 	  $.ajax({
 	    // 요청 경로
-	    url: "../group/jjim2",
+	    url: "${pageContext.request.contextPath}/group/jjim2",
 	    // 요청 방식
 	    method: "get",
 	    // num이라는 파라미터를 request 영역에 담아둔다. 1은 테스트용 값
-	    data: { num: 1 },
+	    data: { "num": 22 },
 	    success: function(data){
 	    // 서버에서 반환된 응답 데이터를 이용하여 원하는 처리를 한다.
 	    // data 여부에 따라 클라이언트에게 표시해준다.
 	    if (data.isSuccess == true) {
+	    	
 	    	// 찜 추가되었습니다.
 			alert("찜 추가되었습니다.");
-			// div의 클래스를 'emptyHeart'에서 'heart'로 변경
+			
+	    	// div의 클래스를 'emptyHeart'에서 'heart'로 변경
 			$(".heart").removeClass("emptyHeart").addClass("heart");
+			
 			// 하트의 모양을 채워지게 변경
 			$(".heart").html(`
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
@@ -149,8 +154,10 @@
 				</svg>
 			`);
 			} else {
-			// 찜 취소하셨습니다.
+			
+				// 찜 취소하셨습니다.
 			alert("찜 취소하셨습니다.");
+			
 			// 하트의 모양을 비워지게 변경
 			$(".heart").html(`
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
@@ -158,6 +165,8 @@
 				</svg>
 			`);
 			}
+		 // jjimCount 엘리먼트의 내용을 data.jjimCount로 변경
+		 $("#jjimNum").text(data.jjimCount);
 	      }
 	    });
 	  });

@@ -28,16 +28,29 @@ public class GroupController {
 	@Autowired
 	private GroupService service;
 	
+	//찜기능 목록 불러오기 위한 컨트롤러
+	@GetMapping("/group/jjim_list")
+	public String jjimList(HttpServletRequest request) {
+		
+		//찜 목록을 불러오기 위한 서비스
+		service.getJjimList(request);
+		
+		//찜 리스트로 간다
+		return "group/jjim_list";
+	}
+	
+	
+	//찜기능을 위한 컨트롤러
 	//ajax를 위해 responseBody를 해준다.
 	@ResponseBody
 	@GetMapping("/group/jjim2")
 	public Map<String, Object> jjim2(HttpServletRequest request) {
 		boolean isSuccess = service.jjim2(request); // 서비스 메서드의 리턴 값을 받아옴
+		int jjimCount = service.jjimCount(request);//서비스 메소드의 리턴 값을 받아옴
 		//responseBody가 애초에 json문자열을 돌려주겠다는 거니 그걸 통보해야한다.
-//		int jjimCount = service.jjimCount(request);//서비스 메소드의 리턴 값을 받아옴
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("isSuccess", isSuccess);
-//		map.put("jjimCount", jjimCount);
+		map.put("jjimCount", jjimCount);
 		return map;
 	}
 	
@@ -74,6 +87,7 @@ public class GroupController {
 	public String test(HttpServletRequest request, Model model) {
 		service.reviewList(request, model);
 		service.knowjjim(request);
+		model.addAttribute("jjimCount", service.jjimCount(request));
 		return "group/test";
 	}
 	
