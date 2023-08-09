@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.acorn.soso.exception.DontEqualException;
 import com.acorn.soso.group.dto.GroupDto;
 import com.acorn.soso.group.service.GroupService;
 import com.acorn.soso.group_managing.dao.GroupManagingDao;
@@ -48,26 +49,33 @@ public class GroupManagingController {
 	public String group_updateForm(int num, HttpServletRequest request, HttpSession session) {
 		String manager_id = (String)session.getAttribute("id");
 		GroupDto dto = service.getGroupData(num, request);
-		if(dto.getManager_id().equals(manager_id)) {
-			return "group_managing/group_updateForm";
+		if(!dto.getManager_id().equals(manager_id)) {
+			throw new DontEqualException("개설하지 않은 소모임의 정보를 불러올 수 없습니다!");
 		}
-		return "redirect:/group_managing/admin_main";
+		return "group_managing/group_updateForm";
 	}
+	
 	@PostMapping("/group_managing/group_update")
-	public String group_update(GroupDto dto, HttpServletRequest request) {
+	public String group_update(GroupDto dto, HttpServletRequest request, HttpSession session) {
+		String manager_id = (String)session.getAttribute("id");
+		GroupDto data = service.getGroupData(dto.getNum(), request);
+		if(!data.getManager_id().equals(manager_id)) {
+			throw new DontEqualException("개설하지 않은 소모임의 정보를 수정할 수 없습니다!");
+		}
 		service.updateGroupData(dto, request);
 		return "redirect:/group_managing/admin_main";
 	}
+	
 	@GetMapping("/group_managing/group_delete")
 	public String group_delete(int num, HttpServletRequest request, HttpSession session) {
 		String manager_id = (String)session.getAttribute("id");
 		GroupDto dto = service.getGroupData(num, request);
-		if(dto.getManager_id().equals(manager_id)) {
-			service.deleteGroupData(num);
-			return "redirect:/group_managing/admin_main";
-		} else {
-			return "redirect:/group_managing/admin_main";
-		}
+		if(!dto.getManager_id().equals(manager_id)) {
+			throw new DontEqualException("개설하지 않은 소모임의 정보를 삭제할 수 없습니다!");
+		} 
+		service.deleteGroupData(num);
+		return "redirect:/group_managing/admin_main";
+		
 	}
 	
 	@GetMapping("/group_managing/group_userdetail")
