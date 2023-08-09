@@ -43,10 +43,8 @@ public interface GroupService {
 	//소모임 가입에 관련한 기능
 	public void joinGroup(HttpServletRequest request);
 	
-	//찜하기 및 찜 취소하기
-	public void jjim(HttpServletRequest request);
 	//ajax처리로 찜하기&찜취소 기능 구현
-	public boolean jjim2(HttpServletRequest request);
+	public boolean jjim(HttpServletRequest request);
 	//찜 여부 확인
 	public void knowjjim(HttpServletRequest request);
 	//찜 총 카운트

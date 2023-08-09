@@ -41,23 +41,15 @@ public class GroupController {
 	//찜기능을 위한 컨트롤러
 	//ajax를 위해 responseBody를 해준다.
 	@ResponseBody
-	@GetMapping("/group/jjim2")
-	public Map<String, Object> jjim2(HttpServletRequest request) {
-		boolean isSuccess = service.jjim2(request); // 서비스 메서드의 리턴 값을 받아옴
+	@GetMapping("/group/jjim")
+	public Map<String, Object> jjim(HttpServletRequest request) {
+		boolean isSuccess = service.jjim(request); // 서비스 메서드의 리턴 값을 받아옴
 		int jjimCount = service.jjimCount(request);//서비스 메소드의 리턴 값을 받아옴
 		//responseBody가 애초에 json문자열을 돌려주겠다는 거니 그걸 통보해야한다.
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("isSuccess", isSuccess);
 		map.put("jjimCount", jjimCount);
 		return map;
-	}
-	
-	//찜하기 기능 구현(ajax없이)
-	@PostMapping("/group/jjim")
-	//id값과 num값을 받아오기 위해 request만들기
-	public String jjim(HttpServletRequest request) {
-		service.jjim(request);
-		return "redirect:/group/test?num=1";
 	}
 		
 	//리뷰 수정 요청 처리(json)

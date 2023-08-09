@@ -131,7 +131,7 @@
 	  //ajax로 요청한다.
 	  $.ajax({
 	    // 요청 경로
-	    url: "${pageContext.request.contextPath}/group/jjim2",
+	    url: "${pageContext.request.contextPath}/group/jjim",
 	    // 요청 방식
 	    method: "get",
 	    // num이라는 파라미터를 request 영역에 담아둔다. 1은 테스트용 값

@@ -466,26 +466,6 @@ public class GroupServiceImpl implements GroupService{
 		
 	}
 
-	//찜하기 기능 서비스
-	@Override
-	public void jjim(HttpServletRequest request) {
-		//num을 통해 groupNum을 알아낸다.
-		int groupNum = Integer.parseInt(request.getParameter("num"));
-		//session 영역에 있는 id를 알아낸다.
-		String id =(String)request.getSession().getAttribute("id");
-		//새로운 dto를 만들어서 방금 알아낸 데이터를 담는다.
-		JjimDto dto = new JjimDto();
-		dto.setGroupNum(groupNum);
-		dto.setMemId(id);
-		//만들어낸 dto를 가지고 getData작업을 시행하고 resultDto에 담는다.
-		JjimDto resultDto = jjimdao.getData(dto);
-		if(resultDto == null) {//만약 조회된 값이 없으면 찜이 안 되어있는 것이다.
-			jjimdao.insert(dto);
-		}else {//만약 조회된 값이 있으면 찜이 되어있는 것이다.
-			jjimdao.delete(dto);
-		}
-		
-	}
 	//getData로 찜여부 확인하
 	@Override
 	public void knowjjim(HttpServletRequest request) {
@@ -506,7 +486,7 @@ public class GroupServiceImpl implements GroupService{
 	}
 
 	@Override
-	public boolean jjim2(HttpServletRequest request) {
+	public boolean jjim(HttpServletRequest request) {
 		//num을 통해 groupNum을 알아낸다.
 		int groupNum = Integer.parseInt(request.getParameter("num"));
 		//session 영역에 있는 id를 알아낸다.

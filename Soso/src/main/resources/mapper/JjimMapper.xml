@@ -30,9 +30,9 @@
 	
 	<!--찜의 목록을 불러오기 위한 sql문.-->
 	<select id="getList" parameterType="string" resultType="groupDto">
-	    SELECT num, writer, title, caption, imagePath, regdate
-	    FROM board_group
-	    INNER JOIN board_jjim ON board_group.num = board_jjim.groupNum
+	    SELECT num, manager_id, name, caption, img_Path, regdate
+	    FROM group_tb
+	    INNER JOIN board_jjim ON group_tb.num = board_jjim.groupNum
 	    WHERE board_jjim.memId = #{memId}
 	</select>
 	
