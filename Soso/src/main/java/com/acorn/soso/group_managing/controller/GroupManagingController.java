@@ -49,14 +49,25 @@ public class GroupManagingController {
 		String manager_id = (String)session.getAttribute("id");
 		GroupDto dto = service.getGroupData(num, request);
 		if(dto.getManager_id().equals(manager_id)) {
-			
+			return "group_managing/group_updateForm";
 		}
-		return "group_managing/group_updateForm";
+		return "redirect:/group_managing/admin_main";
 	}
 	@PostMapping("/group_managing/group_update")
 	public String group_update(GroupDto dto, HttpServletRequest request) {
 		service.updateGroupData(dto, request);
 		return "redirect:/group_managing/admin_main";
+	}
+	@GetMapping("/group_managing/group_delete")
+	public String group_delete(int num, HttpServletRequest request, HttpSession session) {
+		String manager_id = (String)session.getAttribute("id");
+		GroupDto dto = service.getGroupData(num, request);
+		if(dto.getManager_id().equals(manager_id)) {
+			service.deleteGroupData(num);
+			return "redirect:/group_managing/admin_main";
+		} else {
+			return "redirect:/group_managing/admin_main";
+		}
 	}
 	
 	@GetMapping("/group_managing/group_userdetail")

@@ -67,6 +67,11 @@ public class GroupManagingServiceImpl implements GroupManagingService{
 		dao.updateGroupData(dto);
 	}
 	
+	@Override
+	public void deleteGroupData(int num) {
+		dao.deleteGroupData(num);
+	}
+	
 	//소모임 가입 신청자 리스트 불러오기
 	@Override
 	public void getApplicantList(GroupManagingDto dto, HttpServletRequest request) {
@@ -118,6 +123,8 @@ public class GroupManagingServiceImpl implements GroupManagingService{
 	public void dropOut(int num) {
 		dao.dropOut(num);
 	}
+
+	
 
 	
 

@@ -17,7 +17,7 @@
 	<div class="container pt-5">
 		<form action="${pageContext.request.contextPath}/group_managing/group_update" method="post" id="myForm" enctype="multipart/form-data">
 			<div class="mb-2">
-				<input type="hidden" value=${dto.num}/>
+				<input type="hidden" name="num" value="${dto.num}"/>
 				<label class="control-label fw-bold mb-2" for="groupName">TITLE</label>
 				<input class="form-control mb-2" type="text" name="name" id="groupName" placeholder="Add text..." value="${dto.name}"/>
 				<label class="control-label fw-bold" for="manager_comment">이 소모임을 한줄로 표현해주세요!</label>
@@ -44,7 +44,8 @@
 					<option value = 1 ${dto.on_off == 1 ? "selected" : "" }>오프라인</option>
 				</select>
 				<div class="col">
-					<input name="image" class="form-control" type="file" placeholder="이미지 파일을 선택해주세요 "/>
+					<input name="image" class="form-control" type="file"
+						value="${pageContext.request.contextPath}${dto.img_path}"/>
 				</div>
 			</div>
 			<div class="d-flex mb-3">
@@ -76,7 +77,9 @@
 						name="caption" id="caption" rows="5" placeholder="Add Text...">${dto.caption}</textarea>
 			</div>
 			<div class="d-flex justify-content-center mt-3">
-				<button style="background-color: rgb(65, 75, 178); color:white" class="btn mt-3" type="submit">수정하기</button>
+				<button style="background-color: rgb(65, 75, 178); color:white" class="btn mt-3 me-4" type="submit">수정하기</button>
+				<a style="background-color: black; color:white" class="btn mt-3" 
+					href="${pageContext.request.contextPath}/group_managing/group_delete?num=${dto.num}">해산하기</a>
 			</div>
 		</form>
 	</div>

@@ -12,6 +12,8 @@ public interface GroupManagingDao {
 	public GroupDto getGroupData(int num);
 	//개설한 소모임 정보 수정하기
 	public void updateGroupData(GroupDto dto);
+	//개설한 소모임 해산하기
+	public void deleteGroupData(int num);
 	//소모임 가입 멤버 목록 불러오기
 	public List<GroupManagingDto> getMemberList(GroupManagingDto dto);
 	//소모임 추방 멤버 목록 불러오기
