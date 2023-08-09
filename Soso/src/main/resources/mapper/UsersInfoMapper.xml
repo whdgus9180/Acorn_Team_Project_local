@@ -10,6 +10,7 @@
 			FROM
 				(SELECT comu_num,writer,title,regdate,group_num
 				FROM community_board_tb
+				WHERE writer = #{writer}
 				ORDER BY comu_num DESC) result1)
 		<![CDATA[ 
 		WHERE rnum >= #{startRowNum} AND rnum <= #{endRowNum}
@@ -19,6 +20,7 @@
 	<select id="getCount" parameterType="usersInfoDto" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)
 		FROM community_board_tb
+		WHERE writer = #{writer}
 	</select>
 
 </mapper>

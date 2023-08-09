@@ -24,6 +24,8 @@ public class UsersInfoServiceImpl implements UsersInfoService {
 		final int PAGE_ROW_COUNT = 5;
 		final int PAGE_DISPLAY_COUNT = 5;
 		
+		String id = request.getSession().getAttribute("id").toString();
+		
 		int pageNum = 1;
 		
 		String strPageNum = request.getParameter("pageNum");
@@ -37,6 +39,7 @@ public class UsersInfoServiceImpl implements UsersInfoService {
 		UsersInfoDto dto = new UsersInfoDto();
 		dto.setStartRowNum(startRowNum);
 		dto.setEndRowNum(endRowNum);
+		dto.setWriter(id);
 		
 		List<UsersInfoDto> list = infoDao.getWritingList(dto);
 		
