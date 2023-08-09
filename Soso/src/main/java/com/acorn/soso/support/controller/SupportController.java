@@ -17,25 +17,25 @@ public class SupportController {
 		
 		return "support/support_faq";
 	}
-	@GetMapping("/support/support_faq2")
-	public String support_faq2() {
+	@GetMapping("/support/support_faq_user")
+	public String support_faq_user() {
 		
-		return "support/support_faq2";
+		return "support/support_faq_user";
 	}
-	@GetMapping("/support/support_faq3")
-	public String support_faq3() {
+	@GetMapping("/support/support_faq_request")
+	public String support_faq_request() {
 		
-		return "support/support_faq3";
+		return "support/support_faq_request";
 	}
-	@GetMapping("/support/support_faq4")
-	public String support_faq4() {
+	@GetMapping("/support/support_faq_open")
+	public String support_faq_open() {
 		
-		return "support/support_faq4";
+		return "support/support_faq_open";
 	}
-	@GetMapping("/support/support_faq5")
-	public String support_faq5() {
+	@GetMapping("/support/support_faq_ect")
+	public String support_faq_ect() {
 		
-		return "support/support_faq5";
+		return "support/support_faq_ect";
 	}
 	
 	@GetMapping("/support/support_notice")
@@ -48,5 +48,15 @@ public class SupportController {
 	public String support_inquire() {
 		
 		return "support/support_inquire";
+	}
+	@GetMapping("/support/support_inquire_register")
+	public String support_inquire_register() {
+		
+		return "support/support_inquire_register";
+	}
+	@GetMapping("/support/support_inquire_MyInquire")
+	public String support_inquire_MyInquire() {
+		
+		return "support/support_inquire_MyInquire";
 	}
 }

@@ -209,26 +209,26 @@
 					<a href="${pageContext.request.contextPath }/support/support_faq">자주하는 질문 전체(10)</a>
 				</li>
 				<li class="">
-					<a href="${pageContext.request.contextPath }/support/support_faq2">회원(3)</a>
+					<a href="${pageContext.request.contextPath }/support/support_faq_user">회원(3)</a>
 				</li>
 				<li class="">
-					<a href="${pageContext.request.contextPath }/support/support_faq3">모임신청(4)</a>
+					<a href="${pageContext.request.contextPath }/support/support_faq_request">모임신청(4)</a>
 				</li>
 				<li class="">
-					<a href="${pageContext.request.contextPath }/support/support_faq4">모임개설(5)</a>
+					<a href="${pageContext.request.contextPath }/support/support_faq_open">모임개설(5)</a>
 				</li>
 				<li class="">
-					<a href="${pageContext.request.contextPath }/support/support_faq5">기타(3)</a>
+					<a href="${pageContext.request.contextPath }/support/support_faq_etc">기타(3)</a>
 				</li>
 			</ul>
 			</section>
-			<h3 class="faq">기타(3)</h3>
+			<h3 class="faq">모임개설(5)</h3>
 			<div class="tab_content">
 			<ul>
 				<li class="dropbox">
 					<div class="title_area">
-						<span class="category">기타</span>
-						<h5 class="detail">불량 유저 신고는 어떻게 하나요?</h5>
+						<span class="category">모임개설</span>
+						<h5 class="detail">모임개설은 어떻게 하나요?</h5>
 					</div>
 				</li>
 				<li class="dropbox">
