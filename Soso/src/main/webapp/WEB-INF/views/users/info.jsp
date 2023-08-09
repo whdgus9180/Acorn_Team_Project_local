@@ -21,7 +21,7 @@
 	</style>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/include/navbar.jsp">
+	<jsp:include page="/WEB-INF/views/include/navbar_c.jsp">
 		<jsp:param value="info" name="current" />
 	</jsp:include>
 	

@@ -10,6 +10,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/group_managing_admin_main_card.css">
 </head>
 <body>
+    <jsp:include page="/WEB-INF/views/include/navbar_c.jsp">
+        <jsp:param value="login" name="current"/>
+    </jsp:include>
 	<div class="container">
 		<div id="header">
 			<div class="title">내 소모임 관리하기</div>

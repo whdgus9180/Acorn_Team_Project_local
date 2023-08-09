@@ -5,19 +5,34 @@
 <head>
 <meta charset="UTF-8">
 <title>/group/user_main.jsp</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/group_managing_user_main.css" />
+	<link rel="stylesheet" href="${path }/resources/css/common.css" type="text/css">
+    <link rel="stylesheet" href="${path }/resources/css/group_list.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/group_managing_user_main.css" />
 </head>
 <body>
+	<jsp:include page="/WEB-INF/views/include/navbar.jsp">
+		<jsp:param value="home" name="current"/>
+	</jsp:include>
+	<main id="main-banner" class="main-banner-02">
+        <div class="inner-wrap">
+            <div class="title">
+                <h2>나의 북메이트</h2>
+                <p>
+			                   참여중인 북메이트를<br>
+			                   확인하는 게시판
+                </p>
+            </div>
+            <div class="indicator">
+                <div class="home circle">
+                    <a href="../../index.html" title="메인페이지가기"><img src="${path }/resources/images/sub/icon_home.svg" alt="홈버튼이미지"></a>
+                </div>
+                <div class="main-menu circle">MY BOOKMATE</div>
+            </div>
+        </div>
+    </main>
    <div class="container">     
-      <ul>
-         <li>
-            <a href="${pageContext.request.contextPath }" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">메인 페이지</a>
-         </li>
-         <li>
-            <a href="${pageContext.request.contextPath }/cafe/list" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">소모임 게시판</a>
-         </li>
-      </ul>
    	  <div class="row">
 	      <c:forEach var="tmp" items="${list}">
 	      	<div class="d-flex justify-content-around">
