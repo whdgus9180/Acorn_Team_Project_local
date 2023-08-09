@@ -10,7 +10,7 @@
 <body>
 	<script>
 		alert("가입 승인 되었습니다.");
-		location.href="${pageContext.request.contextPath}/group_managing/applicantList";
+		location.href="${pageContext.request.contextPath}/group_managing/admin_main";
 	</script>
 </body>
 </html>

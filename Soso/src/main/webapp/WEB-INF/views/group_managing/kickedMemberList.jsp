@@ -26,8 +26,8 @@
 							<div><img class="card-image" src="https://plus.unsplash.com/premium_photo-1667251758255-514ef43844fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Ym9va3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=400&q=60"/></div>
 						</div>
 						<div class="col pt-4">
-							<h4 style="font-weight:600">${tmp.memNick}</h4>
-							<div class="mt-3">DATE: ${tmp.regdate}</div>
+							<h4 style="font-weight:600">${tmp.user_id}</h4>
+							<div class="mt-3">DATE: ${tmp.kick_dt}</div>
 							<div class="mb-3"><a class="link" href="${pageContext.request.contextPath}/cafe/list">활동 내역 보기</a></div>
 							<div class="d-flex mt-1 justify-content-end">
 								<div><a style="background-color:rgb(248, 163, 146); width:100px" class="btn" href="#">Setting</a></div>

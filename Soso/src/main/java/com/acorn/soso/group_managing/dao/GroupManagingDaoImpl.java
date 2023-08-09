@@ -37,23 +37,23 @@ public class GroupManagingDaoImpl implements GroupManagingDao{
 	}
 	
 	@Override
-	public List<GroupManagingDto> getApplicantList(GroupManagingDto dto) {
-		return session.selectList("groupManaging.getApplicantList", dto);
+	public List<GroupManagingDto> getApplicantList(int group_num) {
+		return session.selectList("groupManaging.getApplicantList", group_num);
 	}
 	
 	@Override
-	public List<GroupManagingDto> getRejectedApplicantList(GroupManagingDto dto) {
-		return session.selectList("groupManaging.getRejectedApplicantList", dto);
+	public List<GroupManagingDto> getRejectedApplicantList(int group_num) {
+		return session.selectList("groupManaging.getRejectedApplicantList", group_num);
 	}
 	
 	@Override
-	public List<GroupManagingDto> getMemberList(GroupManagingDto dto) {
-		return session.selectList("groupManaging.getMemberList", dto);
+	public List<GroupManagingDto> getMemberList(int group_num) {
+		return session.selectList("groupManaging.getMemberList", group_num);
 	}
 	
 	@Override
-	public List<GroupManagingDto> getKickedMemberList(GroupManagingDto dto) {
-		return session.selectList("groupManaging.getKickedMemberList", dto);
+	public List<GroupManagingDto> getKickedMemberList(int group_num) {
+		return session.selectList("groupManaging.getKickedMemberList", group_num);
 	}
 
 	@Override
