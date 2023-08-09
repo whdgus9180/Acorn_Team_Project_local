@@ -29,8 +29,9 @@ public class GroupManagingController {
 	}
 	
 	@GetMapping("/group_managing/joinApprove")
-	public String joinApprove(int num, HttpServletRequest request) {
+	public String joinApprove(int num, int group_num, HttpServletRequest request) {
 		service.joinApprove(num);
+		request.setAttribute("group_num", group_num);
 		return "group_managing/joinApprove";
 	}
 	
@@ -85,37 +86,41 @@ public class GroupManagingController {
 	@GetMapping("/group_managing/applicantList")
 	public String group_applicantList(int group_num, HttpServletRequest request) {
 		service.getApplicantList(group_num, request);
+		request.setAttribute("group_num", group_num);
 		return "group_managing/applicantList";
 	}
 	
 	@GetMapping("/group_managing/memberList")
 	public String group_memberList(int group_num, HttpServletRequest request) {
 		service.getMemberList(group_num, request);
+		request.setAttribute("group_num", group_num);
 		return "group_managing/memberList";
 	}
 	
 	@GetMapping("/group_managing/kickedMemberList")
 	public String group_kickedMemberList(int group_num, HttpServletRequest request) {
 		service.getKickedMemberList(group_num, request);
+		request.setAttribute("group_num", group_num);
 		return "group_managing/kickedMemberList";
 	}
 	
 	@GetMapping("/group_managing/rejectedApplicantList")
 	public String group_rejectedApplicantList(int group_num, HttpServletRequest request) {
 		service.getRejectedApplicantList(group_num, request);
+		request.setAttribute("group_num", group_num);
 		return "group_managing/rejectedApplicantList";
 	}
 	
 	@GetMapping("/group_managing/kick")
-	public String kick(int num) {
+	public String kick(int num, int group_num) {
 		service.kick(num);
-		return "redirect:/group_managing/memberList";
+		return "redirect:/group_managing/memberList?group_num=" + group_num;
 	}
 	
 	@GetMapping("/group_managing/reject")
-	public String reject(int num) {
+	public String reject(int num, int group_num) {
 		service.reject(num);
-		return "/group_managing/applicantList";
+		return "redirect:/group_managing/applicantList?group_num=" + group_num;
 	}
 	
 	@GetMapping("/group_managing/dropOut")

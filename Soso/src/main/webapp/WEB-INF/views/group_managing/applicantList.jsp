@@ -22,8 +22,8 @@
 			<div class="ms-3 fw-bold fs-2 mb-4">Applicant</div>
 		</div>
 		<div class="d-flex ms-4 mb-5">
-			<div class="col-2 me-2"><a style="text-decoration: none; color:rgb(65, 75, 178)" class="fw-bolder fs-5" href="${pageContext.request.contextPath}/group_managing/applicantList">신청 중</a></div>
-			<div><a style="text-decoration: none;" class="link-dark fw-bold fs-5" href="${pageContext.request.contextPath}/group_managing/rejectedApplicantList">거절</a></div>
+			<div class="col-2 me-2"><a style="text-decoration: none; color:rgb(65, 75, 178)" class="fw-bolder fs-5" href="${pageContext.request.contextPath}/group_managing/applicantList?group_num=${group_num}">신청 중</a></div>
+			<div><a style="text-decoration: none;" class="link-dark fw-bold fs-5" href="${pageContext.request.contextPath}/group_managing/rejectedApplicantList?group_num=${group_num}">거절</a></div>
 		</div>
 		<div id="wrapper" class="ms-2 me-2">
 			<c:forEach var="tmp" items="${list}">
@@ -37,8 +37,8 @@
 						<div class="mt-3">${tmp.request_dt}</div>
 						<div class="mb-3"><a class="link" href="${pageContext.request.contextPath}/cafe/list">회원 정보 보기</a></div>
 						<div class="d-flex mt-1 justify-content-around">
-							<div><a style=width:100px" class="btn btn-primary me-3" href="${pageContext.request.contextPath}/group_managing/joinApprove?num=${tmp.num}">가입 승인</a></div>
-							<div><a style="width:100px" class="btn btn-secondary me-3" href="${pageContext.request.contextPath}/group_managing/reject?num=${tmp.num}">가입 거절</a></div>
+							<div><a style=width:100px" class="btn btn-primary me-3" href="${pageContext.request.contextPath}/group_managing/joinApprove?num=${tmp.num}&group_num=${group_num}">가입 승인</a></div>
+							<div><a style="width:100px" class="btn btn-secondary me-3" href="${pageContext.request.contextPath}/group_managing/reject?num=${tmp.num}&group_num=${group_num}">가입 거절</a></div>
 						</div>
 					</div>
 				</div>

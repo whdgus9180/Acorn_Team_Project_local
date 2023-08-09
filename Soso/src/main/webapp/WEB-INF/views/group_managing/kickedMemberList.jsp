@@ -15,8 +15,8 @@
 			<div class="ms-3 fw-bold fs-2 mb-4">Kicked Member</div>
 		</div>
 		<div class="d-flex ms-4 mb-5">
-			<div class="col-2 me-2"><a style="text-decoration: none; color:rgb(65, 75, 178)" class="fw-bolder fs-5" href="${pageContext.request.contextPath}/group_managing/memberList">참여 중</a></div>
-			<div><a style="text-decoration: none;" class="link-dark fw-bold fs-5" href="${pageContext.request.contextPath}/group_managing/kickedMemberList">강퇴</a></div>
+			<div class="col-2 me-2"><a style="text-decoration: none; color:rgb(65, 75, 178)" class="fw-bolder fs-5" href="${pageContext.request.contextPath}/group_managing/memberList?group_num=${group_num}">참여 중</a></div>
+			<div><a style="text-decoration: none;" class="link-dark fw-bold fs-5" href="${pageContext.request.contextPath}/group_managing/kickedMemberList?group_num=${group_num}">강퇴</a></div>
 		</div>
 		<div id="wrapper" class="ms-2 me-2">
 			<c:forEach var="tmp" items="${list}">
