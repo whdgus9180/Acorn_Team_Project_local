@@ -483,7 +483,6 @@ public class GroupServiceImpl implements GroupService{
 		
 		//request영역에 jjim이라는 이름으로 resultDto를 담는다.
 		request.setAttribute("jjim", resultDto);
-		
 	}
 
 	@Override
