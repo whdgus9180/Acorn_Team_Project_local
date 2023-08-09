@@ -1,5 +1,6 @@
 package com.acorn.soso.group.controller;
 
+import java.net.http.HttpRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,12 +22,16 @@ import com.acorn.soso.group.dto.GroupDto;
 import com.acorn.soso.group.dto.GroupReviewDto;
 import com.acorn.soso.group.dto.JjimDto;
 import com.acorn.soso.group.service.GroupService;
+import com.acorn.soso.group_managing.service.GroupManagingService;
 
 @Controller
 public class GroupController {
 
 	@Autowired
 	private GroupService service;
+	
+	@Autowired
+	private GroupManagingService managingService;
 	
 	//찜기능 목록 불러오기 위한 컨트롤러
 	@GetMapping("/group/jjim_list")
@@ -75,6 +80,10 @@ public class GroupController {
 	//test페이지 불러오면서 후기글 불러오기 위한 service 호출
 	@GetMapping("/group/test")
 	public String test(HttpServletRequest request, Model model) {
+		//request영역의 값으로 groupNum 가져오기 
+		int num = Integer.parseInt(request.getParameter("num"));
+		//groupManaging Service에서 정보 가져오기
+		managingService.getGroupData(num, request);
 		service.reviewList(request, model);
 		service.knowjjim(request);
 		model.addAttribute("jjimCount", service.jjimCount(request));
@@ -82,8 +91,8 @@ public class GroupController {
 	}
 	
 	@GetMapping("/group/group_in")
-	public String groupIn() {
-		
+	public String groupIn(HttpServletRequest request, int num) {
+		request.setAttribute("num", num);
 		return "group/group_in";
 	}
 	

@@ -452,17 +452,14 @@ public class GroupServiceImpl implements GroupService{
 	@Override
 	public void joinGroup(HttpServletRequest request) {
 		//request를 통해서 num을 가져온다.(num은 소모임의 번호이다)
-		int groupNum = Integer.parseInt(request.getParameter("num"));
+		int group_Num = Integer.parseInt(request.getParameter("num"));
 		//session 영역에 있는 id를 가져온다.
 		String id =(String)request.getSession().getAttribute("id");
-		//memNick, intro를 가져온다.
-		String nick = request.getParameter("nick");
 		String intro = request.getParameter("intro");
 		//DTO를하나 만들어서 form에 담겨온 데이터를 담아온다.
 		GroupJoinDto dto = new GroupJoinDto();
-		dto.setGroupNum(groupNum);
-		dto.setMemId(id);
-		dto.setMemNick(nick);
+		dto.setGroup_Num(group_Num);
+		dto.setUser_Id(id);
 		dto.setIntro(intro);
 		
 		//num을 이용해서 가입시키기
