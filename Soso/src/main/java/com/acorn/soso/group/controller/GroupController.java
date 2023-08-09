@@ -116,9 +116,9 @@ public class GroupController {
 	
 	//소모임 추가하기
 	@PostMapping("/group/insert")
-	public String insert(GroupDto dto, HttpServletRequest request) {
-		service.insert(dto, request);
-		return "group/insert";
+	public String insert(GroupDto dto, HttpServletRequest request, HttpSession session) {
+		service.insert(dto, request, session);
+		return "redirect:/group_managing/admin_main";
 	}
 	
 	//delete

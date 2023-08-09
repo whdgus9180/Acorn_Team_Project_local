@@ -72,7 +72,7 @@
 	}
 	
 	.head{
-		background-image:url("https://static.onoffmix.com/images/pc/default/notice_bg.png");
+		background-image:url("https://static.onoffmix.com/images/pc/default/cs_bg.png");
 		height:360px;
 		background-size:cover;
 		overflow:hidden;
