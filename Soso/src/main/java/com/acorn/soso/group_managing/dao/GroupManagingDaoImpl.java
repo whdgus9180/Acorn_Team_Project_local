@@ -31,6 +31,12 @@ public class GroupManagingDaoImpl implements GroupManagingDao{
 	}
 	
 	@Override
+	public void deleteGroupData(int num) {
+		session.delete("groupManaging.deleteGroupData", num);
+		
+	}
+	
+	@Override
 	public List<GroupManagingDto> getApplicantList(GroupManagingDto dto) {
 		return session.selectList("groupManaging.getApplicantList", dto);
 	}
@@ -74,10 +80,4 @@ public class GroupManagingDaoImpl implements GroupManagingDao{
 	public void dropOut(int num) {
 		session.update("groupManaging.dropOut", num);
 	}
-
-	
-
-	
-
-	
 }

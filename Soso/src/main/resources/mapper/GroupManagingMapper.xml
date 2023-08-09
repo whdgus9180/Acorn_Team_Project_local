@@ -25,6 +25,10 @@
    			on_off = #{on_off}, manager_comment = #{manager_comment}
    		WHERE num = #{num}
    	</update>
+   	<delete id="deleteGroupData" parameterType="int">
+   		DELETE FROM group_tb
+   		WHERE num = #{num}
+   </delete>
 	<select id="getMemberList" parameterType="groupManagingDto" resultType="groupManagingDto">
 		SELECT *
 		FROM   
