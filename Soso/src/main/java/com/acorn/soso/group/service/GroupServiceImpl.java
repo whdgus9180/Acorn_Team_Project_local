@@ -452,17 +452,14 @@ public class GroupServiceImpl implements GroupService{
 	@Override
 	public void joinGroup(HttpServletRequest request) {
 		//request를 통해서 num을 가져온다.(num은 소모임의 번호이다)
-		int groupNum = Integer.parseInt(request.getParameter("num"));
+		int group_Num = Integer.parseInt(request.getParameter("num"));
 		//session 영역에 있는 id를 가져온다.
 		String id =(String)request.getSession().getAttribute("id");
-		//memNick, intro를 가져온다.
-		String nick = request.getParameter("nick");
 		String intro = request.getParameter("intro");
 		//DTO를하나 만들어서 form에 담겨온 데이터를 담아온다.
 		GroupJoinDto dto = new GroupJoinDto();
-		dto.setGroupNum(groupNum);
-		dto.setMemId(id);
-		dto.setMemNick(nick);
+		dto.setGroup_Num(group_Num);
+		dto.setUser_Id(id);
 		dto.setIntro(intro);
 		
 		//num을 이용해서 가입시키기
@@ -470,26 +467,6 @@ public class GroupServiceImpl implements GroupService{
 		
 	}
 
-	//찜하기 기능 서비스
-	@Override
-	public void jjim(HttpServletRequest request) {
-		//num을 통해 groupNum을 알아낸다.
-		int groupNum = Integer.parseInt(request.getParameter("num"));
-		//session 영역에 있는 id를 알아낸다.
-		String id =(String)request.getSession().getAttribute("id");
-		//새로운 dto를 만들어서 방금 알아낸 데이터를 담는다.
-		JjimDto dto = new JjimDto();
-		dto.setGroupNum(groupNum);
-		dto.setMemId(id);
-		//만들어낸 dto를 가지고 getData작업을 시행하고 resultDto에 담는다.
-		JjimDto resultDto = jjimdao.getData(dto);
-		if(resultDto == null) {//만약 조회된 값이 없으면 찜이 안 되어있는 것이다.
-			jjimdao.insert(dto);
-		}else {//만약 조회된 값이 있으면 찜이 되어있는 것이다.
-			jjimdao.delete(dto);
-		}
-		
-	}
 	//getData로 찜여부 확인하
 	@Override
 	public void knowjjim(HttpServletRequest request) {
@@ -507,5 +484,48 @@ public class GroupServiceImpl implements GroupService{
 		//request영역에 jjim이라는 이름으로 resultDto를 담는다.
 		request.setAttribute("jjim", resultDto);
 		
+	}
+
+	@Override
+	public boolean jjim(HttpServletRequest request) {
+		//num을 통해 groupNum을 알아낸다.
+		int groupNum = Integer.parseInt(request.getParameter("num"));
+		//session 영역에 있는 id를 알아낸다.
+		String id =(String)request.getSession().getAttribute("id");
+		//새로운 dto를 만들어서 방금 알아낸 데이터를 담는다.
+		JjimDto dto = new JjimDto();
+		dto.setGroupNum(groupNum);
+		dto.setMemId(id);
+		//만들어낸 dto를 가지고 getData작업을 시행하고 resultDto에 담는다.
+		JjimDto resultDto = jjimdao.getData(dto);
+		//분기로 처리한다.
+		if(resultDto == null) {//만약 resultDto가 null이면
+			//jjim을 해주고
+			jjimdao.insert(dto);
+			return true;
+		}else {
+			//jjim을 해제해주고
+			jjimdao.delete(dto);
+			return false;
+		}
+	}
+
+	@Override
+	public int jjimCount(HttpServletRequest request) {
+		//num을 통해 groupNum을 알아낸다.
+		int groupNum = Integer.parseInt(request.getParameter("num"));
+		int jjimCount = jjimdao.jjimCount(groupNum);
+		return jjimCount;
+	}
+
+	@Override
+	public void getJjimList(HttpServletRequest request) {
+		//session 영역에 있는 id값으로
+		String memId =(String)request.getSession().getAttribute("id");
+		//memId로 얻어낸 groupDto의 list를 알아낸 다음에
+		List<GroupDto> list = jjimdao.jjimList(memId);
+        //request 영역에 담아주기
+        request.setAttribute("list", list);
+	
 	}
 }
