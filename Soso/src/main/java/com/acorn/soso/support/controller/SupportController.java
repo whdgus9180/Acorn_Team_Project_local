@@ -1,7 +1,13 @@
 package com.acorn.soso.support.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.acorn.soso.cafe.dto.CafeDto;
+import com.acorn.soso.support.faq.dto.FaqDto;
 
 @Controller
 public class SupportController {
@@ -37,6 +43,11 @@ public class SupportController {
 		
 		return "support/support_faq_etc";
 	}
+	@GetMapping("/support/support_faq_insertform")
+	public String support_faq_insertform() {
+		
+		return "support/support_faq_insertform";
+	}
 	
 	@GetMapping("/support/support_notice")
 	public String support_notice() {
@@ -59,4 +70,6 @@ public class SupportController {
 		
 		return "support/support_inquire_MyInquire";
 	}
+	
+	
 }

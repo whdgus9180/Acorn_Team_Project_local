@@ -6,7 +6,20 @@
 <head>
 <meta charset="UTF-8">
 <title>/support_inquire</title>
-
+<style>
+	.faq_management{
+	width: 240px;
+    height: 60px;
+    margin: 0 auto;
+    display: block;
+    border: 1px solid gray;
+    border-radius: 30px;
+    background-color: gray;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+}
+</style>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/support/support_inquire.css" />
@@ -17,8 +30,8 @@
 	<main id="content" class="cs inquire">
 	<!-- 상단 배너 -->
 	<div class="head">
-		<h2 class="main_title">문의하기</h2>
-		<p class="sub_text">BookMate에 궁금한 점이 있다면 문의해주세요.</p>
+		<h2 class="main_title">FAQ 관리</h2>
+		<p class="sub_text">FAQ 질문을 등록하고 삭제 할 수 있습니다.</p>
 	</div>
 	<!-- 메인 메뉴바 시작 -->
 	<div class="main_area">
@@ -38,53 +51,25 @@
 	</ul>
 		<div class="body_area">
 			<div class="main_content">
-				<ul class="inquire_navi">
-					<li>
-						<a href="${pageContext.request.contextPath }/support/support_inquire">1:1 문의하기</a>
-					</li>
-					<li>
-						<a href="${pageContext.request.contextPath }/support/support_inquire_register">신고접수</a>
-					</li>
-					<li>
-						<a class="my_inquire" href="${pageContext.request.contextPath }/support/support_inquire_MyInquire">나의 문의내역</a>
-					</li>
-				</ul>
-				<h3>1:1 문의하기</h3>
+				<h3>질문 등록</h3>
 				<form action="" class="area_form">
 					<div class="row-wrap">
-						<div class="input_name">
-							<h4 class="label">이름</h4>
-							<input type="text" class="name" placeholder="이름을 입력해주세요..." />
-						</div>
-						<div class="input_phone">
-							<h4 class="label">연락처</h4>
-							<input type="tel" class="phone" placeholder="연락처를 입력해주세요..."/>
-						</div>
-					</div>
-					<div class="row-wrap">
-						<div class="input_email">
-							<h4 class="label">이메일 *</h4>
-							<input type="text" class="email" placeholder="이메일을 입력해주세요" />
-							<p class="tip_txt">* 답변 받을 이메일 주소를 확인해 주세요.</p>
-						</div>
-					</div>
-					<div class="row-wrap">
 						<div class="input_title">
-							<h4 class="label">제목</h4>
-							<select name="" id="" class="title_select">
-								<option value selected="selected" class="inquire_select">문의분류</option>
-								<option value="">회원</option>
-								<option value="">모임신청</option>
-								<option value="">모임개설</option>
-								<option value="">기타</option>
+							<h4 class="label">질문</h4>
+							<select name="category" id="category" class="title_select">
+								<option value selected="selected" class="inquire_select">분류</option>
+								<option value="user">회원</option>
+								<option value="request">모임신청</option>
+								<option value="open">모임개설</option>
+								<option value="etc">기타</option>
 							</select>
-							<input type="text" class="inquire_title" name="title" placeholder="제목을 입력해주세요" />
+							<input type="text" class="inquire_title" name="question" id="question" placeholder="질문을 입력해주세요" />
 						</div>
 					</div>
 					<div class="row-wrap">
 						<div class="input_text">
-							<h4 class="label">내용 *</h4>
-							<textarea name="content" placeholder="북메이트를 이용하시면서 궁금한 점이나 어려운점, 모임 관련 내용이나 북메이트의 전반적인 문의를 입력 해 주세요."></textarea>
+							<h4 class="label">답변 *</h4>
+							<textarea name="answer" id="answer" placeholder="답변내용을 입력 해 주세요."></textarea>
 						</div>
 					</div>
 					<div class="row-wrap">
@@ -100,25 +85,10 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-wrap">
-						<div class="input_agreement">
-							<h4 class="label">
-								"개인정보"
-								<br />
-								"수집 및"
-								<br />
-								"이용 동의 *"
-							</h4>
-							<label>
-							<input class="privacy_check" type="checkbox" name="privacy" value="1" />
-							"작성해주신 이메일, 전화번호는 문의내용 확인 및 답변처리 용도로 쓰이며 3년간 보관 후 파기합니다."
-							</label>
-						</div>
-					</div>
 					<p class="info_message">
 						이 사이트는 reCAPTCHA에 의해 보호되며 Google 개인 정보 취급 방침 및 서비스 약관이 적용됩니다.
 					</p>
-					<input type="submit" value="1 : 1 문의하기" class="btn_submit"/>
+					<a href="${pageContext.request.contextPath }/support/support_faq_insert" class="faq_management">질문 등록</a>
 				</form>
 			</div>
 		</div>
