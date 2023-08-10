@@ -7,6 +7,7 @@ import com.acorn.soso.group_managing.dto.GroupManagingDto;
 
 public interface GroupManagingService {
 	public void getGroupList(String manager_id, HttpServletRequest request);
+	public void getGroupList2(String user_id, HttpServletRequest request);
 	public GroupDto getGroupData(int num, HttpServletRequest request);
 	public void updateGroupData(GroupDto dto, HttpServletRequest request);
 	public void deleteGroupData(int num);

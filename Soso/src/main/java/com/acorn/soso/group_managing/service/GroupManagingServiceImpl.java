@@ -125,4 +125,10 @@ public class GroupManagingServiceImpl implements GroupManagingService{
 	public void dropOut(int num) {
 		dao.dropOut(num);
 	}
+
+	@Override
+	public void getGroupList2(String user_id, HttpServletRequest request) {
+		List<GroupDto> list = dao.getGroupList(user_id);
+		request.setAttribute("list", list);	
+	}
 }
