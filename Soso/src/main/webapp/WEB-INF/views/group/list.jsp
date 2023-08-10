@@ -60,7 +60,7 @@
         	<div class="theme_search">
             	<form action="list" method="get">
             	<label for="condition">검색조건</label>
-            	<input type="text" placeholder="type.." value=" ${keyword }" name="keyword" />
+            	<input type="text" placeholder="type.." value="${keyword}" name="keyword" />
             		<select name="condition" id="condition">
             			<option value="name_caption" ${condition eq 'name_caption' ? 'selected' : '' }>모임명 +내용</option>
             			<option value="name"  ${condition eq 'name' ? 'selected' : '' }>모임명 </option>
