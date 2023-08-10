@@ -4,12 +4,18 @@
 <mapper namespace="groupManaging">
 	
 	<select id="getGroupList" parameterType="String" resultType="groupDto">
-		SELECT num, name, caption, img_path, regdate, ended_dt, deadline_dt, start_dt,
+		SELECT group_tb.num AS num2, name, caption, img_path, regdate, ended_dt, deadline_dt, start_dt,
 			manager_id, max_people, now_people, avrg_rate, meeting_loc, meeting_time,
-			genre, on_off, manager_comment, viewcount
-      	FROM group_tb
-      	WHERE manager_id = #{manager_id}
-      	ORDER BY num DESC
+			genre, on_off, manager_comment, viewcount, result.like_num
+		FROM group_tb
+		LEFT JOIN (
+    		SELECT group_tb.num AS num, COUNT(user_bookmark_tb.group_num) AS like_num
+    		FROM group_tb
+    		LEFT JOIN user_bookmark_tb ON group_tb.num = user_bookmark_tb.group_num
+    		GROUP BY group_tb.num
+		) result ON group_tb.num = result.num
+		WHERE manager_id = #{manager_id}
+		ORDER BY num2 DESC
    	</select>
    	
    	<select id="getGroupData" parameterType="int" resultType="groupDto">
