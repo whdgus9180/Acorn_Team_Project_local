@@ -508,13 +508,13 @@ public class GroupServiceImpl implements GroupService{
 	@Override
 	public void knowjjim(HttpServletRequest request) {
 		//num을 통해 groupNum을 알아낸다.
-		int groupNum = Integer.parseInt(request.getParameter("num"));
+		int group_Num = Integer.parseInt(request.getParameter("num"));
 		//session 영역에 있는 id를 알아낸다.
-		String id =(String)request.getSession().getAttribute("id");
+		String user_Id =(String)request.getSession().getAttribute("id");
 		//새로운 dto를 만들어서 방금 알아낸 데이터를 담는다.
 		JjimDto dto = new JjimDto();
-		dto.setGroupNum(groupNum);
-		dto.setMemId(id);
+		dto.setGroup_Num(group_Num);
+		dto.setUser_Id(user_Id);
 		//만들어낸 dto를 가지고 getData작업을 시행하고 resultDto에 담는다.
 		JjimDto resultDto = jjimdao.getData(dto);
 		
@@ -525,13 +525,13 @@ public class GroupServiceImpl implements GroupService{
 	@Override
 	public boolean jjim(HttpServletRequest request) {
 		//num을 통해 groupNum을 알아낸다.
-		int groupNum = Integer.parseInt(request.getParameter("num"));
+		int group_Num = Integer.parseInt(request.getParameter("num"));
 		//session 영역에 있는 id를 알아낸다.
-		String id =(String)request.getSession().getAttribute("id");
+		String user_Id =(String)request.getSession().getAttribute("id");
 		//새로운 dto를 만들어서 방금 알아낸 데이터를 담는다.
 		JjimDto dto = new JjimDto();
-		dto.setGroupNum(groupNum);
-		dto.setMemId(id);
+		dto.setUser_Id(user_Id);
+		dto.setGroup_Num(group_Num);
 		//만들어낸 dto를 가지고 getData작업을 시행하고 resultDto에 담는다.
 		JjimDto resultDto = jjimdao.getData(dto);
 		//분기로 처리한다.
@@ -600,10 +600,10 @@ public class GroupServiceImpl implements GroupService{
 		joindao.cancleJoin(dto);		
 		return true;
 	}
-// 	public void getData(HttpServletRequest request) {
-// 		int num =Integer.parseInt(request.getParameter("num"));
-// 		GroupDto dto=dao.getData(num);
-// 		request.setAttribute("dto", dto);
-		
+	
+ 	public void getData(HttpServletRequest request) {
+ 		int num =Integer.parseInt(request.getParameter("num"));
+ 		GroupDto dto=dao.getData(num);
+ 		request.setAttribute("dto", dto);	
 	}
 }
