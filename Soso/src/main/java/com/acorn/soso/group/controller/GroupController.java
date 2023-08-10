@@ -31,7 +31,11 @@ public class GroupController {
 	@Autowired
 	private GroupManagingService managingService;	
 	
-	
+	//소모임 FAQ 게시판 목록을 보기 위한 컨트롤러
+	@GetMapping("/group/faq/list")
+	public String groupFaqList() {
+		return "group/faq/list";
+	}
 	
 	//찜기능 목록 불러오기 위한 컨트롤러
 	@GetMapping("/group/jjim_list")
@@ -94,7 +98,7 @@ public class GroupController {
 		//groupManaging Service에서 정보 가져오기
 		managingService.getGroupData(num, request);
 		//소모임의 후기 글을 가져온다.
-		service.reviewList(request, model);
+		//service.reviewList(request, model);
 		
 		//로그인 여부를 토대로 서비스 실행 여부를 정한다.
 		String id =(String)request.getSession().getAttribute("id");

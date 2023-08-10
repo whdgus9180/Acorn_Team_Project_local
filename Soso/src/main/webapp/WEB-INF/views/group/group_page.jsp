@@ -110,7 +110,7 @@
 						<c:forEach var="tmp" items="${list}" end="2">
 							<div class="card mx-1 my-1">
 								<div class="card-body">
-									<p class="card-text">${tmp.review}</p>
+									<p class="card-text"></p>
 								</div>
 							</div>
 						</c:forEach>
@@ -121,7 +121,10 @@
 		<div>
 			<h5 class="mx-1 my-1">저희 모임에 궁금한 게 있으신가요?(문의 게시판 만들기)</h5>
 			<div class="d-flex flex-column mb-3">
-				<div class="p-2">댓글 기능</div>
+				<div class="p-2">
+					댓글 기능
+					<a href="${pageContext.request.contextPath}/group/faq/list">문의 게시판 가기(임시)</a>
+				</div>
 			</div>
 		</div>
 	</div>
