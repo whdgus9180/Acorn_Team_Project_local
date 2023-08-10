@@ -78,7 +78,7 @@ public class GroupController {
 	}
 	
 	//test페이지 불러오면서 후기글 불러오기 위한 service 호출
-	@GetMapping("/group/test")
+	@GetMapping("/group/group_page")
 	public String test(HttpServletRequest request, Model model) {
 		//request영역의 값으로 groupNum 가져오기 
 		int num = Integer.parseInt(request.getParameter("num"));
@@ -87,7 +87,7 @@ public class GroupController {
 		service.reviewList(request, model);
 		service.knowjjim(request);
 		model.addAttribute("jjimCount", service.jjimCount(request));
-		return "group/test";
+		return "group/group_page";
 	}
 	
 	@GetMapping("/group/group_in")

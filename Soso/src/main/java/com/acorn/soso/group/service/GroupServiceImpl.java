@@ -13,7 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 
-import com.acorn.soso.exception.DonEqualException;
+import com.acorn.soso.exception.DontEqualException;
 import com.acorn.soso.exception.NotDeleteException;
 import com.acorn.soso.group.dao.GroupDao;
 import com.acorn.soso.group.dao.GroupJoinDao;
@@ -129,7 +129,7 @@ public class GroupServiceImpl implements GroupService{
 		 if(resultDto != null) {
 			 String title = resultDto.getName();
 			 if(title.equals(dto.getName())) {
-			 throw new DonEqualException("같은 소모임이 이미 존재합니다.");
+			 throw new DontEqualException("같은 소모임이 이미 존재합니다.");
 		 }
 		 }
 		
@@ -301,7 +301,7 @@ public class GroupServiceImpl implements GroupService{
 		 if(resultDto != null) {
 			 String title = resultDto.getName();
 			 if(title.equals(dto.getName())) {
-			 throw new DonEqualException("같은 소모임이 이미 존재합니다.");
+			 throw new DontEqualException("같은 소모임이 이미 존재합니다.");
 			 }
 		 }
 		
@@ -390,7 +390,7 @@ public class GroupServiceImpl implements GroupService{
 		//만약 존재한다면
 		if(resultDto != null) {
 			//exception으로 던지
-			throw new DonEqualException("한번만 리뷰 작성할 수 있습니다.");
+			throw new DontEqualException("한번만 리뷰 작성할 수 있습니다.");
 		}else {
 			//null이면 넣는다.
 			reviewdao.insert(dto);	
@@ -520,7 +520,6 @@ public class GroupServiceImpl implements GroupService{
 		
 		//request영역에 jjim이라는 이름으로 resultDto를 담는다.
 		request.setAttribute("jjim", resultDto);
-		
 	}
 
 	@Override
