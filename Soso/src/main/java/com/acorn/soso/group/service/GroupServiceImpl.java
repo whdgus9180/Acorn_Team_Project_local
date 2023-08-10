@@ -527,4 +527,40 @@ public class GroupServiceImpl implements GroupService{
         request.setAttribute("list", list);
 	
 	}
+
+	@Override
+	public void knowJoin(HttpServletRequest request) {
+		//num을 통해 groupNum을 알아낸다.
+		int num = Integer.parseInt(request.getParameter("num"));
+		//session 영역에 있는 id를 알아낸다.
+		String id =(String)request.getSession().getAttribute("id");
+		//새로운 dto를 만들어서 방금 알아낸 데이터를 담는다.
+		GroupJoinDto dto = new GroupJoinDto();
+		dto.setGroup_Num(num);
+		dto.setUser_Id(id);
+		//만들어낸 dto를 가지고 getData작업을 시행하고 resultDto에 담는다.
+		//int joinNum의 초기값 설정
+		int joinNum = joindao.getIsJoin(dto);
+		if(joinNum == 1 || joinNum == 2 || joinNum == 3) {
+			//request영역에 jjim이라는 이름으로 resultDto를 담는다.
+			request.setAttribute("knowJoin", joinNum);
+		}else if(joinNum == -1) {
+			request.setAttribute("knowJoin", -1);
+		}
+		
+	}
+
+	@Override
+	public boolean cancleJoin(HttpServletRequest request) {
+		//num을 통해 groupNum을 알아낸다.
+		int num = Integer.parseInt(request.getParameter("num"));
+		//session 영역에 있는 id를 알아낸다.
+		String id =(String)request.getSession().getAttribute("id");
+		//새로운 dto를 만들어서 방금 알아낸 데이터를 담는다.
+		GroupJoinDto dto = new GroupJoinDto();
+		dto.setGroup_Num(num);
+		dto.setUser_Id(id);
+		joindao.cancleJoin(dto);		
+		return true;
+	}
 }
