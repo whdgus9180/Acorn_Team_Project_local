@@ -89,6 +89,7 @@
             		<c:otherwise>
             			 <div class="memberWrap">
 		                    <a href="${pageContext.request.contextPath}/users/info" >마이 페이지</a>
+		                    <a href="${pageContext.request.contextPath}/group/jjim_list">찜 리스트</a>
 		                    <a href="${pageContext.request.contextPath}/users/logout" >로그아웃</a>
 		                </div>
             		</c:otherwise>

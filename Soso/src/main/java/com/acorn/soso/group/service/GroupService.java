@@ -41,6 +41,10 @@ public interface GroupService {
 	
 	//소모임 가입에 관련한 기능
 	public void joinGroup(HttpServletRequest request);
+	//가입 신청 여부를 확인한다.
+	public void knowJoin(HttpServletRequest request);
+	//소모임 가입 신청 취소
+	public boolean cancleJoin(HttpServletRequest request);
 	
 	//ajax처리로 찜하기&찜취소 기능 구현
 	public boolean jjim(HttpServletRequest request);

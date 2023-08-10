@@ -13,7 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 
-import com.acorn.soso.exception.DonEqualException;
+import com.acorn.soso.exception.DontEqualException;
 import com.acorn.soso.exception.NotDeleteException;
 import com.acorn.soso.group.dao.GroupDao;
 import com.acorn.soso.group.dao.GroupJoinDao;
@@ -129,7 +129,7 @@ public class GroupServiceImpl implements GroupService{
 		 if(resultDto != null) {
 			 String title = resultDto.getName();
 			 if(title.equals(dto.getName())) {
-			 throw new DonEqualException("같은 소모임이 이미 존재합니다.");
+			 throw new DontEqualException("같은 소모임이 이미 존재합니다.");
 		 }
 		 }
 		
@@ -301,7 +301,7 @@ public class GroupServiceImpl implements GroupService{
 		 if(resultDto != null) {
 			 String title = resultDto.getName();
 			 if(title.equals(dto.getName())) {
-			 throw new DonEqualException("같은 소모임이 이미 존재합니다.");
+			 throw new DontEqualException("같은 소모임이 이미 존재합니다.");
 			 }
 		 }
 		
@@ -390,7 +390,7 @@ public class GroupServiceImpl implements GroupService{
 		//만약 존재한다면
 		if(resultDto != null) {
 			//exception으로 던지
-			throw new DonEqualException("한번만 리뷰 작성할 수 있습니다.");
+			throw new DontEqualException("한번만 리뷰 작성할 수 있습니다.");
 		}else {
 			//null이면 넣는다.
 			reviewdao.insert(dto);	
@@ -520,7 +520,6 @@ public class GroupServiceImpl implements GroupService{
 		
 		//request영역에 jjim이라는 이름으로 resultDto를 담는다.
 		request.setAttribute("jjim", resultDto);
-		
 	}
 
 	@Override
@@ -567,10 +566,44 @@ public class GroupServiceImpl implements GroupService{
 	}
 
 	@Override
-	public void getData(HttpServletRequest request) {
-		int num =Integer.parseInt(request.getParameter("num"));
-		GroupDto dto=dao.getData(num);
-		request.setAttribute("dto", dto);
+	public void knowJoin(HttpServletRequest request) {
+		//num을 통해 groupNum을 알아낸다.
+		int num = Integer.parseInt(request.getParameter("num"));
+		//session 영역에 있는 id를 알아낸다.
+		String id =(String)request.getSession().getAttribute("id");
+		//새로운 dto를 만들어서 방금 알아낸 데이터를 담는다.
+		GroupJoinDto dto = new GroupJoinDto();
+		dto.setGroup_Num(num);
+		dto.setUser_Id(id);
+		//만들어낸 dto를 가지고 getData작업을 시행하고 resultDto에 담는다.
+		//int joinNum의 초기값 설정
+		int joinNum = joindao.getIsJoin(dto);
+		if(joinNum == 1 || joinNum == 2 || joinNum == 3) {
+			//request영역에 jjim이라는 이름으로 resultDto를 담는다.
+			request.setAttribute("knowJoin", joinNum);
+		}else if(joinNum == -1) {
+			request.setAttribute("knowJoin", -1);
+		}
+		
+	}
+
+	@Override
+	public boolean cancleJoin(HttpServletRequest request) {
+		//num을 통해 groupNum을 알아낸다.
+		int num = Integer.parseInt(request.getParameter("num"));
+		//session 영역에 있는 id를 알아낸다.
+		String id =(String)request.getSession().getAttribute("id");
+		//새로운 dto를 만들어서 방금 알아낸 데이터를 담는다.
+		GroupJoinDto dto = new GroupJoinDto();
+		dto.setGroup_Num(num);
+		dto.setUser_Id(id);
+		joindao.cancleJoin(dto);		
+		return true;
+	}
+// 	public void getData(HttpServletRequest request) {
+// 		int num =Integer.parseInt(request.getParameter("num"));
+// 		GroupDto dto=dao.getData(num);
+// 		request.setAttribute("dto", dto);
 		
 	}
 }

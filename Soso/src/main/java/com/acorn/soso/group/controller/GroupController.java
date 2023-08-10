@@ -29,7 +29,7 @@ public class GroupController {
 	private GroupService service;
 	
 	@Autowired
-	private GroupManagingService managingService;
+	private GroupManagingService managingService;	
 	
 	
 	
@@ -41,7 +41,16 @@ public class GroupController {
 		//찜 리스트로 간다
 		return "group/jjim_list";
 	}
-	
+
+	//가입 신청 취소를 위한 컨트롤러
+	@ResponseBody
+	@GetMapping("/group/cancleJoin")
+	public Map<String, Object> cancleJoin(HttpServletRequest request){
+		boolean isSuccess = service.cancleJoin(request);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("isSuccess", isSuccess);
+		return map;
+	}
 	
 	//찜기능을 위한 컨트롤러
 	//ajax를 위해 responseBody를 해준다.
@@ -78,16 +87,25 @@ public class GroupController {
 	}
 	
 	//test페이지 불러오면서 후기글 불러오기 위한 service 호출
-	@GetMapping("/group/test")
+	@GetMapping("/group/group_page")
 	public String test(HttpServletRequest request, Model model) {
 		//request영역의 값으로 groupNum 가져오기 
 		int num = Integer.parseInt(request.getParameter("num"));
 		//groupManaging Service에서 정보 가져오기
 		managingService.getGroupData(num, request);
+		//소모임의 후기 글을 가져온다.
 		service.reviewList(request, model);
-		service.knowjjim(request);
+		
+		//로그인 여부를 토대로 서비스 실행 여부를 정한다.
+		String id =(String)request.getSession().getAttribute("id");
+		if(id != null) {
+			//소모임의 찜 여부를 가져온다.
+			service.knowjjim(request);
+			//소모임의 가입 신청 여부를 가져온다.
+			service.knowJoin(request);		
+		}
 		model.addAttribute("jjimCount", service.jjimCount(request));
-		return "group/test";
+		return "group/group_page";
 	}
 	
 	@GetMapping("/group/group_in")

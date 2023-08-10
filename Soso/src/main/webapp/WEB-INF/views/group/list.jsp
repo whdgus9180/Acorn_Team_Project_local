@@ -74,12 +74,15 @@
         	<c:forEach var="tmp" items="${list}">
         		<div class="mate_content_list">
 	               <div class="mate_contents">
-	                   <a href="#">
+	                   <a href="${pageContext.request.contextPath}/group/group_page?num=${tmp.num }">
 	                       <div class="mate_content_img">
 	                           <img src="${path }/resources/images/main/001.jpg" alt="테스트이미지1">
 	                       </div>
 	                   </a>
 	                   <a href="detail?num=${tmp.num }&condition=${condition}&keyword=${encodedk}">
+                       
+	                   <a href="${pageContext.request.contextPath}/group/group_page?num=${tmp.num }">
+
 	                       <div class="mate_content_text">
 	                           <p class="mate_content_title">${tmp.name}</p>
 	                           <p>모임장 ${tmp.manager_id}</p>
