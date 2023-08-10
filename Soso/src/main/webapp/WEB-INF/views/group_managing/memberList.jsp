@@ -25,7 +25,7 @@
 			<div class="col-2 me-2"><a style="text-decoration: none; color:rgb(65, 75, 178)" class="fw-bolder fs-5" href="${pageContext.request.contextPath}/group_managing/memberList?group_num=${group_num}">참여 중</a></div>
 			<div><a style="text-decoration: none;" class="link-dark fw-bold fs-5" href="${pageContext.request.contextPath}/group_managing/kickedMemberList?group_num=${group_num}">강퇴</a></div>
 		</div>
-		<div id="wrapper" class="ms-2 me-2">
+		<div class="wrapper" class="ms-2 me-2">
 			<c:forEach var="tmp" items="${list}">
 				<div class="border border-dark-subtle m-2" style="border-radius:25px">
 					<div class="d-flex pt-3 ps-5 pe-5 pb-5">

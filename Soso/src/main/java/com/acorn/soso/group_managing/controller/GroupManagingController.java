@@ -30,7 +30,7 @@ public class GroupManagingController {
 	
 	@GetMapping("/group_managing/joinApprove")
 	public String joinApprove(int num, int group_num, HttpServletRequest request) {
-		service.joinApprove(num);
+		service.joinApprove(num, group_num);
 		request.setAttribute("group_num", group_num);
 		return "group_managing/joinApprove";
 	}
@@ -113,7 +113,7 @@ public class GroupManagingController {
 	
 	@GetMapping("/group_managing/kick")
 	public String kick(int num, int group_num) {
-		service.kick(num);
+		service.kick(num, group_num);
 		return "redirect:/group_managing/memberList?group_num=" + group_num;
 	}
 	

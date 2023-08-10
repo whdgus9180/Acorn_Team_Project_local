@@ -86,8 +86,9 @@ public class GroupManagingServiceImpl implements GroupManagingService{
 	}	
 
 	@Override
-	public void joinApprove(int num) {
+	public void joinApprove(int num, int group_num) {
 		dao.joinApprove(num);
+		dao.addMemberCount(group_num);
 	}
 
 	@Override
@@ -110,8 +111,9 @@ public class GroupManagingServiceImpl implements GroupManagingService{
 	}
 
 	@Override
-	public void kick(int num) {
+	public void kick(int num, int group_num) {
 		dao.kick(num);
+		dao.minusMemberCount(group_num);
 	}
 
 	@Override
@@ -123,14 +125,4 @@ public class GroupManagingServiceImpl implements GroupManagingService{
 	public void dropOut(int num) {
 		dao.dropOut(num);
 	}
-
-	
-
-	
-
-	
-
-	
-
-	
 }

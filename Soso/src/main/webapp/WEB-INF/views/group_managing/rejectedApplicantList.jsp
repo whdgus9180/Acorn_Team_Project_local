@@ -7,7 +7,14 @@
 <meta charset="UTF-8">
 <title>가입 거절 지원자 리스트</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/group_managing_admin_main.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/group_managing_admin_header.css" />
+<style>
+.card-image{
+	width: 120px; 
+	height: 120px;
+	border-radius: 50%;
+}
+</style>
 </head>
 <body>
 	<div class="container">
@@ -18,7 +25,7 @@
 			<div class="col-2 me-2"><a style="text-decoration: none; color:rgb(65, 75, 178)" class="fw-bolder fs-5" href="${pageContext.request.contextPath}/group_managing/applicantList?group_num=${group_num}">신청 중</a></div>
 			<div><a style="text-decoration: none;" class="link-dark fw-bold fs-5" href="${pageContext.request.contextPath}/group_managing/rejectedApplicantList?group_num=${group_num}">거절</a></div>
 		</div>
-		<div id="wrapper" class="ms-2 me-2">
+		<div class="wrapper" class="ms-2 me-2">
 			<c:forEach var="tmp" items="${list}">
 			<div class="border border-dark-subtle m-2" style="border-radius:25px">
 				<div class="d-flex pt-3 p-4">

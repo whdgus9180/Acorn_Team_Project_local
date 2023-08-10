@@ -14,9 +14,9 @@ public interface GroupManagingService {
 	public void getKickedMemberList(int group_num, HttpServletRequest request);
 	public void getApplicantList(int group_num, HttpServletRequest request);
 	public void getRejectedApplicantList(int group_num, HttpServletRequest request);
-	public void joinApprove(int num);
+	public void joinApprove(int num, int group_num);
 	public void getMemberCount(int num, HttpServletRequest request);
-	public void kick(int num);
+	public void kick(int num, int group_num);
 	public void reject(int num);
 	public void dropOut(int num);
 }

@@ -60,6 +60,11 @@ public class GroupManagingDaoImpl implements GroupManagingDao{
 	public void joinApprove(int num) {
 		session.update("groupManaging.joinApprove", num);
 	}
+	
+	@Override
+	public void addMemberCount(int group_num) {
+		session.update("groupManaging.addMemberCount", group_num);
+	}
 
 	@Override
 	public int getMemberCount(int num) {
@@ -69,6 +74,11 @@ public class GroupManagingDaoImpl implements GroupManagingDao{
 	@Override
 	public void kick(int num) {
 		session.update("groupManaging.kick", num);
+	}
+	
+	@Override
+	public void minusMemberCount(int group_num) {
+		session.update("groupManaging.minusMemberCount", group_num);
 	}
 
 	@Override
@@ -80,4 +90,6 @@ public class GroupManagingDaoImpl implements GroupManagingDao{
 	public void dropOut(int num) {
 		session.update("groupManaging.dropOut", num);
 	}
+
+	
 }

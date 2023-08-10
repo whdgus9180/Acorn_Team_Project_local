@@ -75,21 +75,37 @@
 		      WHERE group_num = #{group_num} AND isJoin = 2
 		      ORDER BY num DESC) result1)
    	</select>
+   	
    	<select id="getMemberCount" parameterType="int" resultType="int">
     	SELECT NVL(MAX(ROWNUM), 0)
       	FROM group_join_tb
       	WHERE group_num = #{num} AND isJoin = 0
    	</select>
+   	
    	<update id="joinApprove" parameterType="int">
    		UPDATE group_join_tb
    		SET isJoin = 0
    		WHERE num = #{num}
    	</update>
+   	
+   	<update id="addMemberCount" parameterType="int">
+   		UPDATE group_tb
+   		SET now_people = now_people + 1
+   		WHERE num = #{num}
+   	</update>
+   	
    	<update id="kick" parameterType="int">
    		UPDATE group_join_tb
    		SET isJoin = 4
-   		WHERE num = #{num}
+   		WHERE num = #{group_num}
    	</update>
+   	
+   	<update id="minusMemberCount" parameterType="int">
+   		UPDATE group_tb
+   		SET now_people = now_people - 1
+   		WHERE num = #{group_num}
+   	</update>
+   	
    	<update id="reject" parameterType="int">
    		UPDATE group_join_tb
    		SET isJoin = 2
