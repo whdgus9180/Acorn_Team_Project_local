@@ -18,8 +18,8 @@
       <p class="title">회원 가입</p>
       <form action="${pageContext.request.contextPath}/users/signup" method="post" id="myForm">
          <div>
-            <label class="control-label" for="userName">이름(닉네임)</label>
-            <input class="form-control" type="text" name="userName" id="userName"/>  
+            <label class="control-label" for="name">이름(닉네임)</label>
+            <input class="form-control" type="text" name="name" id="userName"/>  
             <div class="invalid-feedback">2~16자의 영어(소문자) 또는 숫자 또는 한글만 사용가능합니다.</div>
          </div>
          <div>
@@ -62,12 +62,38 @@
             <input class="form-control" type="text" name="email" id="email"/>
             <div class="invalid-feedback">이메일 형식에 맞게 입력하세요.</div>
          </div>
+         <input id="allAgreements" type="checkbox" v-model="allAgreed" />
+         <div>
+		    <fieldset class="fieldarea f2">
+		        <h1 class="h3 mb-3 font-weight-normal" style="width: 30rem">이용약관(필수)</h1>
+		        <p class="agreeText">
+		            <label for="agreement1">아래 사항에 동의 합니다.</label>
+		            <input id="agreement1" type="checkbox" name="agreement1" />
+		            <textarea id="text1" readonly>이용약관</textarea>
+		        </p>
+		    </fieldset>
+		    <fieldset class="fieldarea f3">
+		        <h1 class="h3 mb-3 font-weight-normal" style="width: 30rem">개인정보취급방침(필수)</h1>
+		        <p class="agreeText">
+		            <label for="agreement2">아래 사항에 동의 합니다.</label>
+		            <input id="agreement2" type="checkbox" name="agreement2" />
+		            <textarea id="text2" readonly>개인정보 방침 및 안내</textarea>
+		        </p>
+		    </fieldset>
+		    <fieldset class="fieldarea f3">
+		        <h1 class="h3 mb-3 font-weight-normal" style="width: 30rem">마케팅 이용약관(선택)</h1>
+		        <p class="agreeText">
+		            <label for="agreement3">아래 사항에 동의 합니다.</label>
+		            <input id="agreement3" type="checkbox" name="agreement3" />
+		            <textarea id="text3" readonly>이용약관</textarea>
+		        </p>
+		    </fieldset>
+		 </div>
          <button class="btn btn-primary mt-3" type="submit" disabled>가입</button>
       </form>
    </div>   
    
     <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-    
    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
    <script>
    		let isuserNameValid=false;
@@ -186,15 +212,77 @@
 	   	  checkFormState();
 	   	});
    		
-   		//폼 전체의 유효성 여부를 판단해서 제출버튼의 disabled 속성을 관리하는 함수 
-   		function checkFormState(){
-   		   if(isuserNameValid && isIdValid && isEmailValid && isPwdValid){
-   		      $("button[type=submit]").removeAttr("disabled");
-   		   }else{
-   		      //속성명만 추가할때는 value 에 빈 문자열을 작성하면 된다.
-   		      $("button[type=submit]").attr("disabled", "");
-   		   }
-   		} 
+	 	// 체크박스 체크여부
+	   	$("input:checkbox").click(checkedChange);
+
+	   	function checkedChange() {
+	   	    if ($(this).prop("checked")) {
+	   	        $("label[for=" + this.id + "]").text("동의되었습니다.");
+	   	        $("label[for=" + this.id + "]").css("color", "blue");
+	   	    } else {
+	   	        $("label[for=" + this.id + "]").text("동의 해주시기 바랍니다.");
+	   	        $("label[for=" + this.id + "]").css("color", "red");
+	   	    }
+
+	   	    // 체크 상태에 따라 버튼 활성화 여부 관리
+	   	    checkFormState();
+	   	}
+	   	
+	 	// 마케팅 이용약관(선택) 체크박스 체크여부
+	   	$("#agreement3").click(marketingAgreementChange);
+
+	   	function marketingAgreementChange() {
+	   	    if ($(this).prop("checked")) {
+	   	        $("label[for=agreement3]").text("동의되었습니다.");
+	   	        $("label[for=agreement3]").css("color", "blue");
+	   	    } else {
+	   	        $("label[for=agreement3]").text("아래 사항에 동의 합니다.");
+	   	        $("label[for=agreement3]").css("color", ""); // 원래 색상으로 되돌림
+	   	    }
+
+	   	    // 체크 상태에 따라 버튼 활성화 여부 관리
+	   	    checkFormState();
+	   	}
+
+	 // 폼 전체의 유효성 여부를 판단해서 제출버튼의 disabled 속성을 관리하는 함수 
+	    function checkFormState() {
+	        const isAgreement1Checked = $("#agreement1").prop("checked");
+	        const isAgreement2Checked = $("#agreement2").prop("checked");
+
+	        const isAllValid = isuserNameValid && isIdValid && isEmailValid && isPwdValid && isAgreement1Checked && isAgreement2Checked;
+
+	        $("button[type=submit]").prop("disabled", !isAllValid);
+	    }
+
+	    document.addEventListener("DOMContentLoaded", function() {
+	        const allAgreements = document.getElementById("allAgreements");
+	        const agreementCheckboxes = document.querySelectorAll('input[name^="agreement"]');
+
+	        allAgreements.addEventListener("change", function() {
+	            for (const checkbox of agreementCheckboxes) {
+	                checkbox.checked = this.checked;
+	            }
+	            checkFormState();
+	        });
+
+	        for (const checkbox of agreementCheckboxes) {
+	            checkbox.addEventListener("change", function() {
+	                checkFormState();
+	                if (!this.checked) {
+	                    allAgreements.checked = false;
+	                }
+	            });
+	        }
+
+	        function checkFormState() {
+	            const isAllChecked = Array.from(agreementCheckboxes).every(checkbox => checkbox.checked);
+	            allAgreements.checked = isAllChecked;
+	            $("button[type=submit]").prop("disabled", !isAllChecked);
+	        }
+
+	        // 기존의 checkFormState 함수 내용 호출
+	        checkFormState();
+	    });
    </script>
    
 </body>
