@@ -29,7 +29,7 @@
 				<div id="card">
 					<div>
 						<div id="likedNumber">
-							<div>❤ 123</div>
+							<div>❤ ${tmp.like_num }</div>
 						</div>
 						<div class="card-box">
 							<div class="card-left">
