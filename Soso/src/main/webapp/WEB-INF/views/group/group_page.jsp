@@ -123,7 +123,7 @@
 			<div class="d-flex flex-column mb-3">
 				<div class="p-2">
 					댓글 기능
-					<a href="${pageContext.request.contextPath}/group/faq/list">문의 게시판 가기(임시)</a>
+					<a href="${pageContext.request.contextPath}/group/faq/list?num=${dto.num}">문의 게시판 가기(임시)</a>
 				</div>
 			</div>
 		</div>

@@ -17,30 +17,13 @@
 	<div class="container">
 		<h2>소모임 게시판 글 쓰기</h2>
 		
-		<form action="insert" method="post">
+		<form action="#" method="post">
 			<div class="col-12">
-			    <div class="input-group">
-			      <div class="input-group-text"></div>
 			      <input type="text" class="form-control" id="title"" name="title" placeholder="제 목" >
-			    </div>
-			  </div>
-			
-			  <div class="col-12">
-			    <label class="visually-hidden" for="select"></label>
-			    <select class="form-select" id="select" name="select">
-			      <option selected>선 택</option>
-			      <option value="1">책 제목</option>
-			      <option value="2">사진 / 영상</option>
-			      <option value="3">수다</option>
-			      <option value="4">정보 / 일정</option>
-			    </select>
-			  </div>
-			<br>
 			<div>
 				<label for="content"></label>
 				<textarea name="content" id="content" rows="10"></textarea>
-			</div>
-			
+			</div>	
 			<button type="submit" onclick="submitContents(this)" style="margin-left: 106.2ex;">등록</button>
 		</form>
 	</div>
