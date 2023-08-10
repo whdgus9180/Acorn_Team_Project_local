@@ -31,9 +31,24 @@ public class GroupController {
 	@Autowired
 	private GroupManagingService managingService;	
 	
+	//소모임 FAQ문의 insert
+	@PostMapping("/group/faq/insert")
+	public String groupFaqInsert(HttpServletRequest request) {
+		
+		return "group/faq/insert";
+	}
+	
+	//소모임FAQ문의 insertform
+	@GetMapping("/group/faq/insertform")
+	public String groupFaqInsertForm(HttpServletRequest request, int num) {
+		request.setAttribute("num", num);
+		return "group/faq/insertform";
+	}
+	
 	//소모임 FAQ 게시판 목록을 보기 위한 컨트롤러
 	@GetMapping("/group/faq/list")
-	public String groupFaqList() {
+	public String groupFaqList(HttpServletRequest request, int num) {
+		request.setAttribute("num", num);
 		return "group/faq/list";
 	}
 	

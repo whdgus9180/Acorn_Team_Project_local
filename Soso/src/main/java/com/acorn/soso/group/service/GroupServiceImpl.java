@@ -601,6 +601,7 @@ public class GroupServiceImpl implements GroupService{
 		return true;
 	}
 	
+	@Override
  	public void getData(HttpServletRequest request) {
  		int num =Integer.parseInt(request.getParameter("num"));
  		GroupDto dto=dao.getData(num);

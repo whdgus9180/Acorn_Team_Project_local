@@ -15,7 +15,7 @@
 </head>
 <body>
 	<div class="container">
-		<h2>소모임 게시판 글 쓰기</h2>
+		<h2>소모임 문의하기</h2>
 		
 		<form action="insert" method="post">
 			<div class="col-12">

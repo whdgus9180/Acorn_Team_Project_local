@@ -13,7 +13,7 @@
 			<br>	
 			<h2 style="text-align: center">소모임 FAQ 게시판</h2>
 			<div style="width:100%; text-align:right;">
-			<a href="${pageContext.request.contextPath }/group/group_faq/insertform" class="btn btn-outline-dark" tabindex="-1" role="small-button" aria-disabled="true" >글 쓰기</a>
+			<a href="${pageContext.request.contextPath }/group/faq/insertform?num=${num}" class="btn btn-outline-dark" tabindex="-1" role="small-button" aria-disabled="true" >글 쓰기</a>
 			</div>
 			<br>
 			<table class="table">
