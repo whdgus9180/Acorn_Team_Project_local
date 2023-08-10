@@ -18,4 +18,13 @@ public class ExceptionController {
 		mView.setViewName("error/info");
 		return mView;
 	}
+	@ExceptionHandler(DontEqualException.class)
+	public ModelAndView IdDontEqual(DontEqualException ide) { //메소드의 인자로 예외 객체가 전달된다.
+		ModelAndView mView = new ModelAndView();
+		//exception이라는 키값으로 예외 객체를 담고
+		mView.addObject("exception", ide);
+		//view page ( /WEN-INF/views/error/info.jsp ) 로 forward 이동해서 예외정보 응답하기
+		mView.setViewName("group_managing/info");
+		return mView;
+	}
 }

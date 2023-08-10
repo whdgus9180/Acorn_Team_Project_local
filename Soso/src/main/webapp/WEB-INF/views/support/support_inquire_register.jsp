@@ -9,7 +9,7 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/support/support_inquire.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/support/support_inquire_register.css" />
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -23,7 +23,7 @@
 	<div class="main_area">
 	<ul class="menu_bar">
 		<li class="menu_home">
-			<a class="nav-link active" href="${pageContext.request.contextPath }/support/support_main">고객센터</a>
+			<a class="nav-link active" href="${pageContext.request.contextPath }/suppo/support_main">고객센터</a>
 		</li>
 		<li class="menu_faq">
 			<a class="nav-link" href="${pageContext.request.contextPath }/support/support_faq">자주하는 질문</a>
@@ -48,7 +48,7 @@
 						<a class="my_inquire" href="${pageContext.request.contextPath }/support/support_inquire_MyInquire">나의 문의내역</a>
 					</li>
 				</ul>
-				<h3>1:1 문의하기</h3>
+				<h3>신고 접수</h3>
 				<form action="" class="area_form">
 					<div class="row-wrap">
 						<div class="input_name">
@@ -68,22 +68,15 @@
 						</div>
 					</div>
 					<div class="row-wrap">
-						<div class="input_title">
-							<h4 class="label">제목</h4>
-							<select name="" id="" class="title_select">
-								<option value selected="selected" class="inquire_select">문의분류</option>
-								<option value="">회원</option>
-								<option value="">모임신청</option>
-								<option value="">모임개설</option>
-								<option value="">기타</option>
-							</select>
-							<input type="text" class="inquire_title" name="title" placeholder="제목을 입력해주세요" />
+						<div class="input_register">
+							<h4 class="label">신고 대상</h4>
+							<input type="text" class="inquire_title" name="title" placeholder="신고할 아이디 또는 소모임 이름을 입력해 주세요..." />
 						</div>
 					</div>
 					<div class="row-wrap">
 						<div class="input_text">
 							<h4 class="label">내용 *</h4>
-							<textarea name="content" placeholder="북메이트를 이용하시면서 궁금한 점이나 어려운점, 모임 관련 내용이나 북메이트의 전반적인 문의를 입력 해 주세요."></textarea>
+							<textarea name="content" placeholder="불량회원 또는 불량 소모임의 관련된 내용을 기재 해 주세요"></textarea>
 						</div>
 					</div>
 					<div class="row-wrap">
