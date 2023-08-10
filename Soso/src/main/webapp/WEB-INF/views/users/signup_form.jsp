@@ -20,8 +20,7 @@
          <div>
             <label class="control-label" for="userName">이름(닉네임)</label>
             <input class="form-control" type="text" name="userName" id="userName"/>  
-            <small class="form-text text-muted">2~16자의 영어 또는 숫자 또는 한글만 사용가능합니다.</small>
-          	<div class="invalid-feedback">이름을 확인하세요.</div>
+            <div class="invalid-feedback">2~16자의 영어(소문자) 또는 숫자 또는 한글만 사용가능합니다.</div>
          </div>
          <div>
             <label class="control-label" for="birth">생년월일</label>
@@ -45,14 +44,13 @@
          <div>
             <label class="control-label" for="id">아이디</label>
             <input class="form-control" type="text" name="id" id="id"/> 
-            <small class="form-text text-muted">2~15자의 영문 소문자로 시작하고 영어소문자, 숫자만 사용가능합니다.</small>
+            <div><span id="result_checkId" style="font-size: 12px;"></span></div>
           	<div class="invalid-feedback">아이디를 확인하세요.</div>     
          </div>
          <div>
             <label class="control-label" for="pwd">비밀번호</label>
             <input class="form-control" type="password" name="pwd" id="pwd"/> 
-            <small class="form-text text-muted">최소 8자 이상으로 문자와 숫자, 특수 문자를 각각 하나 이상 조합하세요.</small>
-          	<div class="invalid-feedback">비밀 번호를 확인 하세요</div>  
+            <div class="invalid-feedback">최소 8자 이상으로 문자와 숫자, 특수 문자를 각각 하나 이상 조합하세요.</div> 
          </div>
          <div>
             <label class="control-label" for="pwd2">비밀번호 확인</label>
@@ -92,23 +90,46 @@
    		});
    		
    		let isIdValid=false;
-   		$("#id").on("input", () => {
-   		  const Id = $("#id").val();
-   		  const reg = /^[a-z][a-z0-9]{1,14}$/;
-   		  isIdValid = reg.test(Id);
-   		  
-   		  if (Id !== '') {
-   		    if (isIdValid) {
-   		      $("#id").removeClass("is-invalid").addClass("is-valid");
-   		      $(".invalid-feedback.user-name-feedback").hide();
-   		    } else {
-   		      $("#id").removeClass("is-valid").addClass("is-invalid");
-   		      $(".invalid-feedback.user-name-feedback").show();
-   		    }
-   		  }
-   		  
-   		  checkFormState();
-   		});
+   		// 아이디 입력란을 수정할 때마다 유효성 검사와 중복 검사 수행
+   	    $("#id").on("input", function() {
+   	        let member_id = $(this).val();
+   	        const reg = /^[a-z][a-z0-9]{1,14}$/;
+   	        if (member_id === '') {
+   	            $("#result_checkId").html("아이디를 입력하세요.").css("color", "red");
+   	            $("#id").removeClass("is-valid").addClass("is-invalid");
+   	            isIdValid = false; // 아이디 입력 안 함 처리
+   	            checkFormState(); // 폼 상태 재검사
+   	            return;
+   	        }
+   	        if (!reg.test(member_id)) {
+   	            $("#result_checkId").html("2~15자의 영어 소문자와 숫자 조합으로 입력하세요.").css("color", "red");
+   	            $("#id").removeClass("is-valid").addClass("is-invalid");
+   	            isIdValid = false; // 정규표현식 검사 실패
+   	            checkFormState(); // 폼 상태 재검사
+   	            return;
+   	        }
+   	        $.ajax({
+   	            method: "post",
+   	            url: "${pageContext.request.contextPath}/users/idCheck",
+   	            data: {"id": member_id},
+   	            success: function(data) {
+   	                console.log(data);
+   	                if (data) {
+   	                    $("#result_checkId").html("이미 사용중인 아이디입니다.").css("color", "red");
+   	                    $("#id").removeClass("is-valid").addClass("is-invalid");
+   	                    isIdValid = false; // 중복 아이디 검사 실패
+   	                } else {
+   	                    $("#result_checkId").html("사용 가능한 아이디입니다.").css("color", "green");
+   	                    $("#id").removeClass("is-invalid").addClass("is-valid");
+   	                    isIdValid = true; // 중복 아이디 검사 통과
+   	                }
+   	                checkFormState(); // 폼 상태 재검사
+   	            },
+   	            error: function(error) {
+   	                alert(error);
+   	            }
+   	        });
+   	    });
    
    		let isPwdValid=false;
 	   	//비밀번호 입력란과 비밀번호 확인란에 입력했을때 실행할 함수 등록(다중선택)
