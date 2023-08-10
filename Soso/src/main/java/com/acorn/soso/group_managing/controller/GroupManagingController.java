@@ -36,7 +36,9 @@ public class GroupManagingController {
 	}
 	
 	@GetMapping("/group_managing/user_main")
-	public String user_main() {
+	public String user_main(HttpServletRequest request, HttpSession session) {
+		String user_id = (String)session.getAttribute("id");
+		service.getGroupList2(user_id, request);
 		return "group_managing/user_main";
 	}
 	

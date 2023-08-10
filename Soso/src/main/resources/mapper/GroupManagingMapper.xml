@@ -18,6 +18,13 @@
 		ORDER BY num2 DESC
    	</select>
    	
+   	<select id="getGroupList2" parameterType="String" resultType="groupDto">
+		SELECT *
+      	FROM group_join_tb
+      	WHERE user_id = #{user_id}
+      	ORDER BY num DESC
+   	</select>
+   	
    	<select id="getGroupData" parameterType="int" resultType="groupDto">
 		SELECT num, name, caption, img_path, regdate, ended_dt, deadline_dt, start_dt,
 			manager_id, max_people, now_people, avrg_rate, meeting_loc, meeting_time,
