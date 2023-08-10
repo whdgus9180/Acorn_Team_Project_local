@@ -18,8 +18,8 @@
       <p class="title">회원 가입</p>
       <form action="${pageContext.request.contextPath}/users/signup" method="post" id="myForm">
          <div>
-            <label class="control-label" for="userName">이름(닉네임)</label>
-            <input class="form-control" type="text" name="userName" id="userName"/>  
+            <label class="control-label" for="name">이름(닉네임)</label>
+            <input class="form-control" type="text" name="name" id="userName"/>  
             <div class="invalid-feedback">2~16자의 영어(소문자) 또는 숫자 또는 한글만 사용가능합니다.</div>
          </div>
          <div>
@@ -244,46 +244,45 @@
 	   	    checkFormState();
 	   	}
 
-	   	// 폼 전체의 유효성 여부를 판단해서 제출버튼의 disabled 속성을 관리하는 함수 
-	   	function checkFormState() {
-	   	    var isAgreement1Checked = $("#agreement1").prop("checked");
-	   	    var isAgreement2Checked = $("#agreement2").prop("checked");
+	 // 폼 전체의 유효성 여부를 판단해서 제출버튼의 disabled 속성을 관리하는 함수 
+	    function checkFormState() {
+	        const isAgreement1Checked = $("#agreement1").prop("checked");
+	        const isAgreement2Checked = $("#agreement2").prop("checked");
 
-	   	    if (isuserNameValid && isIdValid && isEmailValid && isPwdValid && isAgreement1Checked && isAgreement2Checked) {
-	   	        $("button[type=submit]").removeAttr("disabled");
-	   	    } else {
-	   	        // 속성명만 추가할 때는 value 에 빈 문자열을 작성하면 된다.
-	   	        $("button[type=submit]").attr("disabled", "");
-	   	    }
-	   	}
-	   	
-	   	document.addEventListener("DOMContentLoaded", function() {
-	         const allAgreements = document.getElementById("allAgreements");
-	         const agreementCheckboxes = document.querySelectorAll('input[name^="agreement"]');
+	        const isAllValid = isuserNameValid && isIdValid && isEmailValid && isPwdValid && isAgreement1Checked && isAgreement2Checked;
 
-	         allAgreements.addEventListener("change", function() {
+	        $("button[type=submit]").prop("disabled", !isAllValid);
+	    }
+
+	    document.addEventListener("DOMContentLoaded", function() {
+	        const allAgreements = document.getElementById("allAgreements");
+	        const agreementCheckboxes = document.querySelectorAll('input[name^="agreement"]');
+
+	        allAgreements.addEventListener("change", function() {
 	            for (const checkbox of agreementCheckboxes) {
-	               checkbox.checked = this.checked;
+	                checkbox.checked = this.checked;
 	            }
 	            checkFormState();
-	         });
+	        });
 
-	         for (const checkbox of agreementCheckboxes) {
+	        for (const checkbox of agreementCheckboxes) {
 	            checkbox.addEventListener("change", function() {
-	               checkFormState();
-	               if (!this.checked) {
-	                  allAgreements.checked = false;
-	               }
+	                checkFormState();
+	                if (!this.checked) {
+	                    allAgreements.checked = false;
+	                }
 	            });
-	         }
+	        }
 
-	         function checkFormState() {
+	        function checkFormState() {
 	            const isAllChecked = Array.from(agreementCheckboxes).every(checkbox => checkbox.checked);
 	            allAgreements.checked = isAllChecked;
-	            document.querySelector('button[type="submit"]').disabled = !isAllChecked;
-	         }
-	      });
+	            $("button[type=submit]").prop("disabled", !isAllChecked);
+	        }
 
+	        // 기존의 checkFormState 함수 내용 호출
+	        checkFormState();
+	    });
    </script>
    
 </body>
