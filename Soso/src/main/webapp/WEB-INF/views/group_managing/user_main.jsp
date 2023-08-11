@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,12 +36,12 @@
     </main>
 	<div class="container">     
 	    <div class="row">
-	        <c:forEach var="tmp" items="${list}">
+	        <c:forEach var="tmp" items="${list }">
                 <div class="col-sm-6 col-md-4 col-lg-3 p-1 mb-3">
                     <div class="card mb-4">
                         <a href="${pageContext.request.contextPath}/group_managing/userdetail?num=${tmp.num}">
                             <div class="img-wrapper">
-                                <img class="card-img-top" src="${pageContext.request.contextPath }/resources/images/main/${tmp.imagePath}"/>
+                                <img class="card-img-top" src="${pageContext.request.contextPath }${tmp.img_path}"/>
                             </div>
                         </a>
                         <div class="card-body">
