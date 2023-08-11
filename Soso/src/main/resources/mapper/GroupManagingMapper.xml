@@ -19,10 +19,9 @@
    	</select>
    	
    	<select id="getGroupList2" parameterType="String" resultType="groupDto">
-		SELECT *
-      	FROM group_join_tb
-      	WHERE user_id = #{user_id}
-      	ORDER BY num DESC
+		SELECT group_tb.*, group_join_tb.user_id
+		FROM group_tb
+		INNER JOIN group_join_tb ON group_tb.num = group_join_tb.group_num
    	</select>
    	
    	<select id="getGroupData" parameterType="int" resultType="groupDto">
