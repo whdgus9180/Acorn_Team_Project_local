@@ -3,7 +3,9 @@ package com.acorn.soso.group.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,6 +110,7 @@ public class GroupController {
 	//test페이지 불러오면서 후기글 불러오기 위한 service 호출
 	@GetMapping("/group/group_page")
 	public String test(HttpServletRequest request, Model model) {
+		service.getDetail(request, model);
 		//request영역의 값으로 groupNum 가져오기 
 		int num = Integer.parseInt(request.getParameter("num"));
 		//groupManaging Service에서 정보 가져오기
@@ -125,6 +128,7 @@ public class GroupController {
 		}
 		model.addAttribute("jjimCount", service.jjimCount(request));
 		return "group/group_page";
+
 	}
 	
 	@GetMapping("/group/group_in")
@@ -209,12 +213,20 @@ public class GroupController {
 		return "group/upload_form";
 	}
 	
-	//갤러리 리스트 이동
+	//소모임 리스트 이동
 	@GetMapping("/group/list")
 	public String list(HttpServletRequest request, Model model) {
 		service.getList(request, model);
 		return "group/list";
 	}
+	
+	//소모임 조회수 리스트 이동
+	@GetMapping("/group/viewList")
+	public String viewList(HttpServletRequest request, Model model) {
+		service.getViewList(request, model);
+		return "group/viewList";
+	}
+	
 	
 	//랭킹 리스트 이동
 	@RequestMapping("/ranking/list")
@@ -230,5 +242,5 @@ public class GroupController {
 		return "home";
 	}
 	
-	//업데이트 폼 이동, 업데이트, 삭제는 일단 나중에 하기로ㅇㅇ
+	
 }

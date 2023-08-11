@@ -31,7 +31,7 @@
             </div>
             <div class="indicator">
                 <div class="home circle">
-                    <a href="../../index.html" title="메인페이지가기"><img src="${path }/resources/images/sub/icon_home.svg" alt="홈버튼이미지"></a>
+                    <a href="#" title="메인페이지가기"><img src="${path }/resources/images/sub/icon_home.svg" alt="홈버튼이미지"></a>
                 </div>
                 <div class="main-menu circle">BOOKMATE</div>
 
@@ -76,7 +76,7 @@
             </div>
         </div>
         <div class="inner-wrap">
-        	<c:forEach var="tmp" items="${list}">
+        	<c:forEach var="tmp" items="${viewList}">
         		<div class="mate_content_list">
 	               <div class="mate_contents">
 	                   <a href="${pageContext.request.contextPath}/group/group_page?num=${tmp.num }">
