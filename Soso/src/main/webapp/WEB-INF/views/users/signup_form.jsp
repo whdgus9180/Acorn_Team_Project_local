@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/user.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 <body>
    <jsp:include page="/WEB-INF/views/include/navbar_c.jsp">
@@ -49,12 +50,18 @@
          </div>
          <div>
             <label class="control-label" for="pwd">비밀번호</label>
-            <input class="form-control" type="password" name="pwd" id="pwd"/> 
+            <div class="input-group">
+            	<input class="form-control" type="password" name="pwd" id="pwd"/> 
+            	<button class="btn btn-outline-secondary bi-eye-slash" type="button" id="openpwd"></button>
+            </div>            
             <div class="invalid-feedback">최소 8자 이상으로 문자와 숫자, 특수 문자를 각각 하나 이상 조합하세요.</div> 
          </div>
          <div>
             <label class="control-label" for="pwd2">비밀번호 확인</label>
-            <input class="form-control" type="password" name="pwd2" id="pwd2"/>
+            <div class="input-group">
+            	<input class="form-control" type="password" name="pwd2" id="pwd2"/>
+            	<button class="btn btn-outline-secondary bi-eye-slash" type="button" id="openpwd2"></button>
+            </div>
             <div class="invalid-feedback">비밀번호가 일치하지 않습니다.</div> 
          </div>
          <div>
@@ -95,6 +102,7 @@
    
     <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
+   <script src="${pageContext.request.contextPath}/resources/js/open_pwd.js"></script>
    <script>
    		let isuserNameValid=false;
    		$("#userName").on("input", () => {
