@@ -34,9 +34,9 @@ public class CafeDaoImpl implements CafeDao{
 	}
 
 	@Override
-	public CafeDto getData(int num) {
+	public CafeDto getData(int comu_num) {
 		
-		return session.selectOne("cafe.getData", num);
+		return session.selectOne("cafe.getData", comu_num);
 	}
 
 	@Override
@@ -46,13 +46,13 @@ public class CafeDaoImpl implements CafeDao{
 	}
 
 	@Override
-	public void addViewCount(int num) {
-		session.update("cafe.addViewCount", num);
+	public void addViewCount(int comu_num) {
+		session.update("cafe.addViewCount", comu_num);
 	}
 
 	@Override
-	public void delete(int num) {
-		session.delete("cafe.delete", num);
+	public void delete(int comu_num) {
+		session.delete("cafe.delete", comu_num);
 	}
 
 	@Override

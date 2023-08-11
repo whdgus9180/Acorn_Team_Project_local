@@ -23,8 +23,8 @@ public class CafeCommentDaoImpl implements CafeCommentDao{
 	}
 
 	@Override
-	public void delete(int num) {
-		session.update("cafeComment.delete", num);
+	public void delete(int comu_num) {
+		session.update("cafeComment.delete", comu_num);
 	}
 
 	@Override
@@ -43,15 +43,15 @@ public class CafeCommentDaoImpl implements CafeCommentDao{
 	}
 
 	@Override
-	public CafeCommentDto getData(int num) {
+	public CafeCommentDto getData(int comu_num) {
 		
-		return session.selectOne("cafeComment.getData", num);
+		return session.selectOne("cafeComment.getData", comu_num);
 	}
 	//하나의 원글에 몇개의 댓글이 있는지 리턴하는 메소드 
 	@Override
-	public int getCount(int ref_group) {
+	public int getCount(int comu_num) {
 		
-		return session.selectOne("cafeComment.getCount", ref_group);
+		return session.selectOne("cafeComment.getCount", comu_num);
 	}
 
 }

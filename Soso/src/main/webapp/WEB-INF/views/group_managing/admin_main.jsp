@@ -40,7 +40,7 @@
 								<div id="card-title">${tmp.name }</div>
 								<div id="card-date">DATE: ${tmp.regdate}</div>
 								<div id="card-rate">${tmp.avrg_rate }</div>
-								<div id="card-link"><a href="${pageContext.request.contextPath}/cafe/list">소모임 커뮤니티 가기</a></div>
+								<div id="card-link"><a href="${pageContext.request.contextPath}/cafe/list?num=${tmp.num}">소모임 커뮤니티 가기</a></div>
 								<div id="card-buttons">
 									<div><a href="${pageContext.request.contextPath}/group_managing/group_updateForm?num=${tmp.num}">정보 수정</a></div>
 									<div><a href="${pageContext.request.contextPath}/group_managing/applicantList?group_num=${tmp.num}">가입 관리</a></div>
