@@ -92,7 +92,7 @@ public class GroupManagingDaoImpl implements GroupManagingDao{
 	}
 
 	@Override
-	public List<GroupDto> GroupList(String user_id) {
+	public List<GroupDto> getGroupList2(String user_id) {
 		return session.selectList("groupManaging.getGroupList2", user_id);
 	}
 
