@@ -22,7 +22,7 @@
 		FROM
 			(SELECT result1.*, ROWNUM AS rcomu_num
 			FROM
-				(SELECT comu_num,writer,title,content,viewCount,date
+				(SELECT comu_num, writer, title, content, viewCount, regdate
 				FROM community_board_tb
 				<include refid="searchCondition"/>
 				ORDER BY comu_num DESC) result1)
@@ -39,15 +39,15 @@
 
 	<insert id="insert" parameterType="cafeDto">
 		INSERT INTO community_board_tb
-		(comu_num,writer,title,content,viewCount,date)
-		VALUES(community_board_tb_seq.NEXTVAL, #{writer}, #{title},
-			#{content}, #{viewCount}, SYSDATE)
+		(comu_num,writer,title,content,viewCount,regdate,group_num)
+		VALUES(comu_seq.NEXTVAL, #{writer}, #{title},
+			#{content}, #{viewCount}, SYSDATE, #{group_num})
 	</insert>
 	
 	<select id="getData" parameterType="int" resultType="cafeDto">
 		SELECT result1.*
 		FROM
-			(SELECT comu_num,writer,title,content,viewCount,TO_CHAR(date, 'YY.MM.DD HH24:MI') AS date,
+			(SELECT comu_num,writer,title,content,viewCount,TO_CHAR(date, 'YY.MM.DD HH24:MI') AS regdate,
 			   LAG(comu_num, 1, 0) OVER (ORDER BY comu_num DESC) nextNum,
 	   		   LEAD(comu_num, 1, 0) OVER (ORDER BY comu_num DESC) prevNum
 			 FROM community_board_tb) result1
@@ -57,7 +57,7 @@
 	<select id="getData2" parameterType="cafeDto" resultType="cafeDto">
 		SELECT result1.*
 		FROM
-			(SELECT comu_num,writer,title,content,viewCount,TO_CHAR(date, 'YY.MM.DD HH24:MI') AS date,
+			(SELECT comu_num,writer,title,content,viewCount,TO_CHAR(date, 'YY.MM.DD HH24:MI') AS regdate,
 			   LAG(comu_num, 1, 0) OVER (ORDER BY comu_num DESC) nextNum,
 	   		   LEAD(comu_num, 1, 0) OVER (ORDER BY comu_num DESC) prevNum
 			 FROM community_board_tb

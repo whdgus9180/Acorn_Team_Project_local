@@ -115,9 +115,9 @@ public class CafeServiceImpl implements CafeService{
 	@Override
 	public void getDetail(HttpServletRequest request, Model model) {
 		//자세히 보여줄 글번호를 읽어온다. 
-		int num=Integer.parseInt(request.getParameter("num"));
+		int comu_num=Integer.parseInt(request.getParameter("comu_num"));
 		//조회수 올리기
-		cafeDao.addViewCount(num);
+		cafeDao.addViewCount(comu_num);
 		
 		/*
 			[ 검색 키워드에 관련된 처리 ]
@@ -135,7 +135,7 @@ public class CafeServiceImpl implements CafeService{
 		//CafeDto 객체를 생성해서 
 		CafeDto dto=new CafeDto();
 		//자세히 보여줄 글번호를 넣어준다. 
-		dto.setNum(num);
+		dto.setComu_num(comu_num);
 		//만일 검색 키워드가 넘어온다면 
 		if(!keyword.equals("")){
 			//검색 조건이 무엇이냐에 따라 분기 하기
@@ -169,7 +169,7 @@ public class CafeServiceImpl implements CafeService{
 		int endRowNum=pageNum*PAGE_ROW_COUNT;
 		//원글의 글번호를 이용해서 해당글에 달린 댓글 목록을 얻어온다.
 		CafeCommentDto commentDto=new CafeCommentDto();
-		commentDto.setRef_group(num);
+		commentDto.setComu_num(comu_num);
 		//1페이지에 해당하는 startRowNum 과 endRowNum 을 dto 에 담아서  
 		commentDto.setStartRowNum(startRowNum);
 		commentDto.setEndRowNum(endRowNum);
@@ -177,7 +177,7 @@ public class CafeServiceImpl implements CafeService{
 		List<CafeCommentDto> commentList=cafeCommentDao.getList(commentDto);	
 		
 		//원글의 글번호를 이용해서 댓글 전체의 갯수를 얻어낸다.
-		int totalRow=cafeCommentDao.getCount(num);
+		int totalRow=cafeCommentDao.getCount(comu_num);
 		//댓글 전체 페이지의 갯수
 		int totalPageCount=(int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
 		
@@ -203,25 +203,25 @@ public class CafeServiceImpl implements CafeService{
 	}
 
 	@Override
-	public void deleteContent(int num, HttpServletRequest request) {
+	public void deleteContent(int comu_num, HttpServletRequest request) {
 		//세션에서 로그인된 아이디를 읽어와서 
 		String id=(String)request.getSession().getAttribute("id");
 		//글 작성자와 로그인된 아이디가 다르다면 
-		CafeDto dto=cafeDao.getData(num);
+		CafeDto dto=cafeDao.getData(comu_num);
 		//예외를 발생시켜서 삭제가 안되도록 한다. 
 		if(!id.equals(dto.getWriter())) {
 			throw new NotDeleteException("남의 글 지우기 없기!");
 		}
 		//글 삭제하기 
-		cafeDao.delete(num);
+		cafeDao.delete(comu_num);
 	}
 	//글수정 폼에 필요한 값을 HttpServletRequest 에 담아주는 메소드 
 	@Override
 	public void getData(HttpServletRequest request) {
 		//수정할 글번호
-		int num=Integer.parseInt(request.getParameter("num"));
+		int comu_num=Integer.parseInt(request.getParameter("comu_num"));
 		//수정할 글의 정보 얻어와서 
-		CafeDto dto=cafeDao.getData(num);
+		CafeDto dto=cafeDao.getData(comu_num);
 		//request 에 담아준다.
 		request.setAttribute("dto", dto);
 	}
@@ -229,7 +229,7 @@ public class CafeServiceImpl implements CafeService{
 	@Override
 	public void saveComment(HttpServletRequest request) {
 		//폼 전송되는 파라미터 추출 
-		int ref_group=Integer.parseInt(request.getParameter("ref_group")); //원글의 글번호
+		int comu_num=Integer.parseInt(request.getParameter("comu_num")); //원글의 글번호
 		String target_id=request.getParameter("target_id"); //댓글 대상자의 아이디
 		String content=request.getParameter("content"); //댓글의 내용 
 		/*
@@ -246,11 +246,11 @@ public class CafeServiceImpl implements CafeService{
 		
 		//저장할 댓글의 정보를 dto 에 담기
 		CafeCommentDto dto=new CafeCommentDto();
-		dto.setNum(seq);
+		dto.setComu_num(seq);
 		dto.setWriter(writer);
 		dto.setTarget_id(target_id);
 		dto.setContent(content);
-		dto.setRef_group(ref_group);
+		dto.setComu_num(comu_num);
 		//원글의 댓글인경우
 		if(comment_group == null){
 			//댓글의 글번호를 comment_group 번호로 사용한다.
@@ -265,16 +265,16 @@ public class CafeServiceImpl implements CafeService{
 
 	@Override
 	public void deleteComment(HttpServletRequest request) {
-		int num=Integer.parseInt(request.getParameter("num"));
+		int comu_num=Integer.parseInt(request.getParameter("comu_num"));
 		//삭제할 댓글 정보를 읽어와서 
-		CafeCommentDto dto=cafeCommentDao.getData(num);
+		CafeCommentDto dto=cafeCommentDao.getData(comu_num);
 		String id=(String)request.getSession().getAttribute("id");
 		//글 작성자와 로그인된 아이디와 일치하지 않으면
 		if(!dto.getWriter().equals(id)) {
 			throw new NotDeleteException("남의 댓글 지우면 혼난당!");
 		}
 		//dao 를 이용해서 DB 에서 삭제하기
-		cafeCommentDao.delete(num);
+		cafeCommentDao.delete(comu_num);
 	}
 
 	@Override
@@ -289,7 +289,7 @@ public class CafeServiceImpl implements CafeService{
 		//ajax 요청 파라미터로 넘어오는 댓글의 페이지 번호를 읽어낸다
 		int pageNum=Integer.parseInt(request.getParameter("pageNum"));
 		//ajax 요청 파라미터로 넘어오는 원글의 글 번호를 읽어낸다
-		int num=Integer.parseInt(request.getParameter("num"));
+		int comu_num=Integer.parseInt(request.getParameter("comu_num"));
 		/*
 		[ 댓글 페이징 처리에 관련된 로직 ]
 		*/
@@ -303,7 +303,7 @@ public class CafeServiceImpl implements CafeService{
 	
 		//원글의 글번호를 이용해서 해당글에 달린 댓글 목록을 얻어온다.
 		CafeCommentDto commentDto=new CafeCommentDto();
-		commentDto.setRef_group(num);
+		commentDto.setComu_num(comu_num);
 		//1페이지에 해당하는 startRowNum 과 endRowNum 을 dto 에 담아서  
 		commentDto.setStartRowNum(startRowNum);
 		commentDto.setEndRowNum(endRowNum);
@@ -311,13 +311,13 @@ public class CafeServiceImpl implements CafeService{
 		//pageNum에 해당하는 댓글 목록만 select 되도록 한다. 
 		List<CafeCommentDto> commentList=cafeCommentDao.getList(commentDto);
 		//원글의 글번호를 이용해서 댓글 전체의 갯수를 얻어낸다.
-		int totalRow=cafeCommentDao.getCount(num);
+		int totalRow=cafeCommentDao.getCount(comu_num);
 		//댓글 전체 페이지의 갯수
 		int totalPageCount=(int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
 	
 		//view page 에 필요한 값 request 에 담아주기
 		request.setAttribute("commentList", commentList);
-		request.setAttribute("num", num); //원글의 글번호
+		request.setAttribute("comu_num", comu_num); //원글의 글번호
 		request.setAttribute("pageNum", pageNum); //댓글의 페이지 번호
 	}
 

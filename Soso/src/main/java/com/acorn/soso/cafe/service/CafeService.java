@@ -14,7 +14,7 @@ public interface CafeService {
 	public void getDetail(HttpServletRequest request, Model model);
 	public void saveContent(CafeDto dto);
 	public void updateContent(CafeDto dto);
-	public void deleteContent(int num, HttpServletRequest request);
+	public void deleteContent(int comu_num, HttpServletRequest request);
 	public void getData(HttpServletRequest request); //글 수정하기 위해 정보 불러오는 기능
 	
 	public void saveComment(HttpServletRequest request);//댓글 저장 

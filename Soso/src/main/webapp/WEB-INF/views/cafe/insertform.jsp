@@ -18,6 +18,7 @@
 		<h2>소모임 문의하기</h2>
 		
 		<form action="insert" method="post">
+			<input type="hidden" name="group_num" value="${tmp.group_num }"/>
 			<div class="col-12">
 			    <div class="input-group">
 			      <div class="input-group-text"></div>

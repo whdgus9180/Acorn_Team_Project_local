@@ -66,11 +66,11 @@ public class CafeController {
 	
 	//새로운 댓글 저장 요청 처리
 	@PostMapping("/cafe/comment_insert")
-	public String commentInsert(HttpServletRequest request, int ref_group) {
+	public String commentInsert(HttpServletRequest request, int comu_num) {
 		//새로운 댓글을 저장하는 로직을 수행한다.
 		service.saveComment(request);
-		//ref_group 은 원글의 글번호이기 때문에 원글 자세히 보기로 다시 리다일렉트 이동된다.
-		return "redirect:/cafe/detail?num="+ref_group;
+		//comu_num 은 원글의 글번호이기 때문에 원글 자세히 보기로 다시 리다일렉트 이동된다.
+		return "redirect:/cafe/detail?comu_num="+comu_num;
 	}	
 	
 	@GetMapping("/cafe/list")
@@ -92,6 +92,7 @@ public class CafeController {
 		String writer=(String)session.getAttribute("id");
 		//dto 는 글의 제목과 내용만 있으므로 글작성자는 직접 넣어준다.
 		dto.setWriter(writer);
+		
 		//서비스를 이용해서 새글을 저장한다. 
 		service.saveContent(dto);
 		return "cafe/insert";
