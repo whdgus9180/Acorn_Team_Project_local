@@ -11,7 +11,8 @@
 <div class="container">
 	<h1>글 수정 폼 입니다.</h1>
 	<form action="update" method="post">
-		<input type="hidden" name="num" value="${dto.num }" />
+		<input type="hidden" name="comu_num" value="${dto.comu_num }" />
+		<input type="hidden"  id="group_num" name="group_num" value="${group_num }" />
 		<div>
 			<label for="writer">작성자</label>
 			<input type="text" id="writer" value="${dto.writer }" disabled/>

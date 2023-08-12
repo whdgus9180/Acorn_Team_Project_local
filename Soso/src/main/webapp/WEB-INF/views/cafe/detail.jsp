@@ -131,7 +131,7 @@
 		<table class="table table-bordered ">
 			<tr>
 				<th>글번호</th>
-				<td>${dto.num }</td>
+				<td>${dto.comu_num }</td>
 			</tr>
 			<tr>
 				<th>탭</th>
@@ -158,13 +158,13 @@
 		</table>
 		<%-- 로그인된 아이디와 글의 작성자가 같으면 수정, 삭제 링크를 제공한다 --%>
 		<c:if test="${sessionScope.id eq dto.writer }">
-			<a href="updateform?num=${dto.num }">수정</a>
+			<a href="updateform?comu_num=${dto.comu_num}&group_num=${group_num}">수정</a>
 			<a href="javascript:" onclick="deleteConfirm()">삭제</a>
 			<script>
 				function deleteConfirm(){
 					const isDelete=confirm("이 글을 삭제 하겠습니까?");
 					if(isDelete){
-						location.href="delete?num=${dto.num}";
+						location.href="delete?comu_num=${dto.comu_num}&group_num=${group_num}";
 					}
 				}
 			</script>
@@ -174,7 +174,7 @@
 		<!-- 원글에 댓글을 작성할 폼 -->
 		<form class="comment-form insert-form" action="comment_insert" method="post">
 			<!-- 원글의 글번호가 댓글의 ref_group 번호가 된다. -->
-			<input type="hidden" name="ref_group" value="${dto.num }"/>
+			<input type="hidden" name="ref_group" value="${dto.comu_num }"/>
 			<!-- 원글의 작성자가 댓글의 대상자가 된다. -->
 			<input type="hidden" name="target_id" value="${dto.writer }"/>
 	

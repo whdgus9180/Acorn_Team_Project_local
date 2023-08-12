@@ -35,7 +35,7 @@
 						<td>${tmp.comu_num }</td>
 						
 						<td>
-							<a style="color: black;" class="text-decoration-none"  href="detail?num=${tmp.num }&condition=${condition}&keyword=${encodedK}">(말머리)${tmp.title }</a>
+							<a style="color: black;" class="text-decoration-none"  href="detail?comu_num=${tmp.comu_num }&condition=${condition}&keyword=${encodedK}&group_num=${num}">(말머리)${tmp.title }</a>
 						</td>
 						<td>${tmp.writer }</td>
 						<td style="text-align: center">${tmp.viewCount }</td>
