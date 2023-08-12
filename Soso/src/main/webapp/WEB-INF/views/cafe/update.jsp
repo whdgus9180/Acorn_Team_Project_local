@@ -10,7 +10,7 @@
 <body>
 	<script>
 		alert("${id} 님 글을 수정 했습니다.");
-		location.href="${pageContext.request.contextPath}/cafe/detail?num=${param.num}";
+		location.href="${pageContext.request.contextPath}/cafe/detail?comu_num=${comu_num}&condition=${condition}&keyword=${keyword}&group_num=${group_num}";
 	</script>
 </body>
 </html>

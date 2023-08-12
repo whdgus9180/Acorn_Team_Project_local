@@ -15,10 +15,9 @@
 </head>
 <body>
 	<div class="container">
-		<h2>소모임 문의하기</h2>
-		
+		<h2>소모임 문의하기</h2>	
 		<form action="insert" method="post">
-			<input type="hidden" name="group_num" value="${tmp.group_num }"/>
+			<input type="hidden"  id="group_num" name="group_num" value="${num }" />
 			<div class="col-12">
 			    <div class="input-group">
 			      <div class="input-group-text"></div>
@@ -41,7 +40,6 @@
 				<label for="content"></label>
 				<textarea name="content" id="content" rows="10"></textarea>
 			</div>
-			
 			<button type="submit" onclick="submitContents(this)" style="margin-left: 106.2ex;">등록</button>
 		</form>
 	</div>

@@ -25,10 +25,4 @@ public class CafeCommentDto {
 	private String profile;
 	private int startRowNum;
 	private int endRowNum;
-	
-	
-
-	
-	
-	
 }

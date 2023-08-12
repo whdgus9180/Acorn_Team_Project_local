@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.acorn.soso.cafe.dto.CafeCommentDto;
@@ -74,54 +73,62 @@ public class CafeController {
 	}	
 	
 	@GetMapping("/cafe/list")
-	public String list(HttpServletRequest request, Model model) {
+	public String list(HttpServletRequest request,int num, Model model) {
 		//서비스에 HttpServletRequest 객체를 전달해서 응답에 필요한 데이타가 담기도록 하고 
 		service.getList(request, model);
+		//group_num 이라는 파라미터 변수 맵핑
+		request.setAttribute("num", num);
 		//view page 로 forward 이동해서 응답하기 
 		return "cafe/list";
 	}
 	
 	@GetMapping("/cafe/insertform")
-	public String insertform() {
+	public String insertform(HttpServletRequest request,int num, Model model) {
+		request.setAttribute("num", num);
 		return "cafe/insertform";
 	}
 	
 	@PostMapping("/cafe/insert")
-	public String insert(CafeDto dto, HttpSession session) {
+	public String insert(CafeDto dto, HttpSession session,HttpServletRequest request) {
 		//글 작성자는 세션에서 얻어낸다.
 		String writer=(String)session.getAttribute("id");
+		int groupNum = dto.getGroup_num();
 		//dto 는 글의 제목과 내용만 있으므로 글작성자는 직접 넣어준다.
 		dto.setWriter(writer);
-		
+		dto.setGroup_num(groupNum);
 		//서비스를 이용해서 새글을 저장한다. 
+		request.setAttribute("group_num", groupNum);
 		service.saveContent(dto);
 		return "cafe/insert";
 	}
 	
 	@GetMapping("/cafe/detail")
-	public String detail(HttpServletRequest request, Model model) {
-		//서비스에 HttpServletRequest 객체를 전달해서 응답에 필요한 데이타가 담기도록 하고 
+	public String detail(HttpServletRequest request,int group_num, Model model) {
+		//서비스에 HttpServletRequest 객체를 전달해서 응답에 필요한 데이타가 담기도록 하고
 		service.getDetail(request, model);
+		request.setAttribute("group_num", group_num);
 		//view page 로 forward 이동해서 응답
 		return "cafe/detail";
 	}
-	
 	@GetMapping("/cafe/delete")
-	public String delete(int num, HttpServletRequest request) {
+	public String delete(int comu_num,int group_num, HttpServletRequest request) {
 		//서비스에 삭제할 글번호와 HttpServletRequest 객체를 전달해서 해당글을 삭제 시키고 
-		service.deleteContent(num, request);
+		service.deleteContent(comu_num, request);
 		//글 목록 보기로 리다일렉트 이동 시킨다.
-		return "redirect:/cafe/list";
+		return "redirect:/cafe/list?num="+group_num+"";
 	}
 	
 	@GetMapping("/cafe/updateform")
-	public String updateForm(HttpServletRequest request) {
+	public String updateForm(HttpServletRequest request,int comu_num,int group_num) {
 		service.getData(request);
+		request.setAttribute("group_num", group_num);
 		return "cafe/updateform";
 	}
 	
 	@PostMapping("/cafe/update")
-	public String update(CafeDto dto) {
+	public String update(CafeDto dto,HttpServletRequest request) {
+		request.setAttribute("comu_num", dto.getComu_num());
+		request.setAttribute("group_num", dto.getGroup_num());
 		service.updateContent(dto);
 		return "cafe/update";
 	}	
