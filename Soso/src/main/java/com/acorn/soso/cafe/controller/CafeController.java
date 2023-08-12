@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.acorn.soso.cafe.dto.CafeCommentDto;
@@ -74,15 +73,20 @@ public class CafeController {
 	}	
 	
 	@GetMapping("/cafe/list")
-	public String list(HttpServletRequest request, Model model) {
+	public String list(HttpServletRequest request,int num, Model model) {
 		//서비스에 HttpServletRequest 객체를 전달해서 응답에 필요한 데이타가 담기도록 하고 
 		service.getList(request, model);
+		System.out.println(request);
+		System.out.println(model);
+		//group_num 이라는 파라미터 변수 맵핑
+		request.setAttribute("num", num);
 		//view page 로 forward 이동해서 응답하기 
 		return "cafe/list";
 	}
 	
 	@GetMapping("/cafe/insertform")
-	public String insertform() {
+	public String insertform(HttpServletRequest request,int num, Model model) {
+		request.setAttribute("num", num);
 		return "cafe/insertform";
 	}
 	
@@ -92,7 +96,7 @@ public class CafeController {
 		String writer=(String)session.getAttribute("id");
 		//dto 는 글의 제목과 내용만 있으므로 글작성자는 직접 넣어준다.
 		dto.setWriter(writer);
-		
+		dto.setGroup_num(dto.getGroup_num());
 		//서비스를 이용해서 새글을 저장한다. 
 		service.saveContent(dto);
 		return "cafe/insert";
