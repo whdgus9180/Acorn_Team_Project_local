@@ -326,15 +326,6 @@
 	        // 기존의 checkFormState 함수 내용 호출
 	        checkFormState();
 	    });
-
-	    function checkFormState() {
-	        const isAgreement1Checked = $("#agreement1").prop("checked");
-	        const isAgreement2Checked = $("#agreement2").prop("checked");
-
-	        const isAllValid = isuserNameValid && isIdValid && isEmailValid && isPwdValid && isAgreement1Checked && isAgreement2Checked;
-
-	        $("button[type=submit]").prop("disabled", !isAllValid);
-	    }
    </script>
 
 </body>
