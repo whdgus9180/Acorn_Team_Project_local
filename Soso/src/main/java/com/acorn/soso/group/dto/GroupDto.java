@@ -73,4 +73,5 @@ public class GroupDto {
 	
 	private String type;
 	private String keyword;
+	private String user_id;
 }
