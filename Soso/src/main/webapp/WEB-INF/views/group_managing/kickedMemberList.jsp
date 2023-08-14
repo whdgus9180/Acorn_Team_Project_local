@@ -34,7 +34,7 @@
 						</div>
 						<div class="col pt-4">
 							<h4 style="font-weight:600">${tmp.user_id}</h4>
-							<div class="mt-3">DATE: ${tmp.kick_dt}</div>
+							<div class="mt-3">소모임 추방일 : ${tmp.kick_dt}</div>
 							<div class="mb-3"><a class="link" href="${pageContext.request.contextPath}/cafe/list">활동 내역 보기</a></div>
 							<div class="d-flex mt-1 justify-content-end">
 								<div><a style="background-color:rgb(248, 163, 146); width:100px" class="btn" href="#">Setting</a></div>

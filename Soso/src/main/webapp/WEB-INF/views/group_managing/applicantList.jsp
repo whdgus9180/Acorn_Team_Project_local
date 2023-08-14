@@ -34,7 +34,7 @@
 					</div>
 					<div class="col pt-4">
 						<h4 style="font-weight:600">${tmp.user_id}</h4>
-						<div class="mt-3">${tmp.request_dt}</div>
+						<div class="mt-3">가입 신청일 : ${tmp.request_dt}</div>
 						<div class="mb-3"><a class="link" href="${pageContext.request.contextPath}/cafe/list">회원 정보 보기</a></div>
 						<div class="d-flex mt-1 justify-content-around">
 							<div><a style=width:100px" class="btn btn-primary me-3" href="${pageContext.request.contextPath}/group_managing/joinApprove?num=${tmp.num}&group_num=${group_num}">가입 승인</a></div>

@@ -86,42 +86,37 @@
 		      WHERE group_num = #{group_num} AND isJoin = 2
 		      ORDER BY num DESC) result1)
    	</select>
-   	
-   	<select id="getMemberCount" parameterType="int" resultType="int">
-    	SELECT NVL(MAX(ROWNUM), 0)
-      	FROM group_join_tb
-      	WHERE group_num = #{num} AND isJoin = 0
-   	</select>
-   	
+   	<!-- 소모임 가입 신청 승인하기 -->
    	<update id="joinApprove" parameterType="int">
    		UPDATE group_join_tb
-   		SET isJoin = 0
+   		SET isJoin = 0, join_dt = SYSDATE
    		WHERE num = #{num}
    	</update>
-   	
+   	<!-- 소모임 가입 인원 수 올리기 -->
    	<update id="addMemberCount" parameterType="int">
    		UPDATE group_tb
    		SET now_people = now_people + 1
    		WHERE num = #{num}
    	</update>
-   	
+   	<!-- 소모임 가입 회원 추방하기 -->
    	<update id="kick" parameterType="int">
    		UPDATE group_join_tb
-   		SET isJoin = 4
+   		SET isJoin = 4, kick_dt = SYSDATE
    		WHERE num = #{group_num}
    	</update>
-   	
+   	<!-- 소모임 가입 인원 수 내리기 -->
    	<update id="minusMemberCount" parameterType="int">
    		UPDATE group_tb
    		SET now_people = now_people - 1
    		WHERE num = #{group_num}
    	</update>
-   	
+   	<!-- 소모임 가입 거절 -->
    	<update id="reject" parameterType="int">
    		UPDATE group_join_tb
    		SET isJoin = 2
    		WHERE num = #{num}
    	</update>
+   	<!-- 소모임 탈퇴 -->
    	<update id="dropOut" parameterType="int">
    		UPDATE board_join_group
    		SET isJoin = 3
