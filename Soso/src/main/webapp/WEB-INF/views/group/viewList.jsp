@@ -95,7 +95,6 @@
 	                       </div>
 	                   </a>
 	                   <a href="detail?num=${tmp.num }&condition=${condition}&keyword=${encodedk}">
-                       
 	                   <a href="${pageContext.request.contextPath}/group/group_page?num=${tmp.num }">
 
 	                       <div class="mate_content_text">
