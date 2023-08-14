@@ -34,23 +34,24 @@
             </div>
         </div>
     </main>
+    <!-- 로그인된 user 가 가입된 소모임 리스트 불러오기 -->
 	<div class="container">     
 	    <div class="row">
 	        <c:forEach var="tmp" items="${list }">
                 <div class="col-sm-6 col-md-4 col-lg-3 p-1 mb-3">
                     <div class="card mb-4">
-                        <a href="${pageContext.request.contextPath}/group_managing/userdetail?num=${tmp.num}">
+                        <a href="${pageContext.request.contextPath}/group_managing/userdetail">
                             <div class="img-wrapper">
                                 <img class="card-img-top" src="${pageContext.request.contextPath }${tmp.img_path}"/>
                             </div>
                         </a>
                         <div class="card-body">
-                            <p class="card-title fs-3"><strong>${tmp.name}</strong></p>
+                            <p class="card-title"><strong>${tmp.name}</strong></p>
                             <p class="card-text">${tmp.caption}</p>
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item card-info"><span class="info-label">모임장:</span> ${tmp.manager_id}</li>
-                            <li class="list-group-item card-info"><span class="info-label">모임 날짜:</span> ${tmp.meeting_time}</li>
+                            <li class="list-group-item card-info"><span class="info-label">모임 시간:</span> ${tmp.meeting_time}</li>
                             <li class="list-group-item card-info"><span class="info-label">모임 장소:</span> ${tmp.meeting_loc}</li>
                         </ul>
                     </div>
@@ -58,6 +59,7 @@
 	        </c:forEach>
 	    </div>
 	</div>
+	<!-- 페이지 이동을 위한  -->
     <nav>
        <ul class="pagination justify-content-center">
           <c:choose>
