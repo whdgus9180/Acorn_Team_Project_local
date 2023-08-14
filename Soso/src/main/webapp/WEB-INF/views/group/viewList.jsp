@@ -82,7 +82,7 @@
 	                   <a href="${pageContext.request.contextPath}/group/group_page?num=${tmp.num }">
 	                       <div class="mate_content_img">
 	                           <img src="${path }/resources/images/main/001.jpg" alt="테스트이미지1">
-	                           	S<!-- 신청 마감일시 마감버튼 보이게 -->
+	                           	<!-- 신청 마감일시 마감버튼 보이게 -->
 								<c:set var="now" value="<%= new java.util.Date() %>" />
 								<c:set var="nowDate"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd" /></c:set> 
 								<c:choose>
