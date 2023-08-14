@@ -47,7 +47,7 @@
 		<br />
 				<ul class="pagination" style="justify-content: center;">
 					<%--
-						startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
+						startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. ㅇㅇ
 						&condition=${condition}&keyword=${encodedK}
 					 --%>
 					<c:if test="${startPageNum ne 1 }">
