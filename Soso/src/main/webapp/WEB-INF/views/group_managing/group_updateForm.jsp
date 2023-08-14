@@ -14,6 +14,13 @@
     </jsp:include>
 	<div class="container">
 		<div id="insert_title" style="margin-bottom:80px">소모임 정보 수정</div>
+		
+		<div class="image_container" style="display:flex; flex-direction:column; align-items:center">
+			<img id="image_preview" src="${pageContext.request.contextPath}/resources/images/main/001.jpg" 
+				style="width:150px; height:150px; border-radius:50%; border: 1px solid rgb(222, 226, 230)" alt="소모임 이미지"/>
+				<div style="margin-top:20px; margin-bottom:20px; font-size: 15px;">소모임 이미지</div>
+		</div>
+		
 		<form action="${pageContext.request.contextPath}/group_managing/group_update" method="post" id="myForm" enctype="multipart/form-data">
 			<div class="form_header">
 				<input type="hidden" name="num" value="${dto.num}"/>
@@ -50,28 +57,21 @@
 					<option value = 0 ${dto.on_off == 0 ? "selected" : "" }>온라인</option>
 					<option value = 1 ${dto.on_off == 1 ? "selected" : "" }>오프라인</option>
 				</select>
-				<div id="image_box" class="select_box" style="width: 366px; height: 36px;">
-                    <label for="image">소모임 이미지 선택하기</label>
-                    <input id="image" name="image" type="file" style="display: none;"/>
-                </div> 
+				<label class="select_box" for="image" style="display:flex; align-items:center; justify-content:space-between">소모임의 이미지를 선택해주세요
+                	<button type="javascript:" 
+                 			style="width: 65px; height: 27px; color: white; background-color: rgb(195, 181, 157); border:none; border-radius: 15px;">file</button>
+                </label>
+       			<input id="image" name="image" type="file" style="display: none;"/>
 			</div>
 			<script>
-				document.querySelector("#myFile").addEventListener("change", (e) => {
-					//선택된 파일 배열 객체를 얻어낸다.
+				document.querySelector("#image").addEventListener("change", (e) => {
 					const files = e.target.files;
-					//만일 파일 데이터가 존재한다면
 					if(files.length > 0){
-						//파일로 부터 데이터를 읽어들일 객체 생성
 						const reader = new FileReader();
-						//로딩이 완료(파일데이터를 모드 읽었을때) 되었을때 실행할 함수 등록
 						reader.onload = (event) => {
-							//읽은 파일 데이터 얻어내기 
 							const data=event.target.result;
-							//console.log(data);
-							//이미지 요소에 data 를 src 속성의 value 로 넣어 보세요.
 							document.querySelector("#preview").setAttribute("src", data);
 						};
-						//파일을 DataURL 형식의 문자열로 읽어들이기
 						reader.readAsDataURL(files[0]);
 					}
 				});

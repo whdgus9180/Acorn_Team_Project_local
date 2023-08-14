@@ -16,8 +16,10 @@
 		<div id="insert_title">소모임 개설 신청</div>
 		<div id="insert_subtitle">소모임장이 되어 원하는 소모임을 개설해보세요.</div>
 		
-		<div>
-			<img alt="이미지 미리보기" id="preview"/>
+		<div class="image_container" style="display:flex; flex-direction:column; align-items:center">
+			<img id="image_preview" src="${pageContext.request.contextPath}/resources/images/main/001.jpg" 
+				style="width:150px; height:150px; border-radius:50%; border: 1px solid rgb(222, 226, 230)" alt="소모임 이미지"/>
+			<div style="margin-top:20px; margin-bottom:20px; font-size: 15px;">소모임 이미지</div>
 		</div>
 		
 		<form action="${pageContext.request.contextPath}/group/insert" method="post" id="myForm" enctype="multipart/form-data">
@@ -55,10 +57,11 @@
                               <option value = 0>온라인</option>
                               <option value = 1>오프라인</option>
                     </select>
-                    <div id="image_box" class="select_box" style="width: 366px; height: 36px;">
-                         <label for="image">소모임 이미지 선택하기</label>
-                         <input id="image" name="image" type="file" style="display: none;"/>
-                    </div>  
+                    <label class="select_box" for="image" style="display:flex; align-items:center; justify-content:space-between">소모임의 이미지를 선택해주세요
+                    	<button type="javascript:" 
+                    		style="width: 65px; height: 27px; color: white; background-color: rgb(195, 181, 157); border:none; border-radius: 15px;">file</button>
+                    </label>
+                    <input id="image" name="image" type="file" style="display: none;"/>
                </div>
                <script>
 					document.querySelector("#image").addEventListener("change", (e) => {
@@ -67,7 +70,7 @@
 							const reader = new FileReader();
 							reader.onload = (event) => {
 								const data=event.target.result;
-								document.querySelector("#preview").setAttribute("src", data);
+								document.querySelector("#image_preview").setAttribute("src", data);
 							};
 							reader.readAsDataURL(files[0]);
 						}
