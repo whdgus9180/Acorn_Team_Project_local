@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>내 소모임 개설하기</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/group_managing/group_managing_group_insert.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery.datetimepicker.min.css" />
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/navbar_c.jsp">
@@ -14,6 +15,11 @@
     <div class="container">
 		<div id="insert_title">소모임 개설 신청</div>
 		<div id="insert_subtitle">소모임장이 되어 원하는 소모임을 개설해보세요.</div>
+		
+		<div>
+			<img alt="이미지 미리보기" id="preview"/>
+		</div>
+		
 		<form action="${pageContext.request.contextPath}/group/insert" method="post" id="myForm" enctype="multipart/form-data">
 			<div class="form_header">
                 <div class="form_label">
@@ -54,34 +60,61 @@
                          <input id="image" name="image" type="file" style="display: none;"/>
                     </div>  
                </div>
+               <script>
+					document.querySelector("#image").addEventListener("change", (e) => {
+						const files = e.target.files;
+						if(files.length > 0){
+							const reader = new FileReader();
+							reader.onload = (event) => {
+								const data=event.target.result;
+								document.querySelector("#preview").setAttribute("src", data);
+							};
+							reader.readAsDataURL(files[0]);
+						}
+					});
+				</script>
                <div class="loc_time">
 				<div>
-                    <div class="form_label">
-                         <label for="meeting_loc">모임 장소</label>
-                    </div>
-					<input class="form_input" type="text" name="meeting_loc" />
+					<input class="form_input" type="text" name="meeting_loc" placeholder="모임 장소"/>
 				</div>
 				<div>
-                    <div class="form_label">
-                         <label for="meeting_time">모임 시간</label>
-                    </div>
-					<input id="meeting_time" class="form_input" type="time" name="meeting_time" />
+					<input id="meeting_time" class="form_input" type="text" name="meeting_time" placeholder="모임 시간"/>
 				</div>
 			</div>
 			<div class="date_pickers">
 				<div>
-					<label class="form_label" for="start_dt">모임 시작일</label>
-					<input class="form_input" type="date" name="start_dt" />
+					<input id="start_dt" class="form_input" type="text" name="start_dt" placeholder="모임 시작일"/>
 				</div>
 				<div>
-					<label class="form_label" for="ended_dt">모임 종료일</label>
-					<input class="form_input" type="date" name="ended_dt" />
+					<input id="ended_dt" class="form_input" type="text" name="ended_dt" placeholder="모임 종료일"/>
 				</div>
 				<div>
-					<label class="form_label" for="deadline_dt">모임 모집 마감일</label>
-					<input class="form_input" type="date" name="deadline_dt" />
+					<input id="deadline_dt" class="form_input" type="text" name="deadline_dt" placeholder="모임 모집 마감일"/>
 				</div>
 			</div>
+			<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
+			<!-- 플러그인 javascript 로딩 -->
+			<script src="${pageContext.request.contextPath}/resources/js/jquery.datetimepicker.full.min.js"></script>
+			<script>
+				//언어
+			    $.datetimepicker.setLocale("ko");
+				$("#start_dt").datetimepicker({
+					timepicker:false,
+					format:"Y.m.d"
+				});
+				$("#ended_dt").datetimepicker({
+					timepicker:false,
+					format:"Y.m.d"
+				});
+				$("#deadline_dt").datetimepicker({
+					timepicker:false,
+					format:"Y.m.d"
+				});
+				$("#meeting_time").datetimepicker({
+			        datepicker:false,
+			        format:"H:i"
+			    });
+			</script>
 			<div>
 				<textarea name="caption" id="caption" rows="5" placeholder="이곳에 소모임 규칙 또는 자세한 설명을 적어주세요!"></textarea>
 			</div>

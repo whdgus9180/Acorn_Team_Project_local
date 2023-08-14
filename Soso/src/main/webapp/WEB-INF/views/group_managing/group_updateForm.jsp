@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>내 소모임 정보 수정하기</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/group_managing/group_managing_group_insert.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery.datetimepicker.min.css" />
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/navbar_c.jsp">
@@ -54,34 +55,69 @@
                     <input id="image" name="image" type="file" style="display: none;"/>
                 </div> 
 			</div>
+			<script>
+				document.querySelector("#myFile").addEventListener("change", (e) => {
+					//선택된 파일 배열 객체를 얻어낸다.
+					const files = e.target.files;
+					//만일 파일 데이터가 존재한다면
+					if(files.length > 0){
+						//파일로 부터 데이터를 읽어들일 객체 생성
+						const reader = new FileReader();
+						//로딩이 완료(파일데이터를 모드 읽었을때) 되었을때 실행할 함수 등록
+						reader.onload = (event) => {
+							//읽은 파일 데이터 얻어내기 
+							const data=event.target.result;
+							//console.log(data);
+							//이미지 요소에 data 를 src 속성의 value 로 넣어 보세요.
+							document.querySelector("#preview").setAttribute("src", data);
+						};
+						//파일을 DataURL 형식의 문자열로 읽어들이기
+						reader.readAsDataURL(files[0]);
+					}
+				});
+			</script>
 			<div class="loc_time">
 				<div>
-					<div>
-						<label class="form_label" for="meeting_loc">모임 장소</label>
-					</div>
-					<input class="form_input" type="text" name="meeting_loc" value = "${dto.meeting_loc}"/>
+					<input class="form_input" id="meeting_loc" type="text" name="meeting_loc" placeholer="모임 장소" value = "${dto.meeting_loc}"/>
 				</div>
 				<div>
-					<div class="form_label">
-						<label for="meeting_time">모임 시간</label>
-					</div>
-					<input id="meeting_time" class="form_input" type="time" name="meeting_time" value = ${dto.meeting_time} />
+					<input id="meeting_time" class="form_input" type="time" name="meeting_time" placeholer="모임 시간" value = ${dto.meeting_time} />
 				</div>
 			</div>
 			<div class="date_pickers">
 				<div>
-					<label class="form_label" for="start_dt">모임 시작일</label>
-					<input class="form_input" type="date" name="start_dt" value=${dto.start_dt}/>
+					<input id="start_dt" class="form_input" type="text" name="start_dt" placeholer="모임 시작일" value=${dto.start_dt}/>
 				</div>
 				<div>
-					<label class="form_label" for="ended_dt">모임 종료일</label>
-					<input class="form_input" type="date" name="ended_dt" value=${dto.ended_dt}/>
+					<input id="ended_dt" class="form_input" type="text" name="ended_dt" placeholer="모임 종료일" value=${dto.ended_dt}/>
 				</div>
 				<div>
-					<label class="form_label" for="deadline_dt">모임 모집 마감일</label>
-					<input class="form_input" type="date" name="deadline_dt" value=${dto.deadline_dt}/>
+					<input id="deadline_dt" class="form_input" type="text" name="deadline_dt" placeholer="모임 모집 종료일" value=${dto.deadline_dt}/>
 				</div>
 			</div>
+			<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
+			<!-- 플러그인 javascript 로딩 -->
+			<script src="${pageContext.request.contextPath}/resources/js/jquery.datetimepicker.full.min.js"></script>
+			<script>
+				//언어
+			    $.datetimepicker.setLocale("ko");
+				$("#start_dt").datetimepicker({
+					timepicker:false,
+					format:"Y.m.d"
+				});
+				$("#ended_dt").datetimepicker({
+					timepicker:false,
+					format:"Y.m.d"
+				});
+				$("#deadline_dt").datetimepicker({
+					timepicker:false,
+					format:"Y.m.d"
+				});
+				$("#meeting_time").datetimepicker({
+			        datepicker:false,
+			        format:"H:i"
+			    });
+			</script>
 			<div>
 				<textarea name="caption" id="caption" rows="5" placeholder="Add Text...">${dto.caption}</textarea>
 			</div>

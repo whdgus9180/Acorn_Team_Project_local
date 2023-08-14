@@ -50,7 +50,7 @@
      grid-template-columns: 1fr 1fr;
      column-gap: 25px;
      row-gap: 20px;
-     margin-bottom: 10px;
+     margin-bottom: 20px;
 }
 
 .select_box{
@@ -74,10 +74,28 @@
      column-gap: 25px;
 }
 
+.loc_time input{
+	padding-left: 10px;
+	font-weight: 600;
+}
+
+.loc_time input::placeholder{
+	color:black;
+}
+
 .date_pickers{
      display: grid;
      grid-template-columns: 1fr 1fr 1fr;
-     column-gap: 30px;
+     column-gap: 25px;
+}
+
+.date_pickers input{
+	padding-left: 10px;
+	font-weight: 600;
+}
+
+.date_pickers input::placeholder{
+	color:black;
 }
 
 #caption{
