@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -85,6 +86,16 @@
 	                   <a href="${pageContext.request.contextPath}/group/group_page?num=${tmp.num }">
 	                       <div class="mate_content_img">
 	                           <img src="${pageContext.request.contextPath}${tmp.img_path}">
+	                           <!-- 신청 마감일시 마감버튼 보이게 -->
+								<c:set var="now" value="<%= new java.util.Date() %>" />
+								<c:set var="nowDate"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd" /></c:set> 
+								<c:choose>
+								<c:when test="${tmp.deadline_dt lt nowDate}">
+									<div class="deadline_btn">마감</div>
+								</c:when>
+								<c:otherwise>
+								</c:otherwise>
+							</c:choose>	                                  
 	                       </div>
 	                   </a>
 	                   <a href="detail?num=${tmp.num }&condition=${condition}&keyword=${encodedk}">
