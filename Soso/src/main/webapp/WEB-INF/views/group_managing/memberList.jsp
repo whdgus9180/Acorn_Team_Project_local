@@ -12,6 +12,9 @@
 </style>
 </head>
 <body>
+	<jsp:include page="/WEB-INF/views/include/navbar_c.jsp">
+        <jsp:param value="login" name="current"/>
+    </jsp:include>
 	<div class="container">
 		<div id="header">
 			<div class="title">Member</div>

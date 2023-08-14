@@ -8,15 +8,11 @@
 <title>소모임 가입 신청자 관리</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/group_managing/group_managing_admin_header.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/group_managing/group_managing_admin_applicant_card.css">
-<style>
-	.card-image {
-	width: 120px;
-	height: 120px;
-	border-radius: 50%;
-	}
-</style>
 </head>
 <body>
+	<jsp:include page="/WEB-INF/views/include/navbar_c.jsp">
+        <jsp:param value="login" name="current"/>
+    </jsp:include>
 	<div class="container">
 		<div id="header">
 			<div class="title">Applicant</div>
