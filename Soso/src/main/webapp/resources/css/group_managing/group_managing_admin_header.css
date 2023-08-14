@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* body -> container  */
+/* navbar 아래의 container  */
 .container{
     margin: 0 auto;
     width: 992px;
@@ -20,8 +20,8 @@ a{
 #header .title{
     font-size: 30px;
     margin-top: 40px;
-    margin-left: 10px;
-    margin-bottom: 10px;
+    margin-left: 15px;
+    margin-bottom: 20px;
     font-weight: 700;
 }
 
