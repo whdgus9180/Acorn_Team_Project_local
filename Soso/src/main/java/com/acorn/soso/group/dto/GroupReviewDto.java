@@ -15,11 +15,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Alias("reviewDto")
 public class GroupReviewDto {
-	private int num;
-	private String title;
+	private int review_num;
+	private int group_num;
 	private String writer;
-	private String review;
-	private int ref_group;
+	private String content;
 	private String profile;
 	private int rate;
 	private int startRowNum;

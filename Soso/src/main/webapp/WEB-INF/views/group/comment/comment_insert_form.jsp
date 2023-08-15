@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>후기 게시판</title>
 <style>
    /* 별점 css */
    #myform fieldset {
@@ -53,7 +53,6 @@
       border: 1px solid #cecece;
       border-radius: 50%;
    }
-
    /* ul 요소의 기본 스타일 제거 */
    .comments ul {
       padding: 0;
@@ -147,33 +146,13 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/navbar.jsp"></jsp:include>
-<div class="container">
-   
-   <div class="card mb-3">
-      <div class="card-body">
-      	 <p class="card-text">${dto.title}</p>
-         <p class="card-text">${dto.caption}</p>
-         <p class="card-text">by <strong>${dto.writer}</strong></p>
-         <p><small>${dto.regdate}</small></p>
-         <c:choose>
-		  <c:when test="${not empty avgRate}">
-		  	<strong>${avgRate}⭐</strong>
-		  </c:when>
-		  <c:otherwise>
-		    <p>아직 평점이 등록되지 않았습니다.</p>
-		  </c:otherwise>
-		</c:choose>
-      </div>
-     <div>
-     
+<div class="container"> 
    <div>
-	   <h4>리뷰를 입력해 주세요</h4>
+	  <h4>리뷰를 입력해 주세요</h4>
       <!-- 원글에 댓글을 작성할 폼 -->
-      <form class="comment-form insert-form" action="review_insert" method="post" id="myform">
+      <form class="comment-form insert-form" action="${pageContext.request.contextPath}/group/comment/review_insert" method="post" id="myform">
          <!-- 원글의 글번호가 댓글의 ref_group 번호가 된다. -->
-         <input type="hidden" name="ref_group" value="${dto.num }"/>
-         <input type="hidden" name="title" value="${dto.title }" />
+         <input type="hidden" name="group_num" value=${num } />
    		 <fieldset>
          	<small>평점</small>
          	<input type="radio" name="rate" value="5" id="rate1"><label for="rate1">⭐</label>
@@ -182,7 +161,8 @@
         	<input type="radio" name="rate" value="2" id="rate4"><label for="rate4">⭐</label>
         	<input type="radio" name="rate" value="1" id="rate5"><label for="rate5">⭐</label>
          </fieldset>
-         <textarea name="review">${empty id ? '리뷰 작성을 위해 로그인이 필요 합니다.' : '' }</textarea>
+         <br />
+         <textarea name="content">${empty id ? '리뷰 작성을 위해 로그인이 필요 합니다.' : '' }</textarea>
          <button type="submit">등록</button>
       </form>
       <!-- 댓글 목록 -->

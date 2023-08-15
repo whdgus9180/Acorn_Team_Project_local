@@ -286,40 +286,16 @@ public class GroupServiceImpl implements GroupService{
 	}
 
 	@Override
-	public void saveReview(HttpServletRequest request) {
-		//ref_group 파라미터 잘 가져왔나? dto.num을 통해 가져옴
-		int ref_group=Integer.parseInt(request.getParameter("ref_group"));
-		//review는 get Parameter로 가져왔다.
-		String review = request.getParameter("review");
-		//session 영역의 id를 이용해 가져옴
-		String writer=(String)request.getSession().getAttribute("id");
-		//title을 request
-		String title=request.getParameter("title");
-		//rate(input radio -> value)를 통해 가져옴
-		String strRate=request.getParameter("rate");		
-		int rate = 0;
-		if(strRate==null) {
-			rate = 0;	
-		}else {
-			rate=Integer.parseInt(strRate);
-		}
-		
-		//seq-> 잘 가져옴
-		int seq = reviewdao.getSequence();
-		
-		GroupReviewDto dto = new GroupReviewDto();
-		//num
-		dto.setNum(seq);
-		//title-> 임시로 내가 지정
-		dto.setTitle(title);
-		//writer
+	public void saveReview(GroupReviewDto dto, HttpSession session) {
+		//dto를 통해 가져온 값은 rate, content, group_num 이다.
+		//writer, review_num만 채워주면 된다.
+		//session 영역의 id를 가져온다.
+		String writer = (String)session.getAttribute("id");
 		dto.setWriter(writer);
-		//review
-		dto.setReview(review);
-		//rate
-		dto.setRate(rate);
-		//ref_group
-		dto.setRef_group(ref_group);
+		
+		//seq-> 가져와서 세팅
+		int seq = reviewdao.getSequence();
+		dto.setReview_num(seq);
 		
 		//동일작성 아이디검토
 		GroupReviewDto resultDto = reviewdao.getEqual(dto);
@@ -373,7 +349,7 @@ public class GroupServiceImpl implements GroupService{
 	
 	     //원글의 글번호를 이용해서 해당글에 달린 댓글 목록을 얻어온다.
 	     GroupReviewDto reviewDto=new GroupReviewDto();
-	     reviewDto.setRef_group(num);
+//	     reviewDto.setRef_group(num);
 	     //1페이지에 해당하는 startRowNum 과 endRowNum 을 dto 에 담아서  
 	     reviewDto.setStartRowNum(startRowNum);
 	     reviewDto.setEndRowNum(endRowNum);
@@ -418,7 +394,7 @@ public class GroupServiceImpl implements GroupService{
 		//revieDto를 이용해서리스트에 담은 다음
 		List<GroupReviewDto> list = reviewdao.reviewList(num);
 		//request에 담아주기
-		model.addAttribute("list", list);
+		model.addAttribute("commentList", list);
 	}
 	
 	//소모임 가입을 위한 join
@@ -551,7 +527,6 @@ public class GroupServiceImpl implements GroupService{
 		groupfaqdao.insert(dto);
 	}
 	//소모임 FAQ의 getList
-	//검색...?
 	@Override
 	public void groupFAQGetList(HttpServletRequest request, Model model) {
 		//한 페이지에 몇개씩 표시할 것인지
@@ -659,6 +634,53 @@ public class GroupServiceImpl implements GroupService{
 			throw new DontEqualException("다른 사람의 글은 삭제할 수 없습니다.");
 		}
 	}
+	
+	//소모임 문의 답변하기
+	@Override
+	public void groupAnswerInsert(GroupFAQDto dto) {
+		
+		//여기에서 관리자 검증 작업을 한다.(소모임 만들려고하면 뭔가 오류나서 일단 보류)
+		
+		
+		//dao를 통해 db에 집어넣기
+		groupfaqdao.answer(dto);
+	}
+	
+	//소모임 문의 답변 수정하기
+	@Override
+	public void groupAnswerUpdate(HttpServletRequest request, GroupFAQDto dto) {
+		//수정할 글 번호를 읽어온다.
+		int num=Integer.parseInt(request.getParameter("num"));
+		//번호를 넣어준다. 
+		dto.setNum(num);		
+		//글하나의 정보를 얻어온다.
+		GroupFAQDto resultDto=groupfaqdao.getData(num);
+		//id를 가져온다.
+		String id =(String)request.getSession().getAttribute("id");
+		//가져온 값을 토대로 id검증을 한다.
+		if(resultDto.getQ_writer().equals(id)) {
+			groupfaqdao.answerUpdate(dto);
+		}else {
+			throw new DontEqualException("다른 사람의 글은 수정할 수 없습니다.");
+		}
+		
+	}
+
+	@Override
+	public void groupAnswerDelete(HttpServletRequest request, int num) {
+		//글하나의 정보를 얻어온다.
+		GroupFAQDto dto = groupfaqdao.getData(num);
+		//id를 가져온다.
+		String id =(String)request.getSession().getAttribute("id");
+		//가져온 값을 토대로 id검증을 한다.
+		if(dto.getQ_writer().equals(id)) {
+			groupfaqdao.answerDelete(num);
+		}else {
+			throw new DontEqualException("다른 사람의 글은 삭제할 수 없습니다.");
+		}
+		
+	}
+	
 
 	@Override
 	public void getViewList(HttpServletRequest request, Model model) {
@@ -739,7 +761,5 @@ public class GroupServiceImpl implements GroupService{
 
 		
 	}
-
-
 
 }

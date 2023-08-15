@@ -17,4 +17,11 @@ public interface GroupFAQDao {
 	public void update(GroupFAQDto dto);
 	//소모임 문의글의 Delete
 	public void delete(int num);
+	//답변 달기
+	//답변하기 추가하기
+	public void answer(GroupFAQDto dto);
+	//답변 수정하기
+	public void answerUpdate(GroupFAQDto dto);
+	//답변 삭제하기(실제로는 수정)
+	public void answerDelete(int num);
 }
