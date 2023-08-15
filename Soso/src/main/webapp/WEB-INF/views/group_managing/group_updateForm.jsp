@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +16,21 @@
     </jsp:include>
 	<div class="container">
 		<div id="insert_title" style="margin-bottom:80px">소모임 정보 수정</div>
+		
+		<div class="image_container" style="display:flex; flex-direction:column; align-items:center">
+			<c:choose>
+				<c:when test="${fn:length(dto.img_path) < 32}">
+					<img id="image_preview" src="${pageContext.request.contextPath}/resources/images/main/001.jpg" 
+				style="width:150px; height:150px; border-radius:50%; border: 1px solid rgb(222, 226, 230)" alt="소모임 이미지"/>
+				</c:when>
+				<c:otherwise>
+					<img id="image_preview" src="${pageContext.request.contextPath}${dto.img_path}" 
+				style="width:150px; height:150px; border-radius:50%; border: 1px solid rgb(222, 226, 230)" alt="소모임 이미지"/>
+				</c:otherwise>
+			</c:choose>
+			<div style="margin-top:20px; margin-bottom:20px; font-size: 15px;">소모임 이미지</div>
+		</div>
+		
 		<form action="${pageContext.request.contextPath}/group_managing/group_update" method="post" id="myForm" enctype="multipart/form-data">
 			<div class="form_header">
 				<input type="hidden" name="num" value="${dto.num}"/>
@@ -50,29 +67,38 @@
 					<option value = 0 ${dto.on_off == 0 ? "selected" : "" }>온라인</option>
 					<option value = 1 ${dto.on_off == 1 ? "selected" : "" }>오프라인</option>
 				</select>
-				<div id="image_box" class="select_box" style="width: 366px; height: 36px;">
-                    <label for="image">소모임 이미지 선택하기</label>
-                    <input id="image" name="image" type="file" style="display: none;"/>
+				<div class="select_box" style="display:flex; align-items:center; justify-content:space-between">변경할 소모임의 이미지를 선택해주세요
+                 	<button id="image_btn" style="width: 65px; height: 27px; color: white;
+                    				 			background-color: rgb(195, 181, 157); border:none; border-radius: 15px;">file</button>
                 </div> 
 			</div>
+			<input id="image" name="image" type="file" style="display: none;"
+                    	accept=".jpg, .png, .gif, .JPG, .JPEG, .jpeg"/>
+			<script src="${pageContext.request.contextPath }/resources/js/gura_util.js"></script>
 			<script>
-				document.querySelector("#myFile").addEventListener("change", (e) => {
-					//선택된 파일 배열 객체를 얻어낸다.
+				//file 버튼을 클릭하면 input type="file" 을 강제 클릭
+				document.querySelector("#image_btn").addEventListener("click", (e) => {
+					e.preventDefault();
+	                document.querySelector("#image").click()
+				});
+				
+				document.querySelector("#image").addEventListener("change", (e) => {
 					const files = e.target.files;
-					//만일 파일 데이터가 존재한다면
 					if(files.length > 0){
-						//파일로 부터 데이터를 읽어들일 객체 생성
 						const reader = new FileReader();
-						//로딩이 완료(파일데이터를 모드 읽었을때) 되었을때 실행할 함수 등록
 						reader.onload = (event) => {
-							//읽은 파일 데이터 얻어내기 
 							const data=event.target.result;
-							//console.log(data);
-							//이미지 요소에 data 를 src 속성의 value 로 넣어 보세요.
-							document.querySelector("#preview").setAttribute("src", data);
+							document.querySelector("#image_preview").setAttribute("src", data);
 						};
-						//파일을 DataURL 형식의 문자열로 읽어들이기
 						reader.readAsDataURL(files[0]);
+					}
+				});
+				
+				document.querySelector("#on_off").addEventListener("change", (e) => {
+					if(e.target.value == 0){
+						document.querySelector("#meeting_loc").value = "온라인"
+					} else {
+						document.querySelector("#meeting_loc").value = ""
 					}
 				});
 			</script>
@@ -101,18 +127,22 @@
 			<script>
 				//언어
 			    $.datetimepicker.setLocale("ko");
+				//날짜 선택
 				$("#start_dt").datetimepicker({
 					timepicker:false,
 					format:"Y.m.d"
 				});
+				//날짜 선택
 				$("#ended_dt").datetimepicker({
 					timepicker:false,
 					format:"Y.m.d"
 				});
+				//날짜 선택
 				$("#deadline_dt").datetimepicker({
 					timepicker:false,
 					format:"Y.m.d"
 				});
+				//시간 선택
 				$("#meeting_time").datetimepicker({
 			        datepicker:false,
 			        format:"H:i"

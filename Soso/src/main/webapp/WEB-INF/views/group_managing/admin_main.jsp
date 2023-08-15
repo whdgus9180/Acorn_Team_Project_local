@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>     
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +34,14 @@
 						</div>
 						<div class="card-box">
 							<div class="card-left">
-								<div><img class="card-image" src="${pageContext.request.contextPath}${tmp.img_path}"/></div>
+								<c:choose>
+									<c:when test="${fn:length(tmp.img_path) < 32}">
+										<div><img class="card-image" src="${pageContext.request.contextPath}/resources/images/main/001.jpg""/></div>
+									</c:when>
+									<c:otherwise>
+										<div><img class="card-image" src="${pageContext.request.contextPath}${tmp.img_path}"/></div>
+									</c:otherwise>
+								</c:choose>
 								<div><a href="${pageContext.request.contextPath}/group_managing/memberList?group_num=${tmp.num}">${tmp.now_people} / ${tmp.max_people}</a></div>
 							</div>
 							<div class="card-right">

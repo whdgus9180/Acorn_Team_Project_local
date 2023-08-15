@@ -16,8 +16,10 @@
 		<div id="insert_title">소모임 개설 신청</div>
 		<div id="insert_subtitle">소모임장이 되어 원하는 소모임을 개설해보세요.</div>
 		
-		<div>
-			<img alt="이미지 미리보기" id="preview"/>
+		<div class="image_container" style="display:flex; flex-direction:column; align-items:center">
+			<img id="image_preview" src="${pageContext.request.contextPath}/resources/images/main/001.jpg" 
+				style="width:150px; height:150px; border-radius:50%; border: 1px solid rgb(222, 226, 230)" alt="소모임 이미지"/>
+			<div style="margin-top:20px; margin-bottom:20px; font-size: 15px;">소모임 이미지</div>
 		</div>
 		
 		<form action="${pageContext.request.contextPath}/group/insert" method="post" id="myForm" enctype="multipart/form-data">
@@ -55,27 +57,40 @@
                               <option value = 0>온라인</option>
                               <option value = 1>오프라인</option>
                     </select>
-                    <div id="image_box" class="select_box" style="width: 366px; height: 36px;">
-                         <label for="image">소모임 이미지 선택하기</label>
-                         <input id="image" name="image" type="file" style="display: none;"/>
-                    </div>  
+                    <div class="select_box" style="display:flex; align-items:center; justify-content:space-between">소모임의 이미지를 선택해주세요
+                    	<button id="image_btn" style="width: 65px; height: 27px; color: white;
+                    				 background-color: rgb(195, 181, 157); border:none; border-radius: 15px;">file</button>
+                    </div>
+                    <input id="image" name="image" type="file" style="display: none;"
+                    	accept=".jpg, .png, .gif, .JPG, .JPEG, .jpeg"/>
                </div>
                <script>
+		            document.querySelector("#image_btn").addEventListener("click", (e) => {
+						e.preventDefault();
+		                document.querySelector("#image").click()
+					});
 					document.querySelector("#image").addEventListener("change", (e) => {
 						const files = e.target.files;
 						if(files.length > 0){
 							const reader = new FileReader();
 							reader.onload = (event) => {
 								const data=event.target.result;
-								document.querySelector("#preview").setAttribute("src", data);
+								document.querySelector("#image_preview").setAttribute("src", data);
 							};
 							reader.readAsDataURL(files[0]);
+						}
+					});
+					document.querySelector("#on_off").addEventListener("change", (e) => {
+						if(e.target.value == 0){
+							document.querySelector("#meeting_loc").value = "온라인"
+						} else {
+							document.querySelector("#meeting_loc").value = ""
 						}
 					});
 				</script>
                <div class="loc_time">
 				<div>
-					<input class="form_input" type="text" name="meeting_loc" placeholder="모임 장소"/>
+					<input class="form_input" id="meeting_loc" type="text" name="meeting_loc" placeholder="모임 장소"/>
 				</div>
 				<div>
 					<input id="meeting_time" class="form_input" type="text" name="meeting_time" placeholder="모임 시간"/>

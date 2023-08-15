@@ -1,6 +1,10 @@
 package com.acorn.soso.group_managing.service;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.acorn.soso.group.dto.GroupDto;
 import com.acorn.soso.group_managing.dto.GroupManagingDto;
@@ -9,6 +13,7 @@ public interface GroupManagingService {
 	public void getGroupList(String manager_id, HttpServletRequest request);
 	public void getGroupList2(String user_id, HttpServletRequest request);
 	public GroupDto getGroupData(int num, HttpServletRequest request);
+	public Map<String, Object> saveGroupImage(HttpServletRequest request, MultipartFile mFile);
 	public void updateGroupData(GroupDto dto, HttpServletRequest request);
 	public void deleteGroupData(int num);
 	public void getMemberList(int group_num, HttpServletRequest request);
