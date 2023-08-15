@@ -53,7 +53,6 @@
       border: 1px solid #cecece;
       border-radius: 50%;
    }
-
    /* ul 요소의 기본 스타일 제거 */
    .comments ul {
       padding: 0;
