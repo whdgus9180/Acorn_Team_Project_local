@@ -109,3 +109,57 @@ CREATE TABLE board_jjim(-- 찜 테이블
 groupNum NUMBER, -- 소모임의 테이블 넘버를 저장할 칼럼
 memId VARCHAR2(40) -- 찜하기 버튼 누른 사람의 id
 )
+
+-- faq 게시판의 db
+CREATE TABLE GROUP_FAQ_TB ( --소모임 faq게시판 db
+    GROUP_NUM NUMBER, -- 소모임 고유 번호
+    NUM NUMBER,--소모임 faq게시판 글 번호
+    Q_WRITER VARCHAR2(40), -- 소모임 문의 게시판 글 작성자 이름
+    Q_TITLE VARCHAR2(80), --소모임 문의 게시판 제목
+    Q_CONTENT VARCHAR2(1000), -- 문의 내용
+    REGDATE DATE, -- 올린 날짜
+    CONSTRAINT fk_GROUP_NUM FOREIGN KEY (GROUP_NUM) REFERENCES GROUP_TB(NUM), -- group_tb의 num을 외래키로 등록
+    CONSTRAINT fk_Q_WRITER FOREIGN KEY (Q_WRITER) REFERENCES USERS(ID) -- users의 id를 외래키로 등록
+) -- 외래 키 부분에 오류가 있어서 임시로 빼놓고 생성함
+
+-- faq 게시판의 seq
+CREATE SEQUENCE GROUP_FAQ_SEQ;
+
+-- faq answer게시판
+CREATE TABLE GROUP_ANSWER_TB(
+    NUM NUMBER PRIMARY KEY, -- 답변글 번호
+    GROUP_NUM NUMBER,-- 어떤 소모임 인지 구별
+    Q_NUM NUMBER, -- 어떤 글에 답글을 달았는지 구별
+    A_WRITER VARCHAR2(100), --  누가 답변을 달았는지
+    A_CONTENT CLOB, -- 어떤 답글을 달았는지
+    A_REGDATE DATE, -- 답글을 단 시간은 언제인지 
+    )
+    
+-- faq ANSWE의 NEXTVAL
+CREATE SEQUENCE GROUP_ANSWER_SEQ;
+
+- 위의 answer는 삭제하고 기존 faq테이블에 아래와 같은 칼럼 임시로 추가 
+
+-- q_writer 컬럼 추가
+ALTER TABLE GROUP_FAQ_TB
+ADD a_writer VARCHAR2(40);
+
+-- q_answer 컬럼 추가
+ALTER TABLE GROUP_FAQ_TB
+ADD a_answer CLOB;
+
+-- q_regdate 컬럼 추가
+ALTER TABLE GROUP_FAQ_TB
+ADD a_regdate DATE;
+
+
+-- 책 등록 위한 TB
+CREATE TABLE BOOK_TB(
+    NUM NUMBER PRIMARY KEY, -- 책 등록 번호
+    NAME VARCHAR2(100), -- 책 이름
+    CAPTION VARCHAR2(200),-- 책에 대한 설명(짧게)
+    LINK VARCHAR2(200),    -- 책 링크
+)
+
+-- 책 TB 시퀀스
+CREATE SEQUENCE BOOK_TB_SEQ;

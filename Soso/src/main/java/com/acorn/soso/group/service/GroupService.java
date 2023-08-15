@@ -30,7 +30,7 @@ public interface GroupService {
 	
 	//리뷰에 관련한 기능
 	//리뷰 저장
-	public void saveReview(HttpServletRequest request);
+	public void saveReview(GroupReviewDto dto, HttpSession session);
 	//리뷰 삭제
 	public void deleteReview(HttpServletRequest request);
 	//리뷰 수정
@@ -58,8 +58,15 @@ public interface GroupService {
 	public void groupFAQGetData(HttpServletRequest request, Model model);
 	//소모임 문의글 수정.request로 필요한 정보를 얻고 dto로 수정한다.
 	public void updateGroupFAQ(HttpServletRequest request, GroupFAQDto dto);
-	//소모임 문의글삭제.request로 필요한 정보를 얻고 num으로 수정한다.
+	//소모임 문의글삭제.request로 필요한 정보를 얻고 num으로 삭제한다.->관리자만 삭제할 수 있게 변경? 혹은 update로 문의글 내용만 지워지게 변경(답글도 같이 지워짐)
 	public void deleteGroupFAQ(HttpServletRequest request, int num);
+	//소모임 문의 답변
+	public void groupAnswerInsert(GroupFAQDto dto);
+	//소모임 문의 답변 수정
+	public void groupAnswerUpdate(HttpServletRequest request, GroupFAQDto dto);
+	//소모임 문의 답변 삭제
+	public void groupAnswerDelete(HttpServletRequest request, int num);
+	
 	
 	//ajax처리로 찜하기&찜취소 기능 구현
 	public boolean jjim(HttpServletRequest request);

@@ -9,13 +9,12 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <style>
-	.d-flex{
-		border : 1px solid red;
-		border-radius: 10px
-	}
-}
 </style>
 <body>
+	<jsp:include page="/WEB-INF/views/include/navbar_c.jsp">
+		<jsp:param value="groupPage" name="current" />
+	</jsp:include>
+
 	<div class="container">
 		<h1 class="mb-3 mt-3">${dto.name }</h1>
 		<div class="d-flex flex-row mb-3">
@@ -99,7 +98,7 @@
 			<div class="d-flex flex-column mb-3">
 			<!-- forEach를 사용해서 댓글 출력(나중에는 분기 써서 댓글이 없을 때는 다른 페이지 표시하) -->
 				<c:choose>
-					<c:when test="${empty list}">
+					<c:when test="${empty commentList}">
 						<div class="card mx-1 my-1">
 							<div class="card-body">
 								<p class="card-text">아직 후기가 없어요</p>
@@ -107,27 +106,35 @@
 						</div>
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="tmp" items="${list}" end="2">
+						<c:forEach var="tmp" items="${commentList}" end="2">
 							<div class="card mx-1 my-1">
 								<div class="card-body">
-									<p class="card-text"></p>
+									<p class="card-text">${tmp.content }</p>
+									<p class="card-text">${tmp.rate }</p>
 								</div>
 							</div>
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
+				<a href="${pageContext.request.contextPath}/group/comment/comment_insert_form?num=${dto.num}" id="reviewInsert">후기 작성하기</a>
+				<div id="commentArea"></div>
 			</div>
 		</div>
 		<div>
-			<h5 class="mx-1 my-1">저희 모임에 궁금한 게 있으신가요?(문의 게시판 만들기)</h5>
-			<div class="d-flex flex-column mb-3">
-				<div class="p-2">
-					댓글 기능
-					<a href="${pageContext.request.contextPath}/group/faq/list?num=${dto.num}">문의 게시판 가기(임시)</a>
-				</div>
-			</div>
+			<ul class="nav justify-content-end nav-tabs">
+				<li class="nav-item">
+					<a class="nav-link" id="faqList" href="#">문의 게시판</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="commentList" href="#">후기 게시판</a>
+				</li>
+			</ul>
+			<div id="Parse_Area"gt;lt;></div>
 		</div>
 	</div>
+	
+    <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+	
 	<!-- jQuery 라이브러리를 로드 -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
@@ -203,6 +210,63 @@
 			  }
 		  })
 	  })
+	  
+	  //여기서부터 ajax faq
+	  //작성글 클릭 시 writing_list 페이지 로딩
+	  $("#faqList").click(function() {
+		  $.ajax({
+	            type : "GET", //전송방식을 지정한다 (POST,GET)
+	            url : "${pageContext.request.contextPath}/group/faq/list?num=${dto.num }",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+	            dataType : "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+	            error : function(){
+	                console.log("통신실패");
+	            },
+	            success : function(Parse_data){
+	                $("#Parse_Area").html(Parse_data); //div에 받아온 값을 넣는다.
+	                console.log("통신 데이터 값 : " + Parse_data);
+	            }
+	            
+        	});
+			
+			$(this).attr("class","nav-link active")
+			$("#commentList").attr("class","nav-link");
+		});
+	  
+	  //후기 작성하기 클릭 시 writing_list 페이지 로딩
+	  $("#reviewInsert").click(function(event) {
+		  event.preventDefault(); // 앵커의 기본 동작을 막습니다.
+		  $.ajax({
+	            type : "GET", //전송방식을 지정한다 (POST,GET)
+	            url : "${pageContext.request.contextPath}/group/comment/comment_insert_form?num=${dto.num }",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+	            dataType : "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+	            error : function(){
+	                console.log("통신실패");
+	            },
+	            success : function(Parse_data){
+	                $("#commentArea").html(Parse_data); //div에 받아온 값을 넣는다.
+	                console.log("통신 데이터 값 : " + Parse_data);
+	            }
+	            
+        	});
+		});
+		
+	  //화면 로딩 시 writing_list 페이지 로딩
+	  $(document).ready(function() {
+			$.ajax({
+	            type : "GET", //전송방식을 지정한다 (POST,GET)
+	            url : "${pageContext.request.contextPath}/group/faq/list?num=${dto.num }",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+	            dataType : "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+	            error : function(){
+	                console.log("통신실패");
+	            },
+	            success : function(Parse_data){
+	                $("#Parse_Area").html(Parse_data); //div에 받아온 값을 넣는다.
+	            }
+	            
+        	});
+			
+			$("#faqList").attr("class","nav-link active");
+		});	  
 	</script>
 </body>
 </html>

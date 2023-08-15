@@ -7,7 +7,7 @@
       FROM
          (SELECT result1.*, ROWNUM AS rnum
          FROM
-            (SELECT num, title, writer, review, ref_group, rate,
+            (SELECT reivew, title, writer, review, ref_group, rate,
                 board_review.regdate, profile
             FROM board_review
             INNER JOIN users
@@ -18,9 +18,10 @@
    </select>
    <!-- 디테일 페이지에 보여주기 위한 댓글 -->
    <select id="reviewList" parameterType="int" resultType="reviewDto">
-   		SELECT num, title, writer, review FROM board_review
-   		WHERE ref_group=#{num}
-   		ORDER BY num
+   		SELECT review_num, group_num, writer, content, rate, regdate
+   		FROM group_review_tb
+   		WHERE group_num=#{num}
+   		ORDER BY review_num
    </select>
    <select id="getCount" parameterType="int" resultType="int">
       SELECT NVL(MAX(ROWNUM), 0)
@@ -37,9 +38,9 @@
    	  WHERE num=#{num}
    </delete>
    <insert id="insert" parameterType="reviewDto">
-   	  INSERT INTO board_review
-   	  (num, title, writer, review, ref_group, rate, regdate)
-   	  VALUES(#{num}, #{title}, #{writer}, #{review}, #{ref_group}, #{rate}, SYSDATE)
+   	  INSERT INTO GROUP_REVIEW_TB
+   	  (review_num, writer, content, group_num, rate, regdate)
+   	  VALUES(#{review_num}, #{writer}, #{content}, #{group_num}, #{rate}, SYSDATE)
    </insert>
    <select id="getSequence" resultType="int">
       SELECT review_seq.NEXTVAL
@@ -59,8 +60,8 @@
 	</select>
 		<select id="getEqual" parameterType="reviewDto" resultType="reviewDto">
 		SELECT *
-		FROM board_review
-		WHERE ref_group = #{ref_group}
+		FROM GROUP_REVIEW_TB
+		WHERE group_num = #{group_num}
 		AND writer = #{writer}
 	</select>
 </mapper>

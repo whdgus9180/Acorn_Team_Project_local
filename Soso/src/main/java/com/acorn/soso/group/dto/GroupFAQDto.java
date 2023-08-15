@@ -24,4 +24,8 @@ public class GroupFAQDto {
 	private int endRowNum; // 끝나는 글 번호
 	private int prevNum;  //이전글의 글번호
 	private int nextNum;  //다음글의 글번호
+	
+	private String a_writer; //답변자의 이름(id)->소모임의 관리자.
+	private String a_answer; //답변자가 한 답변
+	private String a_regdate; //답변자가 답변을 단 날짜.
 }

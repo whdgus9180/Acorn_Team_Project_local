@@ -43,4 +43,20 @@ public class GroupFAQDaoImpl implements GroupFAQDao{
 	public void delete(int num) {
 		session.delete("groupFAQ.delete", num);
 	}
+
+	@Override
+	public void answer(GroupFAQDto dto) {
+		session.update("groupFAQ.answer", dto);
+	}
+
+	@Override
+	public void answerUpdate(GroupFAQDto dto) {
+		session.update("groupFAQ.answerUpdate", dto);
+	}
+
+	@Override
+	public void answerDelete(int num) {
+		session.update("groupFAQ.answerDelete", num);
+		
+	}
 }

@@ -28,7 +28,52 @@ public class GroupController {
 	private GroupService service;
 	
 	@Autowired
-	private GroupManagingService managingService;	
+	private GroupManagingService managingService;
+	
+	
+	//소모임의 문의 답변 delete(실제로는 update)
+	@GetMapping("/group/answer/delete")
+	public String groupAnswerDelete(HttpServletRequest request, int num) {
+		service.groupAnswerDelete(request, num);
+		return "group/list";
+	}
+	
+	//소모임의 문의 답변 update
+	@PostMapping("/group/answer/update")
+	public String groupAnswerUpdate(HttpServletRequest request, GroupFAQDto dto) {
+		service.groupAnswerUpdate(request, dto);
+		return "group/list";
+	}
+	
+	//소모임의 문의 답변 updateForm이동
+	@GetMapping("/group/answer/updateform")
+	public String groupAnswerUpdateForm(HttpServletRequest request, Model model) {
+		//getData가져오기
+		service.groupFAQGetData(request, model);
+		
+		return "group/answer/updateform";
+	}
+	
+	//소모임 faq의 답변 insert
+	@PostMapping("/group/answer/insert")
+	public String groupAnswerInsert(HttpSession session, GroupFAQDto dto) {
+		//session을 이용해서 id(관리자의 id)를 넣어준다. 지금은 누구나 답변을 달 수 있지만, 나중에는 소모임 관리자만 달 수 있도록 수정
+		String a_writer=(String)session.getAttribute("id");
+		dto.setA_writer(a_writer);
+		//service를 통해 insert를 해준다.
+		service.groupAnswerInsert(dto);
+		
+		return "group/list";
+	}
+	
+	//소모임 FAQ의 답변 INSERTFORM으로
+	@GetMapping("/group/answer/insertform")
+	public String groupAnswerInsertForm(HttpServletRequest request, Model model){
+		
+		//서비스를 통해 답변하려는 글의 정보를 insertform에 DTO라는 이름으로 전해준다.
+		service.groupFAQGetData(request, model);
+		return "group/answer/insertform";		
+	}
 	
 	//소모임 FAQ의 Update
 	@PostMapping("/group/faq/update")
@@ -57,7 +102,7 @@ public class GroupController {
 		String writer=(String)session.getAttribute("id");
 		//id 값만 넣어준다.
 		dto.setQ_writer(writer);
-		service.groupFAQInsert(dto);		
+		service.groupFAQInsert(dto);
 		return "group/list";
 	}
 	
@@ -129,7 +174,7 @@ public class GroupController {
 		return "redirect:/";
 	}
 	
-	//test페이지 불러오면서 후기글 불러오기 위한 service 호출
+	//group페이지 불러오면서 후기글 불러오기 위한 service 호출
 	@GetMapping("/group/group_page")
 	public String test(HttpServletRequest request, Model model) {
 		service.getDetail(request, model);
@@ -138,7 +183,7 @@ public class GroupController {
 		//groupManaging Service에서 정보 가져오기
 		managingService.getGroupData(num, request);
 		//소모임의 후기 글을 가져온다.
-		//service.reviewList(request, model);
+		service.reviewList(request, model);
 		
 		//로그인 여부를 토대로 서비스 실행 여부를 정한다.
 		String id =(String)request.getSession().getAttribute("id");
@@ -180,10 +225,18 @@ public class GroupController {
 		return "group/ajax_review_list";
 	}
 	//새로운 댓글 저장 요청 처리
-	@RequestMapping("group/review_insert")
-	public String reviewInsert(HttpServletRequest request, int ref_group) {
-		service.saveReview(request);
-		return "redirect:/group/detail?num="+ref_group;
+	@RequestMapping("group/comment/review_insert")
+	public String reviewInsert(GroupReviewDto dto, HttpSession session) {
+		//GroupReviewDtos는 필드값과 같은 파라미터를 알아서 가져온다.
+		service.saveReview(dto, session);
+		int num = dto.getGroup_num();
+		return "redirect:/group/group_page?num="+num;
+	}
+	//코멘트 등록하기
+	@GetMapping("/group/comment/comment_insert_form")
+	public String commentInsertForm(HttpServletRequest request, int num) {
+		request.setAttribute("num", num);
+		return "group/comment/comment_insert_form";
 	}
 	
 	//소모임 추가하기

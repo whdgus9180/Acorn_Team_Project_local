@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>소모임 문의사항 수정하기</title>
+<title>소모임 문의사항</title>
 <style>
 	textarea{
 		width: 768px;
@@ -15,13 +15,18 @@
 </head>
 <body>
 	<div class="container">
-		<h2>소모임 게시판 수정 게시판</h2>
-		<form action="${pageContext.request.contextPath}/group/faq/update?num=${dto.num }" method="post">
+		<h2>답변하기</h2>
+		<form action="${pageContext.request.contextPath}/group/answer/insert" method="post">
 			<div class="col-12">
-			      <input type="text" class="form-control" id="q_title" name="q_title" placeholder="제 목" value="${dto.q_title }" >
+				<!-- faq의 글 번호를 알아온다. -->
+				<h4>문의 내용</h4><br />
+				<p style="background-color: lightgrey;">${dto.q_content }</p>
+				<!-- 문의글 번호와 소모임 번호를 동시에 넘겨준다. -->
+				<input type="text" id="num" name="num" value="${dto.num }" hidden/>
 			<div>
-				<label for="q_content"></label>
-				<textarea name="q_content" id="q_content" rows="10">${dto.q_content }</textarea>
+				<!-- 답변 내용 -->
+				<label for="a_content"></label>
+				<textarea name="a_answer" id="a_answer" rows="10"></textarea>
 			</div>	
 			<button type="submit" onclick="submitContents(this)" style="margin-left: 106.2ex;">등록</button>
 			<button type="reset" id="resetBtn">리셋</button>
