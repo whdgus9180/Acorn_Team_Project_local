@@ -26,4 +26,7 @@ public interface GroupDao {
 	public void update(GroupDto dto);
 	//조회수 증가 시키기
 	public void addViewCount(int num);
+	//장르별 소모임
+	public List<GroupDto> getGroupsByGenreAndSearch(int genre, GroupDto dto);
+	
 }

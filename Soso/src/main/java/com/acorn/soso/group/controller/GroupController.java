@@ -287,18 +287,31 @@ public class GroupController {
 	public String upload_form() {
 		return "group/upload_form";
 	}
-	
+
+
 	//소모임 리스트 이동
 	@GetMapping("/group/list")
 	public String list(HttpServletRequest request, Model model) {
-		service.getList(request, model);
-		return "group/list";
+		String genreParam = request.getParameter("genre");
+        if (genreParam != null) {
+            int genre = Integer.parseInt(genreParam);
+            service.getGroupsByGenre(request, model);
+        } else {
+            service.getList(request, model);
+        }
+        return "group/list";
 	}
 	
 	//소모임 조회수 리스트 이동
 	@GetMapping("/group/viewList")
 	public String viewList(HttpServletRequest request, Model model) {
-		service.getViewList(request, model);
+		String genreParam = request.getParameter("genre");
+        if (genreParam != null) {
+            int genre = Integer.parseInt(genreParam);
+            service.getGroupsByGenre(request, model);
+        } else {
+        	service.getViewList(request, model);
+        }	
 		return "group/viewList";
 	}
 	

@@ -15,6 +15,7 @@
     <script src="${path }/resources/js/jquery-1.12.0.min.js"></script>
     <script src="${path }/resources/js/jquery.easing.1.3.js"></script>
     <script src="${path }/resources/js/common.js"></script>
+    <script src="${path }/resources/js/gura_util.js"></script>
 	
 </head>
 <body>
@@ -61,12 +62,12 @@
         <div class="inner-wrap">
             <div class="mate_content_theme">
                 <ul>
-                    <li><a href="#">전체보기</a></li>
-                    <li><a href="#">자기계발</a></li>
-                    <li><a href="#">인문</a></li>
-                    <li><a href="#">경영</a></li>
-                    <li><a href="#">문학</a></li>
-                    <li><a href="#">기타</a></li>
+                    <li><a href="${pageContext.request.contextPath}/group/list">전체보기</a></li>
+			        <li><a href="${pageContext.request.contextPath}/group/list?genre=1">자기계발</a></li>
+			        <li><a href="${pageContext.request.contextPath}/group/list?genre=2">인문</a></li>
+			        <li><a href="${pageContext.request.contextPath}/group/list?genre=3">경제</a></li>
+			        <li><a href="${pageContext.request.contextPath}/group/list?genre=4">문학</a></li>
+			        <li><a href="${pageContext.request.contextPath}/group/list?genre=5">기타</a></li>
                 </ul>
             </div>
             <div class="mate_content_theme">
@@ -76,11 +77,9 @@
                 </ul>
             </div>
         </div>
+
         <div class="inner-wrap">
-        	
-        </div>
-        <div class="inner-wrap">
-        	<c:forEach var="tmp" items="${list}">
+        		<c:forEach var="tmp" items="${list}" >
         		<div class="mate_content_list">
 	               <div class="mate_contents">
 	                   <a href="${pageContext.request.contextPath}/group/group_page?num=${tmp.num }">
@@ -90,18 +89,13 @@
 								<c:set var="now" value="<%= new java.util.Date() %>" />
 								<c:set var="nowDate"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd" /></c:set> 
 								<c:choose>
-								<c:when test="${tmp.deadline_dt lt nowDate}">
-									<div class="deadline_btn">마감</div>
-								</c:when>
-								<c:otherwise>
-								</c:otherwise>
-							</c:choose>	                                  
+									<c:when test="${tmp.deadline_dt lt nowDate}">
+										<div class="deadline_btn">마감</div>
+									</c:when>
+									<c:otherwise>
+									</c:otherwise>
+								</c:choose>	                                  
 	                       </div>
-	                   </a>
-	                   <a href="detail?num=${tmp.num }&condition=${condition}&keyword=${encodedk}">
-                       
-	                   <a href="${pageContext.request.contextPath}/group/group_page?num=${tmp.num }">
-
 	                       <div class="mate_content_text">
 	                           <p class="mate_content_title">${tmp.name}</p>
 	                           <p>모임장 ${tmp.manager_id}</p>
@@ -111,51 +105,55 @@
 	                   </a>
 	               </div>
 	           </div>
-        	</c:forEach>
+        	</c:forEach>	
         </div>
-         <nav>
-         <ul class="pagination">
-            <%--
-               startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
-               &condition=${condition}&keyword=${encodedK}
-             --%>
-            <c:if test="${startPageNum ne 1 }">
-               <li class="page-item">
-                  <a class="page-link animate__animated" href="list?pageNum=${startPageNum-1 }&condition=${condition}&keyword=${encodedK}">Prev</a>
-               </li>
-            </c:if>
-            <c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
-               <li class="page-item ${pageNum eq i ? 'active' : '' }">
-                  <a class="page-link animate__animated" href="list?pageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
-               </li>
-            </c:forEach>
-            <%--
-               마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
-             --%>
-            <c:if test="${endPageNum lt totalPageCount }">
-               <li class="page-item">
-                  <a class="page-link animate__animated" href="list?pageNum=${endPageNum+1 }&condition=${condition}&keyword=${encodedK}">Next</a>
-               </li>
-            </c:if>            
-         </ul>
-      </nav>
+        <div class="inner-wrap">
+			<ul class="pagination justify-content-center">
+				<c:choose>
+					<c:when test="${startPageNum ne 1 }">
+						<li class="page-item">
+		               		<a class="page-link" href="${pageContext.request.contextPath}/group/list?pageNum=${startPageNum - 1}">Prev</a>
+		            	</li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item disabled">
+		               		<a class="page-link" href="javascript:">Prev</a>
+		            	</li>
+					</c:otherwise>
+				</c:choose>
+				<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+					<c:choose>
+						<c:when test="${i eq pageNum }">
+							<li class="page-item active">
+		                  		<a class="page-link" href="${pageContext.request.contextPath}/group/list?pageNum=${i}">${i }</a>
+		               		</li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item">
+		                  		<a class="page-link" href="${pageContext.request.contextPath}/group/list?pageNum=${i}">${i}</a>
+		               		</li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<c:choose>
+					<c:when test="${endPageNum lt totalPageCount }">
+						<li class="page-item">
+		               		<a class="page-link" href="${pageContext.request.contextPath}/group/list?pageNum=${endPageNum + 1}">Next</a>
+		            	</li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item disabled">
+		               		<a class="page-link" href="javascript:">Next</a>
+		            	</li>
+					</c:otherwise>
+				</c:choose>
+		      </ul>
+        </div>
+
       <script>
-      AOS.init();
-         document.querySelectorAll(".pagination a").forEach(function(item){
-            //item 은 a 의 참조값이다 모든 a 요소에 mouseover 이벤트가 발생했을때 실행할 함수 등록
-            item.addEventListener("mouseover", function(e){
-               //애니메이션 클래스를 추가해서 애니메이션이 동작하도록한다.
-               e.target.classList.add("animate__swing");
-            });
-            //item 은 a 의 참조값이다 모든 a 요소에 animationend 이벤트가 발생했을때 실행할 함수 등록
-            item.addEventListener("animationend", function(e){
-               //애니메이션 클래스를 제거해서 다음번에 추가 되면 다시 애니매이션이 동작 되도록한다.
-               e.target.classList.remove("animate__swing");
-            });
-         });
+      	AOS.init();
       </script>
     </section>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-	
 </body>
 </html>
