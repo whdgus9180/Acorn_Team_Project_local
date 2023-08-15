@@ -29,7 +29,12 @@ public class GroupManagingController {
 	}
 	
 	@GetMapping("/group_managing/joinApprove")
-	public String joinApprove(int num, int group_num, HttpServletRequest request) {
+	public String joinApprove(int num, int group_num, HttpServletRequest request, HttpSession session) {
+		String manager_id = (String)session.getAttribute("id");
+		GroupDto dto = service.getGroupData(group_num, request);
+		if(!dto.getManager_id().equals(manager_id)) {
+			throw new DontEqualException("개설하지 않은 소모임 가입 신청자에 대해 접근할 수 없습니다!");
+		}
 		service.joinApprove(num, group_num);
 		request.setAttribute("group_num", group_num);
 		return "group_managing/joinApprove";
@@ -86,7 +91,12 @@ public class GroupManagingController {
 	}
 	
 	@GetMapping("/group_managing/applicantList")
-	public String group_applicantList(int group_num, HttpServletRequest request) {
+	public String group_applicantList(int group_num, HttpServletRequest request, HttpSession session) {
+		String manager_id = (String)session.getAttribute("id");
+		GroupDto dto = service.getGroupData(group_num, request);
+		if(!dto.getManager_id().equals(manager_id)) {
+			throw new DontEqualException("개설하지 않은 소모임의 가입자 정보를 불러올 수 없습니다!");
+		}
 		service.getApplicantList(group_num, request);
 		request.setAttribute("group_num", group_num);
 		return "group_managing/applicantList";
@@ -114,13 +124,23 @@ public class GroupManagingController {
 	}
 	
 	@GetMapping("/group_managing/kick")
-	public String kick(int num, int group_num) {
+	public String kick(int num, int group_num, HttpServletRequest request, HttpSession session) {
+		String manager_id = (String)session.getAttribute("id");
+		GroupDto dto = service.getGroupData(group_num, request);
+		if(!dto.getManager_id().equals(manager_id)) {
+			throw new DontEqualException("개설하지 않은 소모임의 가입자에 대해 접근할 수 없습니다!");
+		}
 		service.kick(num, group_num);
 		return "redirect:/group_managing/memberList?group_num=" + group_num;
 	}
 	
 	@GetMapping("/group_managing/reject")
-	public String reject(int num, int group_num) {
+	public String reject(int num, int group_num, HttpServletRequest request, HttpSession session) {
+		String manager_id = (String)session.getAttribute("id");
+		GroupDto dto = service.getGroupData(group_num, request);
+		if(!dto.getManager_id().equals(manager_id)) {
+			throw new DontEqualException("개설하지 않은 소모임의 가입 신청자에 대해 접근할 수 없습니다!");
+		}
 		service.reject(num);
 		return "redirect:/group_managing/applicantList?group_num=" + group_num;
 	}

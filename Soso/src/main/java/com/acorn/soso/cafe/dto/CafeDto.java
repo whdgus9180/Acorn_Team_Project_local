@@ -25,5 +25,6 @@ public class CafeDto {
 	private int endRowNum;
 	private int prevNum;  //이전글의 글번호
 	private int nextNum;  //다음글의 글번호
+	private int num;  //wook
 	
 }

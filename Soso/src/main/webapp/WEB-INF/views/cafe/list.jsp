@@ -16,7 +16,7 @@
 		<br>	
 		<h2 style="text-align: center">소모임 게시판</h2>
 		<div style="width:100%; text-align:right;">
-		<a href="${pageContext.request.contextPath }/cafe/insertform" class="btn btn-outline-dark" tabindex="-1" role="small-button" aria-disabled="true" >글 쓰기</a>
+		<a href="${pageContext.request.contextPath }/cafe/insertform?num=${num}" class="btn btn-outline-dark" tabindex="-1" role="small-button" aria-disabled="true" >글 쓰기</a>
 		</div>
 		<br>
 		<table class="table">
@@ -32,10 +32,10 @@
 			<tbody>
 				<c:forEach var="tmp" items="${list }">
 					<tr>
-						<td>${tmp.num }</td>
+						<td>${tmp.comu_num }</td>
 						
 						<td>
-							<a style="color: black;" class="text-decoration-none"  href="detail?num=${tmp.num }&condition=${condition}&keyword=${encodedK}">(말머리)${tmp.title }</a>
+							<a style="color: black;" class="text-decoration-none"  href="detail?comu_num=${tmp.comu_num }&condition=${condition}&keyword=${encodedK}&group_num=${num}">(말머리)${tmp.title }</a>
 						</td>
 						<td>${tmp.writer }</td>
 						<td style="text-align: center">${tmp.viewCount }</td>
@@ -47,7 +47,7 @@
 		<br />
 				<ul class="pagination" style="justify-content: center;">
 					<%--
-						startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
+						startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. ㅇㅇ
 						&condition=${condition}&keyword=${encodedK}
 					 --%>
 					<c:if test="${startPageNum ne 1 }">

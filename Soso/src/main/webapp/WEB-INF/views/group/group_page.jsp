@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +22,10 @@
 			<div class="p-2"><strong>장소 : </strong>${dto.meeting_loc }</div>
 			<div class="p-2"><strong>시간 : </strong>${dto.meeting_time }</div>
 			<div class="p-2"><strong>인원 : </strong>${dto.max_people }명</div>
+			<div class="p-2"><strong>신청 기한 : </strong>
+	         <fmt:parseDate value="${dto.deadline_dt}" var="deadline_dt" pattern="yyyy-MM-dd"></fmt:parseDate>
+	         <fmt:formatDate value="${deadline_dt}" pattern="yyyy-MM-dd" />		
+			</div>
 		</div>
 		
 		<div class="d-flex mb-3">
@@ -51,12 +56,21 @@
 					</div>
 					<input type="hidden" name="jjimNum" id="jjimNum" value="${dto.num }" hidden />
 					<button id="jjim" hidden>찜하기 버튼 테스트</button>
-					<c:choose>
-						<c:when test="${knowJoin == -1 || empty knowJoin}">
-							<button type="button" class="btn btn-outline-primary"><a href="${pageContext.request.contextPath}/group/group_in?num=${dto.num }">가입하기</a></button>
+						<c:set var="now" value="<%= new java.util.Date() %>" />
+						<c:set var="nowDate"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd" /></c:set> 
+						<c:choose>
+						<c:when test="${dto.deadline_dt lt nowDate}">
+							<button type="button" class="btn btn-secondary" disabled>신청 마감</button>
 						</c:when>
 						<c:otherwise>
-							<button type="button" class="btn btn-outline-primary cancle" id="cancleBtn" name="cancleBtn">신청 취소</button>
+							<c:choose>
+								<c:when test="${knowJoin == -1 || empty knowJoin}">
+									<button type="button" class="btn btn-outline-primary"><a href="${pageContext.request.contextPath}/group/group_in?num=${dto.num }">가입하기</a></button>
+								</c:when>
+								<c:otherwise>
+									<button type="button" class="btn btn-outline-primary cancle" id="cancleBtn" name="cancleBtn">신청 취소</button>
+								</c:otherwise>
+							</c:choose>
 						</c:otherwise>
 					</c:choose>
 				</div>

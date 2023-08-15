@@ -24,10 +24,10 @@
 	      </ul>
 	   </nav>
       <div class="main_container">
-          <img src="${pageContext.request.contextPath}/resources/images/${dto.imagePath}"/>   
+          <img src="${pageContext.request.contextPath}${dto.imagePath}"/>   
           <div class="card mb-4">
               <div class="card-body">
-                  <p class="card-title fs-3"><strong>${tmp.name}</strong></p>
+                  <p class="card-title"><strong>${tmp.name}</strong></p>
                   <p class="card-text">${tmp.caption}</p>
               </div>
                    <ul class="list-group list-group-flush">

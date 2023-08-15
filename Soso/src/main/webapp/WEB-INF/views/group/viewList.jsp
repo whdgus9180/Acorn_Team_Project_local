@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -10,6 +11,7 @@
 	<link rel="stylesheet" href="${path }/resources/css/common.css" type="text/css">
     <link rel="stylesheet" href="${path }/resources/css/group_list.css" type="text/css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="${path }/resources/js/jquery-1.12.0.min.js"></script>
     <script src="${path }/resources/js/jquery.easing.1.3.js"></script>
     <script src="${path }/resources/js/common.js"></script>
@@ -44,6 +46,17 @@
             <h3 class="title black" data-aos="fade-up"
             data-aos-offset="300"
             data-aos-easing="ease-in-sine">소모임 찾기</h3>
+            <div class="theme_search">
+            	<form action="list" method="get">
+            	<input type="text" placeholder="type.." value="${keyword}" name="keyword" />
+            		<select name="condition" id="condition">
+            			<option value="name_caption" ${condition eq 'name_caption' ? 'selected' : '' }>모임명 +내용</option>
+            			<option value="name"  ${condition eq 'name' ? 'selected' : '' }>모임명 </option>
+            			<option value="writer"  ${condition eq 'manager_id' ? 'selected' : '' }>모임장</option>
+            		</select>
+            	<button type="submit">검색</button>
+            	</form>
+            </div>
         </div>
         <div class="inner-wrap">
             <div class="mate_content_theme">
@@ -63,29 +76,25 @@
             </div>
         </div>
         <div class="inner-wrap">
-        	<div class="theme_search">
-            	<form action="list" method="get">
-            	<input type="text" value="${keyword}" name="keyword" />
-            		<select name="condition" id="condition">
-            			<option value="name_caption" ${condition eq 'name_caption' ? 'selected' : '' }>모임명 +내용</option>
-            			<option value="name"  ${condition eq 'name' ? 'selected' : '' }>모임명 </option>
-            			<option value="writer"  ${condition eq 'manager_id' ? 'selected' : '' }>모임장</option>
-            		</select>
-            	<button type="submit">검색</button>
-            	</form>
-            </div>
-        </div>
-        <div class="inner-wrap">
         	<c:forEach var="tmp" items="${viewList}">
         		<div class="mate_content_list">
 	               <div class="mate_contents">
 	                   <a href="${pageContext.request.contextPath}/group/group_page?num=${tmp.num }">
 	                       <div class="mate_content_img">
 	                           <img src="${path }/resources/images/main/001.jpg" alt="테스트이미지1">
+	                           	<!-- 신청 마감일시 마감버튼 보이게 -->
+								<c:set var="now" value="<%= new java.util.Date() %>" />
+								<c:set var="nowDate"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd" /></c:set> 
+								<c:choose>
+								<c:when test="${tmp.deadline_dt lt nowDate}">
+									<div class="deadline_btn">마감</div>
+								</c:when>
+								<c:otherwise>
+								</c:otherwise>
+							</c:choose>	
 	                       </div>
 	                   </a>
 	                   <a href="detail?num=${tmp.num }&condition=${condition}&keyword=${encodedk}">
-                       
 	                   <a href="${pageContext.request.contextPath}/group/group_page?num=${tmp.num }">
 
 	                       <div class="mate_content_text">
