@@ -1,11 +1,15 @@
 package com.acorn.soso.group_managing.service;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,6 +19,9 @@ import com.acorn.soso.group_managing.dto.GroupManagingDto;
 
 @Service
 public class GroupManagingServiceImpl implements GroupManagingService{
+	
+	@Value("${file.location}")
+	private String fileLocation;
 	
 	@Autowired
 	GroupManagingDao dao;
@@ -30,6 +37,36 @@ public class GroupManagingServiceImpl implements GroupManagingService{
 		GroupDto dto = dao.getGroupData(num);
 		request.setAttribute("dto", dto);
 		return dto;
+	}
+	
+	@Override
+	public Map<String, Object> saveGroupImage(HttpServletRequest request, MultipartFile mFile) {
+		  //원본 파일명
+	      String orgFileName=mFile.getOriginalFilename();
+	      
+	      //절대로 중복되지 않는 유일한 파일명을 구성한다.
+	      String saveFileName=UUID.randomUUID().toString()+orgFileName;
+	      // 파일을 저장할 폴더까지의 실제경로
+	      String realPath=request.getServletContext().getRealPath("/resources/upload");
+	      // upload 폴더가 존재하지 않을경우 만들기 위한 File 객체 생성
+	      File upload=new File(realPath);
+	      if(!upload.exists()) {//만일 존재 하지 않으면
+	         upload.mkdir(); //만들어준다.
+	      }
+	      try {
+	         //파일을 저장할 전체 경로를 구성한다.  
+	         String savePath=realPath+File.separator+saveFileName;
+	         //임시폴더에 업로드된 파일을 원하는 파일을 저장할 경로에 전송한다.
+	         mFile.transferTo(new File(savePath));
+	      }catch(Exception e) {
+	         e.printStackTrace();
+	      }
+	      
+	      // json 문자열을 출력하기 위한 Map 객체 생성하고 정보 담기 
+	      Map<String, Object> map=new HashMap<String, Object>();
+	      map.put("imagePath", "/resources/upload/"+saveFileName);
+	      
+	      return map;
 	}
 	
 	@Override
@@ -132,4 +169,6 @@ public class GroupManagingServiceImpl implements GroupManagingService{
 		System.out.println(list.size());
 		request.setAttribute("list", list);	
 	}
+
+	
 }

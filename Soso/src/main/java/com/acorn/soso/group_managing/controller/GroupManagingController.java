@@ -1,5 +1,7 @@
 package com.acorn.soso.group_managing.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -7,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.acorn.soso.exception.DontEqualException;
 import com.acorn.soso.group.dto.GroupDto;
@@ -61,6 +65,15 @@ public class GroupManagingController {
 		}
 		return "group_managing/group_updateForm";
 	}
+	
+	//ajax 프로필 사진 업로드 요청처리
+	@PostMapping("/group_managing/image_upload")
+	@ResponseBody
+	public Map<String, Object> ImageUpload(HttpServletRequest request, MultipartFile image){
+		//서비스를 이용해서 이미지를 upload 폴더에 저장하고 리턴되는 Map을 리턴해서 json 문자열 응답하기
+		return service.saveGroupImage(request, image);
+	};
+	
 	
 	@PostMapping("/group_managing/group_update")
 	public String group_update(GroupDto dto, HttpServletRequest request, HttpSession session) {

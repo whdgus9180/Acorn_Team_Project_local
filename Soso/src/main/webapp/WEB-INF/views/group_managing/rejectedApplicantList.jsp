@@ -28,7 +28,7 @@
 			<div id="card">
 				<div class="card-box">
 					<div class="card-left">
-						<div><img class="card-image" src="https://plus.unsplash.com/premium_photo-1667251758255-514ef43844fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Ym9va3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=400&q=60"/></div>
+						<div><img class="card-image" src="${pageContext.request.contextPath}${tmp.profile}"/></div>
 					</div>
 					<div class="card-right">
 						<div id="card-title">${tmp.user_id}</div>

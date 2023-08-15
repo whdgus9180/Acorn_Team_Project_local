@@ -57,13 +57,18 @@
                               <option value = 0>온라인</option>
                               <option value = 1>오프라인</option>
                     </select>
-                    <label class="select_box" for="image" style="display:flex; align-items:center; justify-content:space-between">소모임의 이미지를 선택해주세요
-                    	<button type="javascript:" 
-                    		style="width: 65px; height: 27px; color: white; background-color: rgb(195, 181, 157); border:none; border-radius: 15px;">file</button>
-                    </label>
-                    <input id="image" name="image" type="file" style="display: none;"/>
+                    <div class="select_box" style="display:flex; align-items:center; justify-content:space-between">소모임의 이미지를 선택해주세요
+                    	<button id="image_btn" style="width: 65px; height: 27px; color: white;
+                    				 background-color: rgb(195, 181, 157); border:none; border-radius: 15px;">file</button>
+                    </div>
+                    <input id="image" name="image" type="file" style="display: none;"
+                    	accept=".jpg, .png, .gif, .JPG, .JPEG, .jpeg"/>
                </div>
                <script>
+		            document.querySelector("#image_btn").addEventListener("click", (e) => {
+						e.preventDefault();
+		                document.querySelector("#image").click()
+					});
 					document.querySelector("#image").addEventListener("change", (e) => {
 						const files = e.target.files;
 						if(files.length > 0){
@@ -75,10 +80,17 @@
 							reader.readAsDataURL(files[0]);
 						}
 					});
+					document.querySelector("#on_off").addEventListener("change", (e) => {
+						if(e.target.value == 0){
+							document.querySelector("#meeting_loc").value = "온라인"
+						} else {
+							document.querySelector("#meeting_loc").value = ""
+						}
+					});
 				</script>
                <div class="loc_time">
 				<div>
-					<input class="form_input" type="text" name="meeting_loc" placeholder="모임 장소"/>
+					<input class="form_input" id="meeting_loc" type="text" name="meeting_loc" placeholder="모임 장소"/>
 				</div>
 				<div>
 					<input id="meeting_time" class="form_input" type="text" name="meeting_time" placeholder="모임 시간"/>

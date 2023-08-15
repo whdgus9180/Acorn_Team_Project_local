@@ -50,8 +50,9 @@
 		FROM   
 		   (SELECT result1.*, ROWNUM as rnum
 		   FROM
-		      (SELECT num, user_id, intro, join_dt
-		      FROM group_join_tb
+		      (SELECT group_join_tb.*, users.profile
+			   FROM group_join_tb
+			   JOIN users ON group_join_tb.user_id = users.id
 		      WHERE group_num = #{group_num} AND isJoin = 0
 		      ORDER BY num DESC) result1)
    	</select>
@@ -61,8 +62,9 @@
 		FROM   
 		   (SELECT result1.*, ROWNUM as rnum
 		   FROM
-		      (SELECT num, user_id, intro, kick_dt
-		      FROM group_join_tb
+		      (SELECT group_join_tb.*, users.profile
+			   FROM group_join_tb
+			   JOIN users ON group_join_tb.user_id = users.id
 		      WHERE group_num = #{group_num} AND isJoin = 4
 		      ORDER BY num DESC) result1)
    	</select>
@@ -71,8 +73,9 @@
 		FROM   
 		   (SELECT result1.*, ROWNUM as rnum
 		   FROM
-		      (SELECT num, user_id, intro, request_dt
-		      FROM group_join_tb
+		      (SELECT group_join_tb.*, users.profile
+			   FROM group_join_tb
+			   JOIN users ON group_join_tb.user_id = users.id
 		      WHERE group_num = #{group_num} AND isJoin = 1
 		      ORDER BY num DESC) result1)
    	</select>
@@ -81,8 +84,9 @@
 		FROM   
 		   (SELECT result1.*, ROWNUM as rnum
 		   FROM
-		      (SELECT num, user_id, intro, request_dt
-		      FROM group_join_tb
+		      (SELECT group_join_tb.*, users.profile
+			   FROM group_join_tb
+			   JOIN users ON group_join_tb.user_id = users.id
 		      WHERE group_num = #{group_num} AND isJoin = 2
 		      ORDER BY num DESC) result1)
    	</select>

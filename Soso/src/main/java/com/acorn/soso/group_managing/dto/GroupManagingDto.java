@@ -21,4 +21,5 @@ public class GroupManagingDto {
 	private String request_dt;
 	private String join_dt;
 	private String kick_dt;
+	private String profile;
 }
