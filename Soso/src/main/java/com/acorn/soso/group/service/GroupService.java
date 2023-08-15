@@ -79,6 +79,9 @@ public interface GroupService {
 	
 	public void getData(HttpServletRequest request);
 	
+	// 장르별로 소모임 데이터를 가져오는 메서드
+    public void getGroupsByGenre(HttpServletRequest request, Model model);
+	
 
 	
 }

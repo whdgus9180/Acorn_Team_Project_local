@@ -3,8 +3,6 @@ package com.acorn.soso.group.service;
 import java.io.File;
 import java.net.URLEncoder;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +25,7 @@ import com.acorn.soso.group.dto.GroupFAQDto;
 import com.acorn.soso.group.dto.GroupJoinDto;
 import com.acorn.soso.group.dto.GroupReviewDto;
 import com.acorn.soso.group.dto.JjimDto;
+
 
 @Service
 public class GroupServiceImpl implements GroupService{
@@ -122,10 +121,66 @@ public class GroupServiceImpl implements GroupService{
 	      model.addAttribute("endPageNum", endPageNum);
 	      model.addAttribute("totalPageCount", totalPageCount);
 	      model.addAttribute("totalRow", totalRow);
-
-		
-		
 	}
+	
+	@Override
+    public void getGroupsByGenre(HttpServletRequest request, Model model) {
+        final int PAGE_ROW_COUNT = 8;
+        final int PAGE_DISPLAY_COUNT = 5;
+
+        int pageNum = 1;
+        String strPageNum = request.getParameter("pageNum");
+        if (strPageNum != null) {
+            pageNum = Integer.parseInt(strPageNum);
+        }
+
+        int genre = Integer.parseInt(request.getParameter("genre"));
+        String keyword=request.getParameter("keyword");
+		String condition=request.getParameter("condition");
+		if(keyword==null) {
+			keyword="";
+		   	condition="";
+		}
+        String encodedK = URLEncoder.encode(keyword);
+
+        GroupDto dto = new GroupDto();
+        dto.setStartRowNum((pageNum - 1) * PAGE_ROW_COUNT + 1);
+        dto.setEndRowNum(pageNum * PAGE_ROW_COUNT);
+
+        if (!keyword.equals("")) {
+            if (condition.equals("name_caption")) {
+                dto.setName(keyword);
+                dto.setCaption(keyword);
+            } else if (condition.equals("name")) {
+                dto.setName(keyword);
+            } else if (condition.equals("writer")) {
+                dto.setManager_id(keyword);
+            }
+        }
+
+        List<GroupDto> list = dao.getGroupsByGenreAndSearch(genre, dto);
+
+        int totalRow = dao.getCount(dto);
+
+        int startPageNum = 1 + ((pageNum - 1) / PAGE_DISPLAY_COUNT) * PAGE_DISPLAY_COUNT;
+        int endPageNum = startPageNum + PAGE_DISPLAY_COUNT - 1;
+
+        int totalPageCount = (int) Math.ceil(totalRow / (double) PAGE_ROW_COUNT);
+        if (endPageNum > totalPageCount) {
+            endPageNum = totalPageCount;
+        }
+
+        model.addAttribute("list", list);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("encodedK", encodedK);
+        model.addAttribute("condition", condition);
+        model.addAttribute("pageNum", pageNum);
+        model.addAttribute("startPageNum", startPageNum);
+        model.addAttribute("endPageNum", endPageNum);
+        model.addAttribute("totalPageCount", totalPageCount);
+        model.addAttribute("totalRow", totalRow);
+        model.addAttribute("genre", genre);
+    }
 
 	@Override
 	public void saveImage(GroupDto dto, HttpServletRequest request) {

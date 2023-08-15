@@ -1,6 +1,8 @@
 package com.acorn.soso.group.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,5 +67,13 @@ public class GroupDaoImpl implements GroupDao{
 	@Override
 	public List<GroupDto> getViewList(GroupDto dto) {
 	    return session.selectList("group.getViewList", dto);
+    }
+
+	@Override
+    public List<GroupDto> getGroupsByGenreAndSearch(int genre, GroupDto dto) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("genre", genre);
+        params.put("dto", dto);
+        return session.selectList("group.getGroupsByGenreAndSearch", params);
     }
 }
