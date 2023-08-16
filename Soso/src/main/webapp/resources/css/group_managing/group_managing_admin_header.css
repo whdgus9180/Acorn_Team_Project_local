@@ -13,11 +13,11 @@ a{
 }
 
 /* 상단 메뉴바 위 '내 소모임 관리하기', '개설하기' 를 포함하는 박스 */
-#header{
+#admin_header{
     border-bottom: 2px solid black;
 }
 
-#header .title{
+#admin_header .title{
     font-size: 30px;
     margin-top: 160px;
     margin-left: 15px;
@@ -25,14 +25,14 @@ a{
     font-weight: 700;
 }
 
-#header .linkBox {
+#admin_header .linkBox {
     display: flex;
     justify-content: end;
     margin-right: 10px;
     margin-bottom: 10px;
 }
 
-#header .link{
+#admin_header .link{
     text-decoration: underline;
     font-weight: 700;
     font-size: 20px;

@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>/group/user_main.jsp</title>
-	<link rel="stylesheet" href="${path }/resources/css/common.css" type="text/css">
-    <link rel="stylesheet" href="${path }/resources/css/group_list.css" type="text/css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/group_managing_user_main.css" />
@@ -17,13 +16,13 @@
 		<jsp:param value="home" name="current"/>
 	</jsp:include>
 	
-    <main id="main-banner" class="main-banner-01">
+    <main id="main-banner" class="main-banner-02">
         <div class="inner-wrap">
             <div class="title">
-                <h2>북메이트 찾기</h2>
+                <h2>나의 북메이트</h2>
                 <p>
-			                    깊게 읽고 사유하는,<br>
-			                    북메이트와 함께 취향의 독서를 나누세요.
+			                    가입한 북메이트를<br>
+		                             확인해보세요
                 </p>
             </div>
             <div class="indicator">

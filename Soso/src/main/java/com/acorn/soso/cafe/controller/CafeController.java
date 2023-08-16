@@ -73,9 +73,9 @@ public class CafeController {
 	}	
 	
 	@GetMapping("/cafe/list")
-	public String list(HttpServletRequest request,int num, Model model) {
+	public String list(HttpServletRequest request, int num, Model model) {
 		//서비스에 HttpServletRequest 객체를 전달해서 응답에 필요한 데이타가 담기도록 하고 
-		service.getList(request, model);
+		service.getList(request, model, num);
 		//group_num 이라는 파라미터 변수 맵핑
 		request.setAttribute("num", num);
 		//view page 로 forward 이동해서 응답하기 

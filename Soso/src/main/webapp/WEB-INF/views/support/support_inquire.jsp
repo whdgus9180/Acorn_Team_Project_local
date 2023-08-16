@@ -50,33 +50,27 @@
 					</li>
 				</ul>
 				<h3>1:1 문의하기</h3>
-				<form action="" class="area_form">
+				<form action="${pageContext.request.contextPath}/support/support_inquire_submit" class="area_form" method="post">
 					<div class="row-wrap">
 						<div class="input_name">
-							<h4 class="label">이름</h4>
-							<input type="text" class="name" placeholder="이름을 입력해주세요..." />
+							<h4 class="label">ID</h4>
+							<input type="text" class="writer" name="writer" value="${dto.id}" readonly />
 						</div>
-						<div class="input_phone">
-							<h4 class="label">연락처</h4>
-							<input type="tel" class="phone" placeholder="연락처를 입력해주세요..."/>
-						</div>
-					</div>
-					<div class="row-wrap">
 						<div class="input_email">
 							<h4 class="label">이메일 *</h4>
-							<input type="text" class="email" placeholder="이메일을 입력해주세요" />
+							<input type="text" class="email" name="email" value="${dto.email}" readonly />
 							<p class="tip_txt">* 답변 받을 이메일 주소를 확인해 주세요.</p>
 						</div>
 					</div>
 					<div class="row-wrap">
 						<div class="input_title">
 							<h4 class="label">제목</h4>
-							<select name="" id="" class="title_select">
+							<select name="category" id="category" class="title_select">
 								<option value selected="selected" class="inquire_select">문의분류</option>
-								<option value="">회원</option>
-								<option value="">모임신청</option>
-								<option value="">모임개설</option>
-								<option value="">기타</option>
+								<option value="1">회원</option>
+								<option value="2">모임신청</option>
+								<option value="3">모임개설</option>
+								<option value="0">기타</option>
 							</select>
 							<input type="text" class="inquire_title" name="title" placeholder="제목을 입력해주세요" />
 						</div>
@@ -88,30 +82,14 @@
 						</div>
 					</div>
 					<div class="row-wrap">
-						<div class="input_file">
-							<h4 class="label">파일첨부</h4>
-							<div class="file_box">
-								<label for="" class="btn_upload">파일선택</label>
-								<input type="text" class="upload_file" value="파일을 업로드 해주세요." disabled/>
-							</div>
-							<div class="file_wrap">
-								<p class="tip_file">* 파일 용량은 최대
-								2MB, 5개까지 등록이 가능합니다.</p>
-							</div>
-						</div>
-					</div>
-					<div class="row-wrap">
 						<div class="input_agreement">
 							<h4 class="label">
-								"개인정보"
-								<br />
-								"수집 및"
-								<br />
-								"이용 동의 *"
+								개인 정보 수집
+								<div style="margin-left:13px">이용 동의</div>
 							</h4>
 							<label>
-							<input class="privacy_check" type="checkbox" name="privacy" value="1" />
-							"작성해주신 이메일, 전화번호는 문의내용 확인 및 답변처리 용도로 쓰이며 3년간 보관 후 파기합니다."
+							<input class="privacy_check" type="checkbox" name="confirm" value="1" />
+								"작성해주신 이메일, 전화번호는 문의내용 확인 및 답변처리 용도로 쓰이며 3년간 보관 후 파기합니다."
 							</label>
 						</div>
 					</div>
