@@ -16,31 +16,33 @@
 	<jsp:include page="/WEB-INF/views/include/navbar.jsp">
 		<jsp:param value="home" name="current"/>
 	</jsp:include>
-	<main id="main-banner" class="main-banner-02">
+	
+    <main id="main-banner" class="main-banner-01">
         <div class="inner-wrap">
             <div class="title">
-                <h2>나의 북메이트</h2>
+                <h2>북메이트 찾기</h2>
                 <p>
-			                   참여중인 북메이트를<br>
-			                   확인하는 게시판
+			                    깊게 읽고 사유하는,<br>
+			                    북메이트와 함께 취향의 독서를 나누세요.
                 </p>
-                <a href="${pageContext.request.contextPath}/cafe/list">게시판</a>
             </div>
             <div class="indicator">
                 <div class="home circle">
-                    <a href="../../index.html" title="메인페이지가기"><img src="${path }/resources/images/sub/icon_home.svg" alt="홈버튼이미지"></a>
+                    <a href="#" title="메인페이지가기"><img src="${path }/resources/images/sub/icon_home.svg" alt="홈버튼이미지"></a>
                 </div>
-                <div class="main-menu circle">MY BOOKMATE</div>
+                <div class="main-menu circle">BOOKMATE</div>
+
             </div>
         </div>
     </main>
+    
     <!-- 로그인된 user 가 가입된 소모임 리스트 불러오기 -->
 	<div class="container">     
 	    <div class="row">
 	        <c:forEach var="tmp" items="${list }">
                 <div class="col-sm-6 col-md-4 col-lg-3 p-1 mb-3">
                     <div class="card mb-4">
-                        <a href="${pageContext.request.contextPath}/group_managing/userdetail">
+                        <a href="${pageContext.request.contextPath}/group_managing/group_userdetail?num=${tmp.num}">
                             <div class="img-wrapper">
                                 <img class="card-img-top" src="${pageContext.request.contextPath }${tmp.img_path}"/>
                             </div>
@@ -50,16 +52,17 @@
                             <p class="card-text">${tmp.caption}</p>
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item card-info"><span class="info-label">모임장:</span> ${tmp.manager_id}</li>
-                            <li class="list-group-item card-info"><span class="info-label">모임 시간:</span> ${tmp.meeting_time}</li>
-                            <li class="list-group-item card-info"><span class="info-label">모임 장소:</span> ${tmp.meeting_loc}</li>
+                            <li class="list-group-item card-info"><span class="info-label">모임장 :</span> ${tmp.manager_id}</li>
+                            <li class="list-group-item card-info"><span class="info-label">모임 시간 :</span> ${tmp.meeting_time}</li>
+                            <li class="list-group-item card-info"><span class="info-label">모임 장소 :</span> ${tmp.meeting_loc}</li>
+                            <li class="list-group-item card-info"><span class="info-label">가입 인원 :</span> ${tmp.now_people}</li>
                         </ul>
                     </div>
                 </div>
 	        </c:forEach>
 	    </div>
 	</div>
-	<!-- 페이지 이동을 위한  -->
+	<!-- 페이지 이동을 위한  --> 
     <nav>
        <ul class="pagination justify-content-center">
           <c:choose>

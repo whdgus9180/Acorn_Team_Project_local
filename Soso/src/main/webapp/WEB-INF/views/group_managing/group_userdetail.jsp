@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,19 +23,20 @@
 	  	 		 <a href="javascript:deleteConfirm()">모임 탈퇴</a>
 	  	 	 </li>
 	      </ul>
-	   </nav>
+	   </nav>   
       <div class="main_container">
-          <img src="${pageContext.request.contextPath}${dto.imagePath}"/>   
+          <img src="${pageContext.request.contextPath}${tmp.img_path}"/>   
           <div class="card mb-4">
               <div class="card-body">
                   <p class="card-title"><strong>${tmp.name}</strong></p>
                   <p class="card-text">${tmp.caption}</p>
               </div>
-                   <ul class="list-group list-group-flush">
-                      <li class="list-group-item"><strong>모임장  : ${tmp.manager_id}</strong></li>
-                      <li class="list-group-item"><strong>모임 날짜  : ${tmp.meeting_time}</strong></li>
-                      <li class="list-group-item"><strong>모임 장소  : ${tmp.meeting_loc }</strong></li>
-                  </ul>
+              <ul class="list-group list-group-flush">
+                  <li class="list-group-item card-info"><span class="info-label">모임장 :</span> ${tmp.manager_id}</li>
+                  <li class="list-group-item card-info"><span class="info-label">모임 시간 :</span> ${tmp.meeting_time}</li>
+                  <li class="list-group-item card-info"><span class="info-label">모임 장소 :</span> ${tmp.meeting_loc}</li>
+                  <li class="list-group-item card-info"><span class="info-label">가입 인원 :</span> ${tmp.now_people}</li>
+              </ul>
            </div>
       </div>   	         
 	</div>

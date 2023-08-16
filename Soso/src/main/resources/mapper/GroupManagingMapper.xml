@@ -17,10 +17,10 @@
 		ORDER BY num DESC
    	</select>
    	<select id="getGroupList2" parameterType="String" resultType="groupDto">
-		SELECT group_tb.*, group_join_tb.user_id
-		FROM group_tb
-		INNER JOIN group_join_tb ON group_tb.num = group_join_tb.group_num
-		where group_join_tb.user_id = #{user_id} 
+	    SELECT group_tb.*, group_join_tb.user_id
+	    FROM group_tb
+	    INNER JOIN group_join_tb ON group_tb.num = group_join_tb.group_num
+	    WHERE group_join_tb.user_id = #{user_id} 
    	</select>
    	
    	<select id="getGroupData" parameterType="int" resultType="groupDto">
