@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="path" value="${pageContext.request.contextPath}"/>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,11 +12,29 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/group_managing/group_managing_admin_main_card.css">
 </head>
 <body>
-    <jsp:include page="/WEB-INF/views/include/navbar_c.jsp">
+    <jsp:include page="/WEB-INF/views/include/navbar.jsp">
         <jsp:param value="login" name="current"/>
     </jsp:include>
-	<div class="container">
-		<div id="header">
+    <main id="main-banner" class="main-banner-03">
+        <div class="inner-wrap">
+            <div class="title">
+                <h2>북메이트 관리</h2>
+                <p>
+			                    나의 북메이트를 <br>
+		                             관리해보세요
+                </p>
+            </div>
+            <div class="indicator">
+                <div class="home circle">
+                    <a href="#" title="메인페이지가기"><img src="${path }/resources/images/sub/icon_home.svg" alt="홈버튼이미지"></a>
+                </div>
+                <div class="main-menu circle">BOOKMATE</div>
+
+            </div>
+        </div>
+    </main>
+	<div class="inner-wrap">
+		<div id="admin_header">
 			<div class="title">내 소모임 관리하기</div>
 			<div class="linkBox">
 				<a class="link" href="${pageContext.request.contextPath}/group_managing/group_insertForm">개설하기</a>
@@ -60,5 +79,6 @@
 			</c:forEach>
 		</div>
 	</div>
+	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>

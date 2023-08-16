@@ -25,17 +25,17 @@
 	      </ul>
 	   </nav>   
       <div class="main_container">
-          <img src="${pageContext.request.contextPath}${tmp.img_path}"/>   
+          <img src="${pageContext.request.contextPath}${dto.img_path}"/>   
           <div class="card mb-4">
               <div class="card-body">
-                  <p class="card-title"><strong>${tmp.name}</strong></p>
-                  <p class="card-text">${tmp.caption}</p>
+                  <p class="card-title"><strong>${dto.name}</strong></p>
+                  <p class="card-text">${dto.caption}</p>
               </div>
               <ul class="list-group list-group-flush">
-                  <li class="list-group-item card-info"><span class="info-label">모임장 :</span> ${tmp.manager_id}</li>
-                  <li class="list-group-item card-info"><span class="info-label">모임 시간 :</span> ${tmp.meeting_time}</li>
-                  <li class="list-group-item card-info"><span class="info-label">모임 장소 :</span> ${tmp.meeting_loc}</li>
-                  <li class="list-group-item card-info"><span class="info-label">가입 인원 :</span> ${tmp.now_people}</li>
+                  <li class="list-group-item card-info"><span class="info-label">모임장 :</span> ${dto.manager_id}</li>
+                  <li class="list-group-item card-info"><span class="info-label">모임 시간 :</span> ${dto.meeting_time}</li>
+                  <li class="list-group-item card-info"><span class="info-label">모임 장소 :</span> ${dto.meeting_loc}</li>
+                  <li class="list-group-item card-info"><span class="info-label">가입 인원 :</span> ${dto.now_people}</li>
               </ul>
            </div>
       </div>   	         
@@ -109,7 +109,7 @@
 		function deleteConfirm(){
 			const isDelete=confirm("${id} 님 탈퇴 하시겠습니까?");
 			if(isDelete){
-				location.href="${pageContext.request.contextPath}/group_managing/dropOut";
+				location.href="${pageContext.request.contextPath}/group_managing/group_userdropOut";
 			}
 		}
 	</script>
