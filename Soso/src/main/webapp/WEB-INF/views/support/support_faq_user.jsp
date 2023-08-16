@@ -67,66 +67,16 @@
 			<h3 class="faq">회원(3)</h3>
 			<div class="tab_content">
 			<ul>
-				<li class="dropbox">
-					<div class="title_area">
-						<span class="category">회원</span>
-						<h5 class="detail">회원가입의 조건이 있나요?</h5>
-					</div>
-				</li>
-				<li class="dropbox">
-					<div class="title_area">
-						<span class="category">회원</span>
-						<h5 class="detail">회원가입의 조건이 있나요?</h5>
-					</div>
-				</li>
-				<li class="dropbox">
-					<div class="title_area">
-						<span class="category">회원</span>
-						<h5 class="detail">회원가입의 조건이 있나요?</h5>
-					</div>
-				</li>
-				<li class="dropbox">
-					<div class="title_area">
-						<span class="category">회원</span>
-						<h5 class="detail">회원가입의 조건이 있나요?</h5>
-					</div>
-				</li>
-				<li class="dropbox">
-					<div class="title_area">
-						<span class="category">회원</span>
-						<h5 class="detail">회원가입의 조건이 있나요?</h5>
-					</div>
-				</li>
-				<li class="dropbox">
-					<div class="title_area">
-						<span class="category">회원</span>
-						<h5 class="detail">회원가입의 조건이 있나요?</h5>
-					</div>
-				</li>
-				<li class="dropbox">
-					<div class="title_area">
-						<span class="category">회원</span>
-						<h5 class="detail">회원가입의 조건이 있나요?</h5>
-					</div>
-				</li>
-				<li class="dropbox">
-					<div class="title_area">
-						<span class="category">회원</span>
-						<h5 class="detail">회원가입의 조건이 있나요?</h5>
-					</div>
-				</li>
-				<li class="dropbox">
-					<div class="title_area">
-						<span class="category">회원</span>
-						<h5 class="detail">회원가입의 조건이 있나요?</h5>
-					</div>
-				</li>
-				<li class="dropbox">
-					<div class="title_area">
-						<span class="category">회원</span>
-						<h5 class="detail">회원가입의 조건이 있나요?</h5>
-					</div>
-				</li>
+				<c:forEach var="tmp" items="${list }">
+					<c:if test="${tmp.category eq '회원'}">
+					<li class="dropbox">
+						<div class="title_area">
+							<span class="category">${tmp.category}</span>
+							<h5 class="detail">${tmp.question }</h5>
+						</div>
+					</li>
+					</c:if>
+				</c:forEach>
 			</ul>
 			</div>
 		</div>
