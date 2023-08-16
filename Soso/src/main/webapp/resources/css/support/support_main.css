@@ -2,10 +2,10 @@
 
 /* 메인 페이지 전체 레이아웃*/
 	.main_content{
-		margin: 100px auto 90px;
 		box-sizing: border-box;
 		width: 100%;
 		min-height: 260px;
+		margin-bottom: 20px;
 	}
 	/* 상단 배너 */
 	.head{
@@ -23,6 +23,10 @@
 		font-size:20px;
 	}
 	/* 자주하는 질문 */
+	.area_faq{
+		margin-top:20px;
+		margin-bottom:20px;
+	}
 	.area_faq ul{
 		padding: 37px 40px 13px;
 		box-sizing: border-box;
@@ -54,6 +58,8 @@
 	}
 	.faq{
 		display: inline-block;
+		color: black;
+		font-size:20px;
 	}
 	/* 공지사항 */
 	.notice{
