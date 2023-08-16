@@ -5,8 +5,8 @@
 <%
 	String id = (String)session.getAttribute("id");
 %>
+    <link rel="stylesheet" href="${path }/resources/css/reset.css" type="text/css">
     <link rel="stylesheet" href="${path }/resources/css/common.css" type="text/css">
-    <link rel="stylesheet" href="${path }/resources/css/main.css" type="text/css">
     <script src="${path }/resources/js/jquery-1.12.0.min.js"></script>
     <script src="${path }/resources/js/jquery.easing.1.3.js"></script>
     <script src="${path }/resources/js/nav.js"></script>
@@ -88,6 +88,7 @@
             		<c:otherwise>
             			 <div class="memberWrap">
 		                    <a href="${pageContext.request.contextPath}/users/info" >마이 페이지</a>
+		                    <a href="${pageContext.request.contextPath}/group/jjim_list">찜 리스트</a>
 		                    <a href="${pageContext.request.contextPath}/users/logout" >로그아웃</a>
 		                </div>
             		</c:otherwise>

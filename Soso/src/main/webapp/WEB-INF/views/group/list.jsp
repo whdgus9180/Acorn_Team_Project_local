@@ -8,7 +8,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" href="${path }/resources/css/common.css" type="text/css">
     <link rel="stylesheet" href="${path }/resources/css/group_list.css" type="text/css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
