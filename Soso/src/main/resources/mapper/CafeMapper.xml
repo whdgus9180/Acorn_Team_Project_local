@@ -24,6 +24,7 @@
 			FROM
 				(SELECT comu_num, writer, title, content, viewCount, regdate
 				FROM community_board_tb
+				WHERE group_num = #{group_num}
 				<include refid="searchCondition"/>
 				ORDER BY comu_num DESC) result1)
 		<![CDATA[ 

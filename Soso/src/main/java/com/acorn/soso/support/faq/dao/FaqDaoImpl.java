@@ -22,7 +22,6 @@ public class FaqDaoImpl implements FaqDao{
 
 	@Override
 	public void insert(FaqDto dto) {
-		
 		session.insert("faq.insert",dto);
 	}
 
