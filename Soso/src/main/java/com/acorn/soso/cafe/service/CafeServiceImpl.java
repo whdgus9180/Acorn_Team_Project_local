@@ -27,7 +27,7 @@ public class CafeServiceImpl implements CafeService{
 	
 	//페이징 처리, 검색어 기능을 고려한 비즈니스 로직 처리를 하는 메소드 
 	@Override
-	public void getList(HttpServletRequest request, Model model) {
+	public void getList(HttpServletRequest request, Model model, int num){
 		//한 페이지에 몇개씩 표시할 것인지
 		final int PAGE_ROW_COUNT=10;
 		//하단 페이지를 몇개씩 표시할 것인지
@@ -69,6 +69,7 @@ public class CafeServiceImpl implements CafeService{
 		CafeDto dto=new CafeDto();
 		dto.setStartRowNum(startRowNum);
 		dto.setEndRowNum(endRowNum);
+		dto.setGroup_num(num);
 
 		//만일 검색 키워드가 넘어온다면 
 		if(!keyword.equals("")){
