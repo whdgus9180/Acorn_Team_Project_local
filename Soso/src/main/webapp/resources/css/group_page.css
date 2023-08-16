@@ -1,0 +1,19 @@
+@charset "utf-8";
+
+.serif { font-family: 'Noto Serif KR', serif; }
+.sub-contents { padding: 150px 0; } 
+
+
+/* title */
+h3.title{ margin-bottom: 3%; font-family: 'Montserrat', 'Noto Sans KR', sans-serif; font-size: 2.6rem; font-weight: 600;  }
+h3.white{ color: #fff; }
+h3.black{ color: #333; }
+
+
+/* group_content */
+.group_content .inner-wrap {display: flex;  flex-wrap: wrap; box-sizing: border-box; position: relative; justify-content: space-between;}
+.group_content .inner-wrapper{display: flex;  flex-wrap: wrap; box-sizing: border-box; position: relative; }
+.group_content .group_meet_text { display: flex; }
+.group_content .group_meet_text ul { display: flex;}
+.group_content .group_meet_text ul li { box-sizing: border-box; position: relative; }
+.group_content .group_meet_text ul li a{  }

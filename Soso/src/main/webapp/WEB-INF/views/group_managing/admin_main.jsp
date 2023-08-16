@@ -8,8 +8,12 @@
 <head>
 <meta charset="UTF-8">
 <title>내가 만든 소모임</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/group_managing/group_managing_admin_header.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/group_managing/group_managing_admin_main_card.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/group_managing_user_main.css" />
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="${path }/resources/js/jquery-1.12.0.min.js"></script>
+    <script src="${path }/resources/js/jquery.easing.1.3.js"></script>
+    <script src="${path }/resources/js/common.js"></script>
 </head>
 <body>
     <jsp:include page="/WEB-INF/views/include/navbar.jsp">
@@ -33,52 +37,85 @@
             </div>
         </div>
     </main>
-	<div class="inner-wrap">
-		<div id="admin_header">
-			<div class="title">내 소모임 관리하기</div>
-			<div class="linkBox">
-				<a class="link" href="${pageContext.request.contextPath}/group_managing/group_insertForm">개설하기</a>
-			</div>
-		</div>
-		<div id="menus">
-			<div><a href="#">진행 중</a></div>
-			<div><a href="#">종료</a></div>
-		</div>
-		<div class="wrapper">
-			<c:forEach var="tmp" items="${list}">
-				<div id="card">
-					<div>
-						<div id="likedNumber">
+    
+    <section class="sub-contents user_content">
+    	<div class="inner-wrap">
+    		<h3 class="title black" data-aos="fade-up"
+            data-aos-offset="100"
+            data-aos-easing="ease-in-sine">나의 북메이트 관리</h3>
+            <div class="content_insert">
+            <a href="${pageContext.request.contextPath}/group_managing/group_insertForm">개설하기</a></div>
+    	</div>
+    	<div class="inner-wrap">
+            <div class="user_content_theme">
+                <ul>
+                    <li><a href="#">진행중</a></li>
+                    <li><a href="#">종료</a></li>
+                </ul>
+            </div>
+        </div>
+            <div class="inner-wrapper">
+    		<c:forEach var="tmp" items="${list }">
+                <div class="user_content_list">
+                    <div class="user_contents">
+                    	<div id="likedNumber">
 							<div>❤ ${tmp.like_num }</div>
+							<div>
+								<a href="${pageContext.request.contextPath}/group_managing/memberList?group_num=${tmp.num}">${tmp.now_people} / ${tmp.max_people}
+							</a>
+							</div>
 						</div>
-						<div class="card-box">
-							<div class="card-left">
-								<c:choose>
+
+                        		<c:choose>
 									<c:when test="${fn:length(tmp.img_path) < 32}">
-										<div><img class="card-image" src="${pageContext.request.contextPath}/resources/images/main/001.jpg"/></div>
+										<div class="user_content_img"><img src="${pageContext.request.contextPath}/resources/images/main/001.jpg"/></div>
 									</c:when>
 									<c:otherwise>
-										<div><img class="card-image" src="${pageContext.request.contextPath}${tmp.img_path}"/></div>
+										<div class="user_content_img"><img src="${pageContext.request.contextPath}${tmp.img_path}"/></div>
 									</c:otherwise>
 								</c:choose>
-								<div><a href="${pageContext.request.contextPath}/group_managing/memberList?group_num=${tmp.num}">${tmp.now_people} / ${tmp.max_people}</a></div>
-							</div>
-							<div class="card-right">
-								<div id="card-title">${tmp.name }</div>
-								<div id="card-date">DATE: ${tmp.regdate}</div>
-								<div id="card-rate">${tmp.avrg_rate }</div>
-								<div id="card-link"><a href="${pageContext.request.contextPath}/cafe/list?num=${tmp.num}">커뮤니티 가기</a></div>
-								<div id="card-buttons">
-									<div><a href="${pageContext.request.contextPath}/group_managing/group_updateForm?num=${tmp.num}">정보 수정</a></div>
-									<div><a href="${pageContext.request.contextPath}/group_managing/applicantList?group_num=${tmp.num}">가입 관리</a></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</c:forEach>
-		</div>
-	</div>
+                       		<div class="user_content_text">
+                       			<ul class="">
+		                            	<li class="title">${tmp.name}</li>
+			                            <li><span class="info-label">모임 날짜 :</span> ${tmp.regdate}</li>
+			                            <li><span class="info-label">모임 평점 :</span> ${tmp.avrg_rate }</li>
+			                            <li><span class="info-label">가입 인원 :</span> ${tmp.now_people}</li>
+		                        </ul>
+		                        <div class="user_content_btn">
+		                        	<div class="user_content_info"><a href="${pageContext.request.contextPath}/group_managing/group_updateForm?num=${tmp.num}">정보 수정</a></div>
+									<div class="user_content_join"><a href="${pageContext.request.contextPath}/group_managing/applicantList?group_num=${tmp.num}">가입 관리</a></div>
+		                        </div>	
+                       		</div>   
+                    </div>
+                </div>
+	        </c:forEach>
+    	</div>
+    	
+    	<div class="inner-wrap">
+    	<!-- 페이지 이동을 위한  --> 
+	    <nav>
+	       <ul class="">
+	          <c:choose>
+	             <c:when test="${dto.prevNum ne 0 }">
+	                <li class="">
+	                     <a class="" href="${pageContext.request.contextPath}">&larr; Prev</a>
+	                </li>
+	             </c:when>
+	         </c:choose>
+	         <c:choose>
+	            <c:when test="${dto.nextNum ne 0 }">
+	               <li class="">
+	                   <a class="" href="${pageContext.request.contextPath}">Next &rarr;</a>
+	               </li>
+	            </c:when>
+	         </c:choose>         
+	       </ul>
+	    </nav>
+    	</div>
+    </section>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+	<script>
+		AOS.init();
+	</script>
 </body>
 </html>

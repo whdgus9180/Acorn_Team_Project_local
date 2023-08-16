@@ -2,38 +2,49 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<link rel="stylesheet" href="${path }/resources/css/group_page.css" type="text/css">
 </head>
-<style>
-</style>
 <body>
 	<jsp:include page="/WEB-INF/views/include/navbar_c.jsp">
 		<jsp:param value="groupPage" name="current" />
 	</jsp:include>
-
-	<div class="container">
-		<h1 class="mb-3 mt-3">${dto.name }</h1>
-		<div class="d-flex flex-row mb-3">
-			<div class="p-2"><strong>장소 : </strong>${dto.meeting_loc }</div>
-			<div class="p-2"><strong>시간 : </strong>${dto.meeting_time }</div>
-			<div class="p-2"><strong>인원 : </strong>${dto.max_people }명</div>
-			<div class="p-2"><strong>신청 기한 : </strong>
-	         <fmt:parseDate value="${dto.deadline_dt}" var="deadline_dt" pattern="yyyy-MM-dd"></fmt:parseDate>
-	         <fmt:formatDate value="${deadline_dt}" pattern="yyyy-MM-dd" />		
+	
+	<section class="sub-contents group_content">
+		<div class="inner-wrap">
+            <h3 class="title black" data-aos="fade-up"
+            data-aos-offset="300"
+            data-aos-easing="ease-in-sine">${dto.name }</h3>
+         </div>
+		<div class="inner-wrap">
+			<div class="group_meet_text">
+			<ul>
+				<li class="p-2"><strong>${dto.meeting_loc }</strong></li>
+				<li class="p-2"><strong>${dto.meeting_time }</strong></li>
+				<li class="p-2"><strong>최대 ${dto.max_people }명</strong></li>
+				<li class="p-2"><strong>신청 기한 &nbsp; </strong>
+		         <fmt:parseDate value="${dto.deadline_dt}" var="deadline_dt" pattern="yyyy-MM-dd"></fmt:parseDate>
+		         <fmt:formatDate value="${deadline_dt}" pattern="yyyy-MM-dd" />까지
+		         </li>
+			</ul>
 			</div>
 		</div>
 		
-		<div class="d-flex mb-3">
-			<div class="p-2 flex-grow-1">모임 대표 이미지</div>
+		<div class="inner-wrap">
+			<div class="p-2 flex-grow-1">모임 대표 이미지
+				<img src="${pageContext.request.contextPath}${dto.img_path}">
+			</div>
 			<div class="p-2 flex-grow-1">
 				<h4>모임 소개</h4>
 				<span>${dto.caption }</span>
-				<div class="d-flex flex-row-reverse" style="border : 0px;">
+				<div class="">
 					<div class="p-2">
 						<c:choose>
 							<c:when test="${empty jjim }">
@@ -76,7 +87,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="d-flex mb-3">
+		<div class="inner-wrap">
+			<div class="d-flex mb-3">
 			<div class="p-2 flex-grow-1">호스트의 한마디</div>
 			<div class="p-2 flex-grow-1">${dto.manager_comment }</div>
 		</div>
@@ -107,7 +119,10 @@
 				<!-- 반복문으로 출력할 예정입니다. -->
 			</div>
 		</div>
-		<div>
+		</div>
+		
+		<div class="inner-wrap">
+			<div>
 			<h4 class="mx-1 my-1">이 모임에 참석한 사람들의 후기입니다.</h4>
 			<div class="d-flex flex-column mb-3">
 			<!-- forEach를 사용해서 댓글 출력(나중에는 분기 써서 댓글이 없을 때는 다른 페이지 표시하) -->
@@ -142,23 +157,34 @@
 				</c:forEach>
 			</div>
 		</div>
-		<div>
-			<ul class="nav justify-content-end nav-tabs">
-				<li class="nav-item">
-					<a class="nav-link" id="faqList" href="#">문의 게시판</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" id="commentList" href="#">후기 게시판</a>
-				</li>
-			</ul>
-			<div id="Parse_Area"gt;lt;></div>
 		</div>
-	</div>
+		
+		<div class="inner-wrap">
+				
+			<div>
+				<ul class="nav justify-content-end nav-tabs">
+					<li class="nav-item">
+						<a class="nav-link" id="faqList" href="#">문의 게시판</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="commentList" href="#">후기 게시판</a>
+					</li>
+				</ul>
+				<div id="Parse_Area"gt;lt;></div>
+			</div>
+		</div>
+		
+
+	</section>
+	
 	
     <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 	
 	<!-- jQuery 라이브러리를 로드 -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	      <script>
+      	AOS.init();
+    </script>
 	<script>
 
 	// heart 이모티콘을 클릭하면 button id="jjim"를 강제로 클릭하는 코드
@@ -291,5 +317,4 @@
 		});	  
 	</script>
 </body>
-</html>
 </html>
