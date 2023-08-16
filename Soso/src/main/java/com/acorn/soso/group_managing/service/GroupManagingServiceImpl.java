@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.acorn.soso.group.dto.GroupDto;
 import com.acorn.soso.group_managing.dao.GroupManagingDao;
@@ -170,5 +172,10 @@ public class GroupManagingServiceImpl implements GroupManagingService{
 		request.setAttribute("list", list);	
 	}
 
+	@Override
+	public void getDetail(ModelAndView mView, int num) {
+		GroupDto dto = dao.getGroupData(num);
+		mView.addObject("dto", dto);
+	}
 	
 }

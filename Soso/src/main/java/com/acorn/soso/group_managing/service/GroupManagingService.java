@@ -4,7 +4,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.acorn.soso.group.dto.GroupDto;
 import com.acorn.soso.group_managing.dto.GroupManagingDto;
@@ -25,4 +27,5 @@ public interface GroupManagingService {
 	public void kick(int num, int group_num);
 	public void reject(int num);
 	public void dropOut(int num);
+	public void getDetail(ModelAndView mView, int num);
 }

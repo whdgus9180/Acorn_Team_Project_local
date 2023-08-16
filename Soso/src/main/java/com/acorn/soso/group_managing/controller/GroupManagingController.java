@@ -7,10 +7,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.acorn.soso.exception.DontEqualException;
 import com.acorn.soso.group.dto.GroupDto;
@@ -98,9 +102,12 @@ public class GroupManagingController {
 		
 	}
 	
-	@GetMapping("/group_managing/group_userdetail")
-	public String group_userdetail() {
-		return "group_managing/group_userdetail";
+	@RequestMapping(value="/group_managing/group_userdetail", method = RequestMethod.GET)
+	public ModelAndView detail(ModelAndView mView, int num) {
+		service.getDetail(mView, num);
+		mView.setViewName("group_managing/group_userdetail");
+		
+		return mView;
 	}
 	
 	@GetMapping("/group_managing/applicantList")
