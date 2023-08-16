@@ -24,8 +24,8 @@
 				<div class="invalid-feedback">2~16자의 영어(소문자) 또는 숫자 또는 한글만 사용가능합니다.</div>
 			</div>
 			<div>
-				<label class="control-label" for="birth">생년월일</label>
-				<input class="form-control" type="date" name="birth" id="birth" />
+			    <label class="control-label" for="birth">생년월일</label>
+    			<input class="form-control" type="text" name="birth" id="birth" placeholder="YY-MM-DD" />
 			</div>
 			<fieldset>
 				<legend>성별 체크</legend>
@@ -101,6 +101,9 @@
 
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="path-to-your-custom-theme.css"> <!-- 사용자 정의 테마 CSS 파일 -->
 	<script src="${pageContext.request.contextPath}/resources/js/open_pwd.js"></script>
 	<script>
    		let isuserNameValid=false;
@@ -325,6 +328,14 @@
 
 	        // 기존의 checkFormState 함수 내용 호출
 	        checkFormState();
+	    });
+	    
+	    $(document).ready(function() {
+	        $("#birth").datepicker({
+	            dateFormat: "yy-mm-dd", // 날짜 형식을 지정할 수 있음
+	            showOtherMonths: true, // 다른 달의 날짜도 표시
+	            selectOtherMonths: true, // 다른 달의 날짜도 선택 가능
+	        });
 	    });
    </script>
 
