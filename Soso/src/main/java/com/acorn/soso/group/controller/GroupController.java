@@ -33,16 +33,18 @@ public class GroupController {
 	
 	//소모임의 문의 답변 delete(실제로는 update)
 	@GetMapping("/group/answer/delete")
-	public String groupAnswerDelete(HttpServletRequest request, int num) {
+	public String groupAnswerDelete(HttpServletRequest request, int num, int group_num) {
 		service.groupAnswerDelete(request, num);
-		return "group/list";
+		//param에 가져온 group_num으로 리다일렉트
+		return "redirect:/group/group_page?num="+group_num;
 	}
 	
 	//소모임의 문의 답변 update
 	@PostMapping("/group/answer/update")
 	public String groupAnswerUpdate(HttpServletRequest request, GroupFAQDto dto) {
 		service.groupAnswerUpdate(request, dto);
-		return "group/list";
+		int num = dto.getGroup_num();
+		return "redirect:/group/group_page?num="+num;
 	}
 	
 	//소모임의 문의 답변 updateForm이동
@@ -62,8 +64,9 @@ public class GroupController {
 		dto.setA_writer(a_writer);
 		//service를 통해 insert를 해준다.
 		service.groupAnswerInsert(dto);
+		int num = dto.getGroup_num();
 		
-		return "group/list";
+		return "redirect:/group/group_page?num="+num;
 	}
 	
 	//소모임 FAQ의 답변 INSERTFORM으로
@@ -79,7 +82,8 @@ public class GroupController {
 	@PostMapping("/group/faq/update")
 	public String groupFaqUpdate(HttpServletRequest request, GroupFAQDto dto) {
 		service.updateGroupFAQ(request, dto);
-		return "group/list";
+		int num = dto.getGroup_num();
+		return "redirect:/group/group_page?num="+num;
 	}
 	
 	//소모임 FAQ의 updateform
@@ -91,9 +95,10 @@ public class GroupController {
 	
 	//소모임 FAQ문의 delete문
 	@GetMapping("/group/faq/delete")
-	public String groupFaqDelete(HttpServletRequest request, int num) {
+	public String groupFaqDelete(HttpServletRequest request, int num, int group_num) {
 		service.deleteGroupFAQ(request, num);
-		return "group/list";
+		//여기에서 num은 게시글 번호이기 때문에 제대로 리다일렉트가 안 된다. 서비스에서 값을 담아온다;
+		return "redirect:/group/group_page?num="+group_num;
 	}	
 	
 	//소모임 FAQ문의 insert
@@ -103,7 +108,9 @@ public class GroupController {
 		//id 값만 넣어준다.
 		dto.setQ_writer(writer);
 		service.groupFAQInsert(dto);
-		return "group/list";
+		//dto에 담겨있는 group_num의 값으로 리다일렉트
+		int num = dto.getGroup_num();
+		return "redirect:/group/group_page?num="+num;
 	}
 	
 	//소모임FAQ문의 insertform
@@ -172,13 +179,15 @@ public class GroupController {
 	//정보를 담기 위한 model
 	public String join(HttpServletRequest request) {
 		service.joinGroup(request);
+		//num을 얻어와
+		int num = Integer.parseInt(request.getParameter("num"));
 		//insert하면 리다일렉트->나중에 호출한 곳으로 돌아가는 로직 구상
-		return "redirect:/";
+		return "redirect:/group/group_page?num="+num;
 	}
 	
 	//group페이지 불러오면서 후기글 불러오기 위한 service 호출
 	@GetMapping("/group/group_page")
-	public String test(HttpServletRequest request, Model model) {
+	public String group_page(HttpServletRequest request, Model model) {
 		service.getDetail(request, model);
 		//request영역의 값으로 groupNum 가져오기 
 		int num = Integer.parseInt(request.getParameter("num"));

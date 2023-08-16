@@ -19,6 +19,7 @@
 		<form action="${pageContext.request.contextPath}/group/faq/update?num=${dto.num }" method="post">
 			<div class="col-12">
 			      <input type="text" class="form-control" id="q_title" name="q_title" placeholder="제 목" value="${dto.q_title }" >
+			      <input type="text" id="group_num", name="group_num" value="${dto.group_num }" hidden />
 			<div>
 				<label for="q_content"></label>
 				<textarea name="q_content" id="q_content" rows="10">${dto.q_content }</textarea>
