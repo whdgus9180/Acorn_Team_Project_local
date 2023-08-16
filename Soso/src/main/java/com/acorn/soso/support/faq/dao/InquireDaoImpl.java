@@ -24,4 +24,14 @@ public class InquireDaoImpl implements InquireDao{
 		return session.selectList("inquire.getList", id);
 	}
 
+	@Override
+	public InquireDto getData(int cs_num) {
+		return session.selectOne("inquire.getData", cs_num);
+	}
+
+	@Override
+	public void update(InquireDto dto) {
+		session.update("inquire.update", dto);
+	}
+
 }
