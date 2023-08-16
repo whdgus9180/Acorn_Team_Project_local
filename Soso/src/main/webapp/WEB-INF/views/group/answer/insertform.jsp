@@ -23,6 +23,7 @@
 				<p style="background-color: lightgrey;">${dto.q_content }</p>
 				<!-- 문의글 번호와 소모임 번호를 동시에 넘겨준다. -->
 				<input type="text" id="num" name="num" value="${dto.num }" hidden/>
+				<input type="text" id="group_num" name="group_num" value="${dto.group_num }" hidden/>
 			<div>
 				<!-- 답변 내용 -->
 				<label for="a_content"></label>

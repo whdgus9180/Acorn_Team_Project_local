@@ -25,6 +25,7 @@ import com.acorn.soso.group.dto.GroupFAQDto;
 import com.acorn.soso.group.dto.GroupJoinDto;
 import com.acorn.soso.group.dto.GroupReviewDto;
 import com.acorn.soso.group.dto.JjimDto;
+import com.acorn.soso.group_managing.dao.GroupManagingDao;
 
 
 @Service
@@ -44,6 +45,10 @@ public class GroupServiceImpl implements GroupService{
 
 	@Autowired
 	private GroupFAQDao groupfaqdao;	
+	
+	//그룹의 데이터를 얻어오기 위한 Autowired
+	@Autowired
+	private GroupManagingDao managingdao;
 	
 	@Override
 	public void getList(HttpServletRequest request, Model model) {
@@ -693,12 +698,18 @@ public class GroupServiceImpl implements GroupService{
 	//소모임 문의 답변하기
 	@Override
 	public void groupAnswerInsert(GroupFAQDto dto) {
-		
-		//여기에서 관리자 검증 작업을 한다.(소모임 만들려고하면 뭔가 오류나서 일단 보류)
-		
-		
-		//dao를 통해 db에 집어넣기
-		groupfaqdao.answer(dto);
+		int group_num = dto.getGroup_num();
+		//dto.getGroup_num으로 소모임의 번호를 알아낸다.
+		GroupDto groupDto = managingdao.getGroupData(group_num);
+		//얻어온 정보로 소모임 관리자의 id를 알아낸다
+		String manager=groupDto.getManager_id();
+		if(dto.getA_writer().equals(manager)) {
+			//만약 manager_id가 a_writer와 같으
+			//dao를 통해 db에 집어넣기
+			groupfaqdao.answer(dto);
+		}else {
+			throw new DontEqualException("소모임 관리자만 작성할 수 있습니다.");
+		}
 	}
 	
 	//소모임 문의 답변 수정하기
@@ -728,7 +739,7 @@ public class GroupServiceImpl implements GroupService{
 		//id를 가져온다.
 		String id =(String)request.getSession().getAttribute("id");
 		//가져온 값을 토대로 id검증을 한다.
-		if(dto.getQ_writer().equals(id)) {
+		if(dto.getA_writer().equals(id)) {
 			groupfaqdao.answerDelete(num);
 		}else {
 			throw new DontEqualException("다른 사람의 글은 삭제할 수 없습니다.");

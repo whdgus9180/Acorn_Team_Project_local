@@ -118,6 +118,8 @@ public class GroupController {
 	public String groupFaqList(HttpServletRequest request, int num, Model model) {
 		request.setAttribute("num", num);
 		service.groupFAQGetList(request, model);
+		//View 페이지에 소모임의 정보를 얻어온다(manager_id를 얻기 위함)
+		managingService.getGroupData(num, request);
 		return "group/faq/list";
 	}
 	
