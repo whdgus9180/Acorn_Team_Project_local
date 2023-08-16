@@ -46,7 +46,7 @@
         <div class="inner-wrap">
             <h3 class="title black" data-aos="fade-up"
             data-aos-offset="300"
-            data-aos-easing="ease-in-sine">소모임 찾기</h3>
+            data-aos-easing="ease-in-sine">북메이트 찾기</h3>
             <div class="theme_search">
             	<form action="list" method="get">
             	<input type="text" placeholder="type.." value="${keyword}" name="keyword" />
@@ -78,7 +78,7 @@
             </div>
         </div>
 
-        <div class="inner-wrap">
+        <div class="inner-wrapper">
         		<c:forEach var="tmp" items="${list}" >
         		<div class="mate_content_list">
 	               <div class="mate_contents">

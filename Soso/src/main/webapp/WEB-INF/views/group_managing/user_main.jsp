@@ -51,7 +51,7 @@
                 </ul>
             </div>
         </div>
-    	<div class="inner-wrap">
+    	<div class="inner-wrapper">
     		<c:forEach var="tmp" items="${list }">
                 <div class="user_content_list">
                     <div class="user_contents">

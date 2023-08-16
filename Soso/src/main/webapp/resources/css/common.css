@@ -12,11 +12,11 @@ p,span,a{ line-height: 1.7rem; }
 li{list-style: none;}
 a{text-decoration: none; display: block;}
 img{border: none; display: block;}
-input{outline: none;background-color: transparent;}
+input{outline: none;background-color: #fff;}
 button { cursor: pointer; }
 
 
-.inner-wrap{ 
+.inner-wrap, .inner-wrapper{ 
     width: 80%; 
     margin: 0 auto; 
 }
