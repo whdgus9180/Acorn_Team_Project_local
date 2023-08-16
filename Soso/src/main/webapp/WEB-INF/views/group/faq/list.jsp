@@ -32,31 +32,19 @@
 		                <tr id="content-${tmp.num}" class="hidden-content">
 						    <td colspan="3">
 						        <div>${tmp.q_content}</div>
-						        <a href="${pageContext.request.contextPath}/group/faq/updateform?num=${tmp.num}"id="update">수정</a>
-						        <a href="${pageContext.request.contextPath}/group/faq/delete?num=${tmp.num}">삭제</a>
-						        <a href="${pageContext.request.contextPath}/group/answer/insertform?num=${tmp.num}" id="answer">답변</a>
+						        <c:if test="${empty tmp.a_answer }">
+						        	<a href="${pageContext.request.contextPath}/group/faq/updateform?num=${tmp.num}"id="update">수정</a>
+						        	<a href="${pageContext.request.contextPath}/group/faq/delete?num=${tmp.num}">삭제</a>
+						        </c:if>
 						        <div class="answer" style="background-color: lightgrey;">${tmp.a_answer }</div> <!-- 이 부분을 추가 -->
-						        <a href="${pageContext.request.contextPath}/group/answer/updateform?num=${tmp.num}" id="updateAnswer" >답변 수정</a>
-						        <a href="${pageContext.request.contextPath}/group/answer/delete?num=${tmp.num}">답변 삭제(실제로는 update)</a>
+						        <!-- session id과 manger id를 검증해서 조건부 출력 -->
+						        <c:if test="${dto.manager_id == sessionScope.id }">
+						        	<a href="${pageContext.request.contextPath}/group/answer/insertform?num=${tmp.num}" id="answer">답변&수정</a>
+<%-- 							        <a href="${pageContext.request.contextPath}/group/answer/updateform?num=${tmp.num}" id="updateAnswer" >답변 수정</a>
+ --%>							        <a href="${pageContext.request.contextPath}/group/answer/delete?num=${tmp.num}">답변 삭제(실제로는 update)</a>						        
+						        </c:if>
 						    </td>
 						</tr>
-						<!-- <div>
-							<ul>
-								<li>
-									<a class="nav-link" id="faqInsert" href="#">문의하기</a>
-								</li>
-								<li>
-									<a class="nav-link" id="faqupdate" href="#">문의 수정하기</a>
-								</li>
-								<li>
-									<a class="nav-link" id="answer" href="#">답변하기</a>
-								</li>
-								<li>
-									<a class="nav-link" id="answerUpdate" href="#">답변 수정하기</a>
-								</li>
-							</ul>
-							<div id="Parse_Area"gt;lt;></div>
-						</div> -->
 		            </c:forEach>
 		        </tbody>
 		    </table>
