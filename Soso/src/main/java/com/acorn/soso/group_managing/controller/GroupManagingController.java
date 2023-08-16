@@ -10,8 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -102,12 +102,12 @@ public class GroupManagingController {
 		
 	}
 	
-	@RequestMapping(value="/group_managing/group_userdetail", method = RequestMethod.GET)
-	public ModelAndView detail(ModelAndView mView, int num) {
-		service.getDetail(mView, num);
-		mView.setViewName("group_managing/group_userdetail");
-		
-		return mView;
+	@GetMapping("/group_managing/group_userdetail")
+	public ModelAndView detail(ModelAndView mView, @RequestParam int num) {
+	    service.getDetail(mView, num);
+	    mView.setViewName("group_managing/group_userdetail");
+	    
+	    return mView;
 	}
 	
 	@GetMapping("/group_managing/applicantList")
