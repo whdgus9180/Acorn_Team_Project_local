@@ -55,7 +55,7 @@
 							<div class="card-left">
 								<c:choose>
 									<c:when test="${fn:length(tmp.img_path) < 32}">
-										<div><img class="card-image" src="${pageContext.request.contextPath}/resources/images/main/001.jpg""/></div>
+										<div><img class="card-image" src="${pageContext.request.contextPath}/resources/images/main/001.jpg"/></div>
 									</c:when>
 									<c:otherwise>
 										<div><img class="card-image" src="${pageContext.request.contextPath}${tmp.img_path}"/></div>
