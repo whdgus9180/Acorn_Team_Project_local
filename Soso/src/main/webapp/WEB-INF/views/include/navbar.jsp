@@ -7,7 +7,7 @@
 %>
 
     <link rel="stylesheet" href="${path }/resources/css/common.css" type="text/css">
-    <link rel="stylesheet" href="${path }/resources/css/main.css" type="text/css">
+    <link rel="stylesheet" href="${path }/resources/css/reset.css" type="text/css">
     <script src="${path }/resources/js/jquery-1.12.0.min.js"></script>
     <script src="${path }/resources/js/jquery.easing.1.3.js"></script>
     <script src="${path }/resources/js/common.js"></script>
