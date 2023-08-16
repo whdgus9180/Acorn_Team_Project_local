@@ -165,9 +165,9 @@ public class GroupManagingController {
 		return "redirect:/group_managing/applicantList?group_num=" + group_num;
 	}
 	
-	@GetMapping("/group_managing/dropOut")
-	public String dropOut(int num) {
-		service.dropOut(num);
-		return "redirect:/group_managing/memberList";
+	@GetMapping("/group_managing/group_userdropOut") 
+	public String dropOut(@RequestParam int num) {  
+	    service.dropOut(num);
+	    return "redirect:/group_managing/memberList";
 	}
 }

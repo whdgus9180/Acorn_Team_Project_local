@@ -106,12 +106,12 @@
 		</div>
 	</div>
 	<script>
-		function deleteConfirm(){
-			const isDelete=confirm("${id} 님 탈퇴 하시겠습니까?");
-			if(isDelete){
-				location.href="${pageContext.request.contextPath}/group_managing/group_userdropOut";
-			}
-		}
+    function deleteConfirm() {
+        const isDelete = confirm("${id} 님 탈퇴 하시겠습니까?");
+        if (isDelete) {
+            location.href = "${pageContext.request.contextPath}/group_managing/group_userdropOut?num=${dto.num}";
+        }
+    }
 	</script>
 </body>
 </html>

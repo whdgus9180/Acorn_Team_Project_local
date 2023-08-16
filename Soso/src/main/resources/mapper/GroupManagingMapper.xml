@@ -121,9 +121,8 @@
    		WHERE num = #{num}
    	</update>
    	<!-- 소모임 탈퇴 -->
-   	<update id="dropOut" parameterType="int">
-   		UPDATE board_join_group
-   		SET isJoin = 3
-   		WHERE num = #{num}
-   	</update>
+    <delete id="dropOut" parameterType="int">
+	    delete from group_tb
+	    WHERE num = #{num}
+	</delete>
 </mapper>
