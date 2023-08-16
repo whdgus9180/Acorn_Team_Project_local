@@ -7,9 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>/group/user_main.jsp</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/group_managing_user_main.css" />
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="${path }/resources/js/jquery-1.12.0.min.js"></script>
+    <script src="${path }/resources/js/jquery.easing.1.3.js"></script>
+    <script src="${path }/resources/js/common.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/navbar.jsp">
@@ -34,52 +37,75 @@
             </div>
         </div>
     </main>
-    
-    <!-- 로그인된 user 가 가입된 소모임 리스트 불러오기 -->
-	<div class="container">     
-	    <div class="row">
-	        <c:forEach var="tmp" items="${list }">
-                <div class="col-sm-6 col-md-4 col-lg-3 p-1 mb-3">
-                    <div class="card mb-4">
+    <section class="sub-contents user_content">
+    	<div class="inner-wrap">
+    		<h3 class="title black" data-aos="fade-up"
+            data-aos-offset="300"
+            data-aos-easing="ease-in-sine">나의 북메이트</h3>
+    	</div>
+    	<div class="inner-wrap">
+            <div class="user_content_theme">
+                <ul>
+                    <li><a href="#">진행중</a></li>
+                    <li><a href="#">종료</a></li>
+                </ul>
+            </div>
+        </div>
+    	<div class="inner-wrap">
+    		<c:forEach var="tmp" items="${list }">
+                <div class="user_content_list">
+                    <div class="user_contents">
+                    	<div id="likedNumber">
+							<div>❤ ${tmp.like_num }</div>
+						</div>
                         <a href="${pageContext.request.contextPath}/group_managing/group_userdetail?num=${tmp.num}">
-                            <div class="img-wrapper">
-                                <img class="card-img-top" src="${pageContext.request.contextPath }${tmp.img_path}"/>
+                            <div class="user_content_img">
+                                <img src="${pageContext.request.contextPath }${tmp.img_path}"/>
                             </div>
+                       		<div class="user_content_text">
+                       			<ul class="">
+		                            	<li class="title">${tmp.name}</li>
+			                            <li><span class="info-label">모임장 :</span> ${tmp.manager_id}</li>
+			                            <li><span class="info-label">모임 시간 :</span> ${tmp.meeting_time}</li>
+			                            <li><span class="info-label">모임 장소 :</span> ${tmp.meeting_loc}</li>
+			                            <li><span class="info-label">가입 인원 :</span> ${tmp.now_people}</li>
+		                        </ul>
+		                        <div class="user_content_btn">
+		                        	<div class="user_content_community"><a href="${pageContext.request.contextPath}/group_managing/group_userdetail?num=${tmp.num}">커뮤니티</a></div>
+									<div class="user_content_delete"><a href="#">탈퇴</a></div>
+		                        </div>	
+                       		</div>   
                         </a>
-                        <div class="card-body">
-                            <p class="card-title"><strong>${tmp.name}</strong></p>
-                            <p class="card-text">${tmp.caption}</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item card-info"><span class="info-label">모임장 :</span> ${tmp.manager_id}</li>
-                            <li class="list-group-item card-info"><span class="info-label">모임 시간 :</span> ${tmp.meeting_time}</li>
-                            <li class="list-group-item card-info"><span class="info-label">모임 장소 :</span> ${tmp.meeting_loc}</li>
-                            <li class="list-group-item card-info"><span class="info-label">가입 인원 :</span> ${tmp.now_people}</li>
-                        </ul>
                     </div>
                 </div>
 	        </c:forEach>
-	    </div>
-	</div>
-	<!-- 페이지 이동을 위한  --> 
-    <nav>
-       <ul class="pagination justify-content-center">
-          <c:choose>
-             <c:when test="${dto.prevNum ne 0 }">
-                <li class="page-item mr-3">
-                     <a class="page-link" href="${pageContext.request.contextPath}">&larr; Prev</a>
-                </li>
-             </c:when>
-         </c:choose>
-         <c:choose>
-            <c:when test="${dto.nextNum ne 0 }">
-               <li class="page-item">
-                   <a class="page-link" href="${pageContext.request.contextPath}">Next &rarr;</a>
-               </li>
-            </c:when>
-         </c:choose>         
-       </ul>
-    </nav>
+    	</div>
+    	<div class="inner-wrap">
+    	<!-- 페이지 이동을 위한  --> 
+	    <nav>
+	       <ul class="">
+	          <c:choose>
+	             <c:when test="${dto.prevNum ne 0 }">
+	                <li class="">
+	                     <a class="" href="${pageContext.request.contextPath}">&larr; Prev</a>
+	                </li>
+	             </c:when>
+	         </c:choose>
+	         <c:choose>
+	            <c:when test="${dto.nextNum ne 0 }">
+	               <li class="">
+	                   <a class="" href="${pageContext.request.contextPath}">Next &rarr;</a>
+	               </li>
+	            </c:when>
+	         </c:choose>         
+	       </ul>
+	    </nav>
+    	</div>
+    </section>
+	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+	<script>
+		AOS.init();
+	</script>
 </body>
 </html>
 
