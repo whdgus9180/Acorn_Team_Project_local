@@ -21,10 +21,10 @@
 		FROM
 			(SELECT result1.*, ROWNUM AS rnum
 			FROM
-				(SELECT num,writer,title,content,viewCount,regdate
+				(SELECT faq_num,writer,title,content,viewCount,regdate
 				FROM FAQ_TB
 				<include refid="searchCondition"/>
-				ORDER BY num DESC) result1)
+				ORDER BY faq_num DESC) result1)
 		<![CDATA[ 
 		WHERE rnum >= #{startRowNum} AND rnum <= #{endRowNum}
 		]]>
@@ -38,7 +38,7 @@
 
 	<insert id="insert" parameterType="faqDto">
 		INSERT INTO FAQ_TB
-		(num,category,question,answer)
+		(faq_num,category,question,answer)
 		VALUES(FAQ_TB_seq.NEXTVAL, #{category}, #{question},
 			#{answer})
 	</insert>
@@ -46,14 +46,14 @@
 	<select id="getData" parameterType="int" resultType="faqDto">
 		SELECT result1.*
 		FROM
-			(SELECT num,writer,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,
-			   LAG(num, 1, 0) OVER (ORDER BY num DESC) nextNum,
+			(SELECT faq_num,writer,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,
+			   LAG(faq_num, 1, 0) OVER (ORDER BY num DESC) nextNum,
 	   		   LEAD(num, 1, 0) OVER (ORDER BY num DESC) prevNum
 			 FROM board_cafe) result1
 		WHERE num=#{num}
 	</select>
 	
-	<select id="getData2" parameterType="cafeDto" resultType="cafeDto">
+	<select id="getData2" parameterType="faqDto" resultType="faqDto">
 		SELECT result1.*
 		FROM
 			(SELECT num,writer,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,
@@ -66,12 +66,12 @@
 	</select>	
 	<delete id="delete" parameterType="int">
 		DELETE FROM FAQ_TB
-		WHERE num=#{num}
+		WHERE faq_num=#{faq_num}
 	</delete>
 	
 	<update id="update" parameterType="faqDto">
 		UPDATE FAQ_TB
 		SET question=#{question}, answer=#{answer}
-		WHERE num=#{num}
+		WHERE faq_num=#{faq_num}
 	</update>	
 </mapper>

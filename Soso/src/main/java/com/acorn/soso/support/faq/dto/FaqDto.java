@@ -22,6 +22,7 @@ public class FaqDto {
 	private String question;
 	//질문 답변
 	private String answer;
+	//페이지 관리
 	private int startRowNum;
 	private int endRowNum;
 	private int prevNum;  //이전글의 글번호

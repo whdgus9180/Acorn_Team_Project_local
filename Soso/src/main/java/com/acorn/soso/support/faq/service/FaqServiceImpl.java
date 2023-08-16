@@ -17,7 +17,8 @@ import com.acorn.soso.support.faq.dto.FaqDto;
 public class FaqServiceImpl implements FaqService {
 	@Autowired
 	private FaqDao faqDao;
-
+	
+	//질문 목록
 	@Override
 	public void getList(HttpServletRequest request, Model model) {
 		//한 페이지에 몇개씩 표시할 것인지
@@ -75,9 +76,9 @@ public class FaqServiceImpl implements FaqService {
 				dto.setQuestion(keyword);
 			} // 다른 검색 조건을 추가 하고 싶다면 아래에 else if() 를 계속 추가 하면 된다.
 		}
-		//글 목록 얻어오기 
+		//질문 목록 얻어오기 
 		List<FaqDto> list=faqDao.getList(dto);
-		//전체글의 갯수
+		//전체질문의 갯수
 		int totalRow=faqDao.getCount(dto);
 		
 		//하단 시작 페이지 번호 
@@ -129,7 +130,7 @@ public class FaqServiceImpl implements FaqService {
 	public void deleteFaq(int num, HttpServletRequest request) {
 		faqDao.delete(num);
 	}
-
+	// 키워드를 이용한 질문의 정보 얻어오기
 	@Override
 	public void getData(FaqDto dto) {
 		// TODO Auto-generated method stub

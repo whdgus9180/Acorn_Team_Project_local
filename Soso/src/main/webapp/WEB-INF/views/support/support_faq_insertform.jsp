@@ -5,9 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/support_inquire</title>
+<title>/support_faq_insertform</title>
 <style>
-	.faq_management{
+	.faqBtn{
 	width: 240px;
     height: 60px;
     margin: 0 auto;
@@ -52,7 +52,7 @@
 		<div class="body_area">
 			<div class="main_content">
 				<h3>질문 등록</h3>
-				<form action="" class="area_form">
+				<form action="${pageContext.request.contextPath }/support/support_faq_insert" class="area_form" method="post">
 					<div class="row-wrap">
 						<div class="input_title">
 							<h4 class="label">질문</h4>
@@ -88,7 +88,7 @@
 					<p class="info_message">
 						이 사이트는 reCAPTCHA에 의해 보호되며 Google 개인 정보 취급 방침 및 서비스 약관이 적용됩니다.
 					</p>
-					<a href="${pageContext.request.contextPath }/support/support_faq_insert" class="faq_management">질문 등록</a>
+					<button type="submit" class="faqBtn">질문 등록</button>
 				</form>
 			</div>
 		</div>
