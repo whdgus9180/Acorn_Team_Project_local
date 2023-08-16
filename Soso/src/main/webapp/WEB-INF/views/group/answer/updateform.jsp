@@ -17,6 +17,7 @@
 	<div class="container">
 		<h2>소모임 게시판 수정 게시판</h2>
 		<form action="${pageContext.request.contextPath}/group/answer/update?num=${dto.num }" method="post">
+			<input type="text" id="group_num" name="group_num" value="${dto.group_num }" hidden/>
 			<div>
 				<label for="a_answer"></label>
 				<textarea name="a_answer" id="a_answer" rows="10">${dto.a_answer }</textarea>

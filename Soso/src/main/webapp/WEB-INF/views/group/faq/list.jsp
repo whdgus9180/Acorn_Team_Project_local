@@ -34,14 +34,14 @@
 						        <div>${tmp.q_content}</div>
 						        <c:if test="${empty tmp.a_answer }">
 						        	<a href="${pageContext.request.contextPath}/group/faq/updateform?num=${tmp.num}"id="update">수정</a>
-						        	<a href="${pageContext.request.contextPath}/group/faq/delete?num=${tmp.num}">삭제</a>
+						        	<a href="${pageContext.request.contextPath}/group/faq/delete?num=${tmp.num}&group_num=${tmp.group_num}">삭제</a>
 						        </c:if>
 						        <div class="answer" style="background-color: lightgrey;">${tmp.a_answer }</div> <!-- 이 부분을 추가 -->
 						        <!-- session id과 manger id를 검증해서 조건부 출력 -->
 						        <c:if test="${dto.manager_id == sessionScope.id }">
 						        	<a href="${pageContext.request.contextPath}/group/answer/insertform?num=${tmp.num}" id="answer">답변&수정</a>
 <%-- 							        <a href="${pageContext.request.contextPath}/group/answer/updateform?num=${tmp.num}" id="updateAnswer" >답변 수정</a>
- --%>							        <a href="${pageContext.request.contextPath}/group/answer/delete?num=${tmp.num}">답변 삭제(실제로는 update)</a>						        
+ --%>							        <a href="${pageContext.request.contextPath}/group/answer/delete?num=${tmp.num}&group_num=${tmp.group_num}">답변 삭제(실제로는 update)</a>						        
 						        </c:if>
 						    </td>
 						</tr>
@@ -55,12 +55,12 @@
 					 --%>
 					<c:if test="${startPageNum ne 1 }">
 						<li class="page-item">
-							<a class="page-link animate__animated" href="list?pageNum=${startPageNum-1 }&condition=${condition}&keyword=${encodedK}">Prev</a>
+							<a class="page-link animate__animated" href="list?pageNum=${startPageNum-1 }">Prev</a>
 						</li>
 					</c:if>
 					<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
 						<li class="page-item ${pageNum eq i ? 'active' : '' }">
-							<a class="page-link animate__animated" href="list?pageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
+							<a class="page-link animate__animated" href="list?pageNum=${i }">${i }</a>
 						</li>
 					</c:forEach>
 					<%--
@@ -68,7 +68,7 @@
 					 --%>
 					<c:if test="${endPageNum lt totalPageCount }">
 						<li class="page-item">
-							<a class="page-link animate__animated" href="list?pageNum=${endPageNum+1 }&condition=${condition}&keyword=${encodedK}">Next</a>
+							<a class="page-link animate__animated" href="list?pageNum=${endPageNum+1 }">Next</a>
 						</li>
 					</c:if>				
 				</ul>
