@@ -13,8 +13,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </head>
 <body>
-	
- 
 	<div class="head">
 		<h2>고객센터</h2>
 		<p class="sub_text">서비스 이용 중 불편 했던 점이나 궁금한 점을 빠르고 친절하게 안내해 드리겠습니다.</p>
@@ -42,46 +40,14 @@
 			<h3 class="faq">자주하는 질문 10</h3>
 			<a class="faq_more" href="${pageContext.request.contextPath }/support/support_faq">주제별 FAQ 더보기</a>
 			<ul>
-				<li>
-					<span class="faq_category">모임신청</span>
-					<p>빈공간입니다.</p>
-				</li>
-				<li>
-					<span class="faq_category">회원</span>
-					<p>빈공간입니다.</p>
-				</li>
-				<li>
-					<span class="faq_category">회원</span>
-					<p>빈공간입니다.</p>
-				</li>
-				<li>
-					<span class="faq_category">모임개설</span>
-					<p>빈공간입니다.</p>
-				</li>
-				<li>
-					<span class="faq_category">모임개설</span>
-					<p>빈공간입니다.</p>
-				</li>
-				<li>
-					<span class="faq_category">모임해산</span>
-					<p>빈공간입니다.</p>
-				</li>
-				<li>
-					<span class="faq_category">모임해산</span>
-					<p>빈공간입니다.</p>
-				</li>
-				<li>
-					<span class="faq_category">회원</span>
-					<p>빈공간입니다.</p>
-				</li>
-				<li>
-					<span class="faq_category">회원</span>
-					<p>빈공간입니다.</p>
-				</li>
-				<li>
-					<span class="faq_category">회원</span>
-					<p>빈공간입니다.</p>
-				</li>
+				<c:forEach var="tmp" items="${list }">
+					<li class="dropbox">
+						<div class="title_area">
+							<span class="category">${tmp.category}</span>
+							<p class="detail">${tmp.question }</p>
+						</div>
+					</li>
+				</c:forEach>
 			</ul>
 			</section>
 			<section class="notice">

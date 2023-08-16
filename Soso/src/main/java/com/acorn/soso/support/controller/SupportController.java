@@ -32,8 +32,8 @@ public class SupportController {
 	private InquireService inquireService;
 	
 	@GetMapping("/support/support_main")
-	public String support_main() {
-		
+	public String support_main(HttpServletRequest request, Model model) {
+		service.getList(request, model);
 		return "support/support_main";
 	}
 	
