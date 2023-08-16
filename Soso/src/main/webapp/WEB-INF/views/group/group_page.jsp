@@ -130,8 +130,16 @@
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
-				<a href="${pageContext.request.contextPath}/group/comment/comment_insert_form?num=${dto.num}" id="reviewInsert">후기 작성하기</a>
-				<div id="commentArea"></div>
+				<c:forEach var="item" items="${list}">
+				  <c:choose>
+				    <c:when test="${item.user_id eq sessionScope.id}">
+				    	<c:if test="${dto.deadline_dt lt nowDate}">
+							<a href="${pageContext.request.contextPath}/group/comment/comment_insert_form?num=${dto.num}" id="reviewInsert">후기 작성하기</a>
+							<div id="commentArea"></div>
+						</c:if>
+				    </c:when>
+				  </c:choose>
+				</c:forEach>
 			</div>
 		</div>
 		<div>

@@ -195,6 +195,9 @@ public class GroupController {
 		managingService.getGroupData(num, request);
 		//소모임의 후기 글을 가져온다.
 		service.reviewList(request, model);
+		//소모임에 가입된 멤버 리스트를 가져온다.
+		int group_num = Integer.parseInt(request.getParameter("num"));
+		managingService.getMemberList(group_num, request);
 		
 		//로그인 여부를 토대로 서비스 실행 여부를 정한다.
 		String id =(String)request.getSession().getAttribute("id");
