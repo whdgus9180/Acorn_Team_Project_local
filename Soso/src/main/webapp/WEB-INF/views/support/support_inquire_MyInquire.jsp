@@ -82,7 +82,7 @@
 										</c:when>
 									</c:choose>
 								</td>
-								<td><a href="${pageContext.request.contextPath}/support/support_inquire_Myinquire_detail">${tmp.title }</a></td>
+								<td><a href="${pageContext.request.contextPath}/support/support_inquire_Myinquire_detail?cs_num=${tmp.cs_num}">${tmp.title }</a></td>
 								<td>답변대기</td>
 								<td>${tmp.regdate}</td>
 							</tr>
