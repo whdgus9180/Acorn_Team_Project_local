@@ -35,7 +35,7 @@
 						<td>${tmp.comu_num }</td>
 						
 						<td>
-							<a style="color: black;" class="text-decoration-none"  href="detail?comu_num=${tmp.comu_num }&condition=${condition}&keyword=${encodedK}&group_num=${num}">(말머리)${tmp.title }</a>
+							<a style="color: black;" class="text-decoration-none" href="detail?comu_num=${tmp.comu_num }&condition=${condition}&keyword=${encodedK}&group_num=${tmp.group_num}">(말머리)${tmp.title }</a>
 						</td>
 						<td>${tmp.writer }</td>
 						<td style="text-align: center">${tmp.viewCount }</td>
@@ -57,7 +57,7 @@
 					</c:if>
 					<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
 						<li class="page-item ${pageNum eq i ? 'active' : '' }">
-							<a class="page-link animate__animated" href="list?pageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
+							<a class="page-link animate__animated" href="list?pageNum=${i }&condition=${condition}&keyword=${encodedK}&group_num=${group_num}">${i }</a>
 						</li>
 					</c:forEach>
 					<%--
