@@ -5,13 +5,17 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.acorn.soso.support.faq.dto.FaqDto;
+import com.acorn.soso.support.faq.dto.InquireDto;
 import com.acorn.soso.support.faq.service.FaqService;
+import com.acorn.soso.support.faq.service.InquireService;
+import com.acorn.soso.users.service.UsersService;
 
 
 
@@ -19,6 +23,12 @@ import com.acorn.soso.support.faq.service.FaqService;
 public class SupportController {
 	@Autowired
 	private FaqService service;
+	
+	@Autowired
+	private UsersService userService;
+	
+	@Autowired
+	private InquireService inquireService;
 	
 	@GetMapping("/support/support_main")
 	public String support_main() {
@@ -64,18 +74,25 @@ public class SupportController {
 	}
 	
 	@GetMapping("/support/support_inquire")
-	public String support_inquire() {
-		
+	public String support_inquire(HttpSession session, Model model) {
+		userService.getInfo(session, model);
 		return "support/support_inquire";
 	}
+	
+	@PostMapping("/support/support_inquire_submit")
+	public String support_inquire_submit(InquireDto dto) {
+		inquireService.insert(dto);
+		return "support/support_inquire_MyInquire";
+	}
+	
 	@GetMapping("/support/support_inquire_register")
 	public String support_inquire_register() {
 		
 		return "support/support_inquire_register";
 	}
 	@GetMapping("/support/support_inquire_MyInquire")
-	public String support_inquire_MyInquire() {
-		
+	public String support_inquire_MyInquire(HttpSession session, Model model) {
+		inquireService.getList(session, model);
 		return "support/support_inquire_MyInquire";
 	}
 	@PostMapping("/support/support_faq_insert")
