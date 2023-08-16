@@ -21,7 +21,7 @@
 		FROM
 			(SELECT result1.*, ROWNUM AS rnum
 			FROM
-				(SELECT faq_num,writer,title,content,viewCount,regdate
+				(SELECT category,question,answer
 				FROM FAQ_TB
 				<include refid="searchCondition"/>
 				ORDER BY faq_num DESC) result1)
@@ -39,7 +39,7 @@
 	<insert id="insert" parameterType="faqDto">
 		INSERT INTO FAQ_TB
 		(faq_num,category,question,answer)
-		VALUES(FAQ_TB_seq.NEXTVAL, #{category}, #{question},
+		VALUES(FAQ_SEQ.NEXTVAL, #{category}, #{question},
 			#{answer})
 	</insert>
 	
