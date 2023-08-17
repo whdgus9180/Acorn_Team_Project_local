@@ -13,7 +13,8 @@
 	<jsp:include page="/WEB-INF/views/include/navbar_c.jsp">
         <jsp:param value="login" name="current"/>
     </jsp:include>
-	<div class="container">
+	<section>
+		<div class="container">
 		<div id="header">
 			<div class="title">Applicant</div>
 		</div>
@@ -42,6 +43,8 @@
 			</c:forEach>
 		</div>
 	</div>
+	</section>
+	
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>

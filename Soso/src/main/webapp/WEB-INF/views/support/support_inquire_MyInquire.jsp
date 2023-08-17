@@ -55,32 +55,39 @@
 				<table class="table">
 					<thead class="table-light">
 						<tr>
-							<th>등록일</th>
+							<th>등록 번호</th>
+							<th>문의 구분</th>
 							<th>문의 제목</th>
 							<th>문의 상태</th>
+							<th>등록일</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>2023.08.03</td>
-							<td>집 어케 가여?</td>
-							<td>답변대기</td>
-						</tr>
-						<tr>
-							<td>2023.08.03</td>
-							<td>집 어케 가여?</td>
-							<td>답변대기</td>
-						</tr>
-						<tr>
-							<td>2023.08.03</td>
-							<td>집 어케 가여?</td>
-							<td>답변대기</td>
-						</tr>
-						<tr>
-							<td>2023.08.03</td>
-							<td>집 어케 가여?</td>
-							<td>답변대기</td>
-						</tr>
+						<c:forEach var="tmp" items="${list}">
+							<tr>
+								<td>${tmp.cs_num}</td>
+								<td>
+									<c:choose>
+										<c:when test="${tmp.category == 1}">
+											회원
+										</c:when>
+										<c:when test="${tmp.category == 2}">
+											모임신청
+										</c:when>
+										<c:when test="${tmp.category == 3}">
+											모임개설
+										</c:when>
+										<c:when test="${tmp.category == 0}">
+											기타
+										</c:when>
+									</c:choose>
+								</td>
+								<td><a href="${pageContext.request.contextPath}/support/support_inquire_Myinquire_detail?cs_num=${tmp.cs_num}">${tmp.title }</a></td>
+								<td>답변대기</td>
+								<td>${tmp.regdate}</td>
+							</tr>
+						</c:forEach>
+						
 					</tbody>
 				</table>
 			</div>

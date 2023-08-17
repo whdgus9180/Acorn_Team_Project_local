@@ -52,16 +52,16 @@
 		<div class="body_area">
 			<div class="main_content">
 				<h3>질문 등록</h3>
-				<form action="${pageContext.request.contextPath }/support/support_faq_insert" class="area_form" method="post">
+				<form action="${pageContext.request.contextPath }/support/support_faq_insert" class="area_form" method="post" enctype="multipart/form-data">
 					<div class="row-wrap">
 						<div class="input_title">
 							<h4 class="label">질문</h4>
 							<select name="category" id="category" class="title_select">
-								<option value selected="selected" class="inquire_select">분류</option>
-								<option value="user">회원</option>
-								<option value="request">모임신청</option>
-								<option value="open">모임개설</option>
-								<option value="etc">기타</option>
+								<option selected="selected" class="inquire_select">분류</option>
+								<option value="회원">회원</option>
+								<option value="모임신청">모임신청</option>
+								<option value="모임개설">모임개설</option>
+								<option value="기타">기타</option>
 							</select>
 							<input type="text" class="inquire_title" name="question" id="question" placeholder="질문을 입력해주세요" />
 						</div>
@@ -72,19 +72,7 @@
 							<textarea name="answer" id="answer" placeholder="답변내용을 입력 해 주세요."></textarea>
 						</div>
 					</div>
-					<div class="row-wrap">
-						<div class="input_file">
-							<h4 class="label">파일첨부</h4>
-							<div class="file_box">
-								<label for="" class="btn_upload">파일선택</label>
-								<input type="text" class="upload_file" value="파일을 업로드 해주세요." disabled/>
-							</div>
-							<div class="file_wrap">
-								<p class="tip_file">* 파일 용량은 최대
-								2MB, 5개까지 등록이 가능합니다.</p>
-							</div>
-						</div>
-					</div>
+					
 					<p class="info_message">
 						이 사이트는 reCAPTCHA에 의해 보호되며 Google 개인 정보 취급 방침 및 서비스 약관이 적용됩니다.
 					</p>
