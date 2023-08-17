@@ -30,12 +30,11 @@
 	<insert id="insert" parameterType="cafeCommentDto">
 		INSERT INTO comu_comment_tb
 		(comment_num, writer, content, target_id, comu_num, comment_group, regdate)
-		VALUES(#{comment_num}, #{writer}, #{content}, #{target_id}, #{comu_num},
-			#{comment_group}, SYSDATE)
+		VALUES(#{comment_num}, #{writer}, #{content}, #{target_id}, #{comu_num},#{comment_group}, SYSDATE)
 	</insert>
 	<!-- 저장 예정인 댓글의 글번호를 미리 얻어내기  -->
 	<select id="getSequence" resultType="int">
-		SELECT comu_comment_seq.NEXTVAL
+		SELECT comu_coment_seq.NEXTVAL
 		FROM DUAL
 	</select>
 	<update id="update" parameterType="cafeCommentDto">
@@ -44,7 +43,7 @@
 		WHERE comment_num=#{comment_num}
 	</update>
 	<select id="getData" parameterType="int" resultType="cafeCommentDto">
-		SELECT comment_num,writer,content,comu_num,comment_group,deleted,regdate
+		SELECT comment_num, writer, content, comu_num, comment_group, deleted, regdate
 		FROM comu_comment_tb
 		WHERE comment_num=#{comment_num}
 	</select>
