@@ -7,11 +7,11 @@ $(document).ready(function(){
 
     if(top > 0){
         $('header').addClass('active');
-        $('header').css('border-bottom','1px solid #ccc');
+        $('header').css('border-bottom','1px solid #fff');
         $('header').css('background-color','rgba(209, 199, 177, 0.947)');
     }else{
         $('header').removeClass('active');
-        $('header').css('border-bottom','0');
+        $('header').css('border-bottom','1px solid #fff');
         $('header').css('background-color','rgba(209, 199, 177, 0.947)');
     }
 });
