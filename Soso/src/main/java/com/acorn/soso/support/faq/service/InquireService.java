@@ -11,4 +11,5 @@ public interface InquireService {
 	public void getList(HttpSession session, Model model);
 	public void getData(int cs_num, Model model);
 	public void update (InquireDto dto, Model model);
+	public void delete(int cs_num, Model model);
 }

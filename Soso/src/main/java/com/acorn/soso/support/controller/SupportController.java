@@ -109,7 +109,7 @@ public class SupportController {
 	}
 	@GetMapping("/support/support_inquire_delete")
 	public String support_inquire_delete(int cs_num, Model model) {
-		
+		inquireService.delete(cs_num, model);
 		return "redirect:/support/support_inquire_MyInquire";
 	}
 	

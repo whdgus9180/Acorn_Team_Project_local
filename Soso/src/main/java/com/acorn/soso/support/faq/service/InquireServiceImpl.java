@@ -40,4 +40,9 @@ public class InquireServiceImpl implements InquireService{
 		dao.update(dto);
 	}
 
+	@Override
+	public void delete(int cs_num, Model model) {
+		dao.delete(cs_num);
+	}
+
 }
