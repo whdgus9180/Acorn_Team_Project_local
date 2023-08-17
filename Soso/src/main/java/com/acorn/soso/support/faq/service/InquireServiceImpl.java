@@ -30,9 +30,10 @@ public class InquireServiceImpl implements InquireService{
 	}
 
 	@Override
-	public void getData(int cs_num, Model model) {
+	public InquireDto getData(int cs_num, Model model) {
 		InquireDto dto = dao.getData(cs_num);
 		model.addAttribute("dto", dto);
+		return dto;
 	}
 
 	@Override
