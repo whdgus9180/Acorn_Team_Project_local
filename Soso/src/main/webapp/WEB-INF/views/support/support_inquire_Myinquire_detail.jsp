@@ -91,13 +91,23 @@
 							</label>
 						</div>
 					</div>
-					<input type="submit" value="문의 수정하기" class="btn_submit"/>
-					<a href="${pageContext.request.contextPath}/support/support_inquire_delete?cs_num=${dto.cs_num}" class="btn_submit">문의 삭제하기</a>
+					<div class="d-flex">
+						<input type="submit" value="문의 수정하기" class="btn_submit"/>
+						<input id="deleteBtn" type="button" value="삭제하기" class="btn_submit"/>
+					</div>
+					<script>
+						document.querySelector("#deleteBtn").addEventListener("click", (e)=>{
+							e.preventDefault();
+							const isTrue = confirm("문의 글을 삭제하시겠습니까?")
+							if(isTrue){
+								location.href="${pageContext.request.contextPath}/support/support_inquire_delete?cs_num=${dto.cs_num}";
+							}
+						});
+					</script>
 				</form>
 			</div>
 		</div>
 	</div>
-	
 	</main>
 </body>
 </html>
