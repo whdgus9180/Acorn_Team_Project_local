@@ -21,22 +21,17 @@
 	</insert>
 	
 	<select id="getData" parameterType="int" resultType="inquireDto">
-		SELECT result1.*
-		FROM
-			(SELECT faq_num,writer,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,
-			   LAG(faq_num, 1, 0) OVER (ORDER BY num DESC) nextNum,
-	   		   LEAD(num, 1, 0) OVER (ORDER BY num DESC) prevNum
-			 FROM CS_TB) result1
-		WHERE num=#{num}
+		SELECT *
+		FROM CS_TB
+		WHERE cs_num = #{cs_num}
 	</select>
 	<delete id="delete" parameterType="int">
 		DELETE FROM CS_TB
-		WHERE faq_num=#{faq_num}
+		WHERE cs_num=#{cs_num}
 	</delete>
-	
 	<update id="update" parameterType="inquireDto">
 		UPDATE CS_TB
-		SET question=#{question}, answer=#{answer}
-		WHERE faq_num=#{faq_num}
+		SET category = #{category}, title = #{title}, content = #{content}
+		WHERE cs_num = #{cs_num}
 	</update>	
 </mapper>

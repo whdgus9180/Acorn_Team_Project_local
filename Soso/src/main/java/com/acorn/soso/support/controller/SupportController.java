@@ -32,8 +32,8 @@ public class SupportController {
 	private InquireService inquireService;
 	
 	@GetMapping("/support/support_main")
-	public String support_main() {
-		
+	public String support_main(HttpServletRequest request, Model model) {
+		service.getList(request, model);
 		return "support/support_main";
 	}
 	
@@ -97,6 +97,23 @@ public class SupportController {
 		inquireService.getList(session, model);
 		return "support/support_inquire_MyInquire";
 	}
+	@GetMapping("/support/support_inquire_Myinquire_detail")
+	public String support_inquire_Myinquire_detail(int cs_num, Model model) {
+		inquireService.getData(cs_num, model);
+		return "support/support_inquire_Myinquire_detail";
+	}
+	@PostMapping("/support/support_inquire_update")
+	public String support_inquire_update(InquireDto dto, Model model) {
+		inquireService.update(dto, model);
+		return "redirect:/support/support_inquire_MyInquire";
+	}
+	@GetMapping("/support/support_inquire_delete")
+	public String support_inquire_delete(int cs_num, Model model) {
+		
+		return "redirect:/support/support_inquire_MyInquire";
+	}
+	
+
 	@PostMapping("/support/support_faq_insert")
 	public String insert(FaqDto dto) {
 	
