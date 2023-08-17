@@ -20,7 +20,7 @@
     text-align: center;
 }
 .btn_more{
-	background-image: url("https://static.onoffmix.com/images/pc/svg/arrow_up_bl.svg")
+	background-image: url("https://static.onoffmix.com/images/pc/svg/arrow_up_bl.svg");
 	width:100%;
 	height: 64px;
 	top: 0;
@@ -32,6 +32,21 @@
 	cursor: pointer;
 	overflow: hidden;
 	text-indent: -9999em;
+	position: absolute;
+	box-sizing: border-box;
+	display: block;
+	border: 1px solid transparent;
+}
+.dropbox .detail_content{
+	position: relative;
+	padding: 40px 50px 90px;
+	box-sizing: border-box;
+	width: 100%;
+	font-size: 14px;
+	background-color: #fafafa;
+	overflow-x: hidden;
+	overflow-y: auto;
+	display: none;
 }
 </style>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -99,9 +114,13 @@
 							<span class="category">${tmp.category}</span>
 							<h5 class="detail">${tmp.question }</h5>
 						</div>
+						<div class="detail_content" style="display: block;">
+							<span style="line-height: 24px;">
+								<div>${tmp.answer }</div>
+							</span>
+						</div>
 					</li>
 				</c:forEach>
-			
 			</ul>
 			<a href="${pageContext.request.contextPath }/support/support_faq_insertform" class="faq_management">FAQ 관리</a>
 			</div>
@@ -133,6 +152,7 @@
 				</c:if>				
 			</ul>
 		</nav>
+		
 		<script>
 			document.querySelectorAll(".pagination a").forEach(function(item){
 				//item 은 a 의 참조값이다 모든 a 요소에 mouseover 이벤트가 발생했을때 실행할 함수 등록
