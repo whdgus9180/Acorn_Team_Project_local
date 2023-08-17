@@ -17,7 +17,7 @@
 		<jsp:param value="groupPage" name="current" />
 	</jsp:include>
 	
-	<section class="sub-contents group_content">
+	<section class="sub-contents group_content_title">
 		<div class="inner-wrap">
             <h3 class="title black" data-aos="fade-up"
             data-aos-offset="300"
@@ -26,100 +26,96 @@
 		<div class="inner-wrap">
 			<div class="group_meet_text">
 			<ul>
-				<li class="p-2"><strong>${dto.meeting_loc }</strong></li>
-				<li class="p-2"><strong>${dto.meeting_time }</strong></li>
-				<li class="p-2"><strong>최대 ${dto.max_people }명</strong></li>
-				<li class="p-2"><strong>신청 기한 &nbsp; </strong>
-		         <fmt:parseDate value="${dto.deadline_dt}" var="deadline_dt" pattern="yyyy-MM-dd"></fmt:parseDate>
-		         <fmt:formatDate value="${deadline_dt}" pattern="yyyy-MM-dd" />까지
-		         </li>
+				<li>${dto.meeting_loc }</li>
+				<li>${dto.meeting_time }</li>
+				<li>최대 ${dto.max_people }명</li>
+				<li>신청 기한&nbsp; <fmt:parseDate value="${dto.deadline_dt}" var="deadline_dt" pattern="yyyy-MM-dd"></fmt:parseDate><fmt:formatDate value="${deadline_dt}" pattern="yyyy-MM-dd" /> 까지</li>
 			</ul>
 			</div>
 		</div>
 		
 		<div class="inner-wrap">
-			<div class="p-2 flex-grow-1">모임 대표 이미지
-				<img src="${pageContext.request.contextPath}${dto.img_path}">
-			</div>
-			<div class="p-2 flex-grow-1">
-				<h4>모임 소개</h4>
-				<span>${dto.caption }</span>
-				<div class="">
-					<div class="p-2">
+			<div class="group_content">
+				<div class="group_meet_img">
+					<img src="${pageContext.request.contextPath}${dto.img_path}">
+				</div>
+				<div class="group_meet_contents">
+					<p class="title">${dto.manager_comment }</p>
+					<p class="text">${dto.caption }</p>
+					<div class="group_check">
+					    <!-- 모임 가입 , 취소, 마감 버튼  -->
+						<div class="group_join_btn">
+						<c:set var="now" value="<%= new java.util.Date() %>" />
+						<c:set var="nowDate"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd" /></c:set>
 						<c:choose>
-							<c:when test="${empty jjim }">
-								<div class="p-2 heart" id="fillHeart">
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-									  <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-									</svg>
-								</div>
-								<div id="jjimCount">${jjimCount }</div>
+							<c:when test="${dto.deadline_dt lt nowDate}">
+							<!-- 오늘 날짜와 비교해서 신청 마감 버튼으로 변경 -->
+							<button type="button" class="disabled" disabled>신청 마감</button>
 							</c:when>
 							<c:otherwise>
-								<div class="p-2 heart" id="emptyHeart">
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-									  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-									</svg>
-								</div>
-								<div id="jjimCount">${jjimCount }</div>
+								<c:choose>
+									<c:when test="${knowJoin == -1 || empty knowJoin}">
+										<button type="button" class="join">
+											<a href="${pageContext.request.contextPath}/group/group_in?num=${dto.num }">가입하기</a>
+										</button>
+									</c:when>
+									<c:otherwise>
+										<button type="button" class="cancle" id="cancleBtn" name="cancleBtn">신청 취소</button>
+									</c:otherwise>
+								</c:choose>
 							</c:otherwise>
 						</c:choose>
-					</div>
-					<input type="hidden" name="jjimNum" id="jjimNum" value="${dto.num }" hidden />
-					<button id="jjim" hidden>찜하기 버튼 테스트</button>
-						<c:set var="now" value="<%= new java.util.Date() %>" />
-						<c:set var="nowDate"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd" /></c:set> 
-						<c:choose>
-						<c:when test="${dto.deadline_dt lt nowDate}">
-							<button type="button" class="btn btn-secondary" disabled>신청 마감</button>
-						</c:when>
-						<c:otherwise>
+						</div>
+						<div class="group_com">
+							<a href="${pageContext.request.contextPath}/group_managing/group_userdetail?num=${dto.num}">커뮤니티</a>
+						</div>
+						<!-- 북마크 버튼 -->	
+						<div class="group_bookmark">
 							<c:choose>
-								<c:when test="${knowJoin == -1 || empty knowJoin}">
-									<button type="button" class="btn btn-outline-primary"><a href="${pageContext.request.contextPath}/group/group_in?num=${dto.num }">가입하기</a></button>
+								<c:when test="${empty jjim }">
+									<div class="p-2 heart" id="fillHeart">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+										  <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+										</svg>
+										<div id="jjimCount">${jjimCount }</div>
+									</div>	
 								</c:when>
 								<c:otherwise>
-									<button type="button" class="btn btn-outline-primary cancle" id="cancleBtn" name="cancleBtn">신청 취소</button>
+									<div class="p-2 heart" id="emptyHeart">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+										  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+										</svg>
+										<div id="jjimCount">${jjimCount }</div>
+									</div>
 								</c:otherwise>
 							</c:choose>
-						</c:otherwise>
-					</c:choose>
+							<input type="hidden" name="jjimNum" id="jjimNum" value="${dto.num }" hidden />
+							<button id="jjim" hidden>찜하기 버튼 테스트</button>
+						</div>	
+									
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="inner-wrap">
-			<div class="d-flex mb-3">
-			<div class="p-2 flex-grow-1">호스트의 한마디</div>
-			<div class="p-2 flex-grow-1">${dto.manager_comment }</div>
-		</div>
-		<div>
-			<h4 class="mx-1 my-1">이 모임에서는 이런 책들을 읽어요</h4>
-			<div class="d-flex">
-				<div class="card mx-1 my-1" style="width: 9rem;">
-					<div class="card-body">
-						<img src="${pageContext.request.contextPath}/images/0.png" class="card-img-top" alt="..." />
+		 <div class="group_content_book_bg">
+		  <div class="inner-wrapper">
+		  	<div class="group_content_book">
+	            <h2 class="title black">이 모임에서는 이런 책들을 읽어요</h2>
+				<div class="group_content_book_list">
+					<div class="">
+						<div class="">
+							<img src="${path }/resources/images/sub/book_cover.png"/>
+						</div>
+						<h5 class="">책 이름1</h5>
+						<p class="">여기에 책 설명이 출력될 예정입니다.</p>
 					</div>
-					<h5 class="card-title">책 이름1</h5>
-					<p class="card-text">여기에 책 설명이 출력될 예정입니다.</p>
+					<!-- 반복문으로 출력할 예정입니다. -->
 				</div>
-				<div class="card mx-1 my-1" style="width: 9rem;">
-					<div class="card-body">
-						<img src="${pageContext.request.contextPath}/images/1.png" class="card-img-top" alt="..." />
-					</div>
-					<h5 class="card-title">책 이름2</h5>
-					<p class="card-text">여기에 책 설명이 출력될 예정입니다.</p>
-				</div>
-				<div class="card mx-1 my-1" style="width: 9rem; height: 18rem;">
-					<div class="card-body">
-						<img src="${pageContext.request.contextPath}/images/2.png" class="card-img-top" alt="..." />
-					</div>
-					<h5 class="card-title">책 이름3</h5>
-					<p class="card-text">여기에 책 설명이 출력될 예정입니다.</p>
-				</div>
-				<!-- 반복문으로 출력할 예정입니다. -->
-			</div>
+            </div>
+		  </div>
 		</div>
-		</div>
+
+
 		
 		<div class="inner-wrap">
 			<div>
