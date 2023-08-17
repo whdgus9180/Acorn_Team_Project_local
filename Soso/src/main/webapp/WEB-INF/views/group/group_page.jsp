@@ -124,7 +124,8 @@
 							<div class="card mx-1 my-1">
 								<div class="card-body">
 									<p class="card-text">${tmp.content }</p>
-									<p class="card-text">${tmp.rate }</p>
+									<p class="card-text">평점 : ${tmp.rate }</p>
+									<p class="card-text">작성자 : ${tmp.writer }</p>
 								</div>
 							</div>
 						</c:forEach>
