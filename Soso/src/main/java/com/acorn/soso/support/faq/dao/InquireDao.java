@@ -13,4 +13,6 @@ public interface InquireDao {
 	public InquireDto getData(int cs_num);
 	//등록한 문의글 수정하기
 	public void update(InquireDto dto);
+	//등록한 문의글 삭제하기
+	public void delete(int cs_num);
 }

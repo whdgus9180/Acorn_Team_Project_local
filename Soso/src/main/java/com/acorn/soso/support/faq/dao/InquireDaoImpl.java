@@ -34,4 +34,10 @@ public class InquireDaoImpl implements InquireDao{
 		session.update("inquire.update", dto);
 	}
 
+	@Override
+	public void delete(int cs_num) {
+		session.delete("inquire.delete", cs_num);
+		
+	}
+
 }
