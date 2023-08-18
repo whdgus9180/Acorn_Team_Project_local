@@ -131,8 +131,26 @@
 			    });
 			</script>
 			<div>
-				<textarea name="caption" id="caption" rows="5" placeholder="이곳에 소모임 규칙 또는 자세한 설명을 적어주세요!"></textarea>
+				<textarea name="caption" id="caption" rows="2" placeholder="이곳에 소모임 규칙 또는 자세한 설명을 적어주세요!"></textarea>
+				<div style = "display:flex; justify-content:end">
+					<div id="currentTextLength">0 / 200</div> 
+				</div>
+				<div class="invalid-feedback">소모임 소개는 최소 100자이상 최대 200자 미만으로 적어주시길 바랍니다</div>
 			</div>
+			<script>
+				$(".invalid-feedback").css("color", "red").css("font-size", "13px").css("font_weight", "600").hide();
+				$("#caption").on("input", function(){
+					const textNum = $(this).val().length;
+					$("#currentTextLength").text(textNum + " / 200");
+					if(textNum >= 200 || textNum < 100) {
+						$("#caption").removeClass("is-valid").addClass("is-invalid");
+						$(".invalid-feedback").show();
+					} else {
+						$("#caption").removeClass("is-invalid").addClass("is-valid");
+			  		 	$(".invalid-feedback").hide();
+					}
+				});
+			</script>
 			<div id="form_button">
 				<button type="submit">개설</button>
 			</div>
