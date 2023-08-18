@@ -131,8 +131,9 @@ public class GroupManagingServiceImpl implements GroupManagingService{
 	}
 
 	@Override
-	public void dropOut(int num) {
-		dao.dropOut(num);
+	public void dropOut(GroupManagingDto dto) {
+		dao.dropOut(dto);
+		
 	}
 
 	@Override
@@ -147,5 +148,5 @@ public class GroupManagingServiceImpl implements GroupManagingService{
 		GroupDto dto = dao.getGroupData(num);
 		mView.addObject("dto", dto);
 	}
-	
+
 }

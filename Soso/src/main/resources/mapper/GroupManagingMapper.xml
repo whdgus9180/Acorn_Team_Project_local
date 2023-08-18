@@ -20,7 +20,7 @@
 	    SELECT group_tb.*, group_join_tb.user_id
 	    FROM group_tb
 	    INNER JOIN group_join_tb ON group_tb.num = group_join_tb.group_num
-	    WHERE group_join_tb.user_id = #{user_id} 
+	    WHERE group_join_tb.user_id = #{user_id} AND isJoin = 0
    	</select>
    	
    	<select id="getGroupData" parameterType="int" resultType="groupDto">
@@ -121,9 +121,9 @@
    		WHERE num = #{num}
    	</update>
    	<!-- 소모임 탈퇴 -->
-   	<update id="dropOut" parameterType="int">
-   		UPDATE board_join_group
-   		SET isJoin = 3
-   		WHERE num = #{num}
-   	</update>
+    <update id="dropOut" parameterType="groupManagingDto">
+	    UPDATE group_join_tb
+	    SET isJoin = 3
+	    WHERE num = #{group_num} AND user_id = #{user_id}
+	</update>
 </mapper>

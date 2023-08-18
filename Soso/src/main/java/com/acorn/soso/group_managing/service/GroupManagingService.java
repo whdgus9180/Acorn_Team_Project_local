@@ -26,6 +26,6 @@ public interface GroupManagingService {
 	public void getMemberCount(int num, HttpServletRequest request);
 	public void kick(int num, int group_num);
 	public void reject(int num);
-	public void dropOut(int num);
 	public void getDetail(ModelAndView mView, int num);
+	public void dropOut(GroupManagingDto dto);
 }

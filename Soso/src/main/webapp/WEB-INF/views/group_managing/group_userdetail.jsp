@@ -90,6 +90,10 @@
 		<br />
 		<h3 style="text-align: center">모임 사진첩</h3>
 		<br />
+		<div style="width:100%; text-align:right;">
+			<a href="${pageContext.request.contextPath }/group_managing/userdetail_insertform" class="btn btn-outline-dark" tabindex="-1" role="button" aria-disabled="true">후기쓰기</a>
+		</div>
+		<br />
 		<div class="photo_container">
 			<div class="img-wrapper">
 				<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTExMDRfMTcx%2FMDAxNjM2MDIxOTI4Mjk5.gG1CkTWtdyN3dvFvNjSShrP0RaKmaskEgEW_NcCOTxEg.iN1k2ZScXbPJfvMEjlUOruyuJyePA_To7wS-r3xLju8g.JPEG.hayeon_0529%2FSNOW%25A3%25DF20211023%25A3%25DF161405%25A3%25DF753%25A3%25DFmr1634974283678.jpg&type=a340"/>
@@ -106,12 +110,12 @@
 		</div>
 	</div>
 	<script>
-		function deleteConfirm(){
-			const isDelete=confirm("${id} 님 탈퇴 하시겠습니까?");
-			if(isDelete){
-				location.href="${pageContext.request.contextPath}/group_managing/group_userdropOut";
-			}
-		}
+    function deleteConfirm() {
+        const isDelete = confirm("${id} 님 탈퇴 하시겠습니까?");
+        if (isDelete) {
+            location.href = "${pageContext.request.contextPath}/group_managing/group_userdropOut?num=${dto.num}";
+        }
+    }
 	</script>
 </body>
 </html>

@@ -87,9 +87,10 @@ public class GroupManagingDaoImpl implements GroupManagingDao{
 	}
 
 	@Override
-	public void dropOut(int num) {
-		session.update("groupManaging.dropOut", num);
+	public void dropOut(GroupManagingDto dto) {
+		session.update("groupManaging.dropOut", dto);
 	}
+	
 
 	@Override
 	public List<GroupDto> getGroupList2(String user_id) {
