@@ -9,6 +9,11 @@
     <select id="isExist" parameterType="string" resultType="int">
         SELECT COUNT(*) FROM users WHERE id = #{id}
     </select>
+    
+    <!-- 닉네임 중복체크 -->
+    <select id="isExist2" parameterType="string" resultType="int">
+        SELECT COUNT(*) FROM users WHERE name = #{name}
+    </select>
 
 	<insert id="insert" parameterType="usersDto">
 		INSERT INTO users

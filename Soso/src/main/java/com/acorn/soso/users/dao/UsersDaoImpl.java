@@ -20,6 +20,12 @@ public class UsersDaoImpl implements UsersDao{
 		//DB에 저장된 같은 아이디가 0이면 존재하지 않는 아이디
 		return session.selectOne("users.isExist", inputId);
 	}
+	
+	@Override
+	public int isExist2(String userName) {
+		//DB에 저장된 같은 이름이 0이면 존재하지 않는 이름
+		return session.selectOne("users.isExist2", userName);
+	}
 
 	@Override
 	public void insert(UsersDto dto) {

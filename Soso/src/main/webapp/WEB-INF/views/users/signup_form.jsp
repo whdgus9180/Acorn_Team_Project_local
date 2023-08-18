@@ -21,7 +21,7 @@
 			<div>
 				<label class="control-label" for="name">이름(닉네임)</label>
 				<input class="form-control" type="text" name="name" id="userName" />
-				<div class="invalid-feedback">2~16자의 영어(소문자) 또는 숫자 또는 한글만 사용가능합니다.</div>
+				<div><span id="result_checkUserName" style="font-size: 12px;"></span></div>
 			</div>
 			<div>
 			    <label class="control-label" for="birth">생년월일</label>
@@ -53,7 +53,7 @@
 					<input class="form-control" type="password" name="pwd" id="pwd"/> 
 					<button class="btn btn-outline-secondary bi-eye-slash" type="button" id="openpwd"></button>
 				</div> 
-				<div class="invalid-feedback">최소 8자 이상으로 문자와 숫자, 특수 문자를 각각 하나 이상 조합하세요.</div>
+				<div class="invalid-feedback" id="pwd-feedback">최소 8자 이상으로 문자와 숫자, 특수 문자를 각각 하나 이상 조합하세요.</div>
 			</div>
 			<div>
 				<label class="control-label" for="pwd2">비밀번호 확인</label>
@@ -61,7 +61,7 @@
 					<input class="form-control" type="password" name="pwd2" id="pwd2"/>
 					<button class="btn btn-outline-secondary bi-eye-slash" type="button" id="openpwd2"></button>
 				</div>
-				<div class="invalid-feedback">비밀번호가 일치하지 않습니다.</div> 
+				<div class="invalid-feedback" id="pwd2-feedback">비밀번호가 일치하지 않습니다.</div> 
 			</div>
 			<div>
 				<label class="control-label" for="email">이메일</label> <input
@@ -106,24 +106,47 @@
 	<link rel="stylesheet" href="path-to-your-custom-theme.css"> <!-- 사용자 정의 테마 CSS 파일 -->
 	<script src="${pageContext.request.contextPath}/resources/js/open_pwd.js"></script>
 	<script>
-   		let isuserNameValid=false;
-   		$("#userName").on("input", () => {
-   		  const userName = $("#userName").val();
-   		  const reg= /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/;
-   		  isuserNameValid = reg.test(userName);
-   		  
-	   	if (userName !== '') {
-	      if (isuserNameValid) {
-	  		 $("#userName").removeClass("is-invalid").addClass("is-valid");
-	  		 $(".invalid-feedback.user-name-feedback").hide();
-	  	  } else {
-	  		 $("#userName").removeClass("is-valid").addClass("is-invalid");
-	  		 $(".invalid-feedback.user-name-feedback").show();
-	  	  }
-	    }
-   		  
-   		  checkFormState();
-   		});
+   		let isUserNameValid=false;
+   		// 아이디 입력란을 수정할 때마다 유효성 검사와 중복 검사 수행
+   	    $("#userName").on("input", function() {
+   	        let member_UserName = $(this).val();
+   	        const reg = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/;
+   	        if (member_UserName === '') {
+   	            $("#result_checkUserName").html("이름(닉네임)을 입력하세요.").css("color", "red");
+   	            $("#userName").removeClass("is-valid").addClass("is-invalid");
+   	        	isUserNameValid = false; // 아이디 입력 안 함 처리
+   	            checkFormState(); // 폼 상태 재검사
+   	            return;
+   	        }
+   	        if (!reg.test(member_UserName)) {
+   	            $("#result_checkUserName").html("2~16자의 영어(소문자) 또는 숫자 또는 한글만 사용가능합니다.").css("color", "red");
+   	            $("#userName").removeClass("is-valid").addClass("is-invalid");
+   	         	isUserNameValid = false; // 정규표현식 검사 실패
+   	            checkFormState(); // 폼 상태 재검사
+   	            return;
+   	        }
+   	        $.ajax({
+   	            method: "post",
+   	            url: "${pageContext.request.contextPath}/users/nameCheck",
+   	            data: {"name": member_UserName},
+   	            success: function(data) {
+   	                console.log(data);
+   	                if (data) {
+   	                    $("#result_checkUserName").html("이미 사용중인 이름(닉네임)입니다.").css("color", "red");
+   	                    $("#userName").removeClass("is-valid").addClass("is-invalid");
+   	                	isUserNameValid = false; // 중복 닉네임 검사 실패
+   	                } else {
+   	                    $("#result_checkUserName").html("사용 가능한 이름(닉네임)입니다.").css("color", "green");
+   	                    $("#userName").removeClass("is-invalid").addClass("is-valid");
+   	                 	isUserNameValid = true; // 중복 닉네임 검사 통과
+   	                }
+   	                checkFormState(); // 폼 상태 재검사
+   	            },
+   	            error: function(error) {
+   	                alert(error);
+   	            }
+   	        });
+   	    });
    		
    		let isIdValid=false;
    		// 아이디 입력란을 수정할 때마다 유효성 검사와 중복 검사 수행
@@ -177,10 +200,10 @@
 		  if (pwd !== '') {
 		    if (isPwdValid) {
 		      $("#pwd").removeClass("is-invalid").addClass("is-valid");
-		      $(".invalid-feedback.pwd-feedback").hide();
+		      $("#pwd-feedback").hide();
 		    } else {
 		      $("#pwd").removeClass("is-valid").addClass("is-invalid");
-		      $(".invalid-feedback.pwd-feedback").show();
+		      $("#pwd-feedback").show();
 		    }
 		  }
 		  
@@ -194,8 +217,10 @@
 	   	  if (pwd2 !== '') {
 	   	    if (pwd === pwd2) {
 	   	      $("#pwd2").removeClass("is-invalid").addClass("is-valid");
+	   	   	  $("#pwd2-feedback").hide();
 	   	    } else {
 	   	      $("#pwd2").removeClass("is-valid").addClass("is-invalid");
+	   	      $("#pwd2-feedback").show();
 	   	    }
 	   	  }
 	   	  
@@ -301,7 +326,7 @@
 	        const isAgreement1Checked = $("#agreement1").prop("checked");
 	        const isAgreement2Checked = $("#agreement2").prop("checked");
 
-	        const isAllValid = isuserNameValid && isIdValid && isEmailValid && isPwdValid && isAgreement1Checked && isAgreement2Checked;
+	        const isAllValid = isUserNameValid && isIdValid && isEmailValid && isPwdValid && isAgreement1Checked && isAgreement2Checked;
 
 	        $("button[type=submit]").prop("disabled", !isAllValid);
 	    }
