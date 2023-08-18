@@ -122,14 +122,13 @@ public class GroupController {
 	}
 	
 	//소모임 FAQ 게시판 목록을 보기 위한 컨트롤러
-	@ResponseBody
-	@GetMapping("/group/faq/listt")
-	public Map<String, Object> groupFaqList2(HttpServletRequest request) {
-		List<GroupFAQDto> faqList = service.groupFAQGetList2(request);
+	@GetMapping("/group/faq/paginglist")
+	public String groupFaqPagingList(HttpServletRequest request, int num, Model model) {
+		request.setAttribute("num", num);
+		service.groupFAQGetList(request, model);
 		//View 페이지에 소모임의 정보를 얻어온다(manager_id를 얻기 위함)
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("faqList", faqList);
-		return map;
+		managingService.getGroupData(num, request);
+		return "group/faq/paginglist";
 	}
 	
 	//소모임 FAQ 게시판 목록을 보기 위한 컨트롤러

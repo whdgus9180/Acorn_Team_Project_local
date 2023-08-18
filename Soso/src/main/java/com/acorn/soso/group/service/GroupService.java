@@ -56,8 +56,6 @@ public interface GroupService {
 	public void groupFAQInsert(GroupFAQDto dto);
 	//소모임 문의 게시판 목록 불러오기, request로 값을 얻어오고 model에 담는다.
 	public void groupFAQGetList(HttpServletRequest request, Model model);
-	//소모임 문의 게시판 목록 불러오기를 List로 받는다.
-	public List<GroupFAQDto> groupFAQGetList2(HttpServletRequest request);
 	
 	
 	//소모임의 getData. request로 값을 얻어오고 model에 담는다.
