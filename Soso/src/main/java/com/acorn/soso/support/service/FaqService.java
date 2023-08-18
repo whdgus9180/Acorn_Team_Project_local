@@ -1,10 +1,10 @@
-package com.acorn.soso.support.faq.service;
+package com.acorn.soso.support.service;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.acorn.soso.support.faq.dto.FaqDto;
+import com.acorn.soso.support.dto.FaqDto;
 
 public interface FaqService {
 	// 질문 목록 얻어오기

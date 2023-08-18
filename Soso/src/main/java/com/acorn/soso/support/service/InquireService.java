@@ -1,10 +1,10 @@
-package com.acorn.soso.support.faq.service;
+package com.acorn.soso.support.service;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
 
-import com.acorn.soso.support.faq.dto.InquireDto;
+import com.acorn.soso.support.dto.InquireDto;
 
 public interface InquireService {
 	public void insert(InquireDto dto);

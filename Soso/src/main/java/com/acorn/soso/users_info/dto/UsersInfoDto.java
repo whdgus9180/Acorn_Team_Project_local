@@ -1,4 +1,4 @@
-package com.acorn.soso.users.info.dto;
+package com.acorn.soso.users_info.dto;
 
 import org.apache.ibatis.type.Alias;
 

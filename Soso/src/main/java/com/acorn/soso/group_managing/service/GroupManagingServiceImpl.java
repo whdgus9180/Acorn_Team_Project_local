@@ -42,9 +42,9 @@ public class GroupManagingServiceImpl implements GroupManagingService{
 	}
 	
 	@Override
-	public Map<String, Object> saveGroupImage(HttpServletRequest request, MultipartFile mFile) {
+	public Map<String, Object> saveGroupImage(HttpServletRequest request, MultipartFile image) {
 		  //원본 파일명
-	      String orgFileName=mFile.getOriginalFilename();
+	      String orgFileName=image.getOriginalFilename();
 	      
 	      //절대로 중복되지 않는 유일한 파일명을 구성한다.
 	      String saveFileName=UUID.randomUUID().toString()+orgFileName;
@@ -59,7 +59,7 @@ public class GroupManagingServiceImpl implements GroupManagingService{
 	         //파일을 저장할 전체 경로를 구성한다.  
 	         String savePath=realPath+File.separator+saveFileName;
 	         //임시폴더에 업로드된 파일을 원하는 파일을 저장할 경로에 전송한다.
-	         mFile.transferTo(new File(savePath));
+	         image.transferTo(new File(savePath));
 	      }catch(Exception e) {
 	         e.printStackTrace();
 	      }
@@ -73,36 +73,6 @@ public class GroupManagingServiceImpl implements GroupManagingService{
 	
 	@Override
 	public void updateGroupData(GroupDto dto, HttpServletRequest request) {
-		//업로드된 파일의 정보를 가지고 있는 MultipartFile 객체의 참조값을 얻어오기
-		MultipartFile image = dto.getImage();
-		//원본 파일명 -> 저장할 파일 이름 만들기위해서 사용됨
-		String orgFileName = image.getOriginalFilename();
-		// webapp/upload 폴더 까지의 실제 경로(서버의 파일 시스템 상에서의 경로)
-		String realPath = request.getServletContext().getRealPath("/resources/upload");
-		//db 에 저장할 저장할 파일의 상세 경로
-		String filePath = realPath + File.separator;
-		//디렉토리를 만들 파일 객체 생성
-		File upload = new File(filePath);
-		if(!upload.exists()) {
-			//만약 디렉토리가 존재하지X
-			upload.mkdir();//폴더 생성
-		}
-		//저장할 파일의 이름을 구성한다. -> 우리가 직접 구성해줘야한다.
-		String saveFileName = System.currentTimeMillis() + orgFileName;
-	      
-		try {
-			//기존 파일이 존재하면 삭제
-			File existingFile = new File(filePath + saveFileName);
-			if(existingFile.exists()) {
-				existingFile.delete();
-			}
-			//upload 폴더에 파일을 저장한다.
-			image.transferTo(new File(filePath + saveFileName));
-			System.out.println();   //임시 출력
-		}catch(Exception e) {
-	         e.printStackTrace();
-		}
-		dto.setImg_path("/resources/upload/" + saveFileName);
 		dao.updateGroupData(dto);
 	}
 	
@@ -161,8 +131,9 @@ public class GroupManagingServiceImpl implements GroupManagingService{
 	}
 
 	@Override
-	public void dropOut(int num) {
-		dao.dropOut(num);
+	public void dropOut(GroupManagingDto dto) {
+		dao.dropOut(dto);
+		
 	}
 
 	@Override
@@ -177,5 +148,5 @@ public class GroupManagingServiceImpl implements GroupManagingService{
 		GroupDto dto = dao.getGroupData(num);
 		mView.addObject("dto", dto);
 	}
-	
+
 }

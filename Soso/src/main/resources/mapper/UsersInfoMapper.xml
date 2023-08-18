@@ -4,11 +4,11 @@
 <mapper namespace="info">
 
 	<select id="getWritingList" parameterType="usersInfoDto" resultType="usersInfoDto">
-		SELECT *
+		SELECT comu_num AS num, writer, title, regdate, group_num
 		FROM
 			(SELECT result1.*, ROWNUM AS rnum
 			FROM
-				(SELECT comu_num,writer,title,regdate,group_num
+				(SELECT comu_num, writer, title, regdate, group_num
 				FROM community_board_tb
 				WHERE writer = #{writer}
 				ORDER BY comu_num DESC) result1)
@@ -16,6 +16,7 @@
 		WHERE rnum >= #{startRowNum} AND rnum <= #{endRowNum}
 		]]>
 	</select>
+	
 	<select id="getWCount" parameterType="usersInfoDto" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)
 		FROM community_board_tb
@@ -27,7 +28,7 @@
 		FROM
 		    (SELECT result1.*, ROWNUM AS rnum
 		    FROM
-		        (SELECT cc.comu_num,cc.writer, cc.content, cc.regdate, cb.group_num, cb.title
+		        (SELECT cc.comu_num, cc.writer, cc.content, cc.regdate, cb.group_num, cb.title
 		        FROM comu_comment_tb cc
 		        INNER JOIN community_board_tb cb
 		        ON cc.comu_num = cb.comu_num
@@ -37,6 +38,7 @@
 		WHERE rnum >= #{startRowNum} AND rnum <= #{endRowNum}
 		]]>
 	</select>
+	
 	<select id="getCCount" parameterType="usersInfoDto" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)
 		FROM comu_comment_tb
@@ -50,11 +52,13 @@
 		    FROM
 		        (SELECT cs_num, writer, regdate, title
 		        FROM cs_tb
+		        WHERE writer = #{writer}
 		        ORDER BY cs_num DESC) result1)
 		<![CDATA[ 
 		WHERE rnum >= #{startRowNum} AND rnum <= #{endRowNum}
 		]]>
 	</select>
+	
 	<select id="getSCount" parameterType="usersInfoDto" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)
 		FROM cs_tb

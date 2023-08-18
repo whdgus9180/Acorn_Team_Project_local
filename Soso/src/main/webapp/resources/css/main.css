@@ -74,25 +74,7 @@ main .slide-btn .stop-btn, main .slide-btn .play-btn { display: none; }
   }
 }
 
-/* Top Btn */
-#scroll-btn {       
-    opacity: 0;   
-    width: 80px;
-    height: 80px;
-    color: #fff;
-    background-color: rgb(171 130 92 / 58%);
-    position: fixed;
-    bottom: 10%;
-    right: 5%;    
-    border: 2px solid #ffffff00;
-    border-radius: 50%; 
-    font: bold 25px;       
-    transition: opacity 0.5s, transform 0.5s;
-}
-#scroll-btn.show {      
-    opacity: 1;  
-    transition: opacity 1s, transform 1s;     
-}
+
 
 
 /* popular */

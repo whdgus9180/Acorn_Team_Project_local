@@ -165,9 +165,11 @@ public class GroupManagingController {
 		return "redirect:/group_managing/applicantList?group_num=" + group_num;
 	}
 	
-	@GetMapping("/group_managing/dropOut")
-	public String dropOut(int num) {
-		service.dropOut(num);
-		return "redirect:/group_managing/memberList";
+	@GetMapping("/group_managing/group_userdropOut") 
+	public String dropOut(GroupManagingDto dto, HttpSession session) {  
+		String user_id = (String)session.getAttribute("id");
+		dto.setUser_id(user_id);
+		service.dropOut(dto);
+		return "redirect:/group_managing/user_main";
 	}
 }

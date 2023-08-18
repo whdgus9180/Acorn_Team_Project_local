@@ -15,7 +15,7 @@ public interface GroupManagingService {
 	public void getGroupList(String manager_id, HttpServletRequest request);
 	public void getGroupList2(String user_id, HttpServletRequest request);
 	public GroupDto getGroupData(int num, HttpServletRequest request);
-	public Map<String, Object> saveGroupImage(HttpServletRequest request, MultipartFile mFile);
+	public Map<String, Object> saveGroupImage(HttpServletRequest request, MultipartFile image);
 	public void updateGroupData(GroupDto dto, HttpServletRequest request);
 	public void deleteGroupData(int num);
 	public void getMemberList(int group_num, HttpServletRequest request);
@@ -26,6 +26,6 @@ public interface GroupManagingService {
 	public void getMemberCount(int num, HttpServletRequest request);
 	public void kick(int num, int group_num);
 	public void reject(int num);
-	public void dropOut(int num);
 	public void getDetail(ModelAndView mView, int num);
+	public void dropOut(GroupManagingDto dto);
 }

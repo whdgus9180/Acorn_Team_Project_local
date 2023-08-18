@@ -1,4 +1,4 @@
-package com.acorn.soso.support.faq.dao;
+package com.acorn.soso.support.dao;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.acorn.soso.support.faq.dto.FaqDto;
+import com.acorn.soso.support.dto.FaqDto;
 
 @Repository
 public class FaqDaoImpl implements FaqDao{
