@@ -1,25 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>소모임 문의 게시판</title>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-
-</head>
-<body>
-	<div class="container">
-			<br>	
-			<h2 style="text-align: center">문의하기</h2>
-			<div style="width:100%; text-align:right;">
-				<a href="${pageContext.request.contextPath }/group/faq/insertform?num=${num}" class="btn btn-outline-dark" tabindex="-1" role="small-button" aria-disabled="true" >글 쓰기</a>
-				<a id="faqInsert" href="#">문의하기2</a>
-			</div>
-			<br>
-			<div class="altertable">
 			 <table class="table">
 		        <tbody>
 		            <c:forEach var="tmp" items="${list}">
@@ -77,10 +58,8 @@
 						</li>
 					</c:if>				
 				</ul>
-		<br />
-		</div>
-	    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		<script>
+		<br />		
+				<script>
 			
 			//페이징 처리 시 링크 전송을 막는다.
 			$(document).ready(function() {
@@ -207,6 +186,3 @@
 			        });
 			    });
 		</script>
-	</div>
-</body>
-</html>

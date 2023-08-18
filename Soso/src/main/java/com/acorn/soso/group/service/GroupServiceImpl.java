@@ -586,6 +586,7 @@ public class GroupServiceImpl implements GroupService{
 		//dao를 통해 db에 값 집어넣기
 		groupfaqdao.insert(dto);
 	}
+	
 	//소모임 FAQ의 getList
 	@Override
 	public void groupFAQGetList(HttpServletRequest request, Model model) {
