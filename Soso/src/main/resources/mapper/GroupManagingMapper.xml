@@ -124,6 +124,6 @@
     <update id="dropOut" parameterType="groupManagingDto">
 	    UPDATE group_join_tb
 	    SET isJoin = 3
-	    WHERE num = #{group_num} AND user_id = #{user_id}
+	    WHERE group_num = #{group_num} AND user_id = #{user_id}
 	</update>
 </mapper>
