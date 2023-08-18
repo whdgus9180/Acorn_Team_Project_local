@@ -46,8 +46,6 @@
 
 						        <a href="${pageContext.request.contextPath}/group/answer/delete?num=${tmp.num}&group_num=${tmp.group_num}">답변 삭제(실제로는 update)</a>						        
 
-			        
-
 						        </c:if>
 						    </td>
 						</tr>
@@ -61,12 +59,12 @@
 					 --%>
 					<c:if test="${startPageNum ne 1 }">
 						<li class="page-item">
-							<a class="page-link animate__animated" href="list?num=${num }&pageNum=${startPageNum-1 }">Prev</a>
+							<a class="page-link animate__animated" href=${pageContext.request.contextPath}/group/faq/list?num=${num }&pageNum=${startPageNum-1 }">Prev</a>
 						</li>
 					</c:if>
 					<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
 						<li class="page-item ${pageNum eq i ? 'active' : '' }">
-							<a class="page-link animate__animated" href="list?num=${num }&pageNum=${i }">${i }</a>
+							<a id="nowPage" class="page-link animate__animated" href="${pageContext.request.contextPath}/group/faq/list?num=${num }&pageNum=${i }">${i }</a>
 						</li>
 					</c:forEach>
 					<%--
@@ -74,14 +72,16 @@
 					 --%>
 					<c:if test="${endPageNum lt totalPageCount }">
 						<li class="page-item">
-							<a class="page-link animate__animated" href="list?num=${num }&pageNum=${endPageNum+1 }">Next</a>
+							<a class="page-link animate__animated" href="${pageContext.request.contextPath}/group/faq/list?num=${num }&pageNum=${endPageNum+1 }">Next</a>
 						</li>
 					</c:if>				
 				</ul>
 		<br />
 	    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script>
+		
 			document.querySelectorAll(".pagination a").forEach(function(item){
+				
 				//item 은 a 의 참조값이다 모든 a 요소에 mouseover 이벤트가 발생했을때 실행할 함수 등록
 				item.addEventListener("mouseover", function(e){
 					//애니메이션 클래스를 추가해서 애니메이션이 동작하도록한다.
@@ -93,6 +93,28 @@
 					e.target.classList.remove("animate__swing");
 				});
 			});
+			//페이지 로딩 시에 list에 대한 ajax 전송을 받아서 테이블의 내용을 쓴다.
+			$(document).ready(function(){
+				$.ajax({
+	                type: "GET",
+	                url: "${pageContext.request.contextPath}/group/faq/listt?num="+${num},
+	                dataType : "json",
+	                error: function() {
+	                    console.log("통신실패");
+	                },
+	                success: function(data) {
+	                    console.log(data.faqList);
+	                }
+	            });
+			})
+			
+			
+			//페이징 처리 시 링크 전송을 막는다.
+			$(document).ready(function(){
+				$(".page-link").on("click", function(e){
+					e.preventDefault();
+				})
+			})
 			
 			$(document).ready(function () {
 			    $(".q-title").on("click", function (e) {

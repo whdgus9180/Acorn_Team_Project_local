@@ -1,6 +1,7 @@
 package com.acorn.soso.group.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -118,6 +119,17 @@ public class GroupController {
 	public String groupFaqInsertForm(HttpServletRequest request, int num) {
 		request.setAttribute("num", num);
 		return "group/faq/insertform";
+	}
+	
+	//소모임 FAQ 게시판 목록을 보기 위한 컨트롤러
+	@ResponseBody
+	@GetMapping("/group/faq/listt")
+	public Map<String, Object> groupFaqList2(HttpServletRequest request) {
+		List<GroupFAQDto> faqList = service.groupFAQGetList2(request);
+		//View 페이지에 소모임의 정보를 얻어온다(manager_id를 얻기 위함)
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("faqList", faqList);
+		return map;
 	}
 	
 	//소모임 FAQ 게시판 목록을 보기 위한 컨트롤러
