@@ -116,7 +116,7 @@ public class CafeServiceImpl implements CafeService{
 	@Override
 	public void getDetail(HttpServletRequest request, Model model) {
 		//자세히 보여줄 글번호를 읽어온다. 
-		int comu_num=Integer.parseInt(request.getParameter("comu_num"));
+		int comu_num=Integer.parseInt(request.getParameter("comu_num")); 
 		//조회수 올리기
 		cafeDao.addViewCount(comu_num);
 		
@@ -152,7 +152,8 @@ public class CafeServiceImpl implements CafeService{
 		}
 		
 		//글하나의 정보를 얻어온다.
-		CafeDto resultDto=cafeDao.getData(dto);//임의로 79번 등
+		CafeDto resultCafeDto=cafeDao.getData(dto);
+		CafeCommentDto resultCommentDto=cafeCommentDao.getData(comu_num);//임의로 79번 등
 		
 		//특수기호를 인코딩한 키워드를 미리 준비한다. 
 		String encodedK=URLEncoder.encode(keyword);
@@ -183,7 +184,8 @@ public class CafeServiceImpl implements CafeService{
 		int totalPageCount=(int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
 		
 		//Model 에 글 하나의 정보 담기
-		model.addAttribute("dto", resultDto);
+		model.addAttribute("cafeDto", resultCafeDto);
+		model.addAttribute("commentDto", resultCommentDto);
 		model.addAttribute("condition", condition);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("encodedK", encodedK);

@@ -106,14 +106,14 @@
 		<div style="float: right;">
 		<%-- 만일 이전글(더 옛날글)의 글번호가 0 가 아니라면(이전글이 존재 한다면) --%>
 		<c:if test="${dto.prevNum ne 0}">
-			<a href="detail?num=${dto.prevNum }&comu_num=${dto.comu_num}&condition=${condition}&keyword=${encodedK}" class="btn btn-outline-dark"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+			<a href="detail?num=${cafeDto.prevNum }&comu_num=${cafeDto.comu_num}&condition=${condition}&keyword=${encodedK}" class="btn btn-outline-dark"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
  			<path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
 			</svg>이전글</a>
 		</c:if>
 		
 		<%-- 만일 다음글(더 최신글)의 글번호가 0 가 아니라면(다음글이 존재 한다면) --%>
 		<c:if test="${dto.nextNum ne 0 }">
-			<a href="detail?num=${dto.nextNum }&comu_num=${dto.comu_num}&condition=${condition}&keyword=${encodedK}" class="btn btn-outline-dark">다음글<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+			<a href="detail?num=${cafeDto.nextNum }&comu_num=${cafeDto.comu_num}&condition=${condition}&keyword=${encodedK}" class="btn btn-outline-dark">다음글<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
   			<path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
 			</svg></a>
 		</c:if>
@@ -127,11 +127,11 @@
 		</c:if>
 		</div>
 		<br>
-		<h3 style="font-weight: bold;">${dto.title }</h3>
+		<h3 style="font-weight: bold;">${cafeDto.title }</h3>
 		<table class="table table-bordered ">
 			<tr>
 				<th>글번호</th>
-				<td>${dto.comu_num }</td>
+				<td>${cafeDto.comu_num }</td>
 			</tr>
 			<tr>
 				<th>탭</th>
@@ -139,32 +139,32 @@
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td>${dto.writer }</td>
+				<td>${cafeDto.writer }</td>
 			</tr>
 			
 			<tr>
 				<th>조회수</th>
-				<td>${dto.viewCount }</td>	
+				<td>${cafeDto.viewCount }</td>	
 			</tr>
 			<tr>
 				<th>작성일</th>
-				<td>${dto.regdate }</td>
+				<td>${cafeDto.regdate }</td>
 			</tr>
 			<tr>
 				<td colspan="2">
-					<div>${dto.content }</div>
+					<div>${cafeDto.content }</div>
 				</td>
 			</tr>	
 		</table>
 		<%-- 로그인된 아이디와 글의 작성자가 같으면 수정, 삭제 링크를 제공한다 --%>
-		<c:if test="${sessionScope.id eq dto.writer }">
-			<a href="updateform?comu_num=${dto.comu_num}&group_num=${dto.	group_num}">수정</a>
+		<c:if test="${sessionScope.id eq cafeDto.writer }">
+			<a href="updateform?comu_num=${cafeDto.comu_num}&group_num=${cafeDto.group_num}">수정</a>
 			<a href="javascript:" onclick="deleteConfirm()">삭제</a>
 			<script>
 				function deleteConfirm(){
 					const isDelete=confirm("이 글을 삭제 하겠습니까?");
 					if(isDelete){
-						location.href="delete?comu_num=${dto.comu_num}&group_num=${dto.group_num}";
+						location.href="delete?comu_num=${cafeDto.comu_num}&group_num=${cafeDto.group_num}";
 					}
 				}
 			</script>
@@ -174,9 +174,9 @@
 		<!-- 원글에 댓글을 작성할 폼 -->
 		<form class="comment-form insert-form" action="comment_insert" method="post">
 			<!-- 원글의 글번호가 댓글의 ref_group 번호가 된다. -->
-			<input type="hidden" name="comu_num" value="${dto.comu_num }"/>
+			<input type="hidden" name="comu_num" value="${commentDto.comment_num }"/>
 			<!-- 원글의 작성자가 댓글의 대상자가 된다. -->
-			<input type="hidden" name="target_id" value="${dto.writer }"/>
+			<input type="hidden" name="target_id" value="${commentDto.writer }"/>
 	
 			<textarea name="content" style="font-size: small;">${empty id ? '댓글 작성을 위해 로그인이 필요 합니다.' : '' }</textarea>
 			<button type="submit">쓰 기</button>
@@ -227,7 +227,7 @@
 										</dd>
 									</dl>
 									<form id="reForm${tmp.comment_num }" class="animate__animated comment-form re-insert-form" action="comment_insert" method="post">
-										<input type="hidden" name="comu_num" value="${dto.comment_num }"/>
+										<input type="hidden" name="comu_num" value="${commentDto.comment_num }"/>
 										<input type="hidden" name="target_id" value="${tmp.writer }"/>
 										<input type="hidden" name="comment_group" value="${tmp.comment_group }"/>
 										<textarea name="content"></textarea>
@@ -267,7 +267,7 @@
 					e.preventDefault();
 					//로그인 폼으로 이동 시킨다.
 					location.href=
-						"${pageContext.request.contextPath}/users/loginform?url=${pageContext.request.contextPath}/cafe/detail?num=${dto.comu_num}";
+						"${pageContext.request.contextPath}/users/loginform?url=${pageContext.request.contextPath}/cafe/detail?comu_num=${cafeDto.comu_num}";
 				}
 			});
 		
@@ -317,7 +317,7 @@
 					"pageNum=xxx&num=xxx" 형식으로 GET 방식 파라미터를 전달한다. 
 				*/
 				ajaxPromise("ajax_comment_list","get",
-						"pageNum="+currentPage+"&num=${dto.comu_num}")
+						"pageNum="+currentPage+"&comment_num=${commentDto.comment_num}")
 				.then(function(response){
 					//json 이 아닌 html 문자열을 응답받았기 때문에  return response.text() 해준다.
 					return response.text();
@@ -353,7 +353,7 @@
 					//click 이벤트가 일어난 바로 그 요소의 data-num 속성의 value 값을 읽어온다. 
 					const num=this.getAttribute("data-num"); //댓글의 글번호
 					//숨겨진 댓글 수정폼을 보이도록 한다.
-					document.querySelector("#updateForm"+num).style.display="block";
+					document.querySelector("#updateForm"+comment_num).style.display="block";
 				});
 			}
 		}
@@ -367,7 +367,7 @@
 					const isDelete=confirm("댓글을 삭제 하시겠습니까?");
 					if(isDelete){
 						// gura_util.js 에 있는 함수들 이용해서 ajax 요청
-						ajaxPromise("comment_delete", "post", "num="+num)
+						ajaxPromise("comment_delete", "post", "comment_num="+comment_num)
 						.then(function(response){
 							return response.json();
 						})
@@ -375,7 +375,7 @@
 							//만일 삭제 성공이면 
 							if(data.isSuccess){
 								//댓글이 있는 곳에 삭제된 댓글입니다를 출력해 준다. 
-								document.querySelector("#reli"+num).innerText="삭제된 댓글입니다.";
+								document.querySelector("#reli"+comment_num).innerText="삭제된 댓글입니다.";
 							}
 						});
 					}
@@ -393,7 +393,7 @@
 						const isMove=confirm("로그인이 필요 합니다. 로그인 페이지로 이동 하시겠습니까?");
 						if(isMove){
 							location.href=
-								"${pageContext.request.contextPath}/users/loginform?url=${pageContext.request.contextPath}/cafe/detail?num=${dto.comu_num}";
+								"${pageContext.request.contextPath}/users/loginform?url=${pageContext.request.contextPath}/cafe/detail?comu_num=${cafeDto.comu_num}";
 						}
 						return;
 					}
@@ -401,7 +401,7 @@
 					//click 이벤트가 일어난 바로 그 요소의 data-num 속성의 value 값을 읽어온다. 
 					const num=this.getAttribute("data-num"); //댓글의 글번호
 					
-					const form=document.querySelector("#reForm"+num);
+					const form=document.querySelector("#reForm"+comment_num);
 					
 					//현재 문자열을 읽어온다 ( "답글" or "취소" )
 					let current = this.innerText;
@@ -450,10 +450,10 @@
 								특정문서의 참조값.querySelector() 는 해당 문서 객체의 자손 요소 중에서
 								특정 요소의 참조값을 찾는 기능
 							*/
-							const num=form.querySelector("input[name=num]").value;
+							const comment_num=form.querySelector("input[name=comment_num]").value;
 							const content=form.querySelector("textarea[name=content]").value;
 							//수정폼에 입력한 value 값을 pre 요소에도 출력하기 
-							document.querySelector("#pre"+num).innerText=content;
+							document.querySelector("#pre"+comment_num).innerText=content;
 							form.style.display="none";
 						}
 					});
@@ -470,7 +470,7 @@
 
 
 
-
+	
 
 
 
