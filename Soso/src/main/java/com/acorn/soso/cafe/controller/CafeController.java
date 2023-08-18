@@ -105,7 +105,7 @@ public class CafeController {
 	public String detail(HttpServletRequest request, int comu_num, Model model) {
 		//서비스에 HttpServletRequest 객체를 전달해서 응답에 필요한 데이타가 담기도록 하고
 		service.getDetail(request, model);
-		request.setAttribute("comu_num", comu_num);
+		request.setAttribute("comu_num", comu_num);//서비스에서 받아와야한다 수정예정
 		//view page 로 forward 이동해서 응답
 		return "cafe/detail";
 	}
