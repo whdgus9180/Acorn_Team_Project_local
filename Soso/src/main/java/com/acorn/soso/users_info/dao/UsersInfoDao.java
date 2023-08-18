@@ -1,8 +1,8 @@
-package com.acorn.soso.users.info.dao;
+package com.acorn.soso.users_info.dao;
 
 import java.util.List;
 
-import com.acorn.soso.users.info.dto.UsersInfoDto;
+import com.acorn.soso.users_info.dto.UsersInfoDto;
 
 public interface UsersInfoDao {
 	public List<UsersInfoDto> getWritingList(UsersInfoDto dto);

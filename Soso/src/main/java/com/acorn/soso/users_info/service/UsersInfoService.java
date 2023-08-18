@@ -1,4 +1,4 @@
-package com.acorn.soso.users.info.service;
+package com.acorn.soso.users_info.service;
 
 import org.springframework.ui.Model;
 
