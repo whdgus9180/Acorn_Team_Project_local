@@ -63,14 +63,12 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="tmp" items="${list }">
 					<tr>
-						<td>${tmp.num }</td>
-						<td>${tmp.category }</td>
-						<td>${tmp.title }</td>
-						<td>${tmp.regdate }</td>
+						<td>1</td>
+						<td>공지</td>
+						<td>[비회원] 신청 업데이트 안내</td>
+						<td>2023.08.03</td>
 					</tr>
-					</c:forEach>
 					<tr>
 						<td>1</td>
 						<td>공지</td>

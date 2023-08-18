@@ -1,8 +1,8 @@
-package com.acorn.soso.support.faq.dao;
+package com.acorn.soso.support.dao;
 
 import java.util.List;
 
-import com.acorn.soso.support.faq.dto.InquireDto;
+import com.acorn.soso.support.dto.InquireDto;
 
 public interface InquireDao {
 	//문의 등록하기

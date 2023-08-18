@@ -1,4 +1,4 @@
-package com.acorn.soso.support.faq.service;
+package com.acorn.soso.support.service;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.acorn.soso.support.faq.dao.InquireDao;
-import com.acorn.soso.support.faq.dto.InquireDto;
+import com.acorn.soso.support.dao.InquireDao;
+import com.acorn.soso.support.dto.InquireDto;
 
 @Service
 public class InquireServiceImpl implements InquireService{

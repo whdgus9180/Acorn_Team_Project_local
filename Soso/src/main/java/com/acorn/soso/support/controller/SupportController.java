@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.acorn.soso.exception.DontEqualException;
-import com.acorn.soso.support.faq.dto.FaqDto;
-import com.acorn.soso.support.faq.dto.InquireDto;
-import com.acorn.soso.support.faq.service.FaqService;
-import com.acorn.soso.support.faq.service.InquireService;
+import com.acorn.soso.support.dto.FaqDto;
+import com.acorn.soso.support.dto.InquireDto;
+import com.acorn.soso.support.service.FaqService;
+import com.acorn.soso.support.service.InquireService;
 import com.acorn.soso.users.service.UsersService;
 
 @Controller
@@ -64,11 +64,18 @@ public class SupportController {
 		
 		return "support/support_faq_insertform";
 	}
-	
+	//공지사항
 	@GetMapping("/support/support_notice")
-	public String support_notice() {
+	public String support_notice(HttpServletRequest request, Model model) {
+		
+		service.getList(request, model);
 		
 		return "support/support_notice";
+	}
+	@GetMapping("/support/support_notice_insertform")
+	public String support_notice_insertform() {
+		
+		return "support/support_notice_insertform";
 	}
 	
 	@GetMapping("/support/support_inquire")
