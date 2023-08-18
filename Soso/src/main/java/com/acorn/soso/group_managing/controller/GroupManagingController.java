@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.acorn.soso.cafe.service.CafeService;
 import com.acorn.soso.exception.DontEqualException;
 import com.acorn.soso.group.dto.GroupDto;
 import com.acorn.soso.group.service.GroupService;
@@ -28,6 +29,9 @@ public class GroupManagingController {
 	
 	@Autowired
 	GroupManagingService service;
+	
+	@Autowired
+	private CafeService cafeService;
 	
 	@GetMapping("/group_managing/admin_main")
 	public String admin_main(HttpServletRequest request, HttpSession session) {
@@ -103,10 +107,11 @@ public class GroupManagingController {
 	}
 	
 	@GetMapping("/group_managing/group_userdetail")
-	public ModelAndView detail(ModelAndView mView, @RequestParam int num) {
+	public ModelAndView detail(ModelAndView mView, int num, HttpServletRequest request, Model model) {
 	    service.getDetail(mView, num);
 	    mView.setViewName("group_managing/group_userdetail");
-	    
+	    cafeService.getList(request, model, num);
+	    request.setAttribute("num", num);
 	    return mView;
 	}
 	
