@@ -47,6 +47,12 @@ public class UsersServiceImpl implements UsersService{
 		return dao.isExist(id) != 0;
 	}
 	
+	//닉네임 중복체크
+	@Override
+	public boolean isExist2(String name) {
+		return dao.isExist2(name) != 0;
+	}
+	
 	//비밀번호 확인
 	@Override
 	public boolean isSamePwd(UsersDto dto) {

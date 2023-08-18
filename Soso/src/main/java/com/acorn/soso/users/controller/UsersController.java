@@ -48,6 +48,12 @@ public class UsersController {
 	    return service.isExist(id);
 	}
 	
+	@PostMapping("/users/nameCheck")
+	@ResponseBody
+	public boolean nameCheck(@RequestParam String name) {
+	    return service.isExist2(name);
+	}
+	
 	//회원 가입 요청처리
 	@PostMapping("/users/signup")
 	public String signup(UsersDto dto) {
