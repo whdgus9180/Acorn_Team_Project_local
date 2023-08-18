@@ -63,6 +63,15 @@
 								<p class="">여기에 책 설명이 출력될 예정입니다.</p>
 							</div>
 						</li>
+						<li>
+							<div class="group_content_book_img">
+								<a href=""><img src="${path }/resources/images/sub/book_cover2.png"/></a>
+							</div>
+							<div class="group_content_book_text">
+								<h5 class="">책 이름1</h5>
+								<p class="">여기에 책 설명이 출력될 예정입니다.</p>
+							</div>
+						</li>
 					</ul>
 				</div>
             </div>
@@ -71,9 +80,9 @@
 
 
 		<!-- 참석후기 -->
-		<div class="" >
+		<div class="group_review" >
 			<div class="inner-wrap">
-				<h4 class="mx-1 my-1">이 모임에 참석한 사람들의 후기입니다.</h4>
+				<h2 class="title black">참여 후기</h2>
 				<div class="d-flex flex-column mb-3">
 				<!-- forEach를 사용해서 댓글 출력(나중에는 분기 써서 댓글이 없을 때는 다른 페이지 표시) -->
 					<c:choose>
@@ -112,6 +121,7 @@
 		
 		<div class="inner-wrap">		
 			<div id="faq">
+			<h2 class="title black">문의하기</h2>
 				<ul class="nav justify-content-end nav-tabs">
 					<li class="nav-item">
 						<a class="nav-link" id="faqList" href="#">문의 게시판</a>
@@ -123,7 +133,7 @@
 				<div id="Parse_Area"gt;lt;></div>
 			</div>
 		</div>
-		
+		<!-- 플로팅 하단 고정 -->
 		<div class="banner-inner-wrap">
 			<div class="group_banner">
 					<div class="group_check">
@@ -157,7 +167,7 @@
 							</button>
 							
 						</div>
-<%-- 						<div class="group_com">
+						<%--<div class="group_com">
 							<a href="${pageContext.request.contextPath}/group_managing/group_userdetail?num=${dto.num}">커뮤니티</a>
 						</div> --%>
 						<!-- 북마크 버튼 -->	
@@ -320,5 +330,6 @@
 				$("#faqList").attr("class","nav-link active");
 			});	  
 	</script>
+
 </body>
 </html>
