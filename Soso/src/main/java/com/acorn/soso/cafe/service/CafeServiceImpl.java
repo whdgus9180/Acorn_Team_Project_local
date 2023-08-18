@@ -152,7 +152,7 @@ public class CafeServiceImpl implements CafeService{
 		}
 		
 		//글하나의 정보를 얻어온다.
-		CafeDto resultDto=cafeDao.getData(dto);
+		CafeDto resultDto=cafeDao.getData(dto);//임의로 79번 등
 		
 		//특수기호를 인코딩한 키워드를 미리 준비한다. 
 		String encodedK=URLEncoder.encode(keyword);
@@ -247,10 +247,10 @@ public class CafeServiceImpl implements CafeService{
 		
 		//저장할 댓글의 정보를 dto 에 담기
 		CafeCommentDto dto=new CafeCommentDto();
-		dto.setComu_num(seq);
+		dto.setComment_num(seq);
 		dto.setWriter(writer);
-		dto.setTarget_id(target_id);
 		dto.setContent(content);
+		dto.setTarget_id(target_id);
 		dto.setComu_num(comu_num);
 		//원글의 댓글인경우
 		if(comment_group == null){

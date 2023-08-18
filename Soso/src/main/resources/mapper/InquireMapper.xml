@@ -27,7 +27,7 @@
 	</select>
 	<delete id="delete" parameterType="int">
 		DELETE FROM CS_TB
-		WHERE cs_num=#{cs_num}
+		WHERE cs_num = #{cs_num}
 	</delete>
 	<update id="update" parameterType="inquireDto">
 		UPDATE CS_TB

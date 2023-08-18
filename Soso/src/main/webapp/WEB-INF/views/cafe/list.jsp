@@ -16,7 +16,7 @@
 		<br>	
 		<h2 style="text-align: center">소모임 게시판</h2>
 		<div style="width:100%; text-align:right;">
-		<a href="${pageContext.request.contextPath }/cafe/insertform?num=${num}" class="btn btn-outline-dark" tabindex="-1" role="small-button" aria-disabled="true" >글 쓰기</a>
+		<a href="${pageContext.request.contextPath }/cafe/insertform?num=${num }" class="btn btn-outline-dark" tabindex="-1" role="small-button" aria-disabled="true" >글 쓰기</a>
 		</div>
 		<br>
 		<table class="table">
@@ -35,7 +35,7 @@
 						<td>${tmp.comu_num }</td>
 						
 						<td>
-							<a style="color: black;" class="text-decoration-none" href="detail?comu_num=${tmp.comu_num }&condition=${condition}&keyword=${encodedK}&group_num=${tmp.group_num}">(말머리)${tmp.title }</a>
+							<a style="color: black;" class="text-decoration-none" href="detail?comu_num=${tmp.comu_num }&condition=${condition}&keyword=${encodedK}">(말머리)${tmp.title }</a>
 						</td>
 						<td>${tmp.writer }</td>
 						<td style="text-align: center">${tmp.viewCount }</td>

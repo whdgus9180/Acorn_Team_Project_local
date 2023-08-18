@@ -1,8 +1,5 @@
 package com.acorn.soso.support.controller;
 
-
-
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,13 +9,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.acorn.soso.exception.DontEqualException;
 import com.acorn.soso.support.faq.dto.FaqDto;
 import com.acorn.soso.support.faq.dto.InquireDto;
 import com.acorn.soso.support.faq.service.FaqService;
 import com.acorn.soso.support.faq.service.InquireService;
 import com.acorn.soso.users.service.UsersService;
-
-
 
 @Controller
 public class SupportController {
@@ -108,15 +104,18 @@ public class SupportController {
 		return "redirect:/support/support_inquire_MyInquire";
 	}
 	@GetMapping("/support/support_inquire_delete")
-	public String support_inquire_delete(int cs_num, Model model) {
-		
+	public String support_inquire_delete(int cs_num, Model model, HttpSession session) {
+		String id = (String)session.getAttribute("id");
+		InquireDto dto = inquireService.getData(cs_num, model);
+		if(dto.getWriter().equals(id)) {
+			inquireService.delete(cs_num, model);
+		} else {
+			throw new DontEqualException("다른 사람의 문의 내역을 삭제할 수 없습니다!");
+		}
 		return "redirect:/support/support_inquire_MyInquire";
 	}
-	
-
 	@PostMapping("/support/support_faq_insert")
 	public String insert(FaqDto dto) {
-	
 		//서비스를 이용해서 질문을 저장
 		service.saveFaq(dto);
 		return "support/support_faq_insert";

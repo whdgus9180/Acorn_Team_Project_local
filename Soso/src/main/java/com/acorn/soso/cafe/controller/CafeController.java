@@ -95,7 +95,6 @@ public class CafeController {
 		int groupNum = dto.getGroup_num();
 		//dto 는 글의 제목과 내용만 있으므로 글작성자는 직접 넣어준다.
 		dto.setWriter(writer);
-		dto.setGroup_num(groupNum);
 		//서비스를 이용해서 새글을 저장한다. 
 		request.setAttribute("group_num", groupNum);
 		service.saveContent(dto);
@@ -103,15 +102,15 @@ public class CafeController {
 	}
 	
 	@GetMapping("/cafe/detail")
-	public String detail(HttpServletRequest request,int group_num, Model model) {
+	public String detail(HttpServletRequest request, int comu_num, Model model) {
 		//서비스에 HttpServletRequest 객체를 전달해서 응답에 필요한 데이타가 담기도록 하고
 		service.getDetail(request, model);
-		request.setAttribute("group_num", group_num);
+		request.setAttribute("comu_num", comu_num);
 		//view page 로 forward 이동해서 응답
 		return "cafe/detail";
 	}
 	@GetMapping("/cafe/delete")
-	public String delete(int comu_num,int group_num, HttpServletRequest request) {
+	public String delete(int comu_num, int group_num, HttpServletRequest request) {
 		//서비스에 삭제할 글번호와 HttpServletRequest 객체를 전달해서 해당글을 삭제 시키고 
 		service.deleteContent(comu_num, request);
 		//글 목록 보기로 리다일렉트 이동 시킨다.

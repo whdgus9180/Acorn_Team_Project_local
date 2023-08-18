@@ -49,6 +49,7 @@
 	<select id="getCount" parameterType="groupFAQDto" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)
 		FROM GROUP_FAQ_TB
+		WHERE GROUP_NUM = #{group_num}
 	</select>		
 	<update id="update" parameterType="groupFAQDto">
 		UPDATE GROUP_FAQ_TB
