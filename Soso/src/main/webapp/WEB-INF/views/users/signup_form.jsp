@@ -20,12 +20,12 @@
 		<form action="${pageContext.request.contextPath}/users/signup" method="post" id="myForm">
 			<div>
 				<label class="control-label" for="name">이름(닉네임)</label>
-				<input class="form-control" type="text" name="name" id="userName" />
+				<input class="form-control" type="text" name="name" id="userName" autocomplete='off'/>
 				<div><span id="result_checkUserName" style="font-size: 12px;"></span></div>
 			</div>
 			<div>
 			    <label class="control-label" for="birth">생년월일</label>
-    			<input class="form-control" type="text" name="birth" id="birth" placeholder="YY-MM-DD" />
+    			<input class="form-control" type="text" name="birth" id="birth" placeholder="YY-MM-DD" autocomplete='off'/>
 			</div>
 			<fieldset>
 				<legend>성별 체크</legend>
@@ -44,13 +44,13 @@
 			</fieldset>
 			<div>
 				<label class="control-label" for="id">아이디</label>
-				<input class="form-control" type="text" name="id" id="id" />
+				<input class="form-control" type="text" name="id" id="id" autocomplete='off'/>
 				<div><span id="result_checkId" style="font-size: 12px;"></span></div>
 			</div>
 			<div>
 				<label class="control-label" for="pwd">비밀번호</label>
 				<div class="input-group">
-					<input class="form-control" type="password" name="pwd" id="pwd"/> 
+					<input class="form-control" type="password" name="pwd" id="pwd" /> 
 					<button class="btn btn-outline-secondary bi-eye-slash" type="button" id="openpwd"></button>
 				</div> 
 				<div class="invalid-feedback" id="pwd-feedback">최소 8자 이상으로 문자와 숫자, 특수 문자를 각각 하나 이상 조합하세요.</div>
@@ -65,7 +65,7 @@
 			</div>
 			<div>
 				<label class="control-label" for="email">이메일</label> <input
-					class="form-control" type="text" name="email" id="email" />
+					class="form-control" type="text" name="email" id="email" autocomplete='off'/>
 				<div class="invalid-feedback">이메일 형식에 맞게 입력하세요.</div>
 			</div>
 			<input id="allAgreements" type="checkbox" v-model="allAgreed" />
