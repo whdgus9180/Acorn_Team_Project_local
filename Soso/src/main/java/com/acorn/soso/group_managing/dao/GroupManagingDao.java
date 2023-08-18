@@ -37,5 +37,6 @@ public interface GroupManagingDao {
 	//소모임 가입 신청자 거절하기
 	public void reject(int num);
 	//소모임 탈퇴하기
-	public void dropOut(int num);
+	public void dropOut(GroupManagingDto dto);
+
 }
