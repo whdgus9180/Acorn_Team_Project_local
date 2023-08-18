@@ -18,7 +18,7 @@
     color: white;
     font-size: 18px;
     text-align: center;
-}
+	}
 </style>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -30,8 +30,8 @@
 	<main id="content" class="cs inquire">
 	<!-- 상단 배너 -->
 	<div class="head">
-		<h2 class="main_title">FAQ 관리</h2>
-		<p class="sub_text">FAQ 질문을 등록할 수 있습니다.</p>
+		<h2 class="main_title">Notice 관리</h2>
+		<p class="sub_text">공지사항을 등록할 수 있습니다.</p>
 	</div>
 	<!-- 메인 메뉴바 시작 -->
 	<div class="main_area">
@@ -51,32 +51,32 @@
 	</ul>
 		<div class="body_area">
 			<div class="main_content">
-				<h3>질문 등록</h3>
+				<h3>공지사항 등록</h3>
 				<form action="${pageContext.request.contextPath }/support/support_faq_insert" class="area_form" method="post" enctype="multipart/form-data">
 					<div class="row-wrap">
 						<div class="input_title">
-							<h4 class="label">질문</h4>
+							<h4 class="label">공지</h4>
 							<select name="category" id="category" class="title_select">
 								<option selected="selected" class="inquire_select">분류</option>
-								<option value="회원">회원</option>
-								<option value="모임신청">모임신청</option>
-								<option value="모임개설">모임개설</option>
+								<option value="공지">공지</option>
+								<option value="업데이트">업데이트</option>
+								<option value="휴무">휴무</option>
 								<option value="기타">기타</option>
 							</select>
-							<input type="text" class="inquire_title" name="question" id="question" placeholder="질문을 입력해주세요" />
+							<input type="text" class="inquire_title" name="title" id="title" placeholder="제목을 입력해주세요" />
 						</div>
 					</div>
 					<div class="row-wrap">
 						<div class="input_text">
-							<h4 class="label">답변 *</h4>
-							<textarea name="answer" id="answer" placeholder="답변내용을 입력 해 주세요."></textarea>
+							<h4 class="label">내용 *</h4>
+							<textarea name="answer" id="answer" placeholder="내용을 입력 해 주세요."></textarea>
 						</div>
 					</div>
 					
 					<p class="info_message">
 						이 사이트는 reCAPTCHA에 의해 보호되며 Google 개인 정보 취급 방침 및 서비스 약관이 적용됩니다.
 					</p>
-					<button type="submit" class="faqBtn">질문 등록</button>
+					<button type="submit" class="faqBtn">공지사항 등록</button>
 				</form>
 			</div>
 		</div>

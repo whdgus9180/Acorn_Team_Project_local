@@ -1,4 +1,5 @@
-package com.acorn.soso.support.faq.dto;
+
+package com.acorn.soso.support.dto;
 
 import org.apache.ibatis.type.Alias;
 
@@ -6,22 +7,25 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Alias("faqDto")
-public class FaqDto {
-	//Faq 페이지 필드 값
+@Alias("noticeDto")
+public class NoticeDto {
+	//Notice 페이지 필드 값
 	
-	//질문 번호(내부 관리용 페이지에는 UI 처리 X)
+	//공지 번호
 	private int num;
-	//질문 카테고리
+	//공지 카테고리
 	private String category;
-	//질문 
-	private String question;
-	//질문 답변
-	private String answer;
+	//공지 제목
+	private String title;
+	//공지 내용
+	private String content;
+	//공지 등록일
+	private String regdate;
 	//페이지 관리
 	private int startRowNum;
 	private int endRowNum;

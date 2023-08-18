@@ -1,4 +1,4 @@
-package com.acorn.soso.support.faq.service;
+package com.acorn.soso.support.service;
 
 import java.net.URLEncoder;
 import java.util.List;
@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.acorn.soso.cafe.dto.CafeDto;
-import com.acorn.soso.support.faq.dao.FaqDao;
-import com.acorn.soso.support.faq.dto.FaqDto;
+import com.acorn.soso.support.dao.FaqDao;
+import com.acorn.soso.support.dto.FaqDto;
 
 @Service
 public class FaqServiceImpl implements FaqService {

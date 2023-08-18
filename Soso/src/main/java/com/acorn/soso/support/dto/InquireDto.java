@@ -1,4 +1,4 @@
-package com.acorn.soso.support.faq.dto;
+package com.acorn.soso.support.dto;
 
 import org.apache.ibatis.type.Alias;
 

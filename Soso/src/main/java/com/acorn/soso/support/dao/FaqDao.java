@@ -1,8 +1,8 @@
-package com.acorn.soso.support.faq.dao;
+package com.acorn.soso.support.dao;
 
 import java.util.List;
 
-import com.acorn.soso.support.faq.dto.FaqDto;
+import com.acorn.soso.support.dto.FaqDto;
 
 public interface FaqDao {
 	//질문 목록
