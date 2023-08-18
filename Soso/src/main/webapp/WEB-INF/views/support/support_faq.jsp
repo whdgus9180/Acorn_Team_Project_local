@@ -36,8 +36,8 @@
 	box-sizing: border-box;
 	display: block;
 	border: 1px solid transparent;
-}
-.dropbox .detail_content{
+	}
+	.dropbox .detail_content{
 	position: relative;
 	padding: 40px 50px 90px;
 	box-sizing: border-box;
@@ -46,8 +46,7 @@
 	background-color: #fafafa;
 	overflow-x: hidden;
 	overflow-y: auto;
-	display: none;
-}
+	}
 </style>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -61,17 +60,17 @@
 		<p class="sub_text">서비스 이용 중 불편 했던 점이나 궁금한 점을 빠르고 친절하게 안내해 드리겠습니다.</p>
 	</div>
 	<!-- 메인 메뉴바 시작 -->
-	<ul class="nav justify-content-center">
-		<li class="nav-item">
+	<ul class="menu_bar">
+		<li class="menu_home">
 			<a class="nav-link active" href="${pageContext.request.contextPath }/support/support_main">고객센터</a>
 		</li>
-		<li class="nav-item">
+		<li class="menu_faq">
 			<a class="nav-link" href="${pageContext.request.contextPath }/support/support_faq">자주하는 질문</a>
 		</li>
-		<li class="nav-item">
+		<li class="menu_notice">
 			<a class="nav-link" href="${pageContext.request.contextPath }/support/support_notice">공지사항</a>
 		</li>
-		<li class="nav-item">
+		<li class="menu_inquire">
 			<a class="nav-link" href="${pageContext.request.contextPath }/support/support_inquire">문의하기</a>
 		</li>
 	</ul>
@@ -152,7 +151,7 @@
 				</c:if>				
 			</ul>
 		</nav>
-		
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script>
 			document.querySelectorAll(".pagination a").forEach(function(item){
 				//item 은 a 의 참조값이다 모든 a 요소에 mouseover 이벤트가 발생했을때 실행할 함수 등록
@@ -166,6 +165,17 @@
 					e.target.classList.remove("animate__swing");
 				});
 			});
+			
+			$(document).ready(function(){
+			
+				$(".btn_more").click(function(e){
+					e.preventDefault();
+					$(this).closest(".dropbox").find(".detail_content").toggle();
+				});
+				// 처음에는 숨겨두기
+				$(".detail_content").hide();
+			});
+			
 		</script>
 	</div>
 </body>

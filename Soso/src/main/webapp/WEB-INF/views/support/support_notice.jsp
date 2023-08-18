@@ -21,17 +21,17 @@
 		<p class="sub_text">BookMate에서 알려드립니다.</p>
 	</div>
 	<!-- 메인 메뉴바 시작 -->
-	<ul class="nav justify-content-center">
-		<li class="nav-item">
+	<ul class="menu_bar">
+		<li class="menu_home">
 			<a class="nav-link active" href="${pageContext.request.contextPath }/support/support_main">고객센터</a>
 		</li>
-		<li class="nav-item">
+		<li class="menu_faq">
 			<a class="nav-link" href="${pageContext.request.contextPath }/support/support_faq">자주하는 질문</a>
 		</li>
-		<li class="nav-item">
+		<li class="menu_notice">
 			<a class="nav-link" href="${pageContext.request.contextPath }/support/support_notice">공지사항</a>
 		</li>
-		<li class="nav-item">
+		<li class="menu_inquire">
 			<a class="nav-link" href="${pageContext.request.contextPath }/support/support_inquire">문의하기</a>
 		</li>
 	</ul>
