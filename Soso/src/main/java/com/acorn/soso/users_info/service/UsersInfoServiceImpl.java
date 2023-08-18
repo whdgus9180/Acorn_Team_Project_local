@@ -1,4 +1,4 @@
-package com.acorn.soso.users.info.service;
+package com.acorn.soso.users_info.service;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.acorn.soso.users.info.dao.UsersInfoDao;
-import com.acorn.soso.users.info.dto.UsersInfoDto;
+import com.acorn.soso.users_info.dao.UsersInfoDao;
+import com.acorn.soso.users_info.dto.UsersInfoDto;
 
 @Service
 public class UsersInfoServiceImpl implements UsersInfoService {
