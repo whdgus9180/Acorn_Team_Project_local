@@ -30,7 +30,6 @@
 			</c:choose>
 			<div style="margin-top:20px; margin-bottom:20px; font-size: 15px;">소모임 이미지</div>
 		</div>
-		
 		<form action="${pageContext.request.contextPath}/group_managing/group_update" method="post" id="myForm" enctype="multipart/form-data">
 			<div class="form_header">
 				<input type="hidden" name="num" value="${dto.num}"/>
@@ -71,29 +70,8 @@
                  	<button id="image_btn" style="width: 65px; height: 27px; color: white;
                     				 			background-color: rgb(195, 181, 157); border:none; border-radius: 15px;">file</button>
                 </div> 
-			</div>
-			<input id="image" name="image" type="file" style="display: none;"
-                    	accept=".jpg, .png, .gif, .JPG, .JPEG, .jpeg"/>
-			<script src="${pageContext.request.contextPath }/resources/js/gura_util.js"></script>
+			</div>			
 			<script>
-				//file 버튼을 클릭하면 input type="file" 을 강제 클릭
-				document.querySelector("#image_btn").addEventListener("click", (e) => {
-					e.preventDefault();
-	                document.querySelector("#image").click()
-				});
-				
-				document.querySelector("#image").addEventListener("change", (e) => {
-					const files = e.target.files;
-					if(files.length > 0){
-						const reader = new FileReader();
-						reader.onload = (event) => {
-							const data=event.target.result;
-							document.querySelector("#image_preview").setAttribute("src", data);
-						};
-						reader.readAsDataURL(files[0]);
-					}
-				});
-				
 				document.querySelector("#on_off").addEventListener("change", (e) => {
 					if(e.target.value == 0){
 						document.querySelector("#meeting_loc").value = "온라인"
@@ -150,13 +128,66 @@
 			</script>
 			<div>
 				<textarea name="caption" id="caption" rows="5" placeholder="Add Text...">${dto.caption}</textarea>
+				<div style = "display:flex; justify-content:end">
+					<div id="currentTextLength">0 / 200</div> 
+				</div>
+				<div class="invalid-feedback">소모임 소개는 최소 100자이상 최대 200자 미만으로 적어주시길 바랍니다</div>
 			</div>
+			<script>
+				$(".invalid-feedback").css("color", "red").css("font-size", "13px").css("font_weight", "600").hide();
+				$("#caption").on("input", function(){
+					const textNum = $(this).val().length;
+					$("#currentTextLength").text(textNum + " / 200");
+					if(textNum >= 200 || textNum < 100) {
+						$("#caption").removeClass("is-valid").addClass("is-invalid");
+						$(".invalid-feedback").show();
+					} else {
+						$("#caption").removeClass("is-invalid").addClass("is-valid");
+			  		 	$(".invalid-feedback").hide();
+					}
+				});
+			</script>
 			<div id="form_button">
 				<button type="submit">수정</button>
 				<a style="background-color: black; color:white" class="btn mt-3" 
 					href="${pageContext.request.contextPath}/group_managing/group_delete?num=${dto.num}">해산하기</a>
 			</div>
+			<!-- db에 저장하기 위한 이미지 경로 값 -->
+			<input type="hidden" name="img_path" value="${ dto.img_path }"/>
 		</form>
+		<form style="display:hidden" id="imageForm" action="${pageContext.request.contextPath}/group_managing/image_upload" method="post" enctype="multipart/form-data">
+				<input id="image" name="image" type="file" style="display: none;"
+                    		accept=".jpg, .png, .gif, .JPG, .JPEG, .jpeg"/>
+			<button type="submit"></button>
+		</form>
+		<script src="${pageContext.request.contextPath }/resources/js/gura_util.js"></script>
+		<script>
+			//file 버튼을 클릭하면 input type="file" 을 강제 클릭
+			document.querySelector("#image_btn").addEventListener("click", (e) => {
+				e.preventDefault();
+                document.querySelector("#image").click()
+			});
+			
+			document.querySelector("#image").addEventListener("change", (e) => {
+				//ajax 전송할 폼의 참조값 얻어오기
+				const form = document.querySelector("#imageForm");
+				//gura_util.js 에 있는 함수를 이용해서 ajax 전송하기 
+				ajaxFormPromise(form)
+				.then(function(response){
+					return response.json();
+				})
+				.then(function(data){
+					console.log(data);
+					// input name="profile" 요소의 value 값으로 이미지 경로 넣어주기
+					document.querySelector("input[name=img_path]").value=data.imagePath;
+					// img 요소를 문자열로 작성한 다음 
+					let img=`<img id="image_preview" style="width:150px; height:150px; border-radius:50%; border: 1px solid rgb(222, 226, 230)" alt="소모임 이미지"
+						src="${pageContext.request.contextPath }\${data.imagePath}">`;
+					//class 가 image_container 인 요소의 내부(자식요소)에 덮어쓰기 하면서 html 형식으로 해석해 주세요 라는 의미 
+					document.querySelector(".image_container").innerHTML=img;
+				});
+			});
+		</script>
 	</div>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
