@@ -72,8 +72,16 @@
 		                        </ul>
 		                        <div class="user_content_btn">
 		                        	<div class="user_content_community"><a href="${pageContext.request.contextPath}/group_managing/group_userdetail?num=${tmp.num}">커뮤니티</a></div>
-									<div class="user_content_delete"><a href="#">탈퇴</a></div>
-		                        </div>	
+									<div class="user_content_delete"><a href="javascript:deleteConfirm()">탈퇴</a></div>
+		                        </div>
+		                        <script>
+								    function deleteConfirm() {
+								        const isDelete = confirm("${id} 님 탈퇴 하시겠습니까?");
+								        if(isDelete) {
+								            location.href = "${pageContext.request.contextPath}/group_managing/group_userdropOut?group_num=${dto.num}";
+								        }
+								    }
+								</script>
                        		</div>   
                         </a>
                     </div>

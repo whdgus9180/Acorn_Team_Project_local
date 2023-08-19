@@ -100,20 +100,20 @@
 </head>
 </head>
 <body>
-
-	<div class="container" >
-	<br />
+	<div class="container">
 		<div style="float: right;">
 		<%-- 만일 이전글(더 옛날글)의 글번호가 0 가 아니라면(이전글이 존재 한다면) --%>
 		<c:if test="${dto.prevNum ne 0}">
-			<a href="detail?num=${cafeDto.prevNum }&comu_num=${cafeDto.comu_num}&condition=${condition}&keyword=${encodedK}" class="btn btn-outline-dark"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+			<a href="${pageContext.request.contextPath}/cafe/detail?num=${cafeDto.prevNum }&comu_num=${cafeDto.comu_num}&condition=${condition}&keyword=${encodedK}" 
+				class="btn btn-outline-dark"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
  			<path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
 			</svg>이전글</a>
 		</c:if>
 		
 		<%-- 만일 다음글(더 최신글)의 글번호가 0 가 아니라면(다음글이 존재 한다면) --%>
 		<c:if test="${dto.nextNum ne 0 }">
-			<a href="detail?num=${cafeDto.nextNum }&comu_num=${cafeDto.comu_num}&condition=${condition}&keyword=${encodedK}" class="btn btn-outline-dark">다음글<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+			<a href="${pageContext.request.contextPath}/detail?num=${cafeDto.nextNum }&comu_num=${cafeDto.comu_num}&condition=${condition}&keyword=${encodedK}" 
+				class="btn btn-outline-dark">다음글<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
   			<path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
 			</svg></a>
 		</c:if>
@@ -126,7 +126,6 @@
 			</p>
 		</c:if>
 		</div>
-		<br>
 		<h3 style="font-weight: bold;">${cafeDto.title }</h3>
 		<table class="table table-bordered ">
 			<tr>
@@ -255,10 +254,8 @@
 	</div>
 	<script src="${pageContext.request.contextPath}/resources/js/gura_util.js"></script>
 	<script>
-		
 		//클라이언트가 로그인 했는지 여부
 		let isLogin=${ not empty id };
-		
 		document.querySelector(".insert-form")
 			.addEventListener("submit", function(e){
 				//만일 로그인 하지 않았으면 

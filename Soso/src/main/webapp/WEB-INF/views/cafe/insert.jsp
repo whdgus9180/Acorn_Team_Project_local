@@ -10,7 +10,7 @@
 <body>
 	<script>
 		alert("새글이 추가 되었습니다.");
-		location.href="${pageContext.request.contextPath}/cafe/list?num="+${group_num};
+		location.href="${pageContext.request.contextPath}/group_managing/group_userdetail?num=${group_num}";
 	</script>
 </body>
 </html>

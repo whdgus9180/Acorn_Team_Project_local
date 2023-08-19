@@ -109,7 +109,7 @@ public class CafeServiceImpl implements CafeService{
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("encodedK", encodedK);
 		model.addAttribute("totalPageCount", totalPageCount);
-		model.addAttribute("list", list);
+		model.addAttribute("cafelist", list);
 		model.addAttribute("totalRow", totalRow);
 	}
 
