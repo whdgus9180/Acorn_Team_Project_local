@@ -10,9 +10,11 @@ public interface NoticeDao {
 	//공지 추가
 	public void insert(NoticeDto dto);
 	//공지 정보 얻어오기
-	public NoticeDto getData(int num);
+	public NoticeDto getData(int notice_num);
 	//공지 수정
 	public void update(NoticeDto dto);
 	//공지 삭제
-	public void delete(int num);
+	public void delete(int notice_num);
+	//공지의 갯수
+	public int getCount(NoticeDto dto);
 }

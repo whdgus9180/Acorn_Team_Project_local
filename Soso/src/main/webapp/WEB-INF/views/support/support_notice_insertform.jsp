@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>/support_faq_insertform</title>
 <style>
-	.faqBtn{
+	.noticeBtn{
 	width: 240px;
     height: 60px;
     margin: 0 auto;
@@ -52,7 +52,7 @@
 		<div class="body_area">
 			<div class="main_content">
 				<h3>공지사항 등록</h3>
-				<form action="${pageContext.request.contextPath }/support/support_faq_insert" class="area_form" method="post" enctype="multipart/form-data">
+				<form action="${pageContext.request.contextPath }/support/support_notice_insert" class="area_form" method="post" enctype="multipart/form-data">
 					<div class="row-wrap">
 						<div class="input_title">
 							<h4 class="label">공지</h4>
@@ -69,14 +69,14 @@
 					<div class="row-wrap">
 						<div class="input_text">
 							<h4 class="label">내용 *</h4>
-							<textarea name="answer" id="answer" placeholder="내용을 입력 해 주세요."></textarea>
+							<textarea name="content" id="content" placeholder="내용을 입력 해 주세요."></textarea>
 						</div>
 					</div>
 					
 					<p class="info_message">
 						이 사이트는 reCAPTCHA에 의해 보호되며 Google 개인 정보 취급 방침 및 서비스 약관이 적용됩니다.
 					</p>
-					<button type="submit" class="faqBtn">공지사항 등록</button>
+					<button type="submit" class="noticeBtn">공지사항 등록</button>
 				</form>
 			</div>
 		</div>

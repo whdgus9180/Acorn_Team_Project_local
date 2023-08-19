@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.acorn.soso.exception.DontEqualException;
 import com.acorn.soso.support.dto.FaqDto;
 import com.acorn.soso.support.dto.InquireDto;
+import com.acorn.soso.support.dto.NoticeDto;
 import com.acorn.soso.support.service.FaqService;
 import com.acorn.soso.support.service.InquireService;
+import com.acorn.soso.support.service.NoticeService;
 import com.acorn.soso.users.service.UsersService;
 
 @Controller
@@ -26,6 +28,9 @@ public class SupportController {
 	
 	@Autowired
 	private InquireService inquireService;
+	
+	@Autowired
+	private NoticeService noticeService;
 	
 	@GetMapping("/support/support_main")
 	public String support_main(HttpServletRequest request, Model model) {
@@ -68,7 +73,7 @@ public class SupportController {
 	@GetMapping("/support/support_notice")
 	public String support_notice(HttpServletRequest request, Model model) {
 		
-		service.getList(request, model);
+		noticeService.getList(request, model);
 		
 		return "support/support_notice";
 	}
@@ -76,6 +81,12 @@ public class SupportController {
 	public String support_notice_insertform() {
 		
 		return "support/support_notice_insertform";
+	}
+	@PostMapping("/support/support_notice_insert")
+	public String insert(NoticeDto dto) {
+		//서비스를 이용해서 질문을 저장
+		noticeService.saveNotice(dto);
+		return "support/support_notice_insert";
 	}
 	
 	@GetMapping("/support/support_inquire")

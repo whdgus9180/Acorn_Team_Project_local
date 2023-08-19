@@ -2,76 +2,50 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="notice">
-	<sql id="searchCondition">
-		<choose>
-			<when test="category != null and question != null">
-				WHERE category LIKE '%'||#{category}||'%' OR question LIKE '%'||#{question}||'%'
-			</when>
-			<when test="category != null">
-				WHERE category LIKE '%'||#{category}||'%'
-			</when>
-			<when test="question != null">
-				WHERE question LIKE '%'||#{question}||'%'
-			</when>
-		</choose>
-	</sql>
-	
-	<select id="getList" parameterType="faqDto" resultType="faqDto">
+
+	<select id="getList" parameterType="noticeDto" resultType="noticeDto">
 		SELECT *
 		FROM
 			(SELECT result1.*, ROWNUM AS rnum
 			FROM
-				(SELECT category,question,answer
-				FROM FAQ_TB
-				<include refid="searchCondition"/>
-				ORDER BY faq_num DESC) result1)
+				(SELECT notice_num, category,title,content,regdate
+				FROM NOTICE_TB
+				ORDER BY notice_num asc) result1)
 		<![CDATA[ 
 		WHERE rnum >= #{startRowNum} AND rnum <= #{endRowNum}
 		]]>
 	</select>
 	
-	<select id="getCount" parameterType="faqDto" resultType="int">
+	<select id="getCount" parameterType="noticeDto" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)
-		FROM FAQ_TB
-		<include refid="searchCondition"/>
+		FROM NOTICE_TB
 	</select>		
 
-	<insert id="insert" parameterType="faqDto">
-		INSERT INTO FAQ_TB
-		(faq_num,category,question,answer)
-		VALUES(FAQ_SEQ.NEXTVAL, #{category}, #{question},
-			#{answer})
+	<insert id="insert" parameterType="noticeDto">
+		INSERT INTO NOTICE_TB
+		(notice_num,category,title,content,regdate)
+		VALUES(NOTICE_SEQ.NEXTVAL, #{category}, #{title},#{content},
+			SYSDATE)
 	</insert>
 	
-	<select id="getData" parameterType="int" resultType="faqDto">
+	<select id="getData" parameterType="int" resultType="noticeDto">
 		SELECT result1.*
 		FROM
-			(SELECT faq_num,writer,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,
-			   LAG(faq_num, 1, 0) OVER (ORDER BY num DESC) nextNum,
-	   		   LEAD(num, 1, 0) OVER (ORDER BY num DESC) prevNum
-			 FROM board_cafe) result1
-		WHERE num=#{num}
+			(SELECT notice_num,writer,title,content,TO_CHAR(regdate, 'YY.MM.DD') AS regdate,
+			   LAG(notice_num, 1, 0) OVER (ORDER BY notice_num DESC) nextNum,
+	   		   LEAD(notice_num, 1, 0) OVER (ORDER BY notice_num DESC) prevNum
+			 FROM NOTICE_TB) result1
+		WHERE notice_num=#{num}
 	</select>
 	
-	<select id="getData2" parameterType="faqDto" resultType="faqDto">
-		SELECT result1.*
-		FROM
-			(SELECT num,writer,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,
-			   LAG(num, 1, 0) OVER (ORDER BY num DESC) nextNum,
-	   		   LEAD(num, 1, 0) OVER (ORDER BY num DESC) prevNum
-			 FROM board_cafe
-			 <include refid="searchCondition"/>
-			 ) result1
-		WHERE num=#{num}
-	</select>	
 	<delete id="delete" parameterType="int">
-		DELETE FROM FAQ_TB
-		WHERE faq_num=#{faq_num}
+		DELETE FROM NOTICE_TB
+		WHERE notice_num=#{num}
 	</delete>
 	
-	<update id="update" parameterType="faqDto">
-		UPDATE FAQ_TB
-		SET question=#{question}, answer=#{answer}
-		WHERE faq_num=#{faq_num}
+	<update id="update" parameterType="noticeDto">
+		UPDATE NOTICE_TB
+		SET title=#{title}, content=#{content}
+		WHERE notice_num=#{num}
 	</update>	
 </mapper>

@@ -54,21 +54,11 @@
 				<h3 class="title">공지사항</h3>
 				<a class="view_more" href="${pageContext.request.contextPath }/support/support_notice">더보기</a>
 				<ul class="list-group list-group-flush">
+					<c:forEach var="tmp" items="${notice_list }">
 					<li class="list-group-item">
-						<a href="">[공지] 비어있음</a>
+						<a href="">${tmp.title}</a>
 					</li>
-					<li class="list-group-item">
-						<a href="">[공지] 비어있음</a>
-					</li>
-					<li class="list-group-item">
-						<a href="">[공지] 비어있음</a>
-					</li>
-					<li class="list-group-item">
-						<a href="">[공지] 비어있음</a>
-					</li>
-					<li class="list-group-item">
-						<a href="">[공지] 비어있음</a>
-					</li>
+					</c:forEach>
 				</ul>
 			</section>
 			<section class="area_contact">
