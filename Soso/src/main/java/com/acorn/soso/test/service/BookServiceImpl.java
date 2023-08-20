@@ -1,4 +1,4 @@
-package com.acorn.soso.test.dao;
+package com.acorn.soso.test.service;
 
 
 import java.net.URI;
@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.acorn.soso.test.dao.BookDao;
 import com.acorn.soso.test.dto.BookDto;
 import com.acorn.soso.test.dto.NaverResultDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -22,6 +24,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class BookServiceImpl implements BookService{
+	
+	@Autowired
+	private BookDao bookDao;
 
 	@Override
 	public void getBookList(Model model, HttpServletRequest request) {
@@ -81,4 +86,10 @@ public class BookServiceImpl implements BookService{
     List<BookDto> books = naverDto.getItems();	// books를 list.html에 출력 -> model 선언
     model.addAttribute("books", books);
 }
+
+	//책을 저장해보
+	@Override
+	public void saveBook(BookDto dto) {
+		bookDao.saveBook(dto);		
+	}
 }
