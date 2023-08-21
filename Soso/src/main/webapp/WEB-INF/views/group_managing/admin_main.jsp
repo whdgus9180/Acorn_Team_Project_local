@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내가 만든 소모임</title>
+<title>내 북메이트 관리</title>
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/group_managing_user_main.css" />
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
