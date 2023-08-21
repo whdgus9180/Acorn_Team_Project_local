@@ -37,7 +37,6 @@ public class CafeServiceImpl implements CafeService{
 		if(strPageNum != null){
 			pageNum = Integer.parseInt(strPageNum);
 		}
-		
 		int startRowNum = 1 + (pageNum-1)*PAGE_ROW_COUNT;
 		int endRowNum = pageNum*PAGE_ROW_COUNT;
 		
@@ -77,7 +76,6 @@ public class CafeServiceImpl implements CafeService{
 		
 		//전체글의 갯수
 		int totalRow=cafeDao.getCount(dto);
-		
 		//하단 시작 페이지 번호 
 		int startPageNum = 1 + ((pageNum-1)/PAGE_DISPLAY_COUNT)*PAGE_DISPLAY_COUNT;
 		//하단 끝 페이지 번호
@@ -109,11 +107,12 @@ public class CafeServiceImpl implements CafeService{
 	@Override
 	public void getDetail(HttpServletRequest request, Model model, int comu_num) {
 		
-		//조회수 올리기
+		//해당 글의 상세 페이지 링크를 통해 조회했을 때 해당 게시글의 조회수 올리기
 		cafeDao.addViewCount(comu_num);
 		
 		String keyword=request.getParameter("keyword");
 		String condition=request.getParameter("condition");
+		
 		//만일 키워드가 넘어오지 않는다면 
 		if(keyword==null){
 			//키워드와 검색 조건에 빈 문자열을 넣어준다. 

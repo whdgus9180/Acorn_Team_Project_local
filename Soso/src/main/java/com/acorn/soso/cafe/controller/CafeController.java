@@ -72,8 +72,6 @@ public class CafeController {
 		return "redirect:/cafe/detail?comu_num="+comu_num;
 	}	
 	
-	
-	
 	@GetMapping("/cafe/insertform")
 	public String insertform(HttpServletRequest request,int num, Model model) {
 		request.setAttribute("num", num);
@@ -105,7 +103,7 @@ public class CafeController {
 		//서비스에 삭제할 글번호와 HttpServletRequest 객체를 전달해서 해당글을 삭제 시키고 
 		service.deleteContent(comu_num, request);
 		//글 목록 보기로 리다일렉트 이동 시킨다.
-		return "redirect:/cafe/list?num="+group_num+"";
+		return "redirect:/group_managing/group_userdetail?num="+group_num;
 	}
 	
 	@GetMapping("/cafe/updateform")
