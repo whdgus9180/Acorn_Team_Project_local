@@ -6,19 +6,73 @@
 <head>
 <meta charset="UTF-8">
 <title>소모임 문의 게시판</title>
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css" type="text/css">
+<style>	
+	/* 문의하기 버튼 */
+	#faqInsert{
+		border : 2px solid black;
+		width : 70px;
+		text-align : center;
+		border-radius : 10px;
+	}
+	
+	/* 제목, 작성자 등 */
+	.table{
+		width : 100%;
+		border-collapse: collapse;
+		border-top: 2px solid black;
+		display : flex;
+		justify-content : space-between;
+	}
+	.faq-row {
+	  border: 1px solid red;
+	  display: table-row; /* 테이블 행으로 설정 */
+	}
+	
+	.faq-row > * {
+	  display: table-cell; /* 각 셀을 테이블 셀로 설정 */
+	  width: auto; /* 자동으로 동일한 너비 설정 */
+	  padding: 5px; /* 선택적인 패딩 값 설정 */
+	}
+	/* 문의 */
+	#content{
+		
+	}
+	
+	/* 페이징 css */
+	.pagination{
+		display : flex;
+		justify-content : center;
+	}
+	.page-item{
+		width : 3%;
+		border : 1px solid black;
+		margin : 1rem;
+		text-align : center;
+	}
 
+</style>
 </head>
 <body>
 	<div class="container">
-			<br>	
-			<h2 style="text-align: center">문의하기</h2>
-			<div style="width:100%; text-align:right;">
-				<a href="${pageContext.request.contextPath }/group/faq/insertform?num=${num}" class="btn btn-outline-dark" tabindex="-1" role="small-button" aria-disabled="true" >글 쓰기</a>
-				<a id="faqInsert" href="#">문의하기2</a>
+			<br>
+			<div class="inner-wrap">
+				<h2 style="text-align: center">문의 게시판</h2>
+					<div style="width:100%; text-align:right;">
+						<a id="faqInsert" href="#">문의하기</a>
+					</div>
 			</div>
 			<br>
+			
+			<!-- table을 ul li요소로 바꾸는 작업 -->
+			<div class="inner-wrap">
+				<ul>
+					 <c:forEach var="tmp" items="${list }"></c:forEach>
+				</ul>
+			</div>
+			
+			
 			<div class="inner-wrap">
 				<div class="altertable">
 				 <table class="table">
@@ -55,7 +109,7 @@
 			        </tbody>
 			    </table>
 				<br />
-					<ul class="pagination" style="justify-content: center;">
+					<ul class="pagination">
 						<%--
 							startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
 						 --%>
@@ -79,8 +133,8 @@
 						</c:if>				
 					</ul>
 			<br />
-			</div><!-- container -->
-		</div><!-- inner Wrap의 end -->
+			</div><!-- inner wrap -->
+		</div><!-- container의 end -->
 	    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script>
 			
