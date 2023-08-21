@@ -65,11 +65,10 @@ public class CafeController {
 	
 	//새로운 댓글 저장 요청 처리
 	@PostMapping("/cafe/comment_insert")
-	public String commentInsert(HttpServletRequest request, int comu_num) {
+	public String commentInsert(HttpServletRequest request, int comu_num, int group_num) {
 		//새로운 댓글을 저장하는 로직을 수행한다.
 		service.saveComment(request);
-		//comu_num 은 원글의 글번호이기 때문에 원글 자세히 보기로 다시 리다일렉트 이동된다.
-		return "redirect:/cafe/detail?comu_num="+comu_num;
+		return "redirect:/cafe/detail?comu_num="+comu_num+"&group_num="+group_num;
 	}	
 	
 	@GetMapping("/cafe/insertform")
@@ -92,9 +91,9 @@ public class CafeController {
 	}
 	
 	@GetMapping("/cafe/detail")
-	public String detail(HttpServletRequest request, int comu_num, Model model) {
-		service.getDetail(request, model, comu_num);
-		request.setAttribute("comu_num", comu_num);
+	public String detail(HttpServletRequest request, CafeDto dto, Model model) {
+		service.getDetail(request, model, dto);
+		request.setAttribute("comu_num", dto.getComu_num());
 		return "cafe/detail";
 	}
 	

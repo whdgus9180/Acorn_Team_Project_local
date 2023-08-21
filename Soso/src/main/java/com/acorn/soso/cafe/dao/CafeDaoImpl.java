@@ -43,6 +43,11 @@ public class CafeDaoImpl implements CafeDao{
 		
 		return session.selectOne("cafe.getData2", dto);
 	}
+	
+	@Override
+	public CafeDto getData2(CafeDto dto) {
+		return session.selectOne("cafe.getData", dto);
+	}
 
 	@Override
 	public void addViewCount(int comu_num) {
@@ -58,5 +63,7 @@ public class CafeDaoImpl implements CafeDao{
 	public void update(CafeDto dto) {
 		session.update("cafe.update", dto);
 	}
+
+	
 
 }
