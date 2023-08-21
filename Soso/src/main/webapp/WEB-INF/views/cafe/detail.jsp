@@ -183,9 +183,7 @@
 				}
 			});
 		
-		/*
-			detail 페이지 로딩 시점에 만들어진 1 페이지에 해당하는 댓글에 이벤트 리스너 등록 하기 
-		*/
+		//detail 페이지 로딩 시점에 만들어진 1 페이지에 해당하는 댓글에 이벤트 리스너 등록 하기 
 		addUpdateFormListener(".update-form");
 		addUpdateListener(".update-link");
 		addDeleteListener(".delete-link");
@@ -193,35 +191,30 @@
 		
 		//댓글의 현재 페이지 번호를 관리할 변수를 만들고 초기값 1 대입하기
 		let currentPage = 1;
-		
 		//마지막 페이지는 totalPageCount 이다.  
-		let lastPage=${totalPageCount};
-		
+		let lastPage = ${totalPageCount};
 		//추가로 댓글을 요청하고 그 작업이 끝났는지 여부를 관리할 변수 
 		let isLoading = false; //현재 로딩중인지 여부 
 		
+		//화면의 스크롤에 따라 추가 댓글을 로딩
 		window.addEventListener("scroll", function(){
 			//바닥 까지 스크롤 했는지 여부 
 			const isBottom = 
 				window.innerHeight + window.scrollY  >= document.body.offsetHeight;
 			//현재 페이지가 마지막 페이지인지 여부 알아내기
-			let isLast = currentPage == lastPage;	
+			let isLast = currentPage == lastPage;
+			
 			//현재 바닥까지 스크롤 했고 로딩중이 아니고 현재 페이지가 마지막이 아니라면
 			if(isBottom && !isLoading && !isLast){
-				//로딩바 띄우기
 				document.querySelector(".loader").style.display="block";
 				
-				//로딩 작업중이라고 표시
 				isLoading=true;
 				
-				//현재 댓글 페이지를 1 증가 시키고 
 				currentPage++;
-				/*
-					해당 페이지의 내용을 ajax 요청을 통해서 받아온다.
-					"pageNum=xxx&num=xxx" 형식으로 GET 방식 파라미터를 전달한다. 
-				*/
-				ajaxPromise("ajax_comment_list","get",
-						"pageNum="+currentPage+"&comment_num=${commentDto.comment_num}")
+				
+				ajaxPromise("ajax_comment_list",
+							"get",
+							"pageNum="+currentPage+"&comu_num=${cafeDto.comu_num}")
 				.then(function(response){
 					//json 이 아닌 html 문자열을 응답받았기 때문에  return response.text() 해준다.
 					return response.text();
@@ -234,10 +227,12 @@
 						.insertAdjacentHTML("beforeend", data);
 					//로딩이 끝났다고 표시한다.
 					isLoading=false;
+					
 					//새로 추가된 댓글 li 요소 안에 있는 a 요소를 찾아서 이벤트 리스너 등록 하기 
 					addUpdateListener(".page-"+currentPage+" .update-link");
 					addDeleteListener(".page-"+currentPage+" .delete-link");
 					addReplyListener(".page-"+currentPage+" .reply-link");
+					
 					//새로 추가된 댓글 li 요소 안에 있는 댓글 수정폼에 이벤트 리스너 등록하기
 					addUpdateFormListener(".page-"+currentPage+" .update-form");
 					
