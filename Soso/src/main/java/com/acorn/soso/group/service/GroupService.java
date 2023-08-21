@@ -1,5 +1,7 @@
 package com.acorn.soso.group.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -54,6 +56,8 @@ public interface GroupService {
 	public void groupFAQInsert(GroupFAQDto dto);
 	//소모임 문의 게시판 목록 불러오기, request로 값을 얻어오고 model에 담는다.
 	public void groupFAQGetList(HttpServletRequest request, Model model);
+	
+	
 	//소모임의 getData. request로 값을 얻어오고 model에 담는다.
 	public void groupFAQGetData(HttpServletRequest request, Model model);
 	//소모임 문의글 수정.request로 필요한 정보를 얻고 dto로 수정한다.

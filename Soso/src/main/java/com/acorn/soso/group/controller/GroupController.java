@@ -1,6 +1,7 @@
 package com.acorn.soso.group.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -118,6 +119,16 @@ public class GroupController {
 	public String groupFaqInsertForm(HttpServletRequest request, int num) {
 		request.setAttribute("num", num);
 		return "group/faq/insertform";
+	}
+	
+	//소모임 FAQ 게시판 목록을 보기 위한 컨트롤러
+	@GetMapping("/group/faq/paginglist")
+	public String groupFaqPagingList(HttpServletRequest request, int num, Model model) {
+		request.setAttribute("num", num);
+		service.groupFAQGetList(request, model);
+		//View 페이지에 소모임의 정보를 얻어온다(manager_id를 얻기 위함)
+		managingService.getGroupData(num, request);
+		return "group/faq/paginglist";
 	}
 	
 	//소모임 FAQ 게시판 목록을 보기 위한 컨트롤러
@@ -314,6 +325,32 @@ public class GroupController {
             service.getList(request, model);
         }
         return "group/list";
+	}
+	
+	//소모임 리스트 이동(테스트)
+	@GetMapping("/group/list2")
+	public String list2(HttpServletRequest request, Model model) {
+		String genreParam = request.getParameter("genre");
+        if (genreParam != null) {
+            int genre = Integer.parseInt(genreParam);
+            service.getGroupsByGenre(request, model);
+        } else {
+            service.getList(request, model);
+        }
+        return "group/list2";
+	}
+	
+	//ajax로 리스트 페이지 불러오기
+	@GetMapping("/group/ajax_list")
+	public String listajax(HttpServletRequest request, Model model) {
+		String genreParam = request.getParameter("genre");
+        if (genreParam != null) {
+            int genre = Integer.parseInt(genreParam);
+            service.getGroupsByGenre(request, model);
+        } else {
+            service.getList(request, model);
+        }
+        return "group/ajax_list";
 	}
 	
 	//소모임 조회수 리스트 이동

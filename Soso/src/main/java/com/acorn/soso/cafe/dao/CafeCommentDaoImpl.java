@@ -1,4 +1,4 @@
-package com.acorn.soso.cafe.dao;
+	package com.acorn.soso.cafe.dao;
 
 import java.util.List;
 
@@ -23,8 +23,8 @@ public class CafeCommentDaoImpl implements CafeCommentDao{
 	}
 
 	@Override
-	public void delete(int comu_num) {
-		session.update("cafeComment.delete", comu_num);
+	public void delete(int comment_num) {
+		session.update("cafeComment.delete", comment_num);
 	}
 
 	@Override

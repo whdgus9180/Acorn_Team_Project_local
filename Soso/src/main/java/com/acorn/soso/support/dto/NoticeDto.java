@@ -17,7 +17,7 @@ public class NoticeDto {
 	//Notice 페이지 필드 값
 	
 	//공지 번호
-	private int num;
+	private int notice_num;
 	//공지 카테고리
 	private String category;
 	//공지 제목

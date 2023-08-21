@@ -8,112 +8,22 @@
 <title>/views/cafe/detail.jsp</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-<style>
-	.content{
-		border: 1px dotted gray;
-	}
-	
-	/* 댓글 프로필 이미지를 작은 원형으로 만든다. */
-	.profile-image{
-		width: 50px;
-		height: 50px;
-		border: 1px solid #cecece;
-		border-radius: 50%;
-	}
-	/* ul 요소의 기본 스타일 제거 */
-	.comments ul{
-		padding: 0;
-		margin: 0;
-		list-style-type: none;
-	}
-	.comments dt{
-		margin-top: 5px;
-	}
-	.comments dd{
-		margin-left: 50px;
-	}
-	.comment-form textarea, .comment-form button{
-		float: left;
-	}
-	.comments li{
-		clear: left;
-	}
-	.comments ul li{
-		border-top: 1px solid #888;
-	}
-	.comment-form textarea{
-		width: 84%;
-		height: 60px;
-	}
-	.comment-form button{
-		width: 14%;
-		height: 60px;
-	}
-	/* 댓글에 댓글을 다는 폼과 수정폼은 일단 숨긴다. */
-	.comments .comment-form{
-		display: none;
-	}
-	/* .reply_icon 을 li 요소를 기준으로 배치 하기 */
-	.comments li{
-		position: relative;
-	}
-	.comments .reply-icon{
-		position: absolute;
-		top: 1em;
-		left: 1em;
-		color: red;
-	}
-	pre {
-	  display: block;
-	  padding: 9.5px;
-	  margin: 0 0 10px;
-	  font-size: 13px;
-	  line-height: 1.42857143;
-	  color: #333333;
-	  word-break: break-all;
-	  word-wrap: break-word;
-	  background-color: #f5f5f5;
-	  border: 1px solid #ccc;
-	  border-radius: 4px;
-	}	
-	
-	.loader{
-		/* 로딩 이미지를 가운데 정렬하기 위해 */
-		text-align: center;
-		/* 일단 숨겨 놓기 */
-		display: none;
-	}	
-	
-	.loader svg{
-		animation: rotateAni 1s ease-out infinite;
-	}
-	
-	@keyframes rotateAni{
-		0%{
-			transform: rotate(0deg);
-		}
-		100%{
-			transform: rotate(360deg);
-		}
-	}
-</style>
-</head>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/community/community_detail.css" />
 </head>
 <body>
-
-	<div class="container" >
-	<br />
+	<div class="container">
 		<div style="float: right;">
 		<%-- 만일 이전글(더 옛날글)의 글번호가 0 가 아니라면(이전글이 존재 한다면) --%>
-		<c:if test="${dto.prevNum ne 0}">
-			<a href="detail?num=${dto.prevNum }&comu_num=${dto.comu_num}&condition=${condition}&keyword=${encodedK}" class="btn btn-outline-dark"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+		<c:if test="${cafeDto.prevNum ne 0}">
+			<a href="${pageContext.request.contextPath}/cafe/detail?comu_num=${cafeDto.prevNum }&group_num=${cafeDto.group_num}&condition=${condition}&keyword=${encodedK}" 
+				class="btn btn-outline-dark"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
  			<path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
 			</svg>이전글</a>
 		</c:if>
-		
 		<%-- 만일 다음글(더 최신글)의 글번호가 0 가 아니라면(다음글이 존재 한다면) --%>
-		<c:if test="${dto.nextNum ne 0 }">
-			<a href="detail?num=${dto.nextNum }&comu_num=${dto.comu_num}&condition=${condition}&keyword=${encodedK}" class="btn btn-outline-dark">다음글<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+		<c:if test="${cafeDto.nextNum ne 0 }">
+			<a href="${pageContext.request.contextPath}/cafe/detail?comu_num=${cafeDto.nextNum }&group_num=${cafeDto.group_num}&condition=${condition}&keyword=${encodedK}" 
+				class="btn btn-outline-dark">다음글<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
   			<path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
 			</svg></a>
 		</c:if>
@@ -126,12 +36,11 @@
 			</p>
 		</c:if>
 		</div>
-		<br>
-		<h3 style="font-weight: bold;">${dto.title }</h3>
+		<h3 style="font-weight: bold;">${cafeDto.title }</h3>
 		<table class="table table-bordered ">
 			<tr>
 				<th>글번호</th>
-				<td>${dto.comu_num }</td>
+				<td>${cafeDto.comu_num}</td>
 			</tr>
 			<tr>
 				<th>탭</th>
@@ -139,46 +48,45 @@
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td>${dto.writer }</td>
+				<td>${cafeDto.writer}</td>
 			</tr>
 			
 			<tr>
 				<th>조회수</th>
-				<td>${dto.viewCount }</td>	
+				<td>${cafeDto.viewCount}</td>	
 			</tr>
 			<tr>
 				<th>작성일</th>
-				<td>${dto.regdate }</td>
+				<td>${cafeDto.regdate}</td>
 			</tr>
 			<tr>
 				<td colspan="2">
-					<div>${dto.content }</div>
+					<div>${cafeDto.content}</div>
 				</td>
 			</tr>	
 		</table>
 		<%-- 로그인된 아이디와 글의 작성자가 같으면 수정, 삭제 링크를 제공한다 --%>
-		<c:if test="${sessionScope.id eq dto.writer }">
-			<a href="updateform?comu_num=${dto.comu_num}&group_num=${dto.	group_num}">수정</a>
+		<c:if test="${sessionScope.id eq cafeDto.writer }">
+			<a href="updateform?comu_num=${cafeDto.comu_num}&group_num=${cafeDto.group_num}">수정</a>
 			<a href="javascript:" onclick="deleteConfirm()">삭제</a>
 			<script>
 				function deleteConfirm(){
 					const isDelete=confirm("이 글을 삭제 하겠습니까?");
 					if(isDelete){
-						location.href="delete?comu_num=${dto.comu_num}&group_num=${dto.group_num}";
+						location.href="delete?comu_num=${cafeDto.comu_num}&group_num=${cafeDto.group_num}";
 					}
 				}
 			</script>
 		</c:if>
-		
 		<h6 style="font-weight: bold;">댓글 쓰기</h6>
 		<!-- 원글에 댓글을 작성할 폼 -->
 		<form class="comment-form insert-form" action="comment_insert" method="post">
 			<!-- 원글의 글번호가 댓글의 ref_group 번호가 된다. -->
-			<input type="hidden" name="comu_num" value="${dto.comu_num }"/>
+			<input type="hidden" name="comu_num" value="${cafeDto.comu_num}"/>
+			<input type="hidden" name="group_num" value="${cafeDto.group_num}"/>
 			<!-- 원글의 작성자가 댓글의 대상자가 된다. -->
-			<input type="hidden" name="target_id" value="${dto.writer }"/>
-	
-			<textarea name="content" style="font-size: small;">${empty id ? '댓글 작성을 위해 로그인이 필요 합니다.' : '' }</textarea>
+			<input type="hidden" name="target_id" value="${cafeDto.writer}"/>
+			<textarea name="content" style="font-size: small;"></textarea>
 			<button type="submit">쓰 기</button>
 		</form>
 		
@@ -187,7 +95,7 @@
 			<ul>
 				<c:forEach var="tmp" items="${commentList }">
 					<c:choose>
-						<c:when test="${tmp.deleted eq 'yes' }">
+						<c:when test="${tmp.deleted eq 1}">
 							<li>삭제된 댓글 입니다.</li>
 						</c:when>
 						<c:otherwise>
@@ -226,9 +134,15 @@
 											<pre id="pre${tmp.comment_num }">${tmp.content }</pre>						
 										</dd>
 									</dl>
+									<!-- 대댓글 작성 폼 (가려져 있으나 클릭 이벤트를 통해 보이게 표시됨) -->
 									<form id="reForm${tmp.comment_num }" class="animate__animated comment-form re-insert-form" action="comment_insert" method="post">
-										<input type="hidden" name="comu_num" value="${dto.comment_num }"/>
+										<!-- 원글의 번호 -->
+										<input type="hidden" name="comu_num" value="${cafeDto.comu_num }"/>
+										<!-- 대댓글 등록 후 해당 게시글을 리다이렉트 할때 필요한 소모임 번호 -->
+										<input type="hidden" name="group_num" value="${cafeDto.group_num }"/>
+										<!-- 대댓글의 대상이 되는 댓글의 작성자 명 -->
 										<input type="hidden" name="target_id" value="${tmp.writer }"/>
+										<!-- 대댓글의 그룹번호는 대댓글을 작성하는 댓글의 그룹번호를 배정 -->
 										<input type="hidden" name="comment_group" value="${tmp.comment_group }"/>
 										<textarea name="content"></textarea>
 										<button type="submit">등록</button>
@@ -255,10 +169,8 @@
 	</div>
 	<script src="${pageContext.request.contextPath}/resources/js/gura_util.js"></script>
 	<script>
-		
 		//클라이언트가 로그인 했는지 여부
 		let isLogin=${ not empty id };
-		
 		document.querySelector(".insert-form")
 			.addEventListener("submit", function(e){
 				//만일 로그인 하지 않았으면 
@@ -267,57 +179,42 @@
 					e.preventDefault();
 					//로그인 폼으로 이동 시킨다.
 					location.href=
-						"${pageContext.request.contextPath}/users/loginform?url=${pageContext.request.contextPath}/cafe/detail?num=${dto.comu_num}";
+						"${pageContext.request.contextPath}/users/loginform?url=${pageContext.request.contextPath}/cafe/detail?comu_num=${cafeDto.comu_num}";
 				}
 			});
 		
-		/*
-			detail
-	 		페이지 로딩 시점에 만들어진 1 페이지에 해당하는 
-			댓글에 이벤트 리스너 등록 하기 
-		*/
+		//detail 페이지 로딩 시점에 만들어진 1 페이지에 해당하는 댓글에 이벤트 리스너 등록 하기 
 		addUpdateFormListener(".update-form");
 		addUpdateListener(".update-link");
 		addDeleteListener(".delete-link");
 		addReplyListener(".reply-link");
 		
-		
 		//댓글의 현재 페이지 번호를 관리할 변수를 만들고 초기값 1 대입하기
-		let currentPage=1;
+		let currentPage = 1;
 		//마지막 페이지는 totalPageCount 이다.  
-		let lastPage=${totalPageCount};
-		
+		let lastPage = ${totalPageCount};
 		//추가로 댓글을 요청하고 그 작업이 끝났는지 여부를 관리할 변수 
-		let isLoading=false; //현재 로딩중인지 여부 
+		let isLoading = false; //현재 로딩중인지 여부 
 		
-		/*
-			window.scrollY => 위쪽으로 스크롤된 길이
-			window.innerHeight => 웹브라우저의 창의 높이
-			document.body.offsetHeight => body 의 높이 (문서객체가 차지하는 높이)
-		*/
+		//화면의 스크롤에 따라 추가 댓글을 로딩
 		window.addEventListener("scroll", function(){
 			//바닥 까지 스크롤 했는지 여부 
 			const isBottom = 
 				window.innerHeight + window.scrollY  >= document.body.offsetHeight;
 			//현재 페이지가 마지막 페이지인지 여부 알아내기
-			let isLast = currentPage == lastPage;	
+			let isLast = currentPage == lastPage;
+			
 			//현재 바닥까지 스크롤 했고 로딩중이 아니고 현재 페이지가 마지막이 아니라면
 			if(isBottom && !isLoading && !isLast){
-				//로딩바 띄우기
 				document.querySelector(".loader").style.display="block";
 				
-				//로딩 작업중이라고 표시
 				isLoading=true;
 				
-				//현재 댓글 페이지를 1 증가 시키고 
 				currentPage++;
 				
-				/*
-					해당 페이지의 내용을 ajax 요청을 통해서 받아온다.
-					"pageNum=xxx&num=xxx" 형식으로 GET 방식 파라미터를 전달한다. 
-				*/
-				ajaxPromise("ajax_comment_list","get",
-						"pageNum="+currentPage+"&num=${dto.comu_num}")
+				ajaxPromise("ajax_comment_list",
+							"get",
+							"pageNum="+currentPage+"&comu_num=${cafeDto.comu_num}")
 				.then(function(response){
 					//json 이 아닌 html 문자열을 응답받았기 때문에  return response.text() 해준다.
 					return response.text();
@@ -330,10 +227,12 @@
 						.insertAdjacentHTML("beforeend", data);
 					//로딩이 끝났다고 표시한다.
 					isLoading=false;
+					
 					//새로 추가된 댓글 li 요소 안에 있는 a 요소를 찾아서 이벤트 리스너 등록 하기 
 					addUpdateListener(".page-"+currentPage+" .update-link");
 					addDeleteListener(".page-"+currentPage+" .delete-link");
 					addReplyListener(".page-"+currentPage+" .reply-link");
+					
 					//새로 추가된 댓글 li 요소 안에 있는 댓글 수정폼에 이벤트 리스너 등록하기
 					addUpdateFormListener(".page-"+currentPage+" .update-form");
 					
@@ -357,17 +256,20 @@
 				});
 			}
 		}
+		
 		function addDeleteListener(sel){
 			//댓글 삭제 링크의 참조값을 배열에 담아오기 
 			let deleteLinks=document.querySelectorAll(sel);
 			for(let i=0; i<deleteLinks.length; i++){
 				deleteLinks[i].addEventListener("click", function(){
 					//click 이벤트가 일어난 바로 그 요소의 data-num 속성의 value 값을 읽어온다. 
-					const num=this.getAttribute("data-num"); //댓글의 글번호
+					const num = this.getAttribute("data-num"); //댓글의 글번호
 					const isDelete=confirm("댓글을 삭제 하시겠습니까?");
 					if(isDelete){
 						// gura_util.js 에 있는 함수들 이용해서 ajax 요청
-						ajaxPromise("comment_delete", "post", "num="+num)
+						ajaxPromise("comment_delete", 
+									"post", 
+									"comment_num="+num)
 						.then(function(response){
 							return response.json();
 						})
@@ -382,25 +284,24 @@
 				});
 			}
 		}
+		
+		//댓글의 답글 버튼을 눌렀을 때 실행되는 함수
 		function addReplyListener(sel){
 			//댓글 링크의 참조값을 배열에 담아오기 
 			let replyLinks=document.querySelectorAll(sel);
 			//반복문 돌면서 모든 링크에 이벤트 리스너 함수 등록하기
 			for(let i=0; i<replyLinks.length; i++){
 				replyLinks[i].addEventListener("click", function(){
-					
 					if(!isLogin){
 						const isMove=confirm("로그인이 필요 합니다. 로그인 페이지로 이동 하시겠습니까?");
 						if(isMove){
 							location.href=
-								"${pageContext.request.contextPath}/users/loginform?url=${pageContext.request.contextPath}/cafe/detail?num=${dto.comu_num}";
+								"${pageContext.request.contextPath}/users/loginform?url=${pageContext.request.contextPath}/cafe/detail?comu_num=${cafeDto.comu_num}";
 						}
 						return;
 					}
-					
 					//click 이벤트가 일어난 바로 그 요소의 data-num 속성의 value 값을 읽어온다. 
-					const num=this.getAttribute("data-num"); //댓글의 글번호
-					
+					const num = this.getAttribute("data-num"); //댓글의 글번호
 					const form=document.querySelector("#reForm"+num);
 					
 					//현재 문자열을 읽어온다 ( "답글" or "취소" )
@@ -450,17 +351,17 @@
 								특정문서의 참조값.querySelector() 는 해당 문서 객체의 자손 요소 중에서
 								특정 요소의 참조값을 찾는 기능
 							*/
-							const num=form.querySelector("input[name=num]").value;
+							const comment_num=form.querySelector("input[name=comment_num]").value;
 							const content=form.querySelector("textarea[name=content]").value;
 							//수정폼에 입력한 value 값을 pre 요소에도 출력하기 
-							document.querySelector("#pre"+num).innerText=content;
+							document.querySelector("#pre"+comment_num).innerText=content;
 							form.style.display="none";
 						}
 					});
 				});
 			}
 		}
-	</script>	
+	</script>
 </body>
 </html>
 
@@ -470,7 +371,7 @@
 
 
 
-
+	
 
 
 
