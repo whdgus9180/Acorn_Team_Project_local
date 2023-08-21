@@ -25,7 +25,7 @@
 			<tr>
 				<td>${tmp.comu_num}</td>
 				<td>
-					<a style="color: black;" class="text-decoration-none" href="${pageContext.request.contextPath}/cafe/detail?comu_num=${tmp.comu_num}&condition=${condition}&keyword=${encodedK}">${tmp.title}</a>
+					<a style="color: black;" class="text-decoration-none" href="${pageContext.request.contextPath}/cafe/detail?comu_num=${tmp.comu_num}&group_num=${num}&condition=${condition}&keyword=${encodedK}">${tmp.title}</a>
 				</td>
 				<td>${tmp.writer }</td>
 				<td style="text-align: center">${tmp.viewCount }</td>
