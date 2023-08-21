@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.acorn.soso.exception.DontEqualException;
+import com.acorn.soso.support.dao.NoticeDao;
 import com.acorn.soso.support.dto.FaqDto;
 import com.acorn.soso.support.dto.InquireDto;
 import com.acorn.soso.support.dto.NoticeDto;
@@ -103,6 +104,16 @@ public class SupportController {
 		
 		return "redirect:/support/support_notice";
 	}
+	//공지사항 삭제
+	@GetMapping("/support/support_notice_delete")
+	public String support_notice_delete(int notice_num, Model model,HttpServletRequest request) {
+		
+		NoticeDto dto = noticeService.getData(notice_num,model);
+		
+		noticeService.deleteNotice(notice_num, request);
+	
+		return "redirect:/support/support_notice";
+	}
 	@GetMapping("/support/support_inquire")
 	public String support_inquire(HttpSession session, Model model) {
 		userService.getInfo(session, model);
@@ -115,11 +126,6 @@ public class SupportController {
 		return "support/support_inquire_MyInquire";
 	}
 	
-	@GetMapping("/support/support_inquire_register")
-	public String support_inquire_register() {
-		
-		return "support/support_inquire_register";
-	}
 	@GetMapping("/support/support_inquire_MyInquire")
 	public String support_inquire_MyInquire(HttpSession session, Model model) {
 		inquireService.getList(session, model);

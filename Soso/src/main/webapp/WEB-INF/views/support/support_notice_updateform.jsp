@@ -52,9 +52,9 @@
 		<div class="body_area">
 			<div class="main_content">
 				<h3>공지사항 수정</h3>
-				<form action="${pageContext.request.contextPath }/support/support_notice_update" class="area_form">
+				<form action="${pageContext.request.contextPath }/support/support_notice_update" class="area_form" method="post">
 					<div class="row-wrap">
-						<input type="hidden" name="notice_num" value="${dto.notice_num }" />
+						<input type="hidden" name="notice_num" value="${dto.notice_num }"/>
 						<div class="input_title">
 							<h4 class="label">공지</h4>
 						
@@ -78,7 +78,8 @@
 					<p class="info_message">
 						이 사이트는 reCAPTCHA에 의해 보호되며 Google 개인 정보 취급 방침 및 서비스 약관이 적용됩니다.
 					</p>
-					<button type="submit" class="noticeBtn">공지사항 수정</button>
+					<button type="submit" class="noticeBtn">수정하기</button>
+			
 				</form>
 			</div>
 		</div>

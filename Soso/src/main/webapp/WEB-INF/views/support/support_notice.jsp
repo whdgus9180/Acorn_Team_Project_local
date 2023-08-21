@@ -96,7 +96,7 @@
 							<a data-num="${tmp.notice_num }" href="${pageContext.request.contextPath }/support/support_notice_updateform?notice_num=${tmp.notice_num}">수정</a>
 						</td>
 						<td>
-							<a data-num="${tmp.notice_num }" href="">삭제</a>
+							<button type="submit" id="deleteBtn">삭제</button>
 						</td>
 					</tr>
 					</c:forEach>
@@ -144,6 +144,13 @@
 					//애니메이션 클래스를 제거해서 다음번에 추가 되면 다시 애니매이션이 동작 되도록한다.
 					e.target.classList.remove("animate__swing");
 				});
+			});
+			document.querySelector("#deleteBtn").addEventListener("click", (e)=>{
+				e.preventDefault();
+				const isTrue = confirm("공지사항을 삭제하시겠습니까?")
+				if(isTrue){
+					location.href="${pageContext.request.contextPath}/support/support_notice_delete?notice_num=${dto.notice_num}";
+				}
 			});
 		</script>
 	</div>
