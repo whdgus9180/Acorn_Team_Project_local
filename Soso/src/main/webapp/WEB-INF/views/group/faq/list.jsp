@@ -1,107 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/group_managing_list.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/groupfaq.css" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>소모임 문의 게시판</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css" type="text/css">
-<style>	
-	/* 문의하기 버튼 */
-	#faqInsert{
-		border : 2px solid black;
-		width : 70px;
-		text-align : center;
-		border-radius : 10px;
-	}
-	
-	/* 제목, 작성자 등 */
-	.table{
-		width : 100%;
-		border-collapse: collapse;
-		border-top: 2px solid black;
-		display : flex;
-		justify-content : space-between;
-	}
-	.faq-row {
-	  border: 1px solid red;
-	  display: table-row; /* 테이블 행으로 설정 */
-	}
-	
-	.faq-row > * {
-	  display: table-cell; /* 각 셀을 테이블 셀로 설정 */
-	  width: auto; /* 자동으로 동일한 너비 설정 */
-	  padding: 5px; /* 선택적인 패딩 값 설정 */
-	}
-	/* 문의 */
-	#content{
-		
-	}
-	
-	/* 페이징 css */
-	.pagination{
-		display : flex;
-		justify-content : center;
-	}
-	.page-item{
-		width : 3%;
-		border : 1px solid black;
-		margin : 1rem;
-		text-align : center;
-	}
-
-</style>
 </head>
 <body>
-	<div class="container">
+	<div class="cafe_table">
 			<br>
-			<div class="inner-wrap">
-				<h2 style="text-align: center">문의 게시판</h2>
-					<div style="width:100%; text-align:right;">
-						<a id="faqInsert" href="#">문의하기</a>
-					</div>
-			</div>
-			<br>
-			
-			<!-- table을 ul li요소로 바꾸는 작업 -->
-			<div class="inner-wrap">
-				<ul>
-					 <c:forEach var="tmp" items="${list }"></c:forEach>
-				</ul>
-			</div>
-			
-			
-			<div class="inner-wrap">
+				<div style="width:100%; text-align:right;">
+					<a id="faqInsert" href="#">문의하기</a>
+				</div>
+			<br>			
 				<div class="altertable">
-				 <table class="table">
+				 <table class="table__body">
 			        <tbody>
 			            <c:forEach var="tmp" items="${list}">
 			                <tr class="faq-row">
 			                    <td>${tmp.q_writer}</td>
 			                    <td class="title-cell">
-			                        <a style="color: black;" class="text-decoration-none q-title" href="#" data-content-id="content-${tmp.num}">${tmp.q_title}</a>
+			                        <a class="q-title" href="#" data-content-id="content-${tmp.num}">${tmp.q_title}</a>
 			                    </td>
 			                    <td style="text-align: center">${tmp.regdate}</td>
 			                </tr>
 			                <tr id="content-${tmp.num}" class="hidden-content">
 							    <td colspan="3">
-							        <div>${tmp.q_content}</div>
+							    	<textarea name="content" id="content" readonly>${tmp.q_content}</textarea>
 							        <c:if test="${empty tmp.a_answer }">
 							        	<a href="${pageContext.request.contextPath}/group/faq/updateform?num=${tmp.num}"id="update">수정</a>
-	
-							        	<a href="${pageContext.request.contextPath}/group/faq/delete?num=${tmp.num}&group_num=${tmp.group_num}">삭제</a>
-	
+							        	<a href="${pageContext.request.contextPath}/group/faq/delete?num=${tmp.num}&group_num=${tmp.group_num}" id="delete">삭제</a>
 							        </c:if>
-							        <div class="answer" style="background-color: lightgrey;">${tmp.a_answer }</div> <!-- 이 부분을 추가 -->
+							        <br />
+							        <c:if test="${not empty tmp.a_answer }">
+							        	<textarea name="answer" id="answer" readonly>${tmp.a_answer }</textarea>
+							        </c:if>
 							        <!-- session id과 manger id를 검증해서 조건부 출력 -->
 							        <c:if test="${dto.manager_id == sessionScope.id }">
-							        	<a href="${pageContext.request.contextPath}/group/answer/insertform?num=${tmp.num}" id="answer">답변&수정</a>
+							        	<a href="${pageContext.request.contextPath}/group/answer/insertform?num=${tmp.num}" id="insertAnswer">답변</a>
 								        <a href="${pageContext.request.contextPath}/group/answer/updateform?num=${tmp.num}" id="updateAnswer" >답변 수정</a>
-	
-							        <a href="${pageContext.request.contextPath}/group/answer/delete?num=${tmp.num}&group_num=${tmp.group_num}">답변 삭제(실제로는 update)</a>						        
-	
+							        	<a href="${pageContext.request.contextPath}/group/answer/delete?num=${tmp.num}&group_num=${tmp.group_num}" id="deleteAnswer">답변 삭제(실제로는 update)</a>						        
 							        </c:if>
 							    </td>
 							</tr>
@@ -133,7 +75,6 @@
 						</c:if>				
 					</ul>
 			<br />
-			</div><!-- inner wrap -->
 		</div><!-- container의 end -->
 	    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script>
