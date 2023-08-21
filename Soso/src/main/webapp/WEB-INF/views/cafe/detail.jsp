@@ -157,7 +157,6 @@
 								</li>		
 						</c:otherwise>
 					</c:choose>
-					
 				</c:forEach>
 			</ul>
 		</div>		
@@ -193,13 +192,13 @@
 		addReplyListener(".reply-link");
 		
 		//댓글의 현재 페이지 번호를 관리할 변수를 만들고 초기값 1 대입하기
-		let currentPage=1;
+		let currentPage = 1;
 		
 		//마지막 페이지는 totalPageCount 이다.  
 		let lastPage=${totalPageCount};
 		
 		//추가로 댓글을 요청하고 그 작업이 끝났는지 여부를 관리할 변수 
-		let isLoading=false; //현재 로딩중인지 여부 
+		let isLoading = false; //현재 로딩중인지 여부 
 		
 		window.addEventListener("scroll", function(){
 			//바닥 까지 스크롤 했는지 여부 
@@ -217,7 +216,6 @@
 				
 				//현재 댓글 페이지를 1 증가 시키고 
 				currentPage++;
-				
 				/*
 					해당 페이지의 내용을 ajax 요청을 통해서 받아온다.
 					"pageNum=xxx&num=xxx" 형식으로 GET 방식 파라미터를 전달한다. 
@@ -270,11 +268,13 @@
 			for(let i=0; i<deleteLinks.length; i++){
 				deleteLinks[i].addEventListener("click", function(){
 					//click 이벤트가 일어난 바로 그 요소의 data-num 속성의 value 값을 읽어온다. 
-					const num=this.getAttribute("data-num"); //댓글의 글번호
+					const num = this.getAttribute("data-num"); //댓글의 글번호
 					const isDelete=confirm("댓글을 삭제 하시겠습니까?");
 					if(isDelete){
 						// gura_util.js 에 있는 함수들 이용해서 ajax 요청
-						ajaxPromise("comment_delete", "post", "comment_num="+num)
+						ajaxPromise("comment_delete", 
+									"post", 
+									"comment_num="+num)
 						.then(function(response){
 							return response.json();
 						})

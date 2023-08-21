@@ -46,7 +46,7 @@ public class CafeController {
 	}
 	
 	//댓글 삭제 요청 처리
-	@GetMapping("/cafe/comment_delete")
+	@PostMapping("/cafe/comment_delete")
 	@ResponseBody
 	public Map<String, Object> commentDelete(HttpServletRequest request) {
 		service.deleteComment(request);

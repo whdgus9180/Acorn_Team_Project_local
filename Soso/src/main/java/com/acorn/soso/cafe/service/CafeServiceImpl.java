@@ -251,16 +251,16 @@ public class CafeServiceImpl implements CafeService{
 
 	@Override
 	public void deleteComment(HttpServletRequest request) {
-		int comu_num=Integer.parseInt(request.getParameter("comu_num"));
+		int comment_num = Integer.parseInt(request.getParameter("comment_num"));
 		//삭제할 댓글 정보를 읽어와서 
-		CafeCommentDto dto=cafeCommentDao.getData(comu_num);
+		CafeCommentDto dto=cafeCommentDao.getData(comment_num);
 		String id=(String)request.getSession().getAttribute("id");
 		//글 작성자와 로그인된 아이디와 일치하지 않으면
 		if(!dto.getWriter().equals(id)) {
 			throw new NotDeleteException("다른 사람의 댓글을 삭제할 수 없습니다!");
 		}
 		//dao 를 이용해서 DB 에서 삭제하기
-		cafeCommentDao.delete(comu_num);
+		cafeCommentDao.delete(comment_num);
 	}
 
 	@Override
