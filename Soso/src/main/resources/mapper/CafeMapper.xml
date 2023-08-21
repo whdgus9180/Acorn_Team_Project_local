@@ -35,6 +35,7 @@
 	<select id="getCount" parameterType="cafeDto" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)
 		FROM community_board_tb
+		WHERE group_num = #{group_num}
 		<include refid="searchCondition"/>
 	</select>		
 

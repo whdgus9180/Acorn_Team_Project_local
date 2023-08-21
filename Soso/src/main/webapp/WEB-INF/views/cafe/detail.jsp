@@ -8,111 +8,22 @@
 <title>/views/cafe/detail.jsp</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-<style>
-	.content{
-		border: 1px dotted gray;
-	}
-	
-	/* 댓글 프로필 이미지를 작은 원형으로 만든다. */
-	.profile-image{
-		width: 50px;
-		height: 50px;
-		border: 1px solid #cecece;
-		border-radius: 50%;
-	}
-	/* ul 요소의 기본 스타일 제거 */
-	.comments ul{
-		padding: 0;
-		margin: 0;
-		list-style-type: none;
-	}
-	.comments dt{
-		margin-top: 5px;
-	}
-	.comments dd{
-		margin-left: 50px;
-	}
-	.comment-form textarea, .comment-form button{
-		float: left;
-	}
-	.comments li{
-		clear: left;
-	}
-	.comments ul li{
-		border-top: 1px solid #888;
-	}
-	.comment-form textarea{
-		width: 84%;
-		height: 60px;
-	}
-	.comment-form button{
-		width: 14%;
-		height: 60px;
-	}
-	/* 댓글에 댓글을 다는 폼과 수정폼은 일단 숨긴다. */
-	.comments .comment-form{
-		display: none;
-	}
-	/* .reply_icon 을 li 요소를 기준으로 배치 하기 */
-	.comments li{
-		position: relative;
-	}
-	.comments .reply-icon{
-		position: absolute;
-		top: 1em;
-		left: 1em;
-		color: red;
-	}
-	pre {
-	  display: block;
-	  padding: 9.5px;
-	  margin: 0 0 10px;
-	  font-size: 13px;
-	  line-height: 1.42857143;
-	  color: #333333;
-	  word-break: break-all;
-	  word-wrap: break-word;
-	  background-color: #f5f5f5;
-	  border: 1px solid #ccc;
-	  border-radius: 4px;
-	}	
-	
-	.loader{
-		/* 로딩 이미지를 가운데 정렬하기 위해 */
-		text-align: center;
-		/* 일단 숨겨 놓기 */
-		display: none;
-	}	
-	
-	.loader svg{
-		animation: rotateAni 1s ease-out infinite;
-	}
-	
-	@keyframes rotateAni{
-		0%{
-			transform: rotate(0deg);
-		}
-		100%{
-			transform: rotate(360deg);
-		}
-	}
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/community/community_detail.css" />
 </head>
 </head>
 <body>
 	<div class="container">
 		<div style="float: right;">
 		<%-- 만일 이전글(더 옛날글)의 글번호가 0 가 아니라면(이전글이 존재 한다면) --%>
-		<c:if test="${dto.prevNum ne 0}">
-			<a href="${pageContext.request.contextPath}/cafe/detail?num=${cafeDto.prevNum }&comu_num=${cafeDto.comu_num}&condition=${condition}&keyword=${encodedK}" 
+		<c:if test="${cafeDto.prevNum ne 0}">
+			<a href="${pageContext.request.contextPath}/cafe/detail?comu_num=${cafeDto.prevNum }&condition=${condition}&keyword=${encodedK}" 
 				class="btn btn-outline-dark"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
  			<path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
 			</svg>이전글</a>
 		</c:if>
-		
 		<%-- 만일 다음글(더 최신글)의 글번호가 0 가 아니라면(다음글이 존재 한다면) --%>
-		<c:if test="${dto.nextNum ne 0 }">
-			<a href="${pageContext.request.contextPath}/detail?num=${cafeDto.nextNum }&comu_num=${cafeDto.comu_num}&condition=${condition}&keyword=${encodedK}" 
+		<c:if test="${cafeDto.nextNum ne 0 }">
+			<a href="${pageContext.request.contextPath}/cafe/detail?comu_num=${cafeDto.nextNum }&condition=${condition}&keyword=${encodedK}" 
 				class="btn btn-outline-dark">다음글<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
   			<path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
 			</svg></a>
@@ -130,7 +41,7 @@
 		<table class="table table-bordered ">
 			<tr>
 				<th>글번호</th>
-				<td>${cafeDto.comu_num }</td>
+				<td>${cafeDto.comu_num}</td>
 			</tr>
 			<tr>
 				<th>탭</th>
@@ -138,20 +49,20 @@
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td>${cafeDto.writer }</td>
+				<td>${cafeDto.writer}</td>
 			</tr>
 			
 			<tr>
 				<th>조회수</th>
-				<td>${cafeDto.viewCount }</td>	
+				<td>${cafeDto.viewCount}</td>	
 			</tr>
 			<tr>
 				<th>작성일</th>
-				<td>${cafeDto.regdate }</td>
+				<td>${cafeDto.regdate}</td>
 			</tr>
 			<tr>
 				<td colspan="2">
-					<div>${cafeDto.content }</div>
+					<div>${cafeDto.content}</div>
 				</td>
 			</tr>	
 		</table>
@@ -168,7 +79,6 @@
 				}
 			</script>
 		</c:if>
-		
 		<h6 style="font-weight: bold;">댓글 쓰기</h6>
 		<!-- 원글에 댓글을 작성할 폼 -->
 		<form class="comment-form insert-form" action="comment_insert" method="post">

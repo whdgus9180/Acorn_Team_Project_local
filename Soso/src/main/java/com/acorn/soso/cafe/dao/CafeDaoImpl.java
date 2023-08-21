@@ -24,7 +24,6 @@ public class CafeDaoImpl implements CafeDao{
 
 	@Override
 	public int getCount(CafeDto dto) {
-		
 		return session.selectOne("cafe.getCount", dto);
 	}
 
