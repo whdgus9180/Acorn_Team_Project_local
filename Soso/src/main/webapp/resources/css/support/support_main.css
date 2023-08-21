@@ -87,15 +87,17 @@
 		height:290px;
 		display: inline-block;
 	}
-	.notice .view_more{
+	.view_more{
 		float: right;
 		margin-right: 50px;
 		display: inline-block;
 		font-size: 14px;
+		vertical-align: top;
 	}
 	.notice h3.title{
 		padding-bottom: 16px;
 		display: inline-block;
+		font-size: 20px;
 	}
 	/* 운영시간 */
 	.area_contact{

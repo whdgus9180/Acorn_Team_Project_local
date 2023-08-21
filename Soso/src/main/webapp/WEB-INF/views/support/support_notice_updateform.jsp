@@ -31,7 +31,7 @@
 	<!-- 상단 배너 -->
 	<div class="head">
 		<h2 class="main_title">Notice 관리</h2>
-		<p class="sub_text">공지사항을 등록할 수 있습니다.</p>
+		<p class="sub_text">공지사항을 수정할 수 있습니다.</p>
 	</div>
 	<!-- 메인 메뉴바 시작 -->
 	<div class="main_area">
@@ -51,32 +51,34 @@
 	</ul>
 		<div class="body_area">
 			<div class="main_content">
-				<h3>공지사항 등록</h3>
-				<form action="${pageContext.request.contextPath }/support/support_notice_insert" class="area_form" method="post" enctype="multipart/form-data">
+				<h3>공지사항 수정</h3>
+				<form action="${pageContext.request.contextPath }/support/support_notice_update" class="area_form">
 					<div class="row-wrap">
+						<input type="hidden" name="notice_num" value="${dto.notice_num }" />
 						<div class="input_title">
 							<h4 class="label">공지</h4>
+						
 							<select name="category" id="category" class="title_select">
 								<option selected="selected" class="inquire_select">분류</option>
-								<option value="1">공지</option>
-								<option value="2">업데이트</option>
-								<option value="3">휴무</option>
-								<option value="0">기타</option>
+								<option value="1" ${dto.category == 1 ? 'selected' : '' }>공지</option>
+								<option value="2" ${dto.category == 2 ? 'selected' : '' }>업데이트</option>
+								<option value="3" ${dto.category == 3 ? 'selected' : '' }>휴무</option>
+								<option value="0" ${dto.category == 0 ? 'selected' : '' }>기타</option>
 							</select>
-							<input type="text" class="inquire_title" name="title" id="title" placeholder="제목을 입력해주세요" />
+							<input value="${dto.title }"type="text" class="inquire_title" name="title" id="title" placeholder="제목을 입력해주세요" />
 						</div>
 					</div>
 					<div class="row-wrap">
 						<div class="input_text">
 							<h4 class="label">내용 *</h4>
-							<textarea name="content" id="content" placeholder="내용을 입력 해 주세요."></textarea>
+							<textarea name="content" id="content" placeholder="내용을 입력 해 주세요.">${dto.content }</textarea>
 						</div>
 					</div>
-					
+			
 					<p class="info_message">
 						이 사이트는 reCAPTCHA에 의해 보호되며 Google 개인 정보 취급 방침 및 서비스 약관이 적용됩니다.
 					</p>
-					<button type="submit" class="noticeBtn">공지사항 등록</button>
+					<button type="submit" class="noticeBtn">공지사항 수정</button>
 				</form>
 			</div>
 		</div>

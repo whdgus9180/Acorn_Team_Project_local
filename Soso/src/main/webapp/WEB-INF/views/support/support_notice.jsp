@@ -66,14 +66,23 @@
 					<c:forEach var="tmp" items="${notice_list }">
 					<tr>
 						<td>${tmp.notice_num }</td>
-						<td>${tmp.category }</td>
+						
+						<td>
+							<c:choose>
+								<c:when test="${tmp.category == 1}">공지</c:when>
+								<c:when test="${tmp.category == 2}">업데이트</c:when>
+								<c:when test="${tmp.category == 3}">휴무</c:when>
+								<c:when test="${tmp.category == 0}">기타</c:when>
+							</c:choose>
+						</td>
+						
 						<td>${tmp.title }</td>
 						<td>${tmp.regdate }</td>
 						<td>
-							<button type="button">수정</button>
+							<a data-num="${tmp.notice_num }" href="${pageContext.request.contextPath }/support/support_notice_updateform?notice_num=${tmp.notice_num}">수정</a>
 						</td>
 						<td>
-							<button type="button">삭제</button>
+							<a data-num="${tmp.notice_num }" href="">삭제</a>
 						</td>
 					</tr>
 					</c:forEach>

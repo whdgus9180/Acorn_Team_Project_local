@@ -44,7 +44,9 @@
 					<li class="dropbox">
 						<div class="title_area">
 							<span class="category">${tmp.category}</span>
-							<p class="detail">${tmp.question }</p>
+							<a href="${pageContext.request.contextPath }/support/support_faq">
+								<p class="detail">${tmp.question }</p>
+							</a>
 						</div>
 					</li>
 				</c:forEach>
@@ -53,10 +55,10 @@
 			<section class="notice">
 				<h3 class="title">공지사항</h3>
 				<a class="view_more" href="${pageContext.request.contextPath }/support/support_notice">더보기</a>
-				<ul class="list-group list-group-flush">
+				<ul>
 					<c:forEach var="tmp" items="${notice_list }">
-					<li class="list-group-item">
-						<a href="">${tmp.title}</a>
+					<li>
+						<p>${tmp.title}</p>
 					</li>
 					</c:forEach>
 				</ul>

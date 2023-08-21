@@ -34,6 +34,7 @@ public class SupportController {
 	
 	@GetMapping("/support/support_main")
 	public String support_main(HttpServletRequest request, Model model) {
+		noticeService.getList(request, model);
 		service.getList(request, model);
 		return "support/support_main";
 	}
@@ -69,7 +70,7 @@ public class SupportController {
 		
 		return "support/support_faq_insertform";
 	}
-	//공지사항
+	//공지사항 메인 화면
 	@GetMapping("/support/support_notice")
 	public String support_notice(HttpServletRequest request, Model model) {
 		
@@ -77,18 +78,31 @@ public class SupportController {
 		
 		return "support/support_notice";
 	}
+	//공지사항 등록폼
 	@GetMapping("/support/support_notice_insertform")
 	public String support_notice_insertform() {
-		
 		return "support/support_notice_insertform";
 	}
+	//공지사항 등록
 	@PostMapping("/support/support_notice_insert")
 	public String insert(NoticeDto dto) {
 		//서비스를 이용해서 질문을 저장
 		noticeService.saveNotice(dto);
 		return "support/support_notice_insert";
 	}
-	
+	//공지사항 수정폼
+	@GetMapping("/support/support_notice_updateform")
+	public String support_notice_updateform(int notice_num, Model model) {
+		noticeService.getData(notice_num, model);
+		return "support/support_notice_updateform";
+	}
+	//공지사항 수정
+	@PostMapping("/support/support_notice_update")
+	public String support_notice_update(NoticeDto dto) {
+		noticeService.updateNotice(dto);
+		
+		return "redirect:/support/support_notice";
+	}
 	@GetMapping("/support/support_inquire")
 	public String support_inquire(HttpSession session, Model model) {
 		userService.getInfo(session, model);
