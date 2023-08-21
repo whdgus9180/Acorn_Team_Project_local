@@ -25,7 +25,6 @@ public class CafeServiceImpl implements CafeService{
 	@Autowired
 	private CafeCommentDao cafeCommentDao;
 	
-	//페이징 처리, 검색어 기능을 고려한 비즈니스 로직 처리를 하는 메소드 
 	@Override
 	public void getList(HttpServletRequest request, Model model, int num){
 		final int PAGE_ROW_COUNT=10;
@@ -37,7 +36,6 @@ public class CafeServiceImpl implements CafeService{
 		if(strPageNum != null){
 			pageNum = Integer.parseInt(strPageNum);
 		}
-		
 		int startRowNum = 1 + (pageNum-1)*PAGE_ROW_COUNT;
 		int endRowNum = pageNum*PAGE_ROW_COUNT;
 		
@@ -77,7 +75,6 @@ public class CafeServiceImpl implements CafeService{
 		
 		//전체글의 갯수
 		int totalRow=cafeDao.getCount(dto);
-		
 		//하단 시작 페이지 번호 
 		int startPageNum = 1 + ((pageNum-1)/PAGE_DISPLAY_COUNT)*PAGE_DISPLAY_COUNT;
 		//하단 끝 페이지 번호
@@ -107,13 +104,14 @@ public class CafeServiceImpl implements CafeService{
 	}
 
 	@Override
-	public void getDetail(HttpServletRequest request, Model model, int comu_num) {
+	public void getDetail(HttpServletRequest request, Model model, CafeDto dto) {
 		
-		//조회수 올리기
-		cafeDao.addViewCount(comu_num);
+		//해당 글의 상세 페이지 링크를 통해 조회했을 때 해당 게시글의 조회수 올리기
+		cafeDao.addViewCount(dto.getComu_num());
 		
 		String keyword=request.getParameter("keyword");
 		String condition=request.getParameter("condition");
+		
 		//만일 키워드가 넘어오지 않는다면 
 		if(keyword==null){
 			//키워드와 검색 조건에 빈 문자열을 넣어준다. 
@@ -122,10 +120,6 @@ public class CafeServiceImpl implements CafeService{
 			condition=""; 
 		}
 		
-		//CafeDto 객체를 생성해서 
-		CafeDto dto=new CafeDto();
-		//자세히 보여줄 글번호를 넣어준다. 
-		dto.setComu_num(comu_num);
 		//만일 검색 키워드가 넘어온다면 
 		if(!keyword.equals("")){
 			//검색 조건이 무엇이냐에 따라 분기 하기
@@ -141,16 +135,16 @@ public class CafeServiceImpl implements CafeService{
 		}
 		
 		//글하나의 정보를 얻어온다.
-		CafeDto resultCafeDto = cafeDao.getData(dto);
+		CafeDto resultCafeDto = cafeDao.getData2(dto);
 		
 		//해당 글의 댓글 리스트를 얻어온다.
-		CafeCommentDto resultCommentDto = cafeCommentDao.getData(comu_num);
+		CafeCommentDto resultCommentDto = cafeCommentDao.getData(dto.getComu_num());
 		
 		//특수기호를 인코딩한 키워드를 미리 준비한다. 
 		String encodedK=URLEncoder.encode(keyword);
 		
 		//한 페이지에 몇개씩 표시할 것인지
-		final int PAGE_ROW_COUNT=5;
+		final int PAGE_ROW_COUNT=10;
 		//detail.jsp 페이지에서는 항상 1페이지의 댓글 내용만 출력한다. 
 		int pageNum=1;
 		//보여줄 페이지의 시작 ROWNUM
@@ -159,15 +153,16 @@ public class CafeServiceImpl implements CafeService{
 		int endRowNum=pageNum*PAGE_ROW_COUNT;
 		//원글의 글번호를 이용해서 해당글에 달린 댓글 목록을 얻어온다.
 		CafeCommentDto commentDto=new CafeCommentDto();
-		commentDto.setComu_num(comu_num);
+		commentDto.setComu_num(dto.getComu_num());
 		//1페이지에 해당하는 startRowNum 과 endRowNum 을 dto 에 담아서  
 		commentDto.setStartRowNum(startRowNum);
 		commentDto.setEndRowNum(endRowNum);
+		
 		//1페이지에 해당하는 댓글 목록만 select 되도록 한다. 
 		List<CafeCommentDto> commentList=cafeCommentDao.getList(commentDto);	
 		
 		//원글의 글번호를 이용해서 댓글 전체의 갯수를 얻어낸다.
-		int totalRow=cafeCommentDao.getCount(comu_num);
+		int totalRow=cafeCommentDao.getCount(dto.getComu_num());
 		//댓글 전체 페이지의 갯수
 		int totalPageCount=(int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
 		
@@ -255,16 +250,16 @@ public class CafeServiceImpl implements CafeService{
 
 	@Override
 	public void deleteComment(HttpServletRequest request) {
-		int comu_num=Integer.parseInt(request.getParameter("comu_num"));
+		int comment_num = Integer.parseInt(request.getParameter("comment_num"));
 		//삭제할 댓글 정보를 읽어와서 
-		CafeCommentDto dto=cafeCommentDao.getData(comu_num);
+		CafeCommentDto dto=cafeCommentDao.getData(comment_num);
 		String id=(String)request.getSession().getAttribute("id");
 		//글 작성자와 로그인된 아이디와 일치하지 않으면
 		if(!dto.getWriter().equals(id)) {
 			throw new NotDeleteException("다른 사람의 댓글을 삭제할 수 없습니다!");
 		}
 		//dao 를 이용해서 DB 에서 삭제하기
-		cafeCommentDao.delete(comu_num);
+		cafeCommentDao.delete(comment_num);
 	}
 
 	@Override
@@ -276,13 +271,13 @@ public class CafeServiceImpl implements CafeService{
 	public void moreCommentList(HttpServletRequest request) {
 		//로그인된 아이디
 		String id=(String)request.getSession().getAttribute("id");
+		
 		//ajax 요청 파라미터로 넘어오는 댓글의 페이지 번호를 읽어낸다
 		int pageNum=Integer.parseInt(request.getParameter("pageNum"));
+		
 		//ajax 요청 파라미터로 넘어오는 원글의 글 번호를 읽어낸다
 		int comu_num=Integer.parseInt(request.getParameter("comu_num"));
-		/*
-		[ 댓글 페이징 처리에 관련된 로직 ]
-		*/
+		
 		//한 페이지에 몇개씩 표시할 것인지
 		final int PAGE_ROW_COUNT=10;
 	
@@ -297,16 +292,20 @@ public class CafeServiceImpl implements CafeService{
 		//1페이지에 해당하는 startRowNum 과 endRowNum 을 dto 에 담아서  
 		commentDto.setStartRowNum(startRowNum);
 		commentDto.setEndRowNum(endRowNum);
-	
+		
+		CafeDto dto = cafeDao.getData(comu_num);
+		
 		//pageNum에 해당하는 댓글 목록만 select 되도록 한다. 
 		List<CafeCommentDto> commentList=cafeCommentDao.getList(commentDto);
 		//원글의 글번호를 이용해서 댓글 전체의 갯수를 얻어낸다.
-		int totalRow=cafeCommentDao.getCount(comu_num);
+		int totalRow = cafeCommentDao.getCount(comu_num);
 		//댓글 전체 페이지의 갯수
 		int totalPageCount=(int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
 	
 		//view page 에 필요한 값 request 에 담아주기
 		request.setAttribute("commentList", commentList);
+		request.setAttribute("cafeDto", dto);
+		request.setAttribute("totalPageCount", totalPageCount);
 		request.setAttribute("comu_num", comu_num); //원글의 글번호
 		request.setAttribute("pageNum", pageNum); //댓글의 페이지 번호
 	}

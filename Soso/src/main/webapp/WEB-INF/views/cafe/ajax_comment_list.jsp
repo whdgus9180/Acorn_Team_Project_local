@@ -3,15 +3,15 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 <c:forEach var="tmp" items="${commentList }">
 	<c:choose>
-		<c:when test="${tmp.deleted eq 'yes' }">
+		<c:when test="${tmp.deleted eq 1 }">
 			<li>삭제된 댓글 입니다.</li>
 		</c:when>
 		<c:otherwise>
-			<c:if test="${tmp.comment_num eq tmp.comment_group }">
-				<li id="reli${tmp.comment_num }" class="page-${pageNum }">
+			<c:if test="${tmp.comment_num eq tmp.comment_group}">
+				<li id="reli${tmp.comment_num }" class="page-${pageNum}">
 			</c:if>
 			<c:if test="${tmp.comment_num ne tmp.comment_group }">
-				<li id="reli${tmp.comment_num }" class="page-${pageNum }"  style="padding-left:50px;">
+				<li id="reli${tmp.comment_num }" class="page-${pageNum}"  style="padding-left:50px;">
 					<svg class="reply-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-right" viewBox="0 0 16 16">
  							<path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/>
 					</svg>
@@ -44,7 +44,8 @@
 						</dd>
 					</dl>
 					<form id="reForm${tmp.comment_num }" class="animate__animated comment-form re-insert-form" action="comment_insert" method="post">
-						<input type="hidden" name="comu_num" value="${tmp.comment_num }"/>
+						<input type="hidden" name="comu_num" value="${cafeDto.comu_num }"/>
+						<input type="hidden" name="group_num" value="${cafeDto.group_num }"/>
 						<input type="hidden" name="target_id" value="${tmp.writer }"/>
 						<input type="hidden" name="comment_group" value="${tmp.comment_group }"/>
 						<textarea name="content"></textarea>

@@ -24,7 +24,6 @@ public class CafeDaoImpl implements CafeDao{
 
 	@Override
 	public int getCount(CafeDto dto) {
-		
 		return session.selectOne("cafe.getCount", dto);
 	}
 
@@ -36,13 +35,18 @@ public class CafeDaoImpl implements CafeDao{
 	@Override
 	public CafeDto getData(int comu_num) {
 		
-		return session.selectOne("cafe.getData", comu_num);
+		return session.selectOne("cafe.getData3", comu_num);
 	}
 
 	@Override
 	public CafeDto getData(CafeDto dto) {
 		
 		return session.selectOne("cafe.getData2", dto);
+	}
+	
+	@Override
+	public CafeDto getData2(CafeDto dto) {
+		return session.selectOne("cafe.getData", dto);
 	}
 
 	@Override
@@ -59,5 +63,7 @@ public class CafeDaoImpl implements CafeDao{
 	public void update(CafeDto dto) {
 		session.update("cafe.update", dto);
 	}
+
+	
 
 }
