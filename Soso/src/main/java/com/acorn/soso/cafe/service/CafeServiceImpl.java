@@ -28,32 +28,22 @@ public class CafeServiceImpl implements CafeService{
 	//페이징 처리, 검색어 기능을 고려한 비즈니스 로직 처리를 하는 메소드 
 	@Override
 	public void getList(HttpServletRequest request, Model model, int num){
-		//한 페이지에 몇개씩 표시할 것인지
 		final int PAGE_ROW_COUNT=10;
-		//하단 페이지를 몇개씩 표시할 것인지
-		final int PAGE_DISPLAY_COUNT=10;
 		
-		//보여줄 페이지의 번호를 일단 1이라고 초기값 지정
+		final int PAGE_DISPLAY_COUNT=5;
+		
 		int pageNum=1;
-		//페이지 번호가 파라미터로 전달되는지 읽어와 본다.
-		String strPageNum=request.getParameter("pageNum");
-		//만일 페이지 번호가 파라미터로 넘어 온다면
+		String strPageNum = request.getParameter("pageNum");
 		if(strPageNum != null){
-			//숫자로 바꿔서 보여줄 페이지 번호로 지정한다.
-			pageNum=Integer.parseInt(strPageNum);
+			pageNum = Integer.parseInt(strPageNum);
 		}
 		
-		//보여줄 페이지의 시작 ROWNUM
-		int startRowNum=1+(pageNum-1)*PAGE_ROW_COUNT;
-		//보여줄 페이지의 끝 ROWNUM
-		int endRowNum=pageNum*PAGE_ROW_COUNT;
+		int startRowNum = 1 + (pageNum-1)*PAGE_ROW_COUNT;
+		int endRowNum = pageNum*PAGE_ROW_COUNT;
 		
-		/*
-			[ 검색 키워드에 관련된 처리 ]
-			-검색 키워드가 파라미터로 넘어올수도 있고 안넘어 올수도 있다.		
-		*/
 		String keyword=request.getParameter("keyword");
 		String condition=request.getParameter("condition");
+		
 		//만일 키워드가 넘어오지 않는다면 
 		if(keyword==null){
 			//키워드와 검색 조건에 빈 문자열을 넣어준다. 
@@ -84,8 +74,7 @@ public class CafeServiceImpl implements CafeService{
 				dto.setWriter(keyword);
 			} // 다른 검색 조건을 추가 하고 싶다면 아래에 else if() 를 계속 추가 하면 된다.
 		}
-		//글 목록 얻어오기 
-		List<CafeDto> list=cafeDao.getList(dto);
+		
 		//전체글의 갯수
 		int totalRow=cafeDao.getCount(dto);
 		
@@ -99,8 +88,12 @@ public class CafeServiceImpl implements CafeService{
 		int totalPageCount=(int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
 		//끝 페이지 번호가 전체 페이지 갯수보다 크다면 잘못된 값이다.
 		if(endPageNum > totalPageCount){
-			endPageNum=totalPageCount; //보정해 준다.
+			endPageNum = totalPageCount; //보정해 준다.
 		}
+		
+		//글 목록 얻어오기
+		List<CafeDto> list = cafeDao.getList(dto);
+		
 		//view page 에서 필요한 값을 Model 에 담아준다. 
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("startPageNum", startPageNum);
@@ -114,16 +107,11 @@ public class CafeServiceImpl implements CafeService{
 	}
 
 	@Override
-	public void getDetail(HttpServletRequest request, Model model) {
-		//자세히 보여줄 글번호를 읽어온다. 
-		int comu_num=Integer.parseInt(request.getParameter("comu_num")); 
+	public void getDetail(HttpServletRequest request, Model model, int comu_num) {
+		
 		//조회수 올리기
 		cafeDao.addViewCount(comu_num);
 		
-		/*
-			[ 검색 키워드에 관련된 처리 ]
-			-검색 키워드가 파라미터로 넘어올수도 있고 안넘어 올수도 있다.		
-		*/
 		String keyword=request.getParameter("keyword");
 		String condition=request.getParameter("condition");
 		//만일 키워드가 넘어오지 않는다면 
@@ -133,6 +121,7 @@ public class CafeServiceImpl implements CafeService{
 			keyword="";
 			condition=""; 
 		}
+		
 		//CafeDto 객체를 생성해서 
 		CafeDto dto=new CafeDto();
 		//자세히 보여줄 글번호를 넣어준다. 
@@ -152,17 +141,16 @@ public class CafeServiceImpl implements CafeService{
 		}
 		
 		//글하나의 정보를 얻어온다.
-		CafeDto resultCafeDto=cafeDao.getData(dto);
-		CafeCommentDto resultCommentDto=cafeCommentDao.getData(comu_num);//임의로 79번 등
+		CafeDto resultCafeDto = cafeDao.getData(dto);
+		
+		//해당 글의 댓글 리스트를 얻어온다.
+		CafeCommentDto resultCommentDto = cafeCommentDao.getData(comu_num);
 		
 		//특수기호를 인코딩한 키워드를 미리 준비한다. 
 		String encodedK=URLEncoder.encode(keyword);
 		
-		/*
-			[ 댓글 페이징 처리에 관련된 로직 ]
-		 */
 		//한 페이지에 몇개씩 표시할 것인지
-		final int PAGE_ROW_COUNT=10;
+		final int PAGE_ROW_COUNT=5;
 		//detail.jsp 페이지에서는 항상 1페이지의 댓글 내용만 출력한다. 
 		int pageNum=1;
 		//보여줄 페이지의 시작 ROWNUM
@@ -196,7 +184,6 @@ public class CafeServiceImpl implements CafeService{
 
 	@Override
 	public void saveContent(CafeDto dto) {
-		//title, content, writer 정보가 들어 있는 CafeDto 를 dao 에 전달해서 DB 에 저장되도록한다.
 		cafeDao.insert(dto);
 	}
 
@@ -274,7 +261,7 @@ public class CafeServiceImpl implements CafeService{
 		String id=(String)request.getSession().getAttribute("id");
 		//글 작성자와 로그인된 아이디와 일치하지 않으면
 		if(!dto.getWriter().equals(id)) {
-			throw new NotDeleteException("남의 댓글 지우면 혼난당!");
+			throw new NotDeleteException("다른 사람의 댓글을 삭제할 수 없습니다!");
 		}
 		//dao 를 이용해서 DB 에서 삭제하기
 		cafeCommentDao.delete(comu_num);

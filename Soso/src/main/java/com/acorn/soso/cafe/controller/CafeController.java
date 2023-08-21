@@ -24,6 +24,15 @@ public class CafeController {
 	@Autowired
 	private CafeService service;
 	
+	@GetMapping("/cafe/list")
+	public String list(HttpServletRequest request, int num, Model model) {
+		//서비스에 HttpServletRequest 객체를 전달해서 응답에 필요한 데이타가 담기도록 하고 
+		service.getList(request, model, num);
+		//group_num 이라는 파라미터 변수 맵핑
+		request.setAttribute("num", num);
+		//view page 로 forward 이동해서 응답하기 
+		return "cafe/list";
+	}
 	
 	//댓글 수정 요청처리 (JSON 을 응답하도록 한다)
 	@PostMapping("/cafe/comment_update")
@@ -50,16 +59,7 @@ public class CafeController {
 	//댓글 더보기 요청 처리
 	@GetMapping("/cafe/ajax_comment_list")
 	public String commentList(HttpServletRequest request) {
-		
-		//테스트를 위해 시간 지연 시키기
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
 		service.moreCommentList(request);
-		
 		return "cafe/ajax_comment_list";
 	}
 	
@@ -72,15 +72,7 @@ public class CafeController {
 		return "redirect:/cafe/detail?comu_num="+comu_num;
 	}	
 	
-	@GetMapping("/cafe/list")
-	public String list(HttpServletRequest request, int num, Model model) {
-		//서비스에 HttpServletRequest 객체를 전달해서 응답에 필요한 데이타가 담기도록 하고 
-		service.getList(request, model, num);
-		//group_num 이라는 파라미터 변수 맵핑
-		request.setAttribute("num", num);
-		//view page 로 forward 이동해서 응답하기 
-		return "cafe/list";
-	}
+	
 	
 	@GetMapping("/cafe/insertform")
 	public String insertform(HttpServletRequest request,int num, Model model) {
@@ -103,12 +95,11 @@ public class CafeController {
 	
 	@GetMapping("/cafe/detail")
 	public String detail(HttpServletRequest request, int comu_num, Model model) {
-		//서비스에 HttpServletRequest 객체를 전달해서 응답에 필요한 데이타가 담기도록 하고
-		service.getDetail(request, model);
-		request.setAttribute("comu_num", comu_num);//서비스에서 받아와야한다 수정예정
-		//view page 로 forward 이동해서 응답
+		service.getDetail(request, model, comu_num);
+		request.setAttribute("comu_num", comu_num);
 		return "cafe/detail";
 	}
+	
 	@GetMapping("/cafe/delete")
 	public String delete(int comu_num, int group_num, HttpServletRequest request) {
 		//서비스에 삭제할 글번호와 HttpServletRequest 객체를 전달해서 해당글을 삭제 시키고 
