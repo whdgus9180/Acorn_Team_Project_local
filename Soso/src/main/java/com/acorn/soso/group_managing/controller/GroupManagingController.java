@@ -40,6 +40,13 @@ public class GroupManagingController {
 		return "group_managing/admin_main";
 	}
 	
+	@GetMapping("/group_managing/admin_main_finished")
+	public String admin_main_finished(HttpServletRequest request, HttpSession session) {
+		String manager_id = (String)session.getAttribute("id");
+		service.getFinishedGroupList(manager_id, request);
+		return "group_managing/admin_main";
+	}
+	
 	@GetMapping("/group_managing/joinApprove")
 	public String joinApprove(int num, int group_num, HttpServletRequest request, HttpSession session) {
 		String manager_id = (String)session.getAttribute("id");
