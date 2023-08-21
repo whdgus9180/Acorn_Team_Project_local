@@ -49,7 +49,7 @@
             data-aos-easing="ease-in-sine">북메이트 찾기</h3>
             <div class="theme_search">
             	<form action="list" method="get">
-            	<input type="text" placeholder="type.." value="${keyword}" name="keyword" />
+            	<input type="text" placeholder="검색어.." value="${keyword}" name="keyword" />
             		<select name="condition" id="condition">
             			<option value="name_caption" ${condition eq 'name_caption' ? 'selected' : '' }>모임명 +내용</option>
             			<option value="name"  ${condition eq 'name' ? 'selected' : '' }>모임명 </option>
@@ -107,53 +107,55 @@
 	           </div>
         	</c:forEach>	
         </div>
-        <div class="inner-wrap">
-			<ul class="pagination justify-content-center">
-				<c:choose>
-					<c:when test="${startPageNum ne 1 }">
-						<li class="page-item">
-		               		<a class="page-link" href="${pageContext.request.contextPath}/group/list?pageNum=${startPageNum - 1}">Prev</a>
-		            	</li>
-					</c:when>
-					<c:otherwise>
-						<li class="page-item disabled">
-		               		<a class="page-link" href="javascript:">Prev</a>
-		            	</li>
-					</c:otherwise>
-				</c:choose>
-				<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
-					<c:choose>
-						<c:when test="${i eq pageNum }">
-							<li class="page-item active">
-		                  		<a class="page-link" href="${pageContext.request.contextPath}/group/list?pageNum=${i}">${i }</a>
-		               		</li>
-						</c:when>
-						<c:otherwise>
-							<li class="page-item">
-		                  		<a class="page-link" href="${pageContext.request.contextPath}/group/list?pageNum=${i}">${i}</a>
-		               		</li>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-				<c:choose>
-					<c:when test="${endPageNum lt totalPageCount }">
-						<li class="page-item">
-		               		<a class="page-link" href="${pageContext.request.contextPath}/group/list?pageNum=${endPageNum + 1}">Next</a>
-		            	</li>
-					</c:when>
-					<c:otherwise>
-						<li class="page-item disabled">
-		               		<a class="page-link" href="javascript:">Next</a>
-		            	</li>
-					</c:otherwise>
-				</c:choose>
-		      </ul>
-        </div>
-
-      <script>
-      	AOS.init();
-      </script>
+        <div id="Parse_Area"gt;lt;></div>
     </section>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+    <script>
+      	AOS.init();
+        //댓글의 현재 페이지 번호를 관리할 변수를 만들고 초기값 1 대입하기
+        let currentPage=1;
+        //마지막 페이지는 totalPageCount 이다.  
+        let lastPage=${totalPageCount};
+       
+        /*
+           window.scrollY => 위쪽으로 스크롤된 길이
+           window.innerHeight => 웹브라우저의 창의 높이
+           document.body.offsetHeight => body 의 높이 (문서객체가 차지하는 높이)
+        */
+        
+        $(window).on("scroll", function() {
+            // 바닥 까지 스크롤 했는지 여부
+            const isBottom =
+                window.innerHeight + window.scrollY >= document.body.offsetHeight;
+
+            // 현재 페이지가 마지막 페이지인지 여부 알아내기
+            let isLast = currentPage == lastPage;
+
+            // 현재 바닥까지 스크롤 했고 현재 페이지가 마지막이 아니라면
+            if (isBottom && !isLast) {
+                // 현재 페이지를 1 증가 시키고
+                currentPage++;
+
+                /*
+                   해당 페이지의 내용을 ajax 요청을 통해서 받아온다.
+                   "pageNum=xxx&num=xxx" 형식으로 GET 방식 파라미터를 전달한다.
+                */
+                $.ajax({
+                    url: "${pageContext.request.contextPath}/group/ajax_list",
+                    type: "get",
+                    data: {
+                        pageNum: currentPage
+                    }
+                })
+                .done(function(data) {
+                    // data는 html 형식의 문자열이다.
+                    console.log(data);
+                    // beforebegin | afterbegin | beforeend | afterend
+                    $("#Parse_Area").append(data);
+                });
+            }
+        });
+    	
+     </script>
 </body>
 </html>
