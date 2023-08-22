@@ -8,6 +8,8 @@ import com.acorn.soso.group_managing.dto.GroupManagingDto;
 public interface GroupManagingDao {
 	//개설한 소모임 리스트 불러오기
 	public List<GroupDto> getGroupList(String manager_id);
+	//개설한 소모임 리스트 불러오기
+	public List<GroupDto> getFinishedGroupList(String manager_id);
 	//가입한 소모임 리스트 불러오기
 	public List<GroupDto> getGroupList2(String user_id);
 	//개설한 소모임 정보 불러오기
