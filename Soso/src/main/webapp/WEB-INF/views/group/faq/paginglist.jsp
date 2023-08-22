@@ -15,14 +15,13 @@
 			                </tr>
 			                <tr id="content-${tmp.num}" class="hidden-content">
 							    <td colspan="3">
-							    	<textarea name="content" id="content" readonly>${tmp.q_content}</textarea>
+							    	<pre name="content" id="content" readonly>${tmp.q_content}</pre>
 							        <c:if test="${empty tmp.a_answer }">
 							        	<a href="${pageContext.request.contextPath}/group/faq/updateform?num=${tmp.num}"id="update">수정</a>
 							        	<a href="${pageContext.request.contextPath}/group/faq/delete?num=${tmp.num}&group_num=${tmp.group_num}" id="delete">삭제</a>
 							        </c:if>
-							        <br />
 							        <c:if test="${not empty tmp.a_answer }">
-							        	<textarea name="answer" id="answer" readonly>${tmp.a_answer }</textarea>
+							        	<pre name="answer" id="answer" readonly>${tmp.a_answer }</pre>
 							        </c:if>
 							        <!-- session id과 manger id를 검증해서 조건부 출력 -->
 							        <c:if test="${dto.manager_id == sessionScope.id }">
