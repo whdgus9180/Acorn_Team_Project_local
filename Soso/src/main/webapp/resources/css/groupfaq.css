@@ -17,21 +17,15 @@
 	margin : 1rem;
 }
 
-textarea{
-	resize : none;
-	border : none;
-	outling : none;
-	background-color : #00000000;
-	width : 80%;
+pre{
 	margin : 0.5rem;
 }
 
+
 #answer{
-	background-color: #0000001f;
+	background-color: #0000000b;
 	margin : 20px;
-	border : 2px dotted black;
+	border : 1.5px dotted black;
 	border-radius : 10px;
-	display : inline-block; /* 필요한 만큼만 감싸기 */
-	justify-content : flex-end;
     padding: 5px 10px; /* 원하는 패딩 값 설정 */
 }
