@@ -64,17 +64,17 @@
         </div>
     </main>
 	<!-- 메인 메뉴바 시작 -->
-	<ul class="nav justify-content-center">
-		<li class="nav-item">
+	<ul class="menu_bar">
+		<li class="menu_home">
 			<a class="nav-link active" href="${pageContext.request.contextPath }/support/support_main">고객센터</a>
 		</li>
-		<li class="nav-item">
+		<li class="menu_faq">
 			<a class="nav-link" href="${pageContext.request.contextPath }/support/support_faq">자주하는 질문</a>
 		</li>
-		<li class="nav-item">
+		<li class="menu_notice">
 			<a class="nav-link" href="${pageContext.request.contextPath }/support/support_notice">공지사항</a>
 		</li>
-		<li class="nav-item">
+		<li class="menu_inquire">
 			<a class="nav-link" href="${pageContext.request.contextPath }/support/support_inquire">문의하기</a>
 		</li>
 	</ul>
@@ -111,16 +111,21 @@
 			<div class="tab_content">
 			<ul>
 				<c:forEach var="tmp" items="${list }">
-					<c:if test="${tmp.category eq '모임개설'}">
+					<c:if test="${tmp.category eq '3'}">
 					<li class="dropbox">
 					<button type="button" class="btn_more">답변</button>
 						<div class="title_area">
-							<span class="category">${tmp.category}</span>
+							<c:choose>
+								<c:when test="${tmp.category == 1}">회원</c:when>
+								<c:when test="${tmp.category == 2}">모임신청</c:when>
+								<c:when test="${tmp.category == 3}">모임개설</c:when>
+								<c:when test="${tmp.category == 0}">기타</c:when>
+							</c:choose>
 							<h5 class="detail">${tmp.question }</h5>
 						</div>
 						<div class="detail_content" style="display: block;">
 							<span style="line-height: 24px;">
-								<div>${tmp.answer }</div>
+								<pre>${tmp.answer }</pre>
 							</span>
 						</div>
 					</li>
