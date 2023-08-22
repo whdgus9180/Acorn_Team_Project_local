@@ -43,6 +43,12 @@ public class GroupManagingServiceImpl implements GroupManagingService{
 	}
 	
 	@Override
+	public void getAllGroupList(String manager_id, HttpServletRequest request) {
+		List<GroupDto> list = dao.getAllGroupList(manager_id);
+		request.setAttribute("list", list);
+	}
+	
+	@Override
 	public GroupDto getGroupData(int num, HttpServletRequest request) {
 		GroupDto dto = dao.getGroupData(num);
 		request.setAttribute("dto", dto);
