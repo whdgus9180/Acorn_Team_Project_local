@@ -127,12 +127,20 @@
 					<li class="dropbox">
 					<button type="button" class="btn_more">답변</button>
 						<div class="title_area">
-							<span class="category">${tmp.category}</span>
+							<input type="hidden" value="${tmp.faq_num}"/>
+							<c:choose>
+								<c:when test="${tmp.category == 1}">회원</c:when>
+								<c:when test="${tmp.category == 2}">모임신청</c:when>
+								<c:when test="${tmp.category == 3}">모임개설</c:when>
+								<c:when test="${tmp.category == 0}">기타</c:when>
+							</c:choose>
 							<h5 class="detail">${tmp.question }</h5>
 						</div>
 						<div class="detail_content" style="display: block;">
 							<span style="line-height: 24px;">
-								<div>${tmp.answer }</div>
+								<pre>${tmp.answer }</pre>
+								<a href="${pageContext.request.contextPath }/support/support_faq_updateform?faq_num=${tmp.faq_num}">수정</a>
+								<button data-num="${tmp.faq_num }" type="submit" id="deleteBtn">삭제</button>
 							</span>
 						</div>
 					</li>
@@ -192,7 +200,14 @@
 				// 처음에는 숨겨두기
 				$(".detail_content").hide();
 			});
-			
+			document.querySelector("#deleteBtn").addEventListener("click", (e)=>{
+				e.preventDefault();
+				const isTrue = confirm("질문을 삭제하시겠습니까?")
+				if(isTrue){
+					const faqNum=document.querySelector("#deleteBtn").getAttribute("data-num");
+					location.href="${pageContext.request.contextPath}/support/support_faq_delete?faq_num=" + faqNum;
+				}
+			});
 		</script>
 	</div>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
