@@ -8,6 +8,8 @@
 <title>내 북메이트 관리</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/group_managing/group_managing_admin_header.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/group_managing/group_managing_admin_member_card.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <style>
 </style>
 </head>
@@ -35,10 +37,27 @@
 							<div id="card-title">${tmp.user_id}</div>
 							<div id="card-date">소모임 가입일: ${tmp.join_dt}</div>
 							<div id="card-link"><a href="${pageContext.request.contextPath}/cafe/list">활동 내역 보기</a></div>
-							<div id="card-buttons">
-								<div><a href="${pageContext.request.contextPath}/group_managing/kick?num=${tmp.num}&group_num=${group_num}">강퇴</a></div>
-							</div>
+							<div id="card-buttons" class="card-alert-button${tmp.num}"><div><a href="javascript:">추방</a></div></div>
 						</div>
+						<script>
+							$(".card-alert-button${tmp.num}").css("cursor", "auto").click(()=>{
+								Swal.fire({
+						      		title: `${tmp.user_id}님을 소모임에서 
+						      				추방하시겠습니까?`,
+						      		text: "해당 회원을 한번 추방하면 다시 되돌릴 수 없습니다",
+						      		icon: 'warning',
+						      		showCancelButton: true,
+						      		confirmButtonColor: 'rgb(13, 110, 253)',
+						      		cancelButtonColor: 'rgb(248, 162, 146)',
+						      		confirmButtonText: '확인',
+						      		cancelButtonText: '취소',
+					    		}).then((result) => {
+							      	if (result.isConfirmed) {
+								        location.href="${pageContext.request.contextPath}/group_managing/kick?num=${tmp.num}&group_num=${group_num}"
+							      	}
+							    })
+							})
+						</script>
 					</div>
 				</div>
 			</c:forEach>
