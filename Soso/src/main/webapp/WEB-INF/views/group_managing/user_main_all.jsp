@@ -1,20 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/group/user_main.jsp</title>
-	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/group_managing_user_main.css" />
-	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="${path }/resources/js/jquery-1.12.0.min.js"></script>
-    <script src="${path }/resources/js/jquery.easing.1.3.js"></script>
-    <script src="${path }/resources/js/common.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<title>/group/user_main_all.jsp</title>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/navbar.jsp">
@@ -68,7 +59,6 @@
                        		<div class="user_content_text">
                        			<ul class="">
 		                            	<li class="title">${tmp.name}</li>
-		                            	<li><span class="info-label">활동 종료 날짜 :</span> ${tmp.ended_dt}</li>
 			                            <li><span class="info-label">모임장 :</span> ${tmp.manager_id}</li>
 			                            <li><span class="info-label">모임 시간 :</span> ${tmp.meeting_time}</li>
 			                            <li><span class="info-label">모임 장소 :</span> ${tmp.meeting_loc}</li>

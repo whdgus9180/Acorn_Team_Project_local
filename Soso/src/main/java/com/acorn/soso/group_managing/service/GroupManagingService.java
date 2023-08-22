@@ -17,6 +17,8 @@ public interface GroupManagingService {
 	public void getFinishedGroupList(String manager_id, HttpServletRequest request);
 	public void getAllGroupList(String manager_id, HttpServletRequest request);
 	public void getGroupList2(String user_id, HttpServletRequest request);
+	public void getFinishedGroupList2(String user_id, HttpServletRequest request);
+	public void getAllGroupList2(String user_id, HttpServletRequest request);
 	public GroupDto getGroupData(int num, HttpServletRequest request);
 	public Map<String, Object> saveGroupImage(HttpServletRequest request, MultipartFile image);
 	public void updateGroupData(GroupDto dto, HttpServletRequest request);

@@ -76,6 +76,20 @@ public class GroupManagingController {
 		return "group_managing/user_main";
 	}
 	
+	@GetMapping("/group_managing/user_main_finished")
+	public String user_main_finished(HttpServletRequest request, HttpSession session) {
+		String user_id = (String)session.getAttribute("id");
+		service.getFinishedGroupList2(user_id, request);
+		return "group_managing/user_main";
+	}
+	
+	@GetMapping("/group_managing/user_main_all")
+	public String user_main_all(HttpServletRequest request, HttpSession session) {
+		String user_id = (String)session.getAttribute("id");
+		service.getAllGroupList2(user_id, request);
+		return "group_managing/user_main";
+	}
+	
 	@GetMapping("/group_managing/group_insertForm")
 	public String group_insertForm() {
 		return "group_managing/group_insertForm";

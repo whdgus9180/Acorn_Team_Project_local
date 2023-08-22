@@ -108,9 +108,18 @@ public class GroupManagingDaoImpl implements GroupManagingDao{
 	}
 
 	@Override
+	public List<GroupDto> getFinishedGroupList2(String user_id) {
+		return session.selectList("groupManaging.getFinishedGroupList2", user_id);
+	}
+
+	@Override
+	public List<GroupDto> getAllGroupList2(String user_id) {
+		return session.selectList("groupManaging.getAllGroupList2", user_id);
+	}
+
+	@Override
 	public List<GroupManagingDto> getMateList(int num) {
 		return session.selectList("groupManaging.getMateList", num);
 	}
-
 	
 }
