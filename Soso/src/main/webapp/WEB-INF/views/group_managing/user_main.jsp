@@ -13,6 +13,8 @@
     <script src="${path }/resources/js/jquery-1.12.0.min.js"></script>
     <script src="${path }/resources/js/jquery.easing.1.3.js"></script>
     <script src="${path }/resources/js/common.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/navbar.jsp">
@@ -72,16 +74,27 @@
 		                        </ul>
 		                        <div class="user_content_btn">
 		                        	<div class="user_content_community"><a href="${pageContext.request.contextPath}/group_managing/group_userdetail?num=${tmp.num}">커뮤니티</a></div>
-									<div class="user_content_delete"><a href="javascript:deleteConfirm()">탈퇴</a></div>
+									<div class="user_content_delete" id="user_content_delete_${tmp.num}"><a href="#">탈퇴</a></div>
 		                        </div>
-		                        <script>
-								    function deleteConfirm() {
-								        const isDelete = confirm("${id} 님 탈퇴 하시겠습니까?");
-								        if(isDelete) {
-								            location.href = "${pageContext.request.contextPath}/group_managing/group_userdropOut?group_num=${tmp.num}";
-								        }
-								    }
-								</script>
+								<script>
+									$("#user_content_delete_${tmp.num}").css("cursor", "auto").click(()=>{
+										Swal.fire({
+								      		title: `${tmp.name} 소모임에서 
+								      				탈퇴하시겠습니까?`,
+								      		text: "소모임을 탈퇴하면 다시 가입할 수 없습니다",
+								      		icon: 'warning',
+								      		showCancelButton: true,
+								      		confirmButtonColor: 'rgb(241, 149, 149)',
+								      		cancelButtonColor: 'rgb(191, 191, 191)',
+								      		confirmButtonText: '확인',
+								      		cancelButtonText: '취소',
+							    		}).then((result) => {
+									      	if (result.isConfirmed) {
+										        location.href="${pageContext.request.contextPath}/group_managing/group_userdropOut?group_num=${tmp.num}"
+									      	}
+									    })
+									})
+							</script>
                        		</div>   
                         </a>
                     </div>
