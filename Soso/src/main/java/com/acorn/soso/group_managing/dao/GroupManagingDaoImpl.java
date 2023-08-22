@@ -26,6 +26,11 @@ public class GroupManagingDaoImpl implements GroupManagingDao{
 	}
 	
 	@Override
+	public List<GroupDto> getAllGroupList(String manager_id) {
+		return session.selectList("groupManaging.getAllGroupList", manager_id);
+	}
+	
+	@Override
 	public GroupDto getGroupData(int num) {
 		return session.selectOne("groupManaging.getGroupData", num);
 	}
