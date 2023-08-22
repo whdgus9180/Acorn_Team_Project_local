@@ -26,6 +26,11 @@ public class GroupManagingDaoImpl implements GroupManagingDao{
 	}
 	
 	@Override
+	public List<GroupDto> getAllGroupList(String manager_id) {
+		return session.selectList("groupManaging.getAllGroupList", manager_id);
+	}
+	
+	@Override
 	public GroupDto getGroupData(int num) {
 		return session.selectOne("groupManaging.getGroupData", num);
 	}
@@ -102,7 +107,10 @@ public class GroupManagingDaoImpl implements GroupManagingDao{
 		return session.selectList("groupManaging.getGroupList2", user_id);
 	}
 
-	
+	@Override
+	public List<GroupManagingDto> getMateList(int num) {
+		return session.selectList("groupManaging.getMateList", num);
+	}
 
 	
 }
