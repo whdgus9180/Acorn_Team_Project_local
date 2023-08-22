@@ -58,9 +58,6 @@
 						<a href="${pageContext.request.contextPath }/support/support_inquire">1:1 문의하기</a>
 					</li>
 					<li>
-						<a href="${pageContext.request.contextPath }/support/support_inquire_register">신고접수</a>
-					</li>
-					<li>
 						<a class="my_inquire" href="${pageContext.request.contextPath }/support/support_inquire_MyInquire">나의 문의내역</a>
 					</li>
 				</ul>
