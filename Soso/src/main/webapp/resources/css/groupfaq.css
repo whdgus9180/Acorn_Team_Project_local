@@ -29,3 +29,7 @@ pre{
 	border-radius : 10px;
     padding: 5px 10px; /* 원하는 패딩 값 설정 */
 }
+
+#emptyBox{
+	margin-left : 1rem;
+}

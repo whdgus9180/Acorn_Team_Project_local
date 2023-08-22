@@ -84,7 +84,7 @@
 		<div class="group_review" >
 			<div class="inner-wrap">
 				<h2 class="title black">참여 후기</h2>
-				<div class="d-flex flex-column mb-3">
+				<div class="reviewList" style="width:100%;">
 				<!-- forEach를 사용해서 댓글 출력(나중에는 분기 써서 댓글이 없을 때는 다른 페이지 표시) -->
 					<c:choose>
 						<c:when test="${empty commentList}">
@@ -107,14 +107,11 @@
 						</c:otherwise>
 					</c:choose>
 					<c:forEach var="item" items="${list}">
-					  <c:choose>
-					    <c:when test="${item.user_id eq sessionScope.id}">
-					    	<c:if test="${dto.deadline_dt lt nowDate}">
+							<!-- 일단 누구나 후기 쓸 수 있도록 수정 -->
+							<%-- <c:when test="${item.user_id eq sessionScope.id}"> --%>
+							<%--<c:if test="${dto.deadline_dt lt nowDate}"> --%>
 								<a href="${pageContext.request.contextPath}/group/comment/comment_insert_form?num=${dto.num}" id="reviewInsert">후기 작성하기</a>
 								<div id="commentArea"></div>
-							</c:if>
-					    </c:when>
-					  </c:choose>
 					</c:forEach>
 				</div>
 			</div>
