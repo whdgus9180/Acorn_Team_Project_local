@@ -71,6 +71,29 @@ public class SupportController {
 		
 		return "support/support_faq_insertform";
 	}
+	//FAQ 수정폼
+	@GetMapping("/support/support_faq_updateform")
+	public String support_faq_updateform(int faq_num, Model model) {
+		service.getData(faq_num, model);
+		return "support/support_faq_updateform";
+	}
+	//FAQ 수정
+	@PostMapping("/support/support_faq_update")
+	public String support_faq_update(FaqDto dto) {
+		service.updateFaq(dto);
+		
+		return "redirect:/support/support_faq";
+	}
+	//FAQ 삭제
+	@GetMapping("/support/support_faq_delete")
+	public String support_faq_delete(int faq_num, Model model) {
+		
+		FaqDto dto = service.getData(faq_num, model);
+		
+		service.deleteFaq(faq_num, model);
+	
+		return "redirect:/support/support_faq";
+	}
 	//공지사항 메인 화면
 	@GetMapping("/support/support_notice")
 	public String support_notice(HttpServletRequest request, Model model) {
