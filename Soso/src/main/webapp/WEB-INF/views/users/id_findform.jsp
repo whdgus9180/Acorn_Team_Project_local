@@ -18,8 +18,8 @@
         
         <form action="${pageContext.request.contextPath}/users/id_find" method="post">
         	<div class="mb-2">
-                <label for="userName" class="control-label">이름</label>
-                <input type="text" class="form-control" name="userName" id="userName"/>
+                <label for="name" class="control-label">이름</label>
+                <input type="text" class="form-control" name="name" id="name"/>
             </div>
             <div class="mb-2">
                 <label for="email" class="control-label">이메일</label>
