@@ -73,7 +73,7 @@
             <div class="mate_content_theme">
                 <ul>
                     <li><a href="${pageContext.request.contextPath}/group/viewList">인기순</a></li>
-                    <li><a href="${pageContext.request.contextPath}/group/list">최신순</a></li>
+                    <li><a href="${pageContext.request.contextPath}/group/list?genre=-1">최신순</a></li>
                 </ul>
             </div>
         </div>
@@ -108,6 +108,7 @@
         	</c:forEach>	
         </div>
         <div id="Parse_Area"gt;lt;></div>
+        
     </section>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
     <script>
