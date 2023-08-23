@@ -36,12 +36,10 @@ public interface GroupManagingDao {
 	public List<GroupManagingDto> getMateList(int num);
 	//소모임 가입 승인하기
 	public void joinApprove(int num);
-	//소모임 가입자 수 증가(갱신)하기
-	public void addMemberCount(int group_num);
-	//소모임 가입자 수 증가(갱신)하기
-	public void minusMemberCount(int group_num);
 	//소모임 가입자 숫자 불러오기
 	public int getMemberCount(int num);
+	//소모임 현재 가입자 수 정보 갱신하기
+	public void updateNowPeople(GroupDto dto);
 	//소모임 가입자 추방하기
 	public void kick(int num);
 	//소모임 가입 신청자 거절하기
