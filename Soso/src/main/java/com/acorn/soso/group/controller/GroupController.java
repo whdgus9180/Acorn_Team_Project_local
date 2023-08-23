@@ -332,7 +332,6 @@ public class GroupController {
 	public String listajax(HttpServletRequest request, Model model) {
 		String genreParam = request.getParameter("genre");
 		int genre = Integer.parseInt(genreParam);
-		System.out.println(genre);
 
         if (genre == -1) {//가져온 값이 -1이면 전체 배열을 출력
             service.getList(request, model);
