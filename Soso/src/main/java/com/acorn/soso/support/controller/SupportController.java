@@ -66,6 +66,7 @@ public class SupportController {
 		service.getList(request, model);
 		return "support/support_faq_etc";
 	}
+	
 	@GetMapping("/support/support_faq_insertform")
 	public String support_faq_insertform() {
 		

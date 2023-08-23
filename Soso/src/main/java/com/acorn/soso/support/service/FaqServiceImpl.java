@@ -76,10 +76,15 @@ public class FaqServiceImpl implements FaqService {
 				dto.setQuestion(keyword);
 			} // 다른 검색 조건을 추가 하고 싶다면 아래에 else if() 를 계속 추가 하면 된다.
 		}
-		//질문 목록 얻어오기 
+		//FAQ 목록 얻어오기 
 		List<FaqDto> list=faqDao.getList(dto);
-		//전체질문의 갯수
-		int totalRow=faqDao.getCount(dto);
+		//전체 FAQ의 갯수
+		int totalRow = faqDao.getCount(dto);
+		//카테고리별 FAQ의 갯수
+		int categoryOneRow = faqDao.getFAQCount(1);
+		int categoryTwoRow = faqDao.getFAQCount(2);
+		int categoryThreeRow = faqDao.getFAQCount(3);
+		int categoryZeroRow = faqDao.getFAQCount(0);
 		
 		//하단 시작 페이지 번호 
 		int startPageNum = 1 + ((pageNum-1)/PAGE_DISPLAY_COUNT)*PAGE_DISPLAY_COUNT;
@@ -103,6 +108,10 @@ public class FaqServiceImpl implements FaqService {
 		model.addAttribute("totalPageCount", totalPageCount);
 		model.addAttribute("list", list);
 		model.addAttribute("totalRow", totalRow);
+		model.addAttribute("categoryOneRow", categoryOneRow);
+		model.addAttribute("categoryTwoRow", categoryTwoRow);
+		model.addAttribute("categoryThreeRow", categoryThreeRow);
+		model.addAttribute("categoryZeroRow", categoryZeroRow);
 		
 	}
 	// 질문 수정에 필요한 질문 정보
