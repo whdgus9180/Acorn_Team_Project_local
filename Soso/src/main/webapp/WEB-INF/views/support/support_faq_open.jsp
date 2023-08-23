@@ -107,7 +107,7 @@
 				</li>
 			</ul>
 			</div>
-			<h3 class="faq">모임개설(5)</h3>
+			<h3 class="faq">모임개설(${categoryThreeRow})</h3>
 			<div class="tab_content">
 			<ul>
 				<c:forEach var="tmp" items="${list }">

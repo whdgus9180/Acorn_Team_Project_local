@@ -107,7 +107,7 @@
 				</li>
 			</ul>
 			</div>
-			<h3 class="faq">회원(3)</h3>
+			<h3 class="faq">회원(${categoryOneRow})</h3>
 			<div class="tab_content">
 			<ul>
 				<c:forEach var="tmp" items="${list }">
@@ -163,18 +163,7 @@
 		</nav>
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script>
-			document.querySelectorAll(".pagination a").forEach(function(item){
-				//item 은 a 의 참조값이다 모든 a 요소에 mouseover 이벤트가 발생했을때 실행할 함수 등록
-				item.addEventListener("mouseover", function(e){
-					//애니메이션 클래스를 추가해서 애니메이션이 동작하도록한다.
-					e.target.classList.add("animate__swing");
-				});
-				//item 은 a 의 참조값이다 모든 a 요소에 animationend 이벤트가 발생했을때 실행할 함수 등록
-				item.addEventListener("animationend", function(e){
-					//애니메이션 클래스를 제거해서 다음번에 추가 되면 다시 애니매이션이 동작 되도록한다.
-					e.target.classList.remove("animate__swing");
-				});
-			});
+		
 			$(document).ready(function(){
 				
 				$(".btn_more").click(function(e){
