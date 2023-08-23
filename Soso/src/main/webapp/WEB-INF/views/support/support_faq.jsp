@@ -104,24 +104,24 @@
 			<div class="tab_section">
 			<ul class="tab_menu">
 				<li class="active">
-					<a href="${pageContext.request.contextPath }/support/support_faq">자주하는 질문 전체(10)</a>
+					<a href="${pageContext.request.contextPath }/support/support_faq">전체(${totalRow })</a>
 				</li>
 				<li class="">
-					<a href="${pageContext.request.contextPath }/support/support_faq_user">회원(3)</a>
+					<a href="${pageContext.request.contextPath }/support/support_faq_user">회원(${categoryOneRow })</a>
 				</li>
 				<li class="">
-					<a href="${pageContext.request.contextPath }/support/support_faq_request">모임신청(4)</a>
+					<a href="${pageContext.request.contextPath }/support/support_faq_request">모임신청(${categoryTwoRow })</a>
 				</li>
 				<li class="">
-					<a href="${pageContext.request.contextPath }/support/support_faq_open">모임개설(5)</a>
+					<a href="${pageContext.request.contextPath }/support/support_faq_open">모임개설(${categoryThreeRow })</a>
 				</li>
 				<li class="">
-					<a href="${pageContext.request.contextPath }/support/support_faq_etc">기타(3)</a>
+					<a href="${pageContext.request.contextPath }/support/support_faq_etc">기타(${categoryZeroRow })</a>
 				</li>
-			</c:forEach>
 		</ul>
 		<a href="${pageContext.request.contextPath }/support/support_faq_insertform" class="faq_management">FAQ 관리</a>
 		</div>
+		
 	</div>
 	<div>
 		<nav>
