@@ -15,6 +15,8 @@ public interface FaqDao {
 	public FaqDto getData(int faq_num);
 	//질문의 갯수
 	public int getCount(FaqDto dto);
+	//카테고리별 질문의 갯수
+	public int getFAQCount(int category);
 	//질문 수정
 	public void update(FaqDto dto);
 	//질문 삭제

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/views/group_managing/group_userdetail.jsp</title>
+<title>소모임 커뮤니티</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/group_managing_user_detail.css" />
 <script src="${path }/resources/js/common.js"></script>
 </head>

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,9 @@ import com.acorn.soso.group_managing.service.GroupManagingService;
 @Controller
 public class GroupController {
 
+	@Value("${file.location}")
+	private String fileLocation;
+	
 	@Autowired
 	private GroupService service;
 	
@@ -318,11 +322,12 @@ public class GroupController {
 	@GetMapping("/group/list")
 	public String list(HttpServletRequest request, Model model) {
 		String genreParam = request.getParameter("genre");
-        if (genreParam != null) {
-            int genre = Integer.parseInt(genreParam);
-            service.getGroupsByGenre(request, model);
-        } else {
+		int genre = Integer.parseInt(genreParam);
+
+        if (genre == -1) {//가져온 값이 -1이면 전체 배열을 출력
             service.getList(request, model);
+        } else {//아니면 가져온 숫자만큼의 배열을 출
+        	service.getGroupsByGenre(request, model);
         }
         return "group/list";
 	}
@@ -341,16 +346,21 @@ public class GroupController {
         return "group/ajax_list";
 	}
 	
+	//ajax로 리스트 페이지 불러오기
+	@GetMapping("/group/ajax_viewList")
+	public String viewlistajax(HttpServletRequest request, Model model) {
+
+            service.getViewList(request, model);
+
+        return "group/ajax_viewList";
+	}
+	
 	//소모임 조회수 리스트 이동
 	@GetMapping("/group/viewList")
 	public String viewList(HttpServletRequest request, Model model) {
-		String genreParam = request.getParameter("genre");
-        if (genreParam != null) {
-            int genre = Integer.parseInt(genreParam);
-            service.getGroupsByGenre(request, model);
-        } else {
+
         	service.getViewList(request, model);
-        }	
+	
 		return "group/viewList";
 	}
 	

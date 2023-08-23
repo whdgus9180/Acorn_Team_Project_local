@@ -66,6 +66,7 @@ public class SupportController {
 		service.getList(request, model);
 		return "support/support_faq_etc";
 	}
+	
 	@GetMapping("/support/support_faq_insertform")
 	public String support_faq_insertform() {
 		
@@ -155,7 +156,6 @@ public class SupportController {
 		inquireService.insert(dto);
 		return "support/support_inquire_MyInquire";
 	}
-	
 	@GetMapping("/support/support_inquire_MyInquire")
 	public String support_inquire_MyInquire(HttpSession session, Model model) {
 		inquireService.getList(session, model);

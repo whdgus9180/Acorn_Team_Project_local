@@ -64,17 +64,17 @@
             </div>
         </div>
     </main>
-	<ul class="nav justify-content-center">
-		<li class="nav-item">
-			<a class="nav-link active" href="${pageContext.request.contextPath }/support/support_main">고객센터</a>
+	<ul class="menu_bar">
+		<li class="menu_home">
+			<a class="nav-link" href="${pageContext.request.contextPath }/support/support_main">고객센터</a>
 		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="${pageContext.request.contextPath }/support/support_faq">자주하는 질문</a>
+		<li class="menu_faq">
+			<a class="nav-link active" href="${pageContext.request.contextPath }/support/support_faq">자주하는 질문</a>
 		</li>
-		<li class="nav-item">
+		<li class="menu_notice">
 			<a class="nav-link" href="${pageContext.request.contextPath }/support/support_notice">공지사항</a>
 		</li>
-		<li class="nav-item">
+		<li class="menu_inquire">
 			<a class="nav-link" href="${pageContext.request.contextPath }/support/support_inquire">문의하기</a>
 		</li>
 	</ul>
@@ -91,36 +91,41 @@
 			<div class="tab_section">
 			<ul class="tab_menu">
 				<li class="active">
-					<a href="${pageContext.request.contextPath }/support/support_faq">자주하는 질문 전체(10)</a>
+					<a href="${pageContext.request.contextPath }/support/support_faq">전체(${totalRow })</a>
 				</li>
 				<li class="">
-					<a href="${pageContext.request.contextPath }/support/support_faq_user">회원(3)</a>
+					<a href="${pageContext.request.contextPath }/support/support_faq_user">회원(${categoryOneRow })</a>
 				</li>
 				<li class="">
-					<a href="${pageContext.request.contextPath }/support/support_faq_request">모임신청(4)</a>
+					<a href="${pageContext.request.contextPath }/support/support_faq_request">모임신청(${categoryTwoRow })</a>
 				</li>
 				<li class="">
-					<a href="${pageContext.request.contextPath }/support/support_faq_open">모임개설(5)</a>
+					<a href="${pageContext.request.contextPath }/support/support_faq_open">모임개설(${categoryThreeRow })</a>
 				</li>
 				<li class="">
-					<a href="${pageContext.request.contextPath }/support/support_faq_etc">기타(3)</a>
+					<a href="${pageContext.request.contextPath }/support/support_faq_etc">기타(${categoryZeroRow })</a>
 				</li>
 			</ul>
 			</div>
-			<h3 class="faq">기타(3)</h3>
+			<h3 class="faq">기타(${categoryZeroRow })</h3>
 			<div class="tab_content">
 			<ul>
 				<c:forEach var="tmp" items="${list }">
-					<c:if test="${tmp.category eq '기타' }">
+					<c:if test="${tmp.category eq '0' }">
 					<li class="dropbox">
 					<button type="button" class="btn_more">답변</button>
 						<div class="title_area">
-							<span class="category">${tmp.category}</span>
+							<c:choose>
+								<c:when test="${tmp.category == 1}">회원</c:when>
+								<c:when test="${tmp.category == 2}">모임신청</c:when>
+								<c:when test="${tmp.category == 3}">모임개설</c:when>
+								<c:when test="${tmp.category == 0}">기타</c:when>
+							</c:choose>
 							<h5 class="detail">${tmp.question }</h5>
 						</div>
 						<div class="detail_content" style="display: block;">
 							<span style="line-height: 24px;">
-								<div>${tmp.answer }</div>
+								<pre>${tmp.answer }</pre>
 							</span>
 						</div>
 					</li>
