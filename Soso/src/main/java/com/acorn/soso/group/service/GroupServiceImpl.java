@@ -378,9 +378,11 @@ public class GroupServiceImpl implements GroupService{
 		int num = Integer.parseInt(strNum);
 		GroupReviewDto dto = reviewdao.getData(num);
 		String id = (String)request.getSession().getAttribute("id");
-		if(!dto.getWriter().equals(id)) {
-			throw new NotDeleteException("타인의 리뷰는 삭제할 수 없습니다.");
-		}
+		
+		//관리자 삭제를 위해 일단 주석처리
+//		if(!dto.getWriter().equals(id)) {
+//			throw new NotDeleteException("타인의 리뷰는 삭제할 수 없습니다.");
+//		}
 		reviewdao.delete(num);
 	}
 
@@ -690,12 +692,11 @@ public class GroupServiceImpl implements GroupService{
 		GroupFAQDto dto = groupfaqdao.getData(num);
 		//id를 가져온다.
 		String id =(String)request.getSession().getAttribute("id");
-		//가져온 값을 토대로 id검증을 한다.
-		if(dto.getQ_writer().equals(id)) {
-			groupfaqdao.delete(num);
-		}else {
-			throw new DontEqualException("다른 사람의 글은 삭제할 수 없습니다.");
-		}
+		//가져온 값을 토대로 id검증을 한다.(일단 관리자 삭제 위해 주석처리)
+//		if(dto.getQ_writer().equals(id)) {
+//			throw new DontEqualException("다른 사람의 글은 삭제할 수 없습니다.");
+//		}
+		groupfaqdao.delete(num);
 	}
 	
 	//소모임 문의 답변하기

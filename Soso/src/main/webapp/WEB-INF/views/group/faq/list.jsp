@@ -49,11 +49,12 @@
 								        	<div class="bookmate">B</div>
 								        	<pre name="answer" id="answer" readonly>${tmp.a_answer }</pre>
 								        </c:if>
-								        <!-- session id과 manger id를 검증해서 조건부 출력 -->
+								        <!-- session id과 manager id를 검증해서 조건부 출력 -->
 								        <c:if test="${dto.manager_id == sessionScope.id }">
+								        	<a href="${pageContext.request.contextPath}/group/faq/delete?num=${tmp.num}&group_num=${tmp.group_num}" id="delete">문의글 삭제</a>
 								        	<a href="${pageContext.request.contextPath}/group/answer/insertform?num=${tmp.num}" id="insertAnswer">답변</a>
 									        <a href="${pageContext.request.contextPath}/group/answer/updateform?num=${tmp.num}" id="updateAnswer" >답변 수정</a>
-								        	<a href="${pageContext.request.contextPath}/group/answer/delete?num=${tmp.num}&group_num=${tmp.group_num}" id="deleteAnswer">답변 삭제(실제로는 update)</a>						        
+								        	<a href="${pageContext.request.contextPath}/group/answer/delete?num=${tmp.num}&group_num=${tmp.group_num}" id="deleteAnswer">답변 삭제</a>						        
 								        </c:if>
 								    </td>
 								</tr>
@@ -148,7 +149,7 @@
 		        	});
 				});
 			
-			//문의 수
+			//문의 수정
 			  $(document).ready(function() {
 			        $("#update").click(function(event) {
 			            event.preventDefault(); // 앵커의 기본 동작을 막습니다.
@@ -193,7 +194,7 @@
 			            });
 			        });
 			    });
-			//답변 수정
+			/* //답변 수정
 			  $(document).ready(function() {
 			        $("#updateAnswer").click(function(event) {
 			            event.preventDefault(); // 앵커의 기본 동작을 막습니다.
@@ -214,7 +215,7 @@
 			                }
 			            });
 			        });
-			    });
+			    }); */
 		</script>
 </body>
 </html>
