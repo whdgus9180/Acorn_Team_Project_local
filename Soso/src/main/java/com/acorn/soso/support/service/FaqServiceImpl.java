@@ -72,9 +72,7 @@ public class FaqServiceImpl implements FaqService {
 				dto.setQuestion(keyword);
 			}else if(condition.equals("category")){ //분류 검색인 경우
 				dto.setCategory(keyword);
-			}else if(condition.equals("question")){ //질문 검색인 경우
-				dto.setQuestion(keyword);
-			} // 다른 검색 조건을 추가 하고 싶다면 아래에 else if() 를 계속 추가 하면 된다.
+			}// 다른 검색 조건을 추가 하고 싶다면 아래에 else if() 를 계속 추가 하면 된다.
 		}
 		//FAQ 목록 얻어오기 
 		List<FaqDto> list=faqDao.getList(dto);
