@@ -12,8 +12,12 @@ public interface GroupManagingDao {
 	public List<GroupDto> getFinishedGroupList(String manager_id);
 	//개설한 소모임 전체 리스트 불러오기
 	public List<GroupDto> getAllGroupList(String manager_id);
-	//가입한 소모임 리스트 불러오기
+	//가입한 소모임 중 활동 진행 중인 리스트 불러오기
 	public List<GroupDto> getGroupList2(String user_id);
+	//가입한 소모임 중 활동 종료된 리스트 불러오기
+	public List<GroupDto> getFinishedGroupList2(String user_id);
+	//가입한 소모임 전체 리스트 불러오기
+	public List<GroupDto> getAllGroupList2(String user_id);
 	//개설한 소모임 정보 불러오기
 	public GroupDto getGroupData(int num);
 	//개설한 소모임 정보 수정하기
