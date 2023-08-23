@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/group/user_main_all.jsp</title>
+<title>나의 북메이트</title>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/navbar.jsp">
