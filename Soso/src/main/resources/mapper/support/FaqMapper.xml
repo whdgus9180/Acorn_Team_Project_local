@@ -30,11 +30,18 @@
 		]]>
 	</select>
 	
+	<!-- FAQ 전체 갯수 불러오기 -->
 	<select id="getCount" parameterType="faqDto" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)
 		FROM FAQ_TB
 		<include refid="searchCondition"/>
-	</select>		
+	</select>
+	<!-- FAQ 카테고리별로 갯수 불러오기 -->
+	<select id="getFAQCount" parameterType="int" resultType="int">
+		SELECT NVL(MAX(ROWNUM), 0)
+		FROM FAQ_TB
+		WHERE category = #{category}
+	</select>	
 
 	<insert id="insert" parameterType="faqDto">
 		INSERT INTO FAQ_TB

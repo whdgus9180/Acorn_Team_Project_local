@@ -64,50 +64,10 @@
             </div>
         </div>
     </main>
-	<ul class="menu_bar">
-		<li class="menu_home">
-			<a class="nav-link active" href="${pageContext.request.contextPath }/support/support_main">고객센터</a>
-		</li>
-		<li class="menu_faq">
-			<a class="nav-link" href="${pageContext.request.contextPath }/support/support_faq">자주하는 질문</a>
-		</li>
-		<li class="menu_notice">
-			<a class="nav-link" href="${pageContext.request.contextPath }/support/support_notice">공지사항</a>
-		</li>
-		<li class="menu_inquire">
-			<a class="nav-link" href="${pageContext.request.contextPath }/support/support_inquire">문의하기</a>
-		</li>
-	</ul>
-	<!-- 메인 메뉴바 끝 -->
-	<!-- 검색 창 시작 -->
-	<div class="search">
-		<form action="" class="search_form" method="get">
-			<input type="text" name="" id="" class="search_main" placeholder="예) 회원가입, 로그인, 결제 등" />
-			<input type="submit" class="search_cs" value="" />
-		</form>
-	</div>
-	<!-- 검색 창 끝 -->
-		<div class="main_content">
-			<div class="tab_section">
-			<ul class="tab_menu">
-				<li class="active">
-					<a href="${pageContext.request.contextPath }/support/support_faq">자주하는 질문 전체(10)</a>
-				</li>
-				<li class="">
-					<a href="${pageContext.request.contextPath }/support/support_faq_user">회원(3)</a>
-				</li>
-				<li class="">
-					<a href="${pageContext.request.contextPath }/support/support_faq_request">모임신청(4)</a>
-				</li>
-				<li class="">
-					<a href="${pageContext.request.contextPath }/support/support_faq_open">모임개설(5)</a>
-				</li>
-				<li class="">
-					<a href="${pageContext.request.contextPath }/support/support_faq_etc">기타(3)</a>
-				</li>
-			</ul>
-			</div>
-			<h3 class="faq">기타(3)</h3>
+	<!-- 메뉴바 및 검색창 -->
+    <jsp:include page="/WEB-INF/views/support/support_faq_menuBar.jsp"></jsp:include>
+	<div class="main_content">
+			<h3 class="faq">기타(${categoryZeroRow})</h3>
 			<div class="tab_content">
 			<ul>
 				<c:forEach var="tmp" items="${list }">
