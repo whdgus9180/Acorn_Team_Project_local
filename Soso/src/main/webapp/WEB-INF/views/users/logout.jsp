@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/views/users/logout.jsp</title>
+<title>로그아웃</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/user.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" type="text/css">
