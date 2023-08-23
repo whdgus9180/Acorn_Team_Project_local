@@ -14,6 +14,40 @@
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 	<link rel="stylesheet" href="${path }/resources/css/group_page.css" type="text/css">
 </head>
+<style>
+	#reviewInsert{
+		border : 1.5px solid black;
+		border-radius : 10px;
+		display : inline-block; /* 필요한 만큼만 감싸기 */
+		justify-content : flex-end;
+	    padding: 5px 10px; /* 원하는 패딩 값 설정 */
+	    margin-left : 1rem;
+	}
+	.card{
+		padding : 10px;
+		margin : 10px;
+	}
+	.card-body{
+		border-bottom : 0.5px solid black;
+	}
+	.card-writer{
+		font-weight: bold;
+		font-style: italic;
+		margin-left : 1rem;
+	}
+	.card-regdate{
+		margin-left : 1rem;
+		color : #0000003f;
+	}
+	#content{
+		resize : none;
+		background-color: #00000007;
+		margin : 1rem;
+		border : 0.5px solid black;
+		border-radius : 10px;
+	    padding: 5px 10px; /* 원하는 패딩 값 설정 */
+	}
+</style>
 <body>
 	<jsp:include page="/WEB-INF/views/include/navbar_c.jsp">
 		<jsp:param value="groupPage" name="current" />
@@ -84,35 +118,58 @@
 		<div class="group_review" >
 			<div class="inner-wrap">
 				<h2 class="title black">참여 후기</h2>
-				<div class="reviewList" style="width:100%;">
+				<div class="reviewList" style="width:80%;">
 				<!-- forEach를 사용해서 댓글 출력(나중에는 분기 써서 댓글이 없을 때는 다른 페이지 표시) -->
 					<c:choose>
 						<c:when test="${empty commentList}">
-							<div class="card mx-1 my-1">
+							<div class="card">
 								<div class="card-body">
 									<p class="card-text">아직 후기가 없어요</p>
 								</div>
 							</div>
 						</c:when>
 						<c:otherwise>
-							<c:forEach var="tmp" items="${commentList}" end="2">
-								<div class="card mx-1 my-1">
+							<c:forEach var="tmp" items="${commentList}" end="4">
+								<div class="card">
 									<div class="card-body">
-										<p class="card-text">${tmp.content }</p>
-										<p class="card-text">평점 : ${tmp.rate }</p>
-										<p class="card-text">작성자 : ${tmp.writer }</p>
+										<c:set var="rating" value="${tmp.rate}" />
+											<c:choose>
+											    <c:when test="${rating == 1}">
+											        <span class="card-rate">⭐</span>
+											    </c:when>
+											    <c:when test="${rating == 2}">
+											        <span class="card-rate">⭐⭐</span>
+											    </c:when>
+											    <c:when test="${rating == 3}">
+											        <span class="card-rate">⭐⭐⭐</span>
+											    </c:when>
+											    <c:when test="${rating == 4}">
+											        <span class="card-rate">⭐⭐⭐⭐</span>
+											    </c:when>
+											    <c:when test="${rating == 5}">
+											        <span class="card-rate">⭐⭐⭐⭐⭐</span>
+											    </c:when>
+											    <c:otherwise>
+											        <span class="card-rate">Invalid Rating</span>
+											    </c:otherwise>
+											</c:choose>
+										<span class="card-writer">${tmp.writer }</span>
+										<span class="card-regdate">${tmp.regdate }</span>
+									</div>
+									<div>
+										<textarea name="content" id="content" readonly>${tmp.content}</textarea>
 									</div>
 								</div>
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>
-					<c:forEach var="item" items="${list}">
+					<%-- <c:forEach var="item" items="${list}"> --%>
 							<!-- 일단 누구나 후기 쓸 수 있도록 수정 -->
 							<%-- <c:when test="${item.user_id eq sessionScope.id}"> --%>
 							<%--<c:if test="${dto.deadline_dt lt nowDate}"> --%>
 								<a href="${pageContext.request.contextPath}/group/comment/comment_insert_form?num=${dto.num}" id="reviewInsert">후기 작성하기</a>
 								<div id="commentArea"></div>
-					</c:forEach>
+					<%-- </c:forEach> --%>
 				</div>
 			</div>
 		</div>
@@ -192,6 +249,7 @@
     <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 	<script>
 		AOS.init();
+		
 		// heart 이모티콘을 클릭하면 button id="jjim"를 강제로 클릭하는 코드
 		$(".heart").on("click", function() {
 		  $("#jjim").click();
