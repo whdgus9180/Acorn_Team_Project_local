@@ -9,16 +9,36 @@
 <title>/support_notice</title>
 <style>
 	.notice_management{
-	width: 240px;
-    height: 60px;
-    margin: 0 auto;
-    display: block;
-    border: 1px solid gray;
-    border-radius: 30px;
-    background-color: gray;
-    color: white;
-    font-size: 18px;
-    text-align: center;
+		width: 240px;
+	    height: 60px;
+	    margin: 0 auto;
+	    display: block;
+	    border: 1px solid gray;
+	    border-radius: 30px;
+	    background-color: gray;
+	    color: white;
+	    font-size: 18px;
+	    text-align: center;
+	}
+	.pagination_wrap{
+		margin: 20px 0 40px;
+		text-align: center;
+		width: 100%;
+	}
+	.pagination{
+		display: inline-block;
+		vertical-align: middle;
+	}
+	.pagination ul li{
+		list-style-type:none;
+		float: left;
+	}
+	.pagination ul li a{
+		width: 28px;
+		margin: 0 11px;
+	}
+	.page-item{
+		font-size: 20px;
 	}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -107,46 +127,7 @@
 			<a href="${pageContext.request.contextPath }/support/support_notice_insertform" class="notice_management">Notice 관리</a>
 		</div>
 	</div>
-	<div>
-		<nav>
-			<ul class="pagination">
-				<%--
-					startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
-					&condition=${condition}&keyword=${encodedK}
-				 --%>
-				<c:if test="${startPageNum ne 1 }">
-					<li class="page-item">
-						<a class="page-link animate__animated" href="support_notice?pageNum=${startPageNum-1 }">Prev</a>
-					</li>
-				</c:if>
-				<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
-					<li class="page-item ${pageNum eq i ? 'active' : '' }">
-						<a class="page-link animate__animated" href="support_notice?pageNum=${i }">${i }</a>
-					</li>
-				</c:forEach>
-				<%--
-					마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
-				 --%>
-				<c:if test="${endPageNum lt totalPageCount }">
-					<li class="page-item">
-						<a class="page-link animate__animated" href="support_notice?pageNum=${endPageNum+1 }">Next</a>
-					</li>
-				</c:if>				
-			</ul>
-		</nav>
-		<script>
-			document.querySelectorAll(".pagination a").forEach(function(item){
-				//item 은 a 의 참조값이다 모든 a 요소에 mouseover 이벤트가 발생했을때 실행할 함수 등록
-				item.addEventListener("mouseover", function(e){
-					//애니메이션 클래스를 추가해서 애니메이션이 동작하도록한다.
-					e.target.classList.add();
-				});
-				//item 은 a 의 참조값이다 모든 a 요소에 animationend 이벤트가 발생했을때 실행할 함수 등록
-				item.addEventListener("animationend", function(e){
-					//애니메이션 클래스를 제거해서 다음번에 추가 되면 다시 애니매이션이 동작 되도록한다.
-					e.target.classList.remove();
-				});
-			});
+	<script>
 			document.querySelector("#deleteBtn").addEventListener("click", (e)=>{
 				e.preventDefault();
 				const isTrue = confirm("공지사항을 삭제하시겠습니까?")
@@ -155,7 +136,35 @@
 					location.href="${pageContext.request.contextPath}/support/support_notice_delete?notice_num=" + noticeNum;
 				}
 			});
-		</script>
+	</script>
+	<!-- 페이지네이션 시작 -->
+	<div class="pagination_wrap">
+		<nav class="pagination">
+			<ul>
+				<%--
+					startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
+					&condition=${condition}&keyword=${encodedK}
+				 --%>
+				<c:if test="${startPageNum ne 1 }">
+					<li class="page-item">
+						<a class="page-link animate__animated" href="support_notice?pageNum=${startPageNum-1 }">이전</a>
+					</li>
+				</c:if>
+				<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+					<li class="page-item ${pageNum eq i ? 'active' : '' }">
+						<a href="support_notice?pageNum=${i }">${i }</a>
+					</li>
+				</c:forEach>
+				<%--
+					마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
+				 --%>
+				<c:if test="${endPageNum lt totalPageCount }">
+					<li class="page-item">
+						<a class="page-link animate__animated" href="support_notice?pageNum=${endPageNum+1 }">></a>
+					</li>
+				</c:if>				
+			</ul>
+		</nav>
 	</div>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
