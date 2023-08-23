@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내가 만든 소모임</title>
+<title>북메이트 관리</title>
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/group_managing_user_main.css" />
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -49,8 +49,9 @@
     	<div class="inner-wrap">
             <div class="user_content_theme">
                 <ul>
-                    <li><a href="#">진행중</a></li>
-                    <li><a href="#">종료</a></li>
+                	<li><a href="${pageContext.request.contextPath}/group_managing/admin_main_all">전체</a></li>
+                    <li><a href="${pageContext.request.contextPath}/group_managing/admin_main">진행중</a></li>
+                    <li><a href="${pageContext.request.contextPath}/group_managing/admin_main_finished">종료</a></li>
                 </ul>
             </div>
         </div>
@@ -77,7 +78,7 @@
                        		<div class="user_content_text">
                        			<ul class="">
 		                            	<li class="title">${tmp.name}</li>
-			                            <li><span class="info-label">모임 날짜 :</span> ${tmp.regdate}</li>
+			                            <li><span class="info-label">모임 종료일 :</span> ${tmp.ended_dt}</li>
 			                            <li><span class="info-label">모임 평점 :</span> ${tmp.avrg_rate }</li>
 			                            <li><span class="info-label">가입 인원 :</span> ${tmp.now_people}</li>
 		                        </ul>
