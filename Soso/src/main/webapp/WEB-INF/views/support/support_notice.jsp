@@ -114,12 +114,16 @@
 						<a href="${pageContext.request.contextPath }/support/support_notice_detail?notice_num=${tmp.notice_num}">${tmp.title }</a>
 						</td>
 						<td>${tmp.regdate }</td>
-						<td>
-							<a data-num="${tmp.notice_num }" href="${pageContext.request.contextPath }/support/support_notice_updateform?notice_num=${tmp.notice_num}">수정</a>
-						</td>
-						<td>
-							<button data-num="${tmp.notice_num }"type="submit" id="deleteBtn">삭제</button>
-						</td>
+						<c:if test="${dto.id eq admin}">
+							<td>
+								<a data-num="${tmp.notice_num }" href="${pageContext.request.contextPath }/support/support_notice_updateform?notice_num=${tmp.notice_num}">수정</a>
+							</td>
+						</c:if>
+						<c:if test="${dto.id eq admin}">
+							<td>
+								<button data-num="${tmp.notice_num }"type="submit" id="deleteBtn">삭제</button>
+							</td>
+						</c:if>
 					</tr>
 					</c:forEach>
 				</tbody>
