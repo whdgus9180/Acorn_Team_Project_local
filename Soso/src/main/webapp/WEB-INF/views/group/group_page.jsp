@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/groupfaq.css" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,42 +11,9 @@
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/groupfaq.css" />
 	<link rel="stylesheet" href="${path }/resources/css/group_page.css" type="text/css">
 </head>
-<style>
-	#reviewInsert{
-		border : 1.5px solid black;
-		border-radius : 10px;
-		display : inline-block; /* 필요한 만큼만 감싸기 */
-		justify-content : flex-end;
-	    padding: 5px 10px; /* 원하는 패딩 값 설정 */
-	    margin-left : 1rem;
-	}
-	.card{
-		padding : 10px;
-		margin : 10px;
-	}
-	.card-body{
-		border-bottom : 0.5px solid black;
-	}
-	.card-writer{
-		font-weight: bold;
-		font-style: italic;
-		margin-left : 1rem;
-	}
-	.card-regdate{
-		margin-left : 1rem;
-		color : #0000003f;
-	}
-	#content{
-		resize : none;
-		background-color: #00000007;
-		margin : 1rem;
-		border : 0.5px solid black;
-		border-radius : 10px;
-	    padding: 5px 10px; /* 원하는 패딩 값 설정 */
-	}
-</style>
 <body>
 	<jsp:include page="/WEB-INF/views/include/navbar_c.jsp">
 		<jsp:param value="groupPage" name="current" />
