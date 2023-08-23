@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/support_faq</title>
+<title>자주하는 질문</title>
 <style>
 .faq_management{
 	width: 240px;
@@ -118,37 +118,11 @@
 				<li class="">
 					<a href="${pageContext.request.contextPath }/support/support_faq_etc">기타(3)</a>
 				</li>
-			</ul>
-			</div>
-			<h3 class="faq">자주하는 질문 전체(10)</h3>
-			<div class="tab_content">
-			<ul>
-				<c:forEach var="tmp" items="${list }">
-					<li class="dropbox">
-					<button type="button" class="btn_more">답변</button>
-						<div class="title_area">
-							<input type="hidden" value="${tmp.faq_num}"/>
-							<c:choose>
-								<c:when test="${tmp.category == 1}">회원</c:when>
-								<c:when test="${tmp.category == 2}">모임신청</c:when>
-								<c:when test="${tmp.category == 3}">모임개설</c:when>
-								<c:when test="${tmp.category == 0}">기타</c:when>
-							</c:choose>
-							<h5 class="detail">${tmp.question }</h5>
-						</div>
-						<div class="detail_content" style="display: block;">
-							<span style="line-height: 24px;">
-								<pre>${tmp.answer }</pre>
-								<a href="${pageContext.request.contextPath }/support/support_faq_updateform?faq_num=${tmp.faq_num}">수정</a>
-								<button data-num="${tmp.faq_num }" type="submit" id="deleteBtn">삭제</button>
-							</span>
-						</div>
-					</li>
-				</c:forEach>
-			</ul>
-			<a href="${pageContext.request.contextPath }/support/support_faq_insertform" class="faq_management">FAQ 관리</a>
-			</div>
+			</c:forEach>
+		</ul>
+		<a href="${pageContext.request.contextPath }/support/support_faq_insertform" class="faq_management">FAQ 관리</a>
 		</div>
+	</div>
 	<div>
 		<nav>
 			<ul class="pagination">

@@ -63,7 +63,6 @@
             </div>
         </div>
     </main>
-
 	<!-- 메인 메뉴바 시작 -->
 	<ul class="menu_bar">
 		<li class="menu_home">
