@@ -327,28 +327,17 @@ public class GroupController {
         return "group/list";
 	}
 	
-	//소모임 리스트 이동(테스트)
-	@GetMapping("/group/list2")
-	public String list2(HttpServletRequest request, Model model) {
-		String genreParam = request.getParameter("genre");
-        if (genreParam != null) {
-            int genre = Integer.parseInt(genreParam);
-            service.getGroupsByGenre(request, model);
-        } else {
-            service.getList(request, model);
-        }
-        return "group/list2";
-	}
-	
 	//ajax로 리스트 페이지 불러오기
 	@GetMapping("/group/ajax_list")
 	public String listajax(HttpServletRequest request, Model model) {
 		String genreParam = request.getParameter("genre");
-        if (genreParam != null) {
-            int genre = Integer.parseInt(genreParam);
-            service.getGroupsByGenre(request, model);
-        } else {
+		int genre = Integer.parseInt(genreParam);
+		System.out.println(genre);
+
+        if (genre == -1) {//가져온 값이 -1이면 전체 배열을 출력
             service.getList(request, model);
+        } else {//아니면 가져온 숫자만큼의 배열을 출
+            service.getGroupsByGenre(request, model);
         }
         return "group/ajax_list";
 	}

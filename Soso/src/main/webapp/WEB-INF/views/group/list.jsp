@@ -62,7 +62,7 @@
         <div class="inner-wrap">
             <div class="mate_content_theme">
                 <ul>
-                    <li><a href="${pageContext.request.contextPath}/group/list">전체보기</a></li>
+                    <li><a href="${pageContext.request.contextPath}/group/list?genre=-1">전체보기</a></li>
 			        <li><a href="${pageContext.request.contextPath}/group/list?genre=1">자기계발</a></li>
 			        <li><a href="${pageContext.request.contextPath}/group/list?genre=2">인문</a></li>
 			        <li><a href="${pageContext.request.contextPath}/group/list?genre=3">경제</a></li>
@@ -112,11 +112,16 @@
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
     <script>
       	AOS.init();
-        //댓글의 현재 페이지 번호를 관리할 변수를 만들고 초기값 1 대입하기
+        //페이지 번호를 관리할 변수를 만들고 초기값 1 대입하기
         let currentPage=1;
         //마지막 페이지는 totalPageCount 이다.  
         let lastPage=${totalPageCount};
-       
+        
+        //주소창에서 genre의 값 얻어오기
+        const urlParams = new URLSearchParams(window.location.search);
+		let genre = urlParams.get('genre');
+
+        
         /*
            window.scrollY => 위쪽으로 스크롤된 길이
            window.innerHeight => 웹브라우저의 창의 높이
@@ -144,7 +149,8 @@
                     url: "${pageContext.request.contextPath}/group/ajax_list",
                     type: "get",
                     data: {
-                        pageNum: currentPage
+                        pageNum: currentPage,
+                       	genre : genre
                     }
                 })
                 .done(function(data) {
