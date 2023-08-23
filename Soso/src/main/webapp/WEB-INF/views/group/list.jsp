@@ -73,7 +73,7 @@
             <div class="mate_content_theme">
                 <ul>
                     <li><a href="${pageContext.request.contextPath}/group/viewList">인기순</a></li>
-                    <li><a href="${pageContext.request.contextPath}/group/list">최신순</a></li>
+                    <li><a href="${pageContext.request.contextPath}/group/list?genre=-1">최신순</a></li>
                 </ul>
             </div>
         </div>
@@ -108,6 +108,7 @@
         	</c:forEach>	
         </div>
         <div id="Parse_Area"gt;lt;></div>
+        
     </section>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
     <script>
@@ -131,7 +132,7 @@
         $(window).on("scroll", function() {
             // 바닥 까지 스크롤 했는지 여부
             const isBottom =
-                window.innerHeight + window.scrollY >= document.body.offsetHeight;
+                window.innerHeight + window.scrollY +10 >= document.body.offsetHeight;
 
             // 현재 페이지가 마지막 페이지인지 여부 알아내기
             let isLast = currentPage == lastPage;
