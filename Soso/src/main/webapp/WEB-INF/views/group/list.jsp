@@ -132,7 +132,7 @@
         $(window).on("scroll", function() {
             // 바닥 까지 스크롤 했는지 여부
             const isBottom =
-                window.innerHeight + window.scrollY >= document.body.offsetHeight;
+                window.innerHeight + window.scrollY +10 >= document.body.offsetHeight;
 
             // 현재 페이지가 마지막 페이지인지 여부 알아내기
             let isLast = currentPage == lastPage;
