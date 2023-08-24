@@ -34,9 +34,8 @@
 			FROM
 				(SELECT faq_num,category,question,answer
 				FROM FAQ_TB
-				<include refid="searchCondition"/>
+				WHERE category = #{category}
 				ORDER BY faq_num DESC) result1)
-				where category= #{category}
 		<![CDATA[ 
 		WHERE rnum >= #{startRowNum} AND rnum <= #{endRowNum}
 		]]>
@@ -53,7 +52,6 @@
 		SELECT NVL(MAX(ROWNUM), 0)
 		FROM FAQ_TB
 		WHERE category = #{category}
-		
 	</select>	
 
 	<insert id="insert" parameterType="faqDto">

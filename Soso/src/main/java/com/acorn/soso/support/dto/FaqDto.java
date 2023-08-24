@@ -17,7 +17,7 @@ public class FaqDto {
 	//질문 번호(내부 관리용 페이지에는 UI 처리 X)
 	private int faq_num;
 	//질문 카테고리
-	private int category;
+	private String category;
 	//질문 
 	private String question;
 	//질문 답변
