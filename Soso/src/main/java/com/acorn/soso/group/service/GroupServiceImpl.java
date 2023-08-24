@@ -611,7 +611,7 @@ public class GroupServiceImpl implements GroupService{
 		//한 페이지에 몇개씩 표시할 것인지
 		final int PAGE_ROW_COUNT=5;
 		//하단 페이지를 몇개씩 표시할 것인지
-		final int PAGE_DISPLAY_COUNT=5;
+		final int PAGE_DISPLAY_COUNT=10;
 		
 		//보여줄 페이지의 번호를 일단 1이라고 초기값 지정
 		int pageNum=1;
