@@ -27,6 +27,21 @@
 		]]>
 	</select>
 	
+	<select id="getListCategory" parameterType="faqDto" resultType="faqDto">
+		SELECT *
+		FROM
+			(SELECT result1.*, ROWNUM AS rnum
+			FROM
+				(SELECT faq_num,category,question,answer
+				FROM FAQ_TB
+				<include refid="searchCondition"/>
+				ORDER BY faq_num DESC) result1)
+				where category= #{category}
+		<![CDATA[ 
+		WHERE rnum >= #{startRowNum} AND rnum <= #{endRowNum}
+		]]>
+	</select>
+	
 	<!-- FAQ 전체 갯수 불러오기 -->
 	<select id="getCount" parameterType="faqDto" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)

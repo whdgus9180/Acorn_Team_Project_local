@@ -16,8 +16,6 @@ import lombok.NoArgsConstructor;
 public class NoticeDto {
 	//Notice 페이지 필드 값
 	
-	//관리자 id 의 값을 불러올 필드 값
-	private String id;
 	//공지 번호
 	private int notice_num;
 	//공지 카테고리

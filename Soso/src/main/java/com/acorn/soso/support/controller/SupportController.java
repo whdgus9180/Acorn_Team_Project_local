@@ -48,22 +48,28 @@ public class SupportController {
 	}
 	@GetMapping("/support/support_faq_user")
 	public String support_faq_user(HttpServletRequest request, Model model) {
-		service.getList(request, model);
+		String categoryParam = request.getParameter("category");
+		int category = Integer.parseInt(categoryParam);
+		if(category == 1) {
+			service.getListCategory(request, model);
+		}
+		
 		return "support/support_faq_user";
 	}
 	@GetMapping("/support/support_faq_request")
 	public String support_faq_request(HttpServletRequest request, Model model) {
-		service.getList(request, model);
+		service.getListCategory(request, model);
 		return "support/support_faq_request";
 	}
 	@GetMapping("/support/support_faq_open")
 	public String support_faq_open(HttpServletRequest request, Model model) {
-		service.getList(request, model);
+		
+		service.getListCategory(request, model);
 		return "support/support_faq_open";
 	}
 	@GetMapping("/support/support_faq_etc")
 	public String support_faq_etc(HttpServletRequest request, Model model) {
-		service.getList(request, model);
+		service.getListCategory(request, model);
 		return "support/support_faq_etc";
 	}
 	

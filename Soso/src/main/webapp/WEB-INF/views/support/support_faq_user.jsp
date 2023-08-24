@@ -110,8 +110,8 @@
 			<h3 class="faq">회원(${categoryOneRow})</h3>
 			<div class="tab_content">
 			<ul>
-				<c:forEach var="tmp" items="${list }">
-					<c:if test="${tmp.category eq 1}">
+				<c:forEach var="tmp" items="${listCategory }">
+					<c:if test="${category eq 1}">
 					<li class="dropbox">
 						<button type="button" class="btn_more">답변</button>
 						<div class="title_area">
@@ -123,7 +123,7 @@
 						</c:choose>
 							<h5 class="detail">${tmp.question }</h5>
 						</div>
-						<div class="detail_content" style="display: block;">
+						<div class="detail_content">
 							<span style="line-height: 24px;">
 								<pre>${tmp.answer }</pre>
 							</span>
@@ -143,12 +143,12 @@
 				 --%>
 				<c:if test="${startPageNum ne 1 }">
 					<li class="page-item">
-						<a class="page-link animate__animated" href="list?pageNum=${startPageNum-1 }&condition=${condition}&keyword=${encodedK}">Prev</a>
+						<a href="support_faq_user?pageNum=${startPageNum-1 }&condition=${condition}&keyword=${encodedK}">Prev</a>
 					</li>
 				</c:if>
 				<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
 					<li class="page-item ${pageNum eq i ? 'active' : '' }">
-						<a class="page-link animate__animated" href="list?pageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
+						<a href="support_faq_user?pageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
 					</li>
 				</c:forEach>
 				<%--
@@ -156,7 +156,7 @@
 				 --%>
 				<c:if test="${endPageNum lt totalPageCount }">
 					<li class="page-item">
-						<a class="page-link animate__animated" href="list?pageNum=${endPageNum+1 }&condition=${condition}&keyword=${encodedK}">Next</a>
+						<a href="support_faq_user?pageNum=${endPageNum+1 }&condition=${condition}&keyword=${encodedK}">Next</a>
 					</li>
 				</c:if>				
 			</ul>

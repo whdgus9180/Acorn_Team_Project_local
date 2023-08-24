@@ -20,6 +20,7 @@
 	    font-size: 18px;
 	    text-align: center;
 	}
+	/*페이지 네이션*/
 	.pagination_wrap{
 		margin: 20px 0 40px;
 		text-align: center;
@@ -151,7 +152,7 @@
 				 --%>
 				<c:if test="${startPageNum ne 1 }">
 					<li class="page-item">
-						<a class="page-link animate__animated" href="support_notice?pageNum=${startPageNum-1 }">이전</a>
+						<a href="support_notice?pageNum=${startPageNum-1 }">이전</a>
 					</li>
 				</c:if>
 				<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
@@ -164,7 +165,7 @@
 				 --%>
 				<c:if test="${endPageNum lt totalPageCount }">
 					<li class="page-item">
-						<a class="page-link animate__animated" href="support_notice?pageNum=${endPageNum+1 }">></a>
+						<a href="support_notice?pageNum=${endPageNum+1 }">></a>
 					</li>
 				</c:if>				
 			</ul>
