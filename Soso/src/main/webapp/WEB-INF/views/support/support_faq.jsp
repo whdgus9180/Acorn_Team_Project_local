@@ -159,6 +159,7 @@
 						<div class="detail_content">
 							<span style="line-height: 24px;">
 								<pre>${tmp.answer }</pre>
+								<a href="${pageContext.request.contextPath }/support/support_faq_updateform?num=${tmp.faq_num}">수정</a>
 							</span>
 						</div>
 					</li>

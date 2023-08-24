@@ -80,7 +80,7 @@
 		height:100%;
 		border: 1px solid gray;
 		border-left: none;
-		text: none;
+		text-indent: 10000px;
 	}
 	/* faq 메뉴바 */
 	.tab_section .tab_menu{
