@@ -50,11 +50,31 @@
 	overflow-x: hidden;
 	overflow-y: auto;
 	}
+	/*페이지 네이션*/
+	.pagination_wrap{
+		margin: 20px 0 40px;
+		text-align: center;
+		width: 100%;
+	}
+	.pagination{
+		display: inline-block;
+		vertical-align: middle;
+	}
+	.pagination ul li{
+		list-style-type:none;
+		float: left;
+	}
+	.pagination ul li a{
+		width: 28px;
+		margin: 0 11px;
+	}
+	.page-item{
+		font-size: 20px;
+	}
 </style>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/support/support_faq.css" />
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/navbar.jsp">
@@ -136,9 +156,10 @@
 							</c:choose>
 							<h5 class="detail">${tmp.question }</h5>
 						</div>
-						<div class="detail_content" style="display: block;">
+						<div class="detail_content">
 							<span style="line-height: 24px;">
 								<pre>${tmp.answer }</pre>
+								<a href="${pageContext.request.contextPath }/support/support_faq_updateform?num=${tmp.faq_num}">수정</a>
 							</span>
 						</div>
 					</li>
@@ -146,7 +167,14 @@
 			</ul>
 			</div>
 		
-		<a href="${pageContext.request.contextPath }/support/support_faq_insertform" class="faq_management">FAQ 관리</a>
+		<c:choose>
+		    <c:when test="${isAdmin}">
+		        <a href="${pageContext.request.contextPath }/support/support_faq_insertform" class="faq_management">FAQ 관리</a>
+		    </c:when>
+		    <c:otherwise>
+		        <!-- 해당 부분은 admin이 아닐 때의 처리 -->
+		    </c:otherwise>
+		</c:choose>
 		</div>
 		
 	</div>
@@ -170,7 +198,7 @@
 				}
 			});
 	</script>
-	<div>
+
 		<nav style="display:flex; justify-content:center; margin-bottom:30px;">
 			<ul class="pagination" style="display:flex; justify-content:space-around; width:30%">
 				<c:if test="${startPageNum ne 1 }">

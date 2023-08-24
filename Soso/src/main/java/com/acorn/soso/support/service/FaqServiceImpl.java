@@ -224,8 +224,4 @@ public class FaqServiceImpl implements FaqService {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
-	
-	
 }

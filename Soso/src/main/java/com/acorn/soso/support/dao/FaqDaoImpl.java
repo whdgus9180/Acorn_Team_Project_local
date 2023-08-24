@@ -1,6 +1,8 @@
 package com.acorn.soso.support.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,6 @@ public class FaqDaoImpl implements FaqDao{
 	public List<FaqDto> getList(FaqDto dto) {
 		return session.selectList("faq.getList", dto);
 	}
-	
 	@Override
 	public List<FaqDto> getListCategory(FaqDto dto) {
 		return session.selectList("faq.getListCategory", dto);

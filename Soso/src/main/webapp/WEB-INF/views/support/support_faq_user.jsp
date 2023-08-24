@@ -110,8 +110,8 @@
 			<h3 class="faq">회원(${categoryOneRow})</h3>
 			<div class="tab_content">
 			<ul>
-				<c:forEach var="tmp" items="${list }">
-					<c:if test="${tmp.category eq 1}">
+				<c:forEach var="tmp" items="${list}">
+					<c:if test="${tmp.category eq '1'}">
 					<li class="dropbox">
 						<button type="button" class="btn_more">답변</button>
 						<div class="title_area">
@@ -123,7 +123,7 @@
 						</c:choose>
 							<h5 class="detail">${tmp.question }</h5>
 						</div>
-						<div class="detail_content" style="display: block;">
+						<div class="detail_content">
 							<span style="line-height: 24px;">
 								<pre>${tmp.answer }</pre>
 							</span>

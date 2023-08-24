@@ -20,31 +20,10 @@
 	    font-size: 18px;
 	    text-align: center;
 	}
-	.pagination_wrap{
-		margin: 20px 0 40px;
-		text-align: center;
-		width: 100%;
-	}
-	.pagination{
-		display: inline-block;
-		vertical-align: middle;
-	}
-	.pagination ul li{
-		list-style-type:none;
-		float: left;
-	}
-	.pagination ul li a{
-		width: 28px;
-		margin: 0 11px;
-	}
-	.page-item{
-		font-size: 20px;
-	}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/support/support_notice.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" type="text/css">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/navbar.jsp">
@@ -114,21 +93,25 @@
 						<a href="${pageContext.request.contextPath }/support/support_notice_detail?notice_num=${tmp.notice_num}">${tmp.title }</a>
 						</td>
 						<td>${tmp.regdate }</td>
-						<c:if test="${dto.id eq admin}">
 							<td>
+							<c:if test="${isAdmin }">
 								<a data-num="${tmp.notice_num }" href="${pageContext.request.contextPath }/support/support_notice_updateform?notice_num=${tmp.notice_num}">수정</a>
+							</c:if>
+							
 							</td>
-						</c:if>
-						<c:if test="${dto.id eq admin}">
+		
 							<td>
+							<c:if test="${isAdmin }">
 								<button data-num="${tmp.notice_num }"type="submit" id="deleteBtn">삭제</button>
+							</c:if>
 							</td>
-						</c:if>
 					</tr>
 					</c:forEach>
 				</tbody>
 			</table>
+			<c:if test="${isAdmin}">
 			<a href="${pageContext.request.contextPath }/support/support_notice_insertform" class="notice_management">Notice 관리</a>
+			</c:if>
 		</div>
 	</div>
 	<script>
@@ -144,14 +127,14 @@
 	<!-- 페이지네이션 시작 -->
 	<div class="pagination_wrap">
 		<nav class="pagination">
-			<ul>
+			<ul class="pagination_ul">
 				<%--
 					startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
 					&condition=${condition}&keyword=${encodedK}
 				 --%>
 				<c:if test="${startPageNum ne 1 }">
 					<li class="page-item">
-						<a class="page-link animate__animated" href="support_notice?pageNum=${startPageNum-1 }">이전</a>
+						<a href="support_notice?pageNum=${startPageNum-1 }">이전</a>
 					</li>
 				</c:if>
 				<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
@@ -164,7 +147,7 @@
 				 --%>
 				<c:if test="${endPageNum lt totalPageCount }">
 					<li class="page-item">
-						<a class="page-link animate__animated" href="support_notice?pageNum=${endPageNum+1 }">></a>
+						<a href="support_notice?pageNum=${endPageNum+1 }">></a>
 					</li>
 				</c:if>				
 			</ul>
