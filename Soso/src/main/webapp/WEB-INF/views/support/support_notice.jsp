@@ -102,7 +102,7 @@
 		
 							<td>
 							<c:if test="${isAdmin }">
-								<button data-num="${tmp.notice_num }"type="submit" id="deleteBtn">삭제</button>
+								<button data-num="${tmp.notice_num }"type="submit" class="delete-btn">삭제</button>
 							</c:if>
 							</td>
 					</tr>
@@ -115,14 +115,17 @@
 		</div>
 	</div>
 	<script>
-			document.querySelector("#deleteBtn").addEventListener("click", (e)=>{
+		document.querySelectorAll(".delete-btn").forEach((item)=>{
+			item.addEventListener("click", (e)=>{
 				e.preventDefault();
 				const isTrue = confirm("공지사항을 삭제하시겠습니까?")
 				if(isTrue){
-					const noticeNum=document.querySelector("#deleteBtn").getAttribute("data-num");
+					const noticeNum=e.target.getAttribute("data-num");
 					location.href="${pageContext.request.contextPath}/support/support_notice_delete?notice_num=" + noticeNum;
 				}
-			});
+			});	
+		});
+			
 	</script>
 	<!-- 페이지네이션 시작 -->
 	<div class="pagination_wrap">
