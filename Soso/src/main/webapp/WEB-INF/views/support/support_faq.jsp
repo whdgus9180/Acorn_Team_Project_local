@@ -159,7 +159,12 @@
 						<div class="detail_content">
 							<span style="line-height: 24px;">
 								<pre>${tmp.answer }</pre>
-								<a href="${pageContext.request.contextPath }/support/support_faq_updateform?num=${tmp.faq_num}">수정</a>
+								<c:if test="${isAdmin }">
+								<a href="${pageContext.request.contextPath }/support/support_faq_updateform?faq_num=${tmp.faq_num}">수정</a>
+								</c:if>
+								<c:if test="${isAdmin }">
+								<button type="submit" id="deleteBtn" data-num="${tmp.faq_num }">삭제</button>
+								</c:if>
 							</span>
 						</div>
 					</li>
