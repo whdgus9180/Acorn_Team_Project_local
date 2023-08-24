@@ -1,5 +1,5 @@
 @charset "UTF-8";
-.cafe_table #faqInsert{display: flex; justify-content: flex-end; cursor:pointer;}
+.cafe_table #faqInsert{float: right; cursor:pointer;}
 .cafe_table #faqInsert:hover, .cafe_table .qna_question a:hover, .cafe_table .qna_answer a:hover { font-weight:500; text-decoration: underline;}
 
 
@@ -19,6 +19,9 @@
 .cafe_table .qna_a {font-size:3rem; font-weight:100; color: rgb(166 223 170 / 89%);}
 .cafe_table #answer, .cafe_table #insertAnswer{ border-bottom: none;}
 .cafe_table .qna_question a, .cafe_table .qna_answer a {padding:1%; height: 100%;}
+.cafe_table .pagination{display:flex; justify-content: center;}
+.cafe_table .pagination li a{padding: 10px 20px;}
+.cafe_table .pagination li a:hover {color: rgb(226 148 148 / 92%); text-decoration: underline;}
 
 
 
