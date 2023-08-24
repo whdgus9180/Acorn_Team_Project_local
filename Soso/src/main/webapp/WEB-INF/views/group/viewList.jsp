@@ -76,7 +76,7 @@
                 </ul>
             </div>
         </div>
-        <div class="inner-wrap">
+        <div class="inner-wrapper">
         	<c:forEach var="tmp" items="${viewList}">
         		<div class="mate_content_list">
 	               <div class="mate_contents">
