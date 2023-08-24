@@ -9,18 +9,18 @@
 </head>
 <body>
 	<div class="cafe_table">
-				<a id="faqInsert" href="#">문의하기</a>
+				<a id="faqInsert">문의하기</a>
 			<c:choose>
 				<%-- 만약 list가 없으면  --%>
 				<c:when test="${empty list }">
 					<div id="emptyBox" name="emptyBox">문의사항이 없습니다.</div>
 				</c:when>
 				<c:otherwise>
-					 <table>
+					 <table class="altertable">
 				        <tbody>
 				            <c:forEach var="tmp" items="${list}">
 				                <tr>
-				                	<td>
+				                	<td class="q-answer">
 				                		<c:if test="${not empty tmp.a_answer }">
 								        	<div class="answer_end">답변 완료</div>
 								        </c:if>
@@ -32,8 +32,12 @@
 				                        <a class="q-title" href="#" data-content-id="content-${tmp.num}">${tmp.q_title}</a>
 				                    </td>
 				                    <td>${tmp.q_writer}</td>
-				                    <td>${tmp.regdate}</td>
-				                    <td></td>
+				                    <td style="text-align:center">${tmp.regdate}</td>
+				                    <td class="q-delete">
+				                       <c:if test="${dto.manager_id == sessionScope.id }">
+								        	<a href="${pageContext.request.contextPath}/group/faq/delete?num=${tmp.num}&group_num=${tmp.group_num}" id="delete">x</a>					        
+								        </c:if>
+				                    </td>
 				                </tr>
 				                <tr id="content-${tmp.num}" class="hidden-content">
 								    <td colspan="5">
@@ -45,17 +49,20 @@
 									        	<a href="${pageContext.request.contextPath}/group/faq/delete?num=${tmp.num}&group_num=${tmp.group_num}" id="delete">삭제</a>
 									        </c:if>
 										</div>
-								        <c:if test="${not empty tmp.a_answer }">
-								        	<div class="bookmate">B</div>
+										<div class="qna_answer">
+											<span class="qna_a">A</span>
+											<c:if test="${not empty tmp.a_answer }">
 								        	<pre name="answer" id="answer" readonly>${tmp.a_answer }</pre>
-								        </c:if>
+								        	</c:if>
+								        	<c:if test="${empty tmp.a_answer && dto.manager_id == sessionScope.id}">
+								        	<a href="${pageContext.request.contextPath}/group/answer/insertform?num=${tmp.num}" id="insertAnswer">답변 하기</a>
+								        	</c:if>
 								        <!-- session id과 manager id를 검증해서 조건부 출력 -->
-								        <c:if test="${dto.manager_id == sessionScope.id }">
-								        	<a href="${pageContext.request.contextPath}/group/faq/delete?num=${tmp.num}&group_num=${tmp.group_num}" id="delete">문의글 삭제</a>
-								        	<a href="${pageContext.request.contextPath}/group/answer/insertform?num=${tmp.num}" id="insertAnswer">답변</a>
-									        <a href="${pageContext.request.contextPath}/group/answer/updateform?num=${tmp.num}" id="updateAnswer" >답변 수정</a>
-								        	<a href="${pageContext.request.contextPath}/group/answer/delete?num=${tmp.num}&group_num=${tmp.group_num}" id="deleteAnswer">답변 삭제</a>						        
+								        <c:if test="${not empty tmp.a_answer && dto.manager_id == sessionScope.id }">
+								        	<a href="${pageContext.request.contextPath}/group/answer/updateform?num=${tmp.num}" id="updateAnswer" >수정</a>
+								        	<a href="${pageContext.request.contextPath}/group/answer/delete?num=${tmp.num}&group_num=${tmp.group_num}" id="deleteAnswer">삭제</a>						        
 								        </c:if>
+								       </div>
 								    </td>
 								</tr>
 				            </c:forEach>
@@ -88,6 +95,7 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
+
 		<!-- cafe-table의 end -->
 	    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script>

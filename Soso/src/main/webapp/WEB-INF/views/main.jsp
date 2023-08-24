@@ -6,6 +6,7 @@
 <html>
 <head>
 <title>/views/home.jsp</title>
+ 	<link rel="shortcut icon" type="image/x-icon" href="https://genfavicon.com/tmp/icon_7cacead7cd8483ca41a810db418dc8ab.ico">
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="${path }/resources/css/swiper-bundle.min.css" type="text/css">
     <link rel="stylesheet" href="${path }/resources/css/main.css" type="text/css">
