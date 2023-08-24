@@ -91,19 +91,19 @@
 			<div class="tab_section">
 			<ul class="tab_menu">
 				<li class="active">
-					<a href="${pageContext.request.contextPath }/support/support_faq">전체(${totalRow })</a>
+					<a href="${pageContext.request.contextPath }/support/support_faq?">전체(${categoryAllRow })</a>
 				</li>
 				<li class="">
-					<a href="${pageContext.request.contextPath }/support/support_faq_user">회원(${categoryOneRow })</a>
+					<a href="${pageContext.request.contextPath }/support/support_faq_user?category=1">회원(${categoryOneRow })</a>
 				</li>
 				<li class="">
-					<a href="${pageContext.request.contextPath }/support/support_faq_request">모임신청(${categoryTwoRow })</a>
+					<a href="${pageContext.request.contextPath }/support/support_faq_request?category=2">모임신청(${categoryTwoRow })</a>
 				</li>
 				<li class="">
-					<a href="${pageContext.request.contextPath }/support/support_faq_open">모임개설(${categoryThreeRow })</a>
+					<a href="${pageContext.request.contextPath }/support/support_faq_open?category=3">모임개설(${categoryThreeRow })</a>
 				</li>
 				<li class="">
-					<a href="${pageContext.request.contextPath }/support/support_faq_etc">기타(${categoryZeroRow })</a>
+					<a href="${pageContext.request.contextPath }/support/support_faq_etc?category=0">기타(${categoryZeroRow })</a>
 				</li>
 			</ul>
 			</div>
@@ -135,28 +135,21 @@
 			</div>
 		</div>
 	<div>
-		<nav>
-			<ul class="pagination">
-				<%--
-					startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
-					&condition=${condition}&keyword=${encodedK}
-				 --%>
+		<nav style="display:flex; justify-content:center; margin-bottom:30px;">
+			<ul class="pagination" style="display:flex; justify-content:space-around; width:30%">
 				<c:if test="${startPageNum ne 1 }">
 					<li class="page-item">
-						<a class="page-link animate__animated" href="list?pageNum=${startPageNum-1 }&condition=${condition}&keyword=${encodedK}">Prev</a>
+						<a class="page-link animate__animated" href="support_faq?pageNum=${startPageNum-1 }&condition=${condition}&keyword=${encodedK}">Prev</a>
 					</li>
 				</c:if>
 				<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
 					<li class="page-item ${pageNum eq i ? 'active' : '' }">
-						<a class="page-link animate__animated" href="list?pageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
+						<a class="page-link animate__animated" href="support_faq?pageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
 					</li>
 				</c:forEach>
-				<%--
-					마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
-				 --%>
 				<c:if test="${endPageNum lt totalPageCount }">
 					<li class="page-item">
-						<a class="page-link animate__animated" href="list?pageNum=${endPageNum+1 }&condition=${condition}&keyword=${encodedK}">Next</a>
+						<a class="page-link animate__animated" href="support_faq?pageNum=${endPageNum+1 }&condition=${condition}&keyword=${encodedK}">Next</a>
 					</li>
 				</c:if>				
 			</ul>

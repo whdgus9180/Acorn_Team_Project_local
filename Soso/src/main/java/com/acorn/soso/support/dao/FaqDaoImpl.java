@@ -16,8 +16,12 @@ public class FaqDaoImpl implements FaqDao{
 	
 	@Override
 	public List<FaqDto> getList(FaqDto dto) {
-		
 		return session.selectList("faq.getList", dto);
+	}
+	
+	@Override
+	public List<FaqDto> getListCategory(FaqDto dto) {
+		return session.selectList("faq.getListCategory", dto);
 	}
 
 	@Override
