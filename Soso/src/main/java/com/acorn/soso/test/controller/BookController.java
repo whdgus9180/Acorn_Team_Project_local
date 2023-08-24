@@ -22,8 +22,9 @@ import com.acorn.soso.test.service.BookService;
 public class BookController {
 	
 	@Autowired
-	private BookService service;
+	private BookService BookService;
 	
+	//받은 데이터를 json형태로 해서 받아낸다.
 	@ResponseBody
 	@RequestMapping("/test/addList")
 	public BookDto addList(BookDto dto) {
@@ -33,11 +34,10 @@ public class BookController {
 	@PostMapping("/test/saveBook")
 	public ResponseEntity<String> saveBook(@RequestBody List<BookDto> bookList) {
 	    try {
-	        for (BookDto dto : bookList) {
-	            service.saveBook(dto);
-	        }
-	        return ResponseEntity.ok("성공");
+	        BookService.saveBook(bookList);
+	        return ResponseEntity.ok("저장 성공!");
 	    } catch (Exception e) {
+	        e.printStackTrace();
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("저장 실패");
 	    }
 	}
@@ -51,7 +51,7 @@ public class BookController {
 	//책의 리스트를 얻기 위한 컨트롤러
 	@GetMapping("/test/bookTest")
 	public String bookList(Model model, HttpServletRequest request) {
-		service.getBookList(model, request);
+		BookService.getBookList(model, request);
 		return "test/bookTest";
 	}
 }

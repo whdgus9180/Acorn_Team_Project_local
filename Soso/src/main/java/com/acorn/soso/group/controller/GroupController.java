@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,6 +23,8 @@ import com.acorn.soso.group.dto.GroupFAQDto;
 import com.acorn.soso.group.dto.GroupReviewDto;
 import com.acorn.soso.group.service.GroupService;
 import com.acorn.soso.group_managing.service.GroupManagingService;
+import com.acorn.soso.test.dto.BookDto;
+import com.acorn.soso.test.service.BookService;
 
 @Controller
 public class GroupController {
@@ -34,6 +37,9 @@ public class GroupController {
 	
 	@Autowired
 	private GroupManagingService managingService;
+	
+	@Autowired
+	private BookService BookService;
 	
 	
 	//소모임의 문의 답변 delete(실제로는 update)
@@ -272,6 +278,7 @@ public class GroupController {
 	@PostMapping("/group/insert")
 	public String insert(GroupDto dto, HttpServletRequest request, HttpSession session) {
 		service.insert(dto, request, session);
+		
 		return "redirect:/group_managing/admin_main";
 	}
 	
