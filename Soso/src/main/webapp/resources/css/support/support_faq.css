@@ -2,7 +2,7 @@
 
 /* 메인 페이지 전체 레이아웃 */
 	.main_content{
-		margin: 100px auto 90px;
+		margin: 100px auto 40px;
 		box-sizing: border-box;
 		width: 100%;
 		max-width:1300px;

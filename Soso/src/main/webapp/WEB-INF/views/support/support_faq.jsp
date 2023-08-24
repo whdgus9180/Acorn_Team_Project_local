@@ -167,7 +167,14 @@
 			</ul>
 			</div>
 		
-		<a href="${pageContext.request.contextPath }/support/support_faq_insertform" class="faq_management">FAQ 관리</a>
+		<c:choose>
+		    <c:when test="${isAdmin}">
+		        <a href="${pageContext.request.contextPath }/support/support_faq_insertform" class="faq_management">FAQ 관리</a>
+		    </c:when>
+		    <c:otherwise>
+		        <!-- 해당 부분은 admin이 아닐 때의 처리 -->
+		    </c:otherwise>
+		</c:choose>
 		</div>
 		
 	</div>
