@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -11,7 +12,7 @@
 	<!-- <meta property="og:image" content="https://i.postimg.cc/wT1nG67v/bookmate-or-image.jpg" />  -->
 	<meta property="og:image" content="${path }/resources/images/main/bookmate_or_image.jpg" /> 
 	<meta property="og:description" content="함께하는 독서모임 , 북메이트" /> 
- 	<link rel="shortcut icon" type="image/x-icon" href="https://genfavicon.com/tmp/icon_7cacead7cd8483ca41a810db418dc8ab.ico">
+ 	<link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="${path }/resources/css/swiper-bundle.min.css" type="text/css">
     <link rel="stylesheet" href="${path }/resources/css/group_list.css" type="text/css">
@@ -56,14 +57,14 @@
             <h3 class="title black" data-aos="fade-up"
             data-aos-offset="300"
             data-aos-easing="ease-in-sine">인기 독서 모임</h3>
-            <div class="slide_btn">
+            <!-- <div class="slide_btn">
                 <div class="swiper-button-prev prev"></div>
                 <div class="swiper-button-next next"></div>
-            </div>
+            </div> -->
             <div class="mate_content">
-              <div class="inner-wrapper">
-	        	<c:forEach var="tmp" items="${viewList}" end="7">
-	       		<div class="mate_content_list">
+              <div class="inner-wrap">
+	        	<c:forEach var="tmp" items="${viewList}" end="2">
+	       		<div class="mate_content_list" style="min-width: 27%">
 	               <div class="mate_contents">
 	                   <a href="${pageContext.request.contextPath}/group/group_page?num=${tmp.num }">
 	                       <div class="mate_content_img">
