@@ -6,6 +6,11 @@
 <html>
 <head>
 <title>북메이트</title>
+	<meta property="og:title" content="북메이트" /> 
+	<!-- <meta property="og:url" content=" URL" /> -->
+	<!-- <meta property="og:image" content="https://i.postimg.cc/wT1nG67v/bookmate-or-image.jpg" />  -->
+	<meta property="og:image" content="${path }/resources/images/main/bookmate_or_image.jpg" /> 
+	<meta property="og:description" content="함께하는 독서모임 , 북메이트" /> 
  	<link rel="shortcut icon" type="image/x-icon" href="https://genfavicon.com/tmp/icon_7cacead7cd8483ca41a810db418dc8ab.ico">
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="${path }/resources/css/swiper-bundle.min.css" type="text/css">
@@ -56,7 +61,7 @@
                 <div class="swiper-button-next next"></div>
             </div>
             <div class="mate_content">
-            	        <div class="inner-wrapper">
+              <div class="inner-wrapper">
 	        	<c:forEach var="tmp" items="${viewList}" end="7">
 	       		<div class="mate_content_list">
 	               <div class="mate_contents">
@@ -102,23 +107,23 @@
 			                    배우고 성장하는 북클럽
                 </p>
                 <ul data-aos="fade-up"
-                data-aos-offset="400"
+                data-aos-offset="300"
                 data-aos-easing="ease-in-sine" class="circle">
                     <li>독서</li>
                     <li>모임</li>
                     <li>토론</li>
                 </ul>
                 <p data-aos="fade-up"
-                data-aos-offset="500"
+                data-aos-offset="300"
                 data-aos-easing="ease-in-sine" class="serif">
                 공동체 독서모임 연결 함께하는 독서 모임, <br>
                 배우고 성장하는 북클럽
                 </p>
             </div>
             <div data-aos="fade-up"
-            data-aos-offset="400"
+            data-aos-offset="300"
             data-aos-easing="ease-in-sine" class="button">
-                <a href="#" class="about-button">신청하기</a>
+                <a href="${pageContext.request.contextPath}/group_managing/user_main" class="about-button">신청하기</a>
             </div>
         </div>
     </section>
