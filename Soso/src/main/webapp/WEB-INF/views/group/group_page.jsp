@@ -65,18 +65,11 @@
 						<div class="hoverBox">
 							<p class="p1">&nbsp;</p>
 							<p class="p1">&nbsp;</p>
-							<p class="p2"><a href="${books.link }">책 보러가기</a></p>
+							<p class="p2"><a href="${books.link }">${books.title }</a></p>
 						</div>
 					</div>
 				  </c:forEach>
 				</div>
-				<c:forEach var="books" items="${booklist }">
-				<ul>
-					<li class="group_content_book_text">
-						📖 &nbsp;&nbsp; ${books.title }
-					</li>
-				</ul>
-				 </c:forEach>
             </div>
             </div>
 		</div>
