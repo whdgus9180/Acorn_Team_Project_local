@@ -174,9 +174,6 @@ public class GroupManagingController {
 	    int group_num = num;
         List<GroupManagingDto> mateList = groupManagingService.getMateList(group_num);
         // 각 사용자의 프로필 이미지 경로를 profile 속성으로 설정
-        for (GroupManagingDto user : mateList) {
-            user.setProfile("users/info");
-        }
         request.setAttribute("mateList", mateList);
 	    request.setAttribute("num", num);
 	    return mView;
