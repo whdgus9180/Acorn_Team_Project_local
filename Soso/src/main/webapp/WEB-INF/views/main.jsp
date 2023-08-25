@@ -6,8 +6,15 @@
 <html>
 <head>
 <title>북메이트</title>
+	<meta property="og:title" content="북메이트" /> 
+	<!-- <meta property="og:url" content=" URL" /> -->
+	<!-- <meta property="og:image" content="https://i.postimg.cc/wT1nG67v/bookmate-or-image.jpg" />  -->
+	<meta property="og:image" content="${path }/resources/images/main/bookmate_or_image.jpg" /> 
+	<meta property="og:description" content="함께하는 독서모임 , 북메이트" /> 
+ 	<link rel="shortcut icon" type="image/x-icon" href="https://genfavicon.com/tmp/icon_7cacead7cd8483ca41a810db418dc8ab.ico">
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="${path }/resources/css/swiper-bundle.min.css" type="text/css">
+    <link rel="stylesheet" href="${path }/resources/css/group_list.css" type="text/css">
     <link rel="stylesheet" href="${path }/resources/css/main.css" type="text/css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -53,167 +60,40 @@
                 <div class="swiper-button-prev prev"></div>
                 <div class="swiper-button-next next"></div>
             </div>
-            <ul class="popular_content_list">
-                <li>
-                    <div class="popular_content">
-                        <a href="#">
-                            <div class="popular_content_img">
-                                <a href="#">
-                                    <!-- 찜누르기전 -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none" class="bi bi-bookmark-heart" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"></path>
-                                    <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"></path>
-                                    </svg>
-                                    <!-- 찜누른후 -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" class="bi bi-bookmark-heart-fill" viewBox="0 0 16 16">
-                                        <path d="M2 15.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v13.5zM8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"/>
-                                    </svg>
-                                </a>
-                                <img src="${path }/resources/images/main/001.jpg" alt="테스트이미지">
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="popular_content_text">
-                                <p class="popular_content_title">마음 살롱 - 심리학자와 함께하는 독서 모임</p>
-                                <p>모임장 농담곰</p>
-                                <p class="popular_content_date">8월 11일ㆍ금요일ㆍ강남</p>
-                            </div>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="popular_content">
-                        <a href="#">
-                            <div class="popular_content_img">
-                                <img src="${path }/resources/images/main/002.jpg" alt="테스트이미지2">
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="popular_content_text">
-                                <p class="popular_content_title">마음 살롱 - 심리학자와 함께하는 독서 모임</p>
-                                <p>모임장 농담곰</p>
-                                <p class="popular_content_date">8월 11일ㆍ금요일ㆍ강남</p>
-                            </div>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="popular_content">
-                        <a href="#">
-                            <div class="popular_content_img">
-                                <img src="${path }/resources/images/main/003.jpg" alt="테스트이미지3">
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="popular_content_text">
-                                <p class="popular_content_title">마음 살롱 - 심리학자와 함께하는 독서 모임</p>
-                                <p>모임장 농담곰</p>
-                                <p class="popular_content_date">8월 11일ㆍ금요일ㆍ강남</p>
-                            </div>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="popular_content">
-                        <a href="#">
-                            <div class="popular_content_img">
-                                <img src="${path }/resources/images/main/004.jpg" alt="테스트이미지4">
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="popular_content_text">
-                                <p class="popular_content_title">마음 살롱 - 심리학자와 함께하는 독서 모임</p>
-                                <p>모임장 농담곰</p>
-                                <p class="popular_content_date">8월 11일ㆍ금요일ㆍ강남</p>
-                            </div>
-                        </a>
-                    </div>
-                </li> 
-                <li>
-                    <div class="popular_content">
-                        <a href="#">
-                            <div class="popular_content_img">
-                                <img src="${path }/resources/images/main/005.jpg" alt="테스트이미지5">
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="popular_content_text">
-                                <p class="popular_content_title">마음 살롱 - 심리학자와 함께하는 독서 모임</p>
-                                <p>모임장 농담곰</p>
-                                <p class="popular_content_date">8월 11일ㆍ금요일ㆍ강남</p>
-                            </div>
-                        </a>
-                    </div>
-                </li> 
-                <li>
-                    <div class="popular_content">
-                        <a href="#">
-                            <div class="popular_content_img">
-                                <img src="${path }/resources/images/main/006.jpg" alt="테스트이미지">
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="popular_content_text">
-                                <p class="popular_content_title">마음 살롱 - 심리학자와 함께하는 독서 모임</p>
-                                <p>모임장 농담곰</p>
-                                <p class="popular_content_date">8월 11일ㆍ금요일ㆍ강남</p>
-                            </div>
-                        </a>
-                    </div>
-                </li> 
-                <li>
-                    <div class="popular_content">
-                        <a href="#">
-                            <div class="popular_content_img">
-                                <img src="${path }/resources/images/main/007.jpg" alt="테스트이미지7">
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="popular_content_text">
-                                <p class="popular_content_title">마음 살롱 - 심리학자와 함께하는 독서 모임</p>
-                                <p>모임장 농담곰</p>
-                                <p class="popular_content_date">8월 11일ㆍ금요일ㆍ강남</p>
-                            </div>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="popular_content">
-                        <a href="#">
-                            <div class="popular_content_img">
-                                <img src="${path }/resources/images/main/008.jpg" alt="테스트이미지8">
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="popular_content_text">
-                                <p class="popular_content_title">마음 살롱 - 심리학자와 함께하는 독서 모임</p>
-                                <p>모임장 농담곰</p>
-                                <p class="popular_content_date">8월 11일ㆍ금요일ㆍ강남</p>
-                            </div>
-                        </a>
-                    </div>
-                </li> 
-                <li>
-                    <div class="popular_content">
-                        <a href="#">
-                            <div class="popular_content_img">
-                                <img src="${path }/resources/images/main/009.jpg" alt="테스트이미지9">
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="popular_content_text">
-                                <p class="popular_content_title">마음 살롱 - 심리학자와 함께하는 독서 모임</p>
-                                <p>모임장 농담곰</p>
-                                <p class="popular_content_date">8월 11일ㆍ금요일ㆍ강남</p>
-                            </div>
-                        </a>
-                    </div>
-                </li>
-            </ul>
+            <div class="mate_content">
+              <div class="inner-wrapper">
+	        	<c:forEach var="tmp" items="${viewList}" end="7">
+	       		<div class="mate_content_list">
+	               <div class="mate_contents">
+	                   <a href="${pageContext.request.contextPath}/group/group_page?num=${tmp.num }">
+	                       <div class="mate_content_img">
+	                           <img src="${pageContext.request.contextPath}${tmp.img_path}">
+	                           	<!-- 신청 마감일시 마감버튼 보이게 -->
+								<c:set var="now" value="<%= new java.util.Date() %>" />
+								<c:set var="nowDate"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd" /></c:set> 
+								<c:choose>
+									<c:when test="${tmp.deadline_dt lt nowDate}">
+										<div class="deadline_btn">마감</div>
+									</c:when>
+									<c:otherwise>
+									</c:otherwise>
+								</c:choose>	
+	                       </div>
+	                       <div class="mate_content_text">
+	                           <p class="mate_content_title">${tmp.name}</p>
+	                           <p>모임장 ${tmp.manager_id}</p>
+	                           <p>조회수 ${tmp.viewCount}</p>
+	                           <p class="mate_content_date">${tmp.meeting_time}ㆍ금요일ㆍ${tmp.meeting_loc }</p>
+	                       </div>
+	                   </a>
+	               </div>
+	           </div>
+	        	</c:forEach>
+	        </div>
+         </div>
+     
         </div>
     </section>
-
-
     <section class="about-us">
         <div class="inner-wrap">
             <h3 class="title black" data-aos="fade-up"
@@ -227,23 +107,23 @@
 			                    배우고 성장하는 북클럽
                 </p>
                 <ul data-aos="fade-up"
-                data-aos-offset="400"
+                data-aos-offset="300"
                 data-aos-easing="ease-in-sine" class="circle">
                     <li>독서</li>
                     <li>모임</li>
                     <li>토론</li>
                 </ul>
                 <p data-aos="fade-up"
-                data-aos-offset="500"
+                data-aos-offset="300"
                 data-aos-easing="ease-in-sine" class="serif">
                 공동체 독서모임 연결 함께하는 독서 모임, <br>
                 배우고 성장하는 북클럽
                 </p>
             </div>
             <div data-aos="fade-up"
-            data-aos-offset="400"
+            data-aos-offset="300"
             data-aos-easing="ease-in-sine" class="button">
-                <a href="#" class="about-button">신청하기</a>
+                <a href="${pageContext.request.contextPath}/group_managing/user_main" class="about-button">신청하기</a>
             </div>
         </div>
     </section>
