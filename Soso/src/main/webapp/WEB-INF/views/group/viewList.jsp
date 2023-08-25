@@ -66,7 +66,7 @@
 			        <li><a href="${pageContext.request.contextPath}/group/list?genre=2">인문</a></li>
 			        <li><a href="${pageContext.request.contextPath}/group/list?genre=3">경제</a></li>
 			        <li><a href="${pageContext.request.contextPath}/group/list?genre=4">문학</a></li>
-			        <li><a href="${pageContext.request.contextPath}/group/list?genre=5">기타</a></li>
+			        <li><a href="${pageContext.request.contextPath}/group/list?genre=0">기타</a></li>
                 </ul>
             </div>
             <div class="mate_content_theme">
