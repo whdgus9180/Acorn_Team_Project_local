@@ -72,27 +72,31 @@
                     <li>
                         <a href="${pageContext.request.contextPath}/group_managing/admin_main" class="mainNav">북메이트 관리</a>
                     </li>
-                    <li>
+                    <li class="nav_cs">
                         <a href="${pageContext.request.contextPath}/support/support_main" class="mainNav">고객센터</a>
                     </li>
-                </ul>
-            </nav>
-            <div class="member">
-            	<c:choose>
+                    <c:choose>
             		<c:when test="${empty sessionScope.id }">
-            			 <div class="memberWrap">
-		                    <a href="${pageContext.request.contextPath}/users/loginform" >로그인</a>
-		                    <a href="${pageContext.request.contextPath}/users/signup_form" >회원가입</a>
-		                </div>
+            		<li>
+            			<a href="${pageContext.request.contextPath}/users/loginform" class="mainNav" >로그인</a>
+            		</li>
+            		<li>
+            			<a href="${pageContext.request.contextPath}/users/signup_form" class="mainNav" >회원가입</a>
+            		</li>       
             		</c:when>
             		<c:otherwise>
-            			 <div class="memberWrap">
-		                    <a href="${pageContext.request.contextPath}/users/info" >마이 페이지</a>
-		                    <a href="${pageContext.request.contextPath}/group/jjim_list">북마크</a>
-		                    <a href="${pageContext.request.contextPath}/users/logout" >로그아웃</a>
-		                </div>
+            		<li>
+            			<a href="${pageContext.request.contextPath}/users/info" class="mainNav">마이 페이지</a>
+            		</li>
+            		<li>
+            			<a href="${pageContext.request.contextPath}/group/jjim_list" class="mainNav">북마크</a>
+            		</li>
+            		<li>
+            			<a href="${pageContext.request.contextPath}/users/logout" class="mainNav">로그아웃</a>
+            		</li>
             		</c:otherwise>
-            	</c:choose>
-            </div>
+            	</c:choose>           
+                </ul>	
+			 </nav>
         </div>
     </header>

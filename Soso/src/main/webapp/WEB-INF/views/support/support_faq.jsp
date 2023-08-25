@@ -163,7 +163,7 @@
 								<a href="${pageContext.request.contextPath }/support/support_faq_updateform?faq_num=${tmp.faq_num}">수정</a>
 								</c:if>
 								<c:if test="${isAdmin }">
-								<button type="submit" id="deleteBtn" data-num="${tmp.faq_num }">삭제</button>
+								<button type="submit" data-num="${tmp.faq_num}" class="delete-btn">삭제</button>
 								</c:if>
 							</span>
 						</div>
@@ -194,13 +194,15 @@
 				// 처음에는 숨겨두기
 				$(".detail_content").hide();
 			});
-			document.querySelector("#deleteBtn").addEventListener("click", (e)=>{
-				e.preventDefault();
-				const isTrue = confirm("질문을 삭제하시겠습니까?")
-				if(isTrue){
-					const faqNum=document.querySelector("#deleteBtn").getAttribute("data-num");
-					location.href="${pageContext.request.contextPath}/support/support_faq_delete?faq_num=" + faqNum;
-				}
+			document.querySelectorAll(".delete-btn").forEach((item)=>{
+				item.addEventListener("click", (e)=>{
+					e.preventDefault();
+					const isTrue = confirm("질문을 삭제하시겠습니까?")
+					if(isTrue){
+						const faqNum=e.target.getAttribute("data-num");
+						location.href="${pageContext.request.contextPath}/support/support_faq_delete?faq_num=" + faqNum;
+					}
+				});
 			});
 	</script>
 

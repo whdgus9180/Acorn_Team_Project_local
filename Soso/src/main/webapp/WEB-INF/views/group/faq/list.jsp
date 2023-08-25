@@ -9,14 +9,14 @@
 </head>
 <body>
 	<div class="cafe_table">
-				<a id="faqInsert">문의하기</a>
+		<a id="faqInsert">문의하기</a>
 			<c:choose>
-				<%-- 만약 list가 없으면  --%>
 				<c:when test="${empty list }">
 					<div id="emptyBox" name="emptyBox">문의사항이 없습니다.</div>
 				</c:when>
 				<c:otherwise>
-					 <table class="altertable">
+					<div class="altertable">
+					 <table>
 				        <tbody>
 				            <c:forEach var="tmp" items="${list}">
 				                <tr>
@@ -57,7 +57,6 @@
 								        	<c:if test="${empty tmp.a_answer && dto.manager_id == sessionScope.id}">
 								        	<a href="${pageContext.request.contextPath}/group/answer/insertform?num=${tmp.num}" id="insertAnswer">답변 하기</a>
 								        	</c:if>
-								        <!-- session id과 manager id를 검증해서 조건부 출력 -->
 								        <c:if test="${not empty tmp.a_answer && dto.manager_id == sessionScope.id }">
 								        	<a href="${pageContext.request.contextPath}/group/answer/updateform?num=${tmp.num}" id="updateAnswer" >수정</a>
 								        	<a href="${pageContext.request.contextPath}/group/answer/delete?num=${tmp.num}&group_num=${tmp.group_num}" id="deleteAnswer">삭제</a>						        
@@ -70,9 +69,6 @@
 				    </table>
 					<br />
 						<ul class="pagination">
-							<%--
-								startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
-							 --%>
 							<c:if test="${startPageNum ne 1 }">
 								<li class="page-item">
 									<a class="page-link animate__animated" href=${pageContext.request.contextPath}/group/faq/list?num=${num }&pageNum=${startPageNum-1 }">Prev</a>
@@ -83,20 +79,16 @@
 									<a id="nowPage" class="page-link animate__animated" href="${pageContext.request.contextPath}/group/faq/list?num=${num }&pageNum=${i }" data-page-num=${i }>${i }</a>
 								</li>
 							</c:forEach>
-							<%--
-								마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
-							 --%>
 							<c:if test="${endPageNum lt totalPageCount }">
 								<li class="page-item">
 									<a class="page-link animate__animated" href="${pageContext.request.contextPath}/group/faq/list?num=${num }&pageNum=${endPageNum+1 }">Next</a>
 								</li>
 							</c:if>				
 						</ul>
+					</div>
 				</c:otherwise>
 			</c:choose>
 		</div>
-
-		<!-- cafe-table의 end -->
 	    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script>
 			
