@@ -54,25 +54,17 @@
 		  	<div class="group_content_book">
 	            <h2 class="title black">이 모임에서는 이런 책들을 읽어요</h2>
 				<div class="group_content_book_list">
-					<ul>
-						<li>
-							<div class="group_content_book_img">
-								<a href=""><img src="${path }/resources/images/sub/book_cover1.png"/></a>
-							</div>
-							<div class="group_content_book_text">
-								<h5 class="">책 이름1</h5>
-								<p class="">여기에 책 설명이 출력될 예정입니다.</p>
-							</div>
-						</li>
-						<li>
-							<div class="group_content_book_img">
-								<a href=""><img src="${path }/resources/images/sub/book_cover2.png"/></a>
-							</div>
-							<div class="group_content_book_text">
-								<h5 class="">책 이름1</h5>
-								<p class="">여기에 책 설명이 출력될 예정입니다.</p>
-							</div>
-						</li>
+					<ul style="overflow : auto;">
+						<c:forEach var="books" items="${booklist }">
+							<li style="border : 1px solid black; margin : 1rem">
+								<div class="group_content_book_img" style="width:250px; height:250px;">
+									<a href="${books.link }"><img src="${books.image }"/></a>
+								</div>
+								<div class="group_content_book_text">
+									<h5 class="">${books.title }</h5>
+								</div>
+							</li>
+						</c:forEach>
 					</ul>
 				</div>
             </div>

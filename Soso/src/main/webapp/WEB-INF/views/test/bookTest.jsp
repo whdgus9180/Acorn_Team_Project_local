@@ -20,7 +20,6 @@
 					<td><a href="${tmp.link }">${tmp.title }</a></td>
 					<td>
 	                     <form class="addForm" action="${pageContext.request.contextPath}/test/addList">
-			                <input type="text" name="group_num" value="${tmp.group_num}" hidden />
 			                <input type="text" name="title" value="${tmp.title}" hidden />
 			                <input type="text" name="link" value="${tmp.link}" hidden />
 			                <input type="text" name="image" value="${tmp.image}" hidden />
@@ -37,6 +36,9 @@
 	</body>
 	<script>
 	    const booklist = [];
+	    
+		const urlParams = new URLSearchParams(window.location.search);
+		const num = urlParams.get('num');
 	
 	    $(document).ready(function() {
 	        $(".addBtn").on("click", function(e) {
@@ -56,7 +58,7 @@
 	            const description = row.find("input[name='description']").val();
 				//해당 데이터를 json 형식으로 담고
 	            const bookInfo = {
-	                group_num: group_num,
+	                group_num: num,
 	                title: title,
 	                link: link,
 	                image: image,

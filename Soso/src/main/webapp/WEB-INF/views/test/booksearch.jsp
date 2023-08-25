@@ -23,6 +23,10 @@
     <div id="Parse_Area"gt;lt;></div>
 
 	<script>
+	
+	const urlParams = new URLSearchParams(window.location.search);
+	const num = urlParams.get('num');
+	
 	//ajax로 페이지 전환 없이 검색결과 표시
     function performSearch() {
         var searchValue = $("#search").val();
@@ -30,7 +34,8 @@
             type: "GET",
             url: "${pageContext.request.contextPath}/test/bookTest",
             data: {
-                search: searchValue
+                search: searchValue,
+                group_num : num
             },
             dataType: "text",
             error: function () {
