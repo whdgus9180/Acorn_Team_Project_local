@@ -322,7 +322,7 @@ public class GroupServiceImpl implements GroupService{
 	      //원본 파일명 -> 저장할 파일 이름 만들기위해서 사용됨
 	      String orgFileName = image.getOriginalFilename();
 	      // webapp/upload 폴더 까지의 실제 경로(서버의 파일 시스템 상에서의 경로)
-	      String realPath = request.getServletContext().getRealPath("/resources/upload");
+	      String realPath = fileLocation;
 	      //db 에 저장할 저장할 파일의 상세 경로
 	      String filePath = realPath + File.separator;
 	      //디렉토리를 만들 파일 객체 생성
@@ -352,7 +352,7 @@ public class GroupServiceImpl implements GroupService{
 	      //-> 추가할 것 : imagePath 만 추가로 담아주면 된다.
 	      //-> num, title, caption : db 에 추가하면서 자동으로 들어감
 	      //imagePath 만 저장해주면 됨
-	     dto.setImg_path("/resources/upload/" + saveFileName);
+	     dto.setImg_path("/group/images/" + saveFileName);
 		dao.update(dto);
 	}
 
