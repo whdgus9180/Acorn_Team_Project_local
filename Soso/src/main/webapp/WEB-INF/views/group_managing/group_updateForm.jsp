@@ -151,6 +151,8 @@
 				<button type="submit">수정</button>
 				<a style="background-color: black; color:white" class="btn mt-3" 
 					href="${pageContext.request.contextPath}/group_managing/group_delete?num=${dto.num}">해산하기</a>
+				<a style="background-color: black; color:white; margin-left:1rem;" class="btn mt-3" 
+					href="${pageContext.request.contextPath}/test/booksearch?num=${dto.num}">책 등록하기</a>
 			</div>
 			<!-- db에 저장하기 위한 이미지 경로 값 -->
 			<input type="hidden" name="img_path" value="${ dto.img_path }"/>

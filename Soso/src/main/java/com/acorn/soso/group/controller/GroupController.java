@@ -1,5 +1,6 @@
 package com.acorn.soso.group.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -228,6 +229,11 @@ public class GroupController {
 			//소모임의 가입 신청 여부를 가져온다.
 			service.knowJoin(request);		
 		}
+		
+		//책 DB에 저장을 바탕으로 책 리스트를 출력한다.
+		List<BookDto> bookList = new ArrayList<BookDto>();
+		BookService.bookList(group_num, model);
+		
 		model.addAttribute("jjimCount", service.jjimCount(request));
 		return "group/group_page";
 

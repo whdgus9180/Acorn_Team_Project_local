@@ -4,8 +4,13 @@
 <mapper namespace="book">
     <insert id="saveBook" parameterType="bookDto">
         INSERT INTO BOOK_TB
-        (title, link, image, isbn, description)
+        (group_num, title, link, image, isbn, description)
         VALUES
-        (#{title}, #{link}, #{image}, #{isbn}, #{description})
+        (#{group_num}, #{title}, #{link}, #{image}, #{isbn}, #{description})
     </insert>
+    <select id="bookList" parameterType="int" resultType="bookDto">
+    	SELECT title, link, image, description
+    	FROM BOOK_TB
+    	WHERE group_num = #{group_num}
+    </select>
 </mapper>

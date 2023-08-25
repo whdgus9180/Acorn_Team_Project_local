@@ -16,4 +16,7 @@ public interface BookService {
 	
 	//책을 임시로 DB에 저장
 	public void saveBook(@RequestBody List<BookDto> bookList);
+	
+	//책 리스트 불러오기
+	public void bookList(int group_num, Model model);
 }

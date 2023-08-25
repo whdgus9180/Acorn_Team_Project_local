@@ -99,4 +99,11 @@ public class BookServiceImpl implements BookService{
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public void bookList(int group_num, Model model) {
+		List<BookDto> booklist = bookDao.bookList(group_num);
+		model.addAttribute("booklist", booklist);
+		
+	}
 }
