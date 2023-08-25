@@ -13,6 +13,7 @@
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/groupfaq.css" />
 	<link rel="stylesheet" href="${path }/resources/css/group_page.css" type="text/css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/navbar_c.jsp">
@@ -50,28 +51,35 @@
 		</div>
 		<!-- 책 리스트 -->
 		 <div class="group_content_book_bg">
-		  <div class="inner-wrapper">
-		  	<div class="group_content_book">
-	            <h2 class="title black">이 모임에서는 이런 책들을 읽어요</h2>
+		  <div class="inner-wrap">
+		  	<h2 class="title black">이 모임에서는 이런 책들을 읽어요</h2>
+		  	</div>
+		  	<div class="inner-wrap">
+		  	<div class="group_content_book"> 
 				<div class="group_content_book_list">
-					<ul style="overflow : auto;">
-						<c:forEach var="books" items="${booklist }">
-							<li style="border : 1px solid black; margin : 1rem">
-								<div class="group_content_book_img" style="width:250px; height:250px;">
-									<a href="${books.link }"><img src="${books.image }"/></a>
-								</div>
-								<div class="group_content_book_text">
-									<h5 class="">${books.title }</h5>
-								</div>
-							</li>
-						</c:forEach>
-					</ul>
+				<c:forEach var="books" items="${booklist }">
+					<div class="group_content_book_lists event">
+						<div class="group_content_book_img">
+							<img src="${books.image }"/>
+						</div>
+						<div class="hoverBox">
+							<p class="p1">&nbsp;</p>
+							<p class="p1">&nbsp;</p>
+							<p class="p2"><a href="${books.link }">책 보러가기</a></p>
+						</div>
+					</div>
+				  </c:forEach>
 				</div>
+				<c:forEach var="books" items="${booklist }">
+				<ul>
+					<li class="group_content_book_text">
+						📖 &nbsp;&nbsp; ${books.title }
+					</li>
+				</ul>
+				 </c:forEach>
             </div>
-		  </div>
+            </div>
 		</div>
-
-
 		<!-- 참석후기 -->
 		<div class="group_review" >
 			<div class="inner-wrap">
