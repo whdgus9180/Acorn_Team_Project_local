@@ -1,5 +1,7 @@
 package com.acorn.soso.test.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,5 +17,10 @@ public class BookDaoImpl implements BookDao{
 	@Override
 	public void saveBook(BookDto dto) {
 		session.insert("book.saveBook", dto);
+	}
+
+	@Override
+	public List<BookDto> bookList(int group_num) {
+		return session.selectList("book.bookList", group_num);
 	}
 }

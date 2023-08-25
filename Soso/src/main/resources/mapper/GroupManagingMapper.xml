@@ -94,7 +94,7 @@
    	</select>
    	<!-- 소모임 커뮤니티에서 소모임에 가입된 인원 리스트 불러오기 -->
 	<select id="getMateList" parameterType="int" resultType="groupManagingDto">
-	    SELECT group_tb.img_path, group_join_tb.user_id, group_join_tb.group_num, users.id
+	    SELECT group_tb.img_path, group_join_tb.user_id, group_join_tb.group_num, users.id, profile
 	    FROM group_tb
 	    JOIN group_join_tb ON group_tb.num = group_join_tb.group_num
 	    JOIN users ON group_join_tb.user_id = users.id
