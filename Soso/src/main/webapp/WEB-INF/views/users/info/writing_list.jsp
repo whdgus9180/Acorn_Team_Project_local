@@ -20,7 +20,7 @@
 				<tr>
 					<td>${tmp.group_num}</td>
 					<td>
-						<a href="${pageContext.request.contextPath}/cafe/detail?comu_num=${tmp.num}">${tmp.title }</a>
+						<a href="${pageContext.request.contextPath}/cafe/detail?comu_num=${tmp.num}&group_num=${tmp.group_num}">${tmp.title }</a>
 					</td>
 					<td>${tmp.regdate }</td>
 				</tr>
