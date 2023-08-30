@@ -58,7 +58,12 @@
 				<c:forEach var="tmp" items="${list }">
 					<li class="dropbox">
 						<div class="title_area">
-							<span class="category">${tmp.category}</span>
+							<c:choose>
+								<c:when test="${tmp.category == 1}">회원</c:when>
+								<c:when test="${tmp.category == 2}">모임신청</c:when>
+								<c:when test="${tmp.category == 3}">모임개설</c:when>
+								<c:when test="${tmp.category == 0}">기타</c:when>
+							</c:choose>
 							<a href="${pageContext.request.contextPath }/support/support_faq">
 								<p class="detail">${tmp.question }</p>
 							</a>
