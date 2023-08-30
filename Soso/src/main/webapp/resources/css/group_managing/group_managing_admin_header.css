@@ -51,7 +51,7 @@ a{
     font-size: 20px;
 }
 
-#menus div:nth-child(1) a{
+#menus .active{
     font-size: 20px;
     font-weight: 600;
     color: rgb(65, 75, 178);
