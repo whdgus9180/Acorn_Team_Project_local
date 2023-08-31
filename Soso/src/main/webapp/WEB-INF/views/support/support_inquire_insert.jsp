@@ -10,7 +10,7 @@
 </head>
 <body>
 	<script>
-		alert("문의가 등록 되었습니다.");
+		alert("문의주신 내용이 접수 되었습니다.");
 		location.href="${pageContext.request.contextPath}/support/support_inquire_MyInquire";
 	</script>
 </body>

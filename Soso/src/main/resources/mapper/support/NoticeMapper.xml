@@ -8,7 +8,7 @@
 		FROM
 			(SELECT result1.*, ROWNUM AS rnum
 			FROM
-				(SELECT notice_num, category,title,content,regdate
+				(SELECT notice_num, category,title,content,To_CHAR(regdate, 'YY.MM.DD') as regdate
 				FROM NOTICE_TB
 				ORDER BY notice_num desc) result1)
 		<![CDATA[ 

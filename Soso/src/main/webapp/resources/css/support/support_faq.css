@@ -145,9 +145,7 @@
 		vertical-align: middle;
 		font-size:16px;
 	}
-	.dropbox .title_area .category:hover{
-		border-bottom: 1px solid black;
-	}
+	
 	.dropbox .title_area .detail{
 		width: 800px;
 		font-weight: normal;
