@@ -5,7 +5,7 @@
 	<select id="getList" parameterType="String" resultType="inquireDto">
 		SELECT *
 		FROM CS_TB
-		WHERE writer = #{id}
+		where writer = #{id}
 		ORDER BY cs_num DESC
 	</select>
 	

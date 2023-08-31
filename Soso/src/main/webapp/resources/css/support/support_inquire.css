@@ -230,7 +230,7 @@ label {
    border: 1px solid #d8d8d8;
    background-color: #fff;
 }
-.area_form input.btn_submit {
+.area_form .btn_submit {
     width: 240px;
     height: 60px;
     margin: 0 auto;

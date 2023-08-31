@@ -97,7 +97,7 @@
 	h3.title{
 		font-size: 20px;
 	}
-	.notice{
+	table .notice{
 		margin-top: 16px;
 	    margin-bottom: 50px;
 	    border-top: 2px solid #333;
@@ -106,25 +106,42 @@
 		width: 100%;
 	    border-collapse: collapse;
 	    table-layout: fixed;
-	    border-bottom: 1px solid #d8d8d8;
 	}
+
 	table th {
 	    padding: 22px 0;
-	    background-color: #f7f7f7;
 	    font-size: 16px;
 	    font-weight: bold;
+	    background-color: #f7f7f7;
+	}
+	table tbody{
+		border-bottom: 1px solid #d8d8d8;
+	}
+	table td {
+		box-sizing: border-box;
+		text-align: center;
+		padding: 25px 0 ;
+	}
+	table td.title{
+		text-align:left;
 	}
 	table thead {
     	border-bottom: 1px solid #d8d8d8;
 	}
+	table tbody tr:first-child {
+    	border-top: none;
+	}
+	table tbody tr {
+	    border-top: 1px solid #e4e4e4;
+	}
 	th.category{
-		width: 140px;
+		width: 180px;
 	}
 	th.title{
-		width: 880px;
+		width: 900px;
 	}
 	th.date{
-		width: 140px;
+		width: 200px;
 	}
 	/*관리 버튼 (admin 계정일때만 보임)*/
 	.notice_management{
