@@ -73,7 +73,7 @@
 							</c:choose>
 						</td>
 						
-						<td>
+						<td class="title">
 						<a href="${pageContext.request.contextPath }/support/support_notice_detail?notice_num=${tmp.notice_num}">${tmp.title }</a>
 						</td>
 						<td>${tmp.regdate }</td>
