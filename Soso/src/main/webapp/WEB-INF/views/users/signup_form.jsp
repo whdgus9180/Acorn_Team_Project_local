@@ -35,7 +35,7 @@
 					<input class="form-control" type="password" name="pwd" id="pwd" /> 
 					<button class="btn btn-outline-gray bi-eye-slash" type="button" id="openpwd"></button>
 				</div> 
-				<div class="invalid-feedback" id="pwd-feedback">최소 8자 이상으로 문자와 숫자, 특수 문자를 각각 하나 이상 조합하세요.</div>
+				<div class="invalid-feedback" id="pwd-feedback">최소 8자 이상, 20글자 이하로 문자와 숫자, 특수 문자를 각각 하나 이상 조합하세요.</div>
 			</div>
 			<div>
 				<label class="control-label" for="pwd2">비밀번호 확인</label>
@@ -248,7 +248,7 @@ QR코드 등록 정보:삭제 시점으로부터6개월 보관
 	   	//비밀번호 입력란과 비밀번호 확인란에 입력했을때 실행할 함수 등록(다중선택)
 	   	$("#pwd").on("input", () => {
 		  const pwd = $("#pwd").val();
-		  const reg = /^(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+		  const reg = /^(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,20}$/;
 		  isPwdValid = reg.test(pwd);
 		  
 		  if (pwd !== '') {
