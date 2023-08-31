@@ -20,6 +20,7 @@
 		<div class="admin_container">
 		<div id="admin_header">
 			<div class="title">Kicked Member</div>
+			<div class="group_name">${dto.name}</div>
 		</div>
 		<div id="menus">
 			<div><a href="${pageContext.request.contextPath}/group_managing/memberList?group_num=${group_num}">참여 중</a></div>

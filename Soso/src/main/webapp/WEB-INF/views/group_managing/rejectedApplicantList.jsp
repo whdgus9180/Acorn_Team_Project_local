@@ -19,6 +19,7 @@
 		<div class="admin_container">
 		<div id="admin_header">
 			<div class="title">Rejected Applicant</div>
+			<div class="group_name">${dto.name}</div>
 		</div>
 		<div id="menus">
 			<div><a href="${pageContext.request.contextPath}/group_managing/applicantList?group_num=${group_num}">신청 중</a></div>
