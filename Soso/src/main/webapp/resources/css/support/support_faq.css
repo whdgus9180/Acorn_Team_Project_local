@@ -121,7 +121,7 @@
 		margin: 20px 0 20px;
 	}
 	.tab_content ul li{
-		border-bottom: 1px solid gray;
+		border-bottom: 1px solid #d8d8d8;
 	}
 	.dropbox{
 		box-sizing: border-box;
@@ -143,7 +143,10 @@
 		display: inline-block;
 		text-align: center;
 		vertical-align: middle;
-		font-size:20px;
+		font-size:16px;
+	}
+	.dropbox .title_area .category:hover{
+		border-bottom: 1px solid black;
 	}
 	.dropbox .title_area .detail{
 		width: 800px;

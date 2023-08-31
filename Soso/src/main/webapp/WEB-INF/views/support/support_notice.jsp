@@ -7,20 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>/support_notice</title>
-<style>
-	.notice_management{
-		width: 240px;
-	    height: 60px;
-	    margin: 0 auto;
-	    display: block;
-	    border: 1px solid gray;
-	    border-radius: 30px;
-	    background-color: gray;
-	    color: white;
-	    font-size: 18px;
-	    text-align: center;
-	}
-</style>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/support/support_notice.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" type="text/css">
@@ -63,23 +50,20 @@
 		</li>
 	</ul>
 	<!-- 메인 메뉴바 끝 -->
-	<div class="container">
+	<div class="content_wrap">
 		<div class="main_content">
-			<h3 class="faq">공지사항</h3>
-			<table class="table">
-				<thead class="table-light">
+			<h3 class="title">공지사항</h3>
+			<table class="notice">
+				<thead>
 					<tr>
-						<th>번호</th>
-						<th>분류</th>
-						<th>제목</th>
-						<th>작성일</th>
+						<th class="category">분류</th>
+						<th class="title">제목</th>
+						<th class="date">작성일</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="tmp" items="${notice_list }">
 					<tr>
-						<td>${tmp.notice_num }</td>
-						
 						<td>
 							<c:choose>
 								<c:when test="${tmp.category == 1}">공지</c:when>
@@ -89,7 +73,7 @@
 							</c:choose>
 						</td>
 						
-						<td>
+						<td class="title">
 						<a href="${pageContext.request.contextPath }/support/support_notice_detail?notice_num=${tmp.notice_num}">${tmp.title }</a>
 						</td>
 						<td>${tmp.regdate }</td>

@@ -187,6 +187,7 @@ public class GroupManagingController {
 			throw new DontEqualException("개설하지 않은 소모임의 가입자 정보를 불러올 수 없습니다!");
 		}
 		service.getApplicantList(group_num, request);
+		request.setAttribute("dto", dto);
 		request.setAttribute("group_num", group_num);
 		return "group_managing/applicantList";
 	}
@@ -194,6 +195,8 @@ public class GroupManagingController {
 	@GetMapping("/group_managing/memberList")
 	public String group_memberList(int group_num, HttpServletRequest request) {
 		service.getMemberList(group_num, request);
+		GroupDto dto = service.getGroupData(group_num, request);
+		request.setAttribute("dto", dto);
 		request.setAttribute("group_num", group_num);
 		return "group_managing/memberList";
 	}
@@ -201,6 +204,8 @@ public class GroupManagingController {
 	@GetMapping("/group_managing/kickedMemberList")
 	public String group_kickedMemberList(int group_num, HttpServletRequest request) {
 		service.getKickedMemberList(group_num, request);
+		GroupDto dto = service.getGroupData(group_num, request);
+		request.setAttribute("dto", dto);
 		request.setAttribute("group_num", group_num);
 		return "group_managing/kickedMemberList";
 	}
@@ -208,6 +213,8 @@ public class GroupManagingController {
 	@GetMapping("/group_managing/rejectedApplicantList")
 	public String group_rejectedApplicantList(int group_num, HttpServletRequest request) {
 		service.getRejectedApplicantList(group_num, request);
+		GroupDto dto = service.getGroupData(group_num, request);
+		request.setAttribute("dto", dto);
 		request.setAttribute("group_num", group_num);
 		return "group_managing/rejectedApplicantList";
 	}

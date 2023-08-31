@@ -13,15 +13,16 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/navbar_c.jsp">
-        <jsp:param value="login" name="current"/>
+        <jsp:param value="onboard" name="current"/>
     </jsp:include>
   <section>
   			<div class="admin_container">
 		<div id="admin_header">
 			<div class="title">Applicant</div>
+			<div class="group_name">${dto.name}</div>
 		</div>
 		<div id="menus">
-			<div><a href="${pageContext.request.contextPath}/group_managing/applicantList?group_num=${group_num}">신청 중</a></div>
+			<div><a class="active" href="${pageContext.request.contextPath}/group_managing/applicantList?group_num=${group_num}">신청 중</a></div>
 			<div><a href="${pageContext.request.contextPath}/group_managing/rejectedApplicantList?group_num=${group_num}">거절</a></div>
 		</div>
 		<div class="wrapper">
@@ -34,7 +35,7 @@
 						<div class="card-right">
 							<div id="card-title">${tmp.user_id}</div>
 							<div id="card-date">가입 신청일 : ${tmp.request_dt}</div>
-							<div id="card-link"><a href="${pageContext.request.contextPath}/cafe/list">회원 정보 보기</a></div>
+							<div id="card-link" style="text-decoration:none">자기 소개 : ${tmp.intro }</div>
 							<div id="card-buttons">
 								<div><a href="${pageContext.request.contextPath}/group_managing/joinApprove?num=${tmp.num}&group_num=${group_num}">가입 승인</a></div>
 								<div class="card-alert-button${tmp.num}"><a href="#">가입 거절</a></div>

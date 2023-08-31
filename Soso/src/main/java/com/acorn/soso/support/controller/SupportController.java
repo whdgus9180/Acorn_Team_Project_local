@@ -151,10 +151,10 @@ public class SupportController {
 		return "support/support_inquire";
 	}
 	
-	@PostMapping("/support/support_inquire_submit")
-	public String support_inquire_submit(InquireDto dto) {
+	@PostMapping("/support/support_inquire_insert")
+	public String support_inquire_insert(InquireDto dto) {
 		inquireService.insert(dto);
-		return "support/support_inquire_MyInquire";
+		return "support/support_inquire_insert";
 	}
 	@GetMapping("/support/support_inquire_MyInquire")
 	public String support_inquire_MyInquire(HttpSession session, Model model) {
