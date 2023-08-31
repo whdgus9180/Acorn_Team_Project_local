@@ -21,6 +21,7 @@
 		<div class="admin_container">
 		<div id="admin_header">
 			<div class="title">Member</div>
+			<div class="group_name">${dto.name}</div>
 		</div>
 		<div id="menus">
 			<div><a class="active" href="${pageContext.request.contextPath}/group_managing/memberList?group_num=${group_num}">참여 중</a></div>
