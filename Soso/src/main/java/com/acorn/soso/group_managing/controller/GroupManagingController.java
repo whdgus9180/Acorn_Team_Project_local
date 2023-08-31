@@ -76,9 +76,15 @@ public class GroupManagingController {
 		if(!dto.getManager_id().equals(manager_id)) {
 			throw new DontEqualException("개설하지 않은 소모임 가입 신청자에 대해 접근할 수 없습니다!");
 		}
-		service.joinApprove(num, group_num);
-		request.setAttribute("group_num", group_num);
-		return "group_managing/joinApprove";
+		if(dto.getNow_people() == dto.getMax_people()) {
+			request.setAttribute("group_num", group_num);
+			return "group_managing/joinApproveRejected";
+		} else {
+			service.joinApprove(num, group_num);
+			request.setAttribute("group_num", group_num);
+			return "group_managing/joinApprove";
+		}
+		
 	}
 	
 	@GetMapping("/group_managing/user_main")

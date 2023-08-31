@@ -38,7 +38,7 @@
 							<div id="card-link" style="text-decoration:none">자기 소개 : ${tmp.intro }</div>
 							<div id="card-buttons">
 								<div><a href="${pageContext.request.contextPath}/group_managing/joinApprove?num=${tmp.num}&group_num=${group_num}">가입 승인</a></div>
-								<div class="card-alert-button${tmp.num}"><a href="#">가입 거절</a></div>
+								<div class="card-alert-button${tmp.num}"><a>가입 거절</a></div>
 							</div>
 						</div>
 						<script>
