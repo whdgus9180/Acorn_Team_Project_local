@@ -19,6 +19,8 @@ public class UsersInfoDto {
 	private String regdate;
 	private int group_num;
 	
+	private int cs_num;
+	
 	private int startRowNum;
 	private int endRowNum;
 	private int prevNum;  //이전글의 글번호
