@@ -36,7 +36,7 @@
 						<div class="card-right">
 							<div id="card-title">${tmp.user_id}</div>
 							<div id="card-date">소모임 추방일 : ${tmp.kick_dt}</div>
-							<div id="card-link"><a class="link" href="${pageContext.request.contextPath}/cafe/list">활동 내역 보기</a></div>
+							<div id="card-link"><a class="link" href="${pageContext.request.contextPath}/group_managing/memberInfo?num=${tmp.num}&group_num=${group_num}">활동 내역 보기</a></div>
 						</div>
 					</div>
 				</div>
