@@ -178,7 +178,6 @@
 		    $("#insertComment").submit();
 		  });
 	
-	
 		//클라이언트가 로그인 했는지 여부
 		let isLogin=${ not empty id };
 		document.querySelector(".insert-form")
