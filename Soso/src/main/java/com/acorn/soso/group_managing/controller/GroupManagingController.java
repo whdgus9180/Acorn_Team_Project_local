@@ -76,9 +76,15 @@ public class GroupManagingController {
 		if(!dto.getManager_id().equals(manager_id)) {
 			throw new DontEqualException("개설하지 않은 소모임 가입 신청자에 대해 접근할 수 없습니다!");
 		}
-		service.joinApprove(num, group_num);
-		request.setAttribute("group_num", group_num);
-		return "group_managing/joinApprove";
+		if(dto.getNow_people() == dto.getMax_people()) {
+			request.setAttribute("group_num", group_num);
+			return "group_managing/joinApproveRejected";
+		} else {
+			service.joinApprove(num, group_num);
+			request.setAttribute("group_num", group_num);
+			return "group_managing/joinApprove";
+		}
+		
 	}
 	
 	@GetMapping("/group_managing/user_main")
@@ -187,6 +193,7 @@ public class GroupManagingController {
 			throw new DontEqualException("개설하지 않은 소모임의 가입자 정보를 불러올 수 없습니다!");
 		}
 		service.getApplicantList(group_num, request);
+		request.setAttribute("dto", dto);
 		request.setAttribute("group_num", group_num);
 		return "group_managing/applicantList";
 	}
@@ -194,6 +201,8 @@ public class GroupManagingController {
 	@GetMapping("/group_managing/memberList")
 	public String group_memberList(int group_num, HttpServletRequest request) {
 		service.getMemberList(group_num, request);
+		GroupDto dto = service.getGroupData(group_num, request);
+		request.setAttribute("dto", dto);
 		request.setAttribute("group_num", group_num);
 		return "group_managing/memberList";
 	}
@@ -201,6 +210,8 @@ public class GroupManagingController {
 	@GetMapping("/group_managing/kickedMemberList")
 	public String group_kickedMemberList(int group_num, HttpServletRequest request) {
 		service.getKickedMemberList(group_num, request);
+		GroupDto dto = service.getGroupData(group_num, request);
+		request.setAttribute("dto", dto);
 		request.setAttribute("group_num", group_num);
 		return "group_managing/kickedMemberList";
 	}
@@ -208,6 +219,8 @@ public class GroupManagingController {
 	@GetMapping("/group_managing/rejectedApplicantList")
 	public String group_rejectedApplicantList(int group_num, HttpServletRequest request) {
 		service.getRejectedApplicantList(group_num, request);
+		GroupDto dto = service.getGroupData(group_num, request);
+		request.setAttribute("dto", dto);
 		request.setAttribute("group_num", group_num);
 		return "group_managing/rejectedApplicantList";
 	}

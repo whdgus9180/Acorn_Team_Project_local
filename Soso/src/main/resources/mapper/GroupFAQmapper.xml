@@ -4,8 +4,8 @@
 <mapper namespace="groupFAQ">
 	<insert id="insert" parameterType="groupFAQDto">
 	    INSERT INTO GROUP_FAQ_TB
-		(group_num, num, q_writer, q_title, q_content, regdate)
-		VALUES(#{group_num}, GROUP_FAQ_SEQ.nextval, #{q_writer}, #{q_title}, #{q_content}, SYSDATE)
+		(group_num, num, q_writer, q_title, q_content, a_writer, regdate)
+		VALUES(#{group_num}, GROUP_FAQ_SEQ.nextval, #{q_writer}, #{q_title}, #{q_content}, #{a_writer}, SYSDATE)
 	</insert>
 	<!-- 답변 -->
 	<update id="answer" parameterType="groupFAQDto">

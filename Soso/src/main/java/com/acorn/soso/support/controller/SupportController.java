@@ -35,7 +35,7 @@ public class SupportController {
 	
 	@GetMapping("/support/support_main")
 	public String support_main(FaqDto dto, HttpServletRequest request, Model model) {
-		noticeService.getList(request, model);
+		noticeService.getList2(request, model);
 		service.getList(dto, request, model);
 		return "support/support_main";
 	}
@@ -151,20 +151,20 @@ public class SupportController {
 		return "support/support_inquire";
 	}
 	
-	@PostMapping("/support/support_inquire_submit")
-	public String support_inquire_submit(InquireDto dto) {
+	@PostMapping("/support/support_inquire_insert")
+	public String support_inquire_insert(InquireDto dto) {
 		inquireService.insert(dto);
-		return "support/support_inquire_MyInquire";
+		return "support/support_inquire_insert";
 	}
 	@GetMapping("/support/support_inquire_MyInquire")
 	public String support_inquire_MyInquire(HttpSession session, Model model) {
 		inquireService.getList(session, model);
 		return "support/support_inquire_MyInquire";
 	}
-	@GetMapping("/support/support_inquire_Myinquire_detail")
-	public String support_inquire_Myinquire_detail(int cs_num, Model model) {
-		inquireService.getData(cs_num, model);
-		return "support/support_inquire_Myinquire_detail";
+	@GetMapping("/support/support_inquire_inquireStatus")
+	public String support_inquire_inquireStatus(HttpSession session, Model model) {
+		inquireService.getList2(session, model);
+		return "support/support_inquire_inquireStatus";
 	}
 	@PostMapping("/support/support_inquire_update")
 	public String support_inquire_update(InquireDto dto, Model model) {

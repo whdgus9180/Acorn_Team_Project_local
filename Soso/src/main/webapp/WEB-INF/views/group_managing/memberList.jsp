@@ -21,9 +21,10 @@
 		<div class="admin_container">
 		<div id="admin_header">
 			<div class="title">Member</div>
+			<div class="group_name">${dto.name}</div>
 		</div>
 		<div id="menus">
-			<div><a href="${pageContext.request.contextPath}/group_managing/memberList?group_num=${group_num}">참여 중</a></div>
+			<div><a class="active" href="${pageContext.request.contextPath}/group_managing/memberList?group_num=${group_num}">참여 중</a></div>
 			<div><a href="${pageContext.request.contextPath}/group_managing/kickedMemberList?group_num=${group_num}">강퇴</a></div>
 		</div>
 		<div class="wrapper">
@@ -36,7 +37,7 @@
 						<div class="card-right">
 							<div id="card-title">${tmp.user_id}</div>
 							<div id="card-date">소모임 가입일: ${tmp.join_dt}</div>
-							<div id="card-link"><a href="${pageContext.request.contextPath}/cafe/list">활동 내역 보기</a></div>
+							<div id="card-link"><a href="${pageContext.request.contextPath}/group_managing/memberInfo?num=${tmp.num}&group_num=${group_num}">활동 내역 보기</a></div>
 							<div id="card-buttons" class="card-alert-button${tmp.num}"><div><a href="javascript:">추방</a></div></div>
 						</div>
 						<script>

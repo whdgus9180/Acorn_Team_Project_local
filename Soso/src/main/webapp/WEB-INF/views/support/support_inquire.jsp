@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/support_inquire</title>
+<title>문의하기</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/support/support_inquire.css" />
@@ -60,9 +60,14 @@
 					<li>
 						<a class="my_inquire" href="${pageContext.request.contextPath }/support/support_inquire_MyInquire">나의 문의내역</a>
 					</li>
+					<c:if test="${isAdmin }">
+						<li>
+							<a class="cs_inquire" href="${pageContext.request.contextPath }/support/support_inquire_inquireStatus">문의 접수 내역</a>
+						</li>
+					</c:if>
 				</ul>
-				<h3>1:1 문의하기</h3>
-				<form action="${pageContext.request.contextPath}/support/support_inquire_submit" class="area_form" method="post">
+				<h3 class="main_title">1:1 문의하기</h3>
+				<form action="${pageContext.request.contextPath}/support/support_inquire_insert" class="area_form" method="post">
 					<div class="row-wrap">
 						<div class="input_name">
 							<h4 class="label">ID</h4>
@@ -78,7 +83,7 @@
 						<div class="input_title">
 							<h4 class="label">제목</h4>
 							<select name="category" id="category" class="title_select">
-								<option value selected="selected" class="inquire_select">문의분류</option>
+								<option selected="selected" class="inquire_select">문의분류</option>
 								<option value="1">회원</option>
 								<option value="2">모임신청</option>
 								<option value="3">모임개설</option>
@@ -108,7 +113,7 @@
 					<p class="info_message">
 						이 사이트는 reCAPTCHA에 의해 보호되며 Google 개인 정보 취급 방침 및 서비스 약관이 적용됩니다.
 					</p>
-					<input type="submit" value="1 : 1 문의하기" class="btn_submit"/>
+					<button type="submit" class="btn_submit">1:1 문의하기</button>
 				</form>
 			</div>
 		</div>

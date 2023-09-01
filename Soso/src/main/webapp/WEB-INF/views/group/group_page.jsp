@@ -119,23 +119,22 @@
 											        <span class="card-rate">Invalid Rating</span>
 											    </c:otherwise>
 											</c:choose>
-										<span class="card-writer">${tmp.writer }</span>
+										<span class="card-writer" style="font-weight: bold; font-style: italic;">${tmp.writer }</span>
 										<span class="card-regdate">${tmp.regdate }</span>
 									</div>
 									<div>
-										<textarea name="content" id="content" readonly>${tmp.content}</textarea>
+										<textarea name="content" id="content" style="resize : none;" readonly>${tmp.content}</textarea>
 									</div>
 								</div>
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>
-					<%-- <c:forEach var="item" items="${list}"> --%>
-							<!-- 일단 누구나 후기 쓸 수 있도록 수정 -->
-							<%-- <c:when test="${item.user_id eq sessionScope.id}"> --%>
-							<%--<c:if test="${dto.deadline_dt lt nowDate}"> --%>
-								<a href="${pageContext.request.contextPath}/group/comment/comment_insert_form?num=${dto.num}" id="reviewInsert">후기 작성하기</a>
-								<div id="commentArea"></div>
-					<%-- </c:forEach> --%>
+					<c:forEach var="item" items="${list}">
+						<c:if test="${item.user_id eq sessionScope.id}">
+							<a href="${pageContext.request.contextPath}/group/comment/comment_insert_form?num=${dto.num}" id="reviewInsert">후기 작성하기</a>
+							<div id="commentArea"></div>
+						</c:if>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
@@ -165,7 +164,7 @@
 								<c:choose>
 									<c:when test="${knowJoin == -1 || empty knowJoin}">
 										<button type="button" class="join">
-											<a href="${pageContext.request.contextPath}/group/group_in?num=${dto.num }">가입하기</a>
+											<a href="${pageContext.request.contextPath}/group/group_joinform?num=${dto.num }">가입하기</a>
 										</button>
 									</c:when>
 									<c:otherwise>
@@ -237,7 +236,7 @@
 			  // data 여부에 따라 클라이언트에게 표시해준다.
 			  if (data.isSuccess == true) {	
 			    	// 찜 추가되었습니다.
-					alert(jjimNum+"찜 추가되었습니다.");
+					alert("찜 추가되었습니다.");
 					
 			    	// div의 클래스를 'emptyHeart'에서 'heart'로 변경
 					$(".heart").removeClass("emptyHeart").addClass("heart");
@@ -251,7 +250,7 @@
 					} else {
 					
 						// 찜 취소하셨습니다.
-					alert(jjimNum+"찜 취소하셨습니다.");
+					alert("찜 취소하셨습니다.");
 					
 					// 하트의 모양을 비워지게 변경
 					$(".heart").html(`

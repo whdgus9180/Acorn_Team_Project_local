@@ -6,36 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>/support_faq_user</title>
-<style>
-.btn_more{
-	background-image: url("https://static.onoffmix.com/images/pc/svg/arrow_up_bl.svg");
-	width:100%;
-	height: 64px;
-	top: 0;
-	left: 0;
-	z-index: 1;
-	background: transparent url("https://static.onoffmix.com/images/pc/svg/arrow_down.svg") no-repeat 98.5% center;
-	text-decoration: none;
-	text-align: left;
-	cursor: pointer;
-	overflow: hidden;
-	text-indent: -9999em;
-	position: absolute;
-	box-sizing: border-box;
-	display: block;
-	border: 1px solid transparent;
-	}
-	.dropbox .detail_content{
-	position: relative;
-	padding: 40px 50px 90px;
-	box-sizing: border-box;
-	width: 100%;
-	font-size: 14px;
-	background-color: #fafafa;
-	overflow-x: hidden;
-	overflow-y: auto;
-	}
-</style>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/support/support_faq.css" />
@@ -115,12 +85,14 @@
 					<li class="dropbox">
 						<button type="button" class="btn_more">답변</button>
 						<div class="title_area">
-						<c:choose>
-								<c:when test="${tmp.category == 1}">회원</c:when>
-								<c:when test="${tmp.category == 2}">모임신청</c:when>
-								<c:when test="${tmp.category == 3}">모임개설</c:when>
-								<c:when test="${tmp.category == 0}">기타</c:when>
-						</c:choose>
+							<div class="category">
+								<c:choose>
+										<c:when test="${tmp.category == 1}">회원</c:when>
+										<c:when test="${tmp.category == 2}">모임신청</c:when>
+										<c:when test="${tmp.category == 3}">모임개설</c:when>
+										<c:when test="${tmp.category == 0}">기타</c:when>
+								</c:choose>
+							</div>
 							<h5 class="detail">${tmp.question }</h5>
 						</div>
 						<div class="detail_content">
