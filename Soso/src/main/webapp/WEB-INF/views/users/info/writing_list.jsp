@@ -18,7 +18,7 @@
 		<tbody>
 			<c:forEach var="tmp" items="${list }">
 				<tr>
-					<td>${tmp.group_num}</td>
+					<td>${tmp.group_name}</td>
 					<td>
 						<a href="${pageContext.request.contextPath}/cafe/detail?comu_num=${tmp.num}&group_num=${tmp.group_num}">${tmp.title }</a>
 					</td>

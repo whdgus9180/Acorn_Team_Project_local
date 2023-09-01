@@ -9,68 +9,27 @@
 <title>자주하는 질문</title>
 <style>
 /* 관리버튼 css */
-.faq_management{
-	width: 240px;
-    height: 60px;
-    margin: 0 auto;
-    display: block;
-    border: 1px solid gray;
-    border-radius: 30px;
-    background-color: gray;
-    color: white;
-    font-size: 18px;
-    text-align: center;
-}
-/* 답변 토글 css */
-.btn_more{
-	background-image: url("https://static.onoffmix.com/images/pc/svg/arrow_up_bl.svg");
-	width:100%;
-	height: 64px;
-	top: 0;
-	left: 0;
-	z-index: 1;
-	background: transparent url("https://static.onoffmix.com/images/pc/svg/arrow_down.svg") no-repeat 98.5% center;
-	text-decoration: none;
-	text-align: left;
-	cursor: pointer;
-	overflow: hidden;
-	text-indent: -9999em;
-	position: absolute;
-	box-sizing: border-box;
-	display: block;
-	border: 1px solid transparent;
-	}
-	.dropbox .detail_content{
-	position: relative;
-	padding: 40px 50px 90px;
-	box-sizing: border-box;
+.admin_menu{
 	width: 100%;
-	font-size: 14px;
-	background-color: #fafafa;
-	overflow-x: hidden;
-	overflow-y: auto;
+	display: flex;
+	justify-content: center;
 	}
-	/*페이지 네이션*/
-	.pagination_wrap{
-		margin: 20px 0 40px;
-		text-align: center;
-		width: 100%;
-	}
-	.pagination{
-		display: inline-block;
-		vertical-align: middle;
-	}
-	.pagination ul li{
-		list-style-type:none;
-		float: left;
-	}
-	.pagination ul li a{
-		width: 28px;
-		margin: 0 11px;
-	}
-	.page-item{
-		font-size: 20px;
-	}
+.admin_button{
+	width: 130px;
+    height: 48px;
+    display: inline-block;
+    border-radius: 0;
+    border: 1px solid #d8d8d8;
+    background-color: #f7f7f7;
+    text-align: center;
+    line-height: 48px;
+    font-size: 14px;
+    color: #333;
+}
+.admin_button:hover{
+	color: rgb(157 128 63);
+	font-weight: 600;
+}
 </style>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -161,27 +120,26 @@
 						<div class="detail_content">
 							<span style="line-height: 24px;">
 								<pre>${tmp.answer }</pre>
-								<c:if test="${isAdmin }">
-								<a href="${pageContext.request.contextPath }/support/support_faq_updateform?faq_num=${tmp.faq_num}">수정</a>
-								</c:if>
-								<c:if test="${isAdmin }">
-								<button type="submit" data-num="${tmp.faq_num}" class="delete-btn">삭제</button>
-								</c:if>
 							</span>
 						</div>
 					</li>
 				</c:forEach>
 			</ul>
 			</div>
-		
-		<c:choose>
-		    <c:when test="${isAdmin}">
-		        <a href="${pageContext.request.contextPath }/support/support_faq_insertform" class="faq_management">FAQ 관리</a>
-		    </c:when>
-		    <c:otherwise>
-		        <!-- 해당 부분은 admin이 아닐 때의 처리 -->
-		    </c:otherwise>
-		</c:choose>
+			<!-- admin 관리 메뉴 -->
+			<div class="admin_menu">
+				<c:choose>
+				    <c:when test="${isAdmin}">
+				        <a href="${pageContext.request.contextPath }/support/support_faq_insertform" class="admin_button">FAQ 등록</a>
+				    </c:when>
+				    <c:otherwise>
+				        <!-- 해당 부분은 admin이 아닐 때의 처리 -->
+				    </c:otherwise>
+				</c:choose>
+				<c:if test="${isAdmin }">
+					<button type="submit" data-num="${tmp.faq_num}" class="admin_button" id="delete-btn">삭제</button>
+				</c:if>
+			</div>
 		</div>
 		
 	</div>
@@ -196,7 +154,7 @@
 				// 처음에는 숨겨두기
 				$(".detail_content").hide();
 			});
-			document.querySelectorAll(".delete-btn").forEach((item)=>{
+			document.querySelectorAll("#delete-btn").forEach((item)=>{
 				item.addEventListener("click", (e)=>{
 					e.preventDefault();
 					const isTrue = confirm("질문을 삭제하시겠습니까?")

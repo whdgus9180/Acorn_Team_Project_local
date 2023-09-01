@@ -55,3 +55,8 @@ body {
     color: rgb(191, 191, 191);
     border-color: rgb(191, 191, 191);
 }
+
+.profileImg {
+	text-align: -webkit-center;
+	margin-bottom: 1rem;
+}
