@@ -35,7 +35,7 @@ public class SupportController {
 	
 	@GetMapping("/support/support_main")
 	public String support_main(FaqDto dto, HttpServletRequest request, Model model) {
-		noticeService.getList(request, model);
+		noticeService.getList2(request, model);
 		service.getList(dto, request, model);
 		return "support/support_main";
 	}

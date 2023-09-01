@@ -164,7 +164,7 @@
 								<c:choose>
 									<c:when test="${knowJoin == -1 || empty knowJoin}">
 										<button type="button" class="join">
-											<a href="${pageContext.request.contextPath}/group/group_in?num=${dto.num }">가입하기</a>
+											<a href="${pageContext.request.contextPath}/group/group_joinform?num=${dto.num }">가입하기</a>
 										</button>
 									</c:when>
 									<c:otherwise>
