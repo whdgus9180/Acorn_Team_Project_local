@@ -58,7 +58,7 @@
 							<div><a href="${pageContext.request.contextPath}/users/updateform">개인정보 수정</a></div>
 						</div>
 						<div class="button" style="margin-top:55px; background-color:rgb(241 146 146 / 97%)">
-							<div><a href="javascript:deleteConfirm()">회원 탈퇴</a></div>
+							<div class="deleteConfirm">회원 탈퇴</div>
 						</div>
 					</div>
 				</div>
@@ -85,6 +85,8 @@
     <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
     
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 	<script>
 		//작성글 클릭 시 writing_list 페이지 로딩
 		$("#writingList").click(function() {
@@ -165,13 +167,23 @@
 			
 			$("#writingList").attr("class","nav-link active");
 		});
-    
-		function deleteConfirm() {
-			const isDelete = confirm("${id} 님 탈퇴 하시겠습니까?");
-			if (isDelete) {
-				location.href = "${pageContext.request.contextPath}/users/delete";
-			}
-		}
+		
+    	$(".deleteConfirm").css("cursor", "pointer").click(()=>{
+    		Swal.fire({
+	      		title: `${id} 님 탈퇴 하시겠습니까?`,
+	      		text: "신중히 생각하시고 결정하시길 바랍니다",
+	      		icon: 'warning',
+	      		confirmButtonColor: 'rgb(13, 110, 253)',
+	      		cancelButtonColor: 'rgb(248, 162, 146)',
+	      		confirmButtonText: '확인',
+	      		cancelButtonText: '취소',
+	      		showCancelButton: true
+	   		}).then((result) => {
+		      	if (isDelete) {
+		      		location.href = "${pageContext.request.contextPath}/users/delete";
+		      	}
+		    })
+    	});
 	</script>
 </body>
 </html>
