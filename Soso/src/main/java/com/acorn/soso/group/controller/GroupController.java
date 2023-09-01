@@ -199,6 +199,8 @@ public class GroupController {
 	@GetMapping("/group/group_joinform")
 	public String groupIn(HttpServletRequest request, int num) {
 		request.setAttribute("num", num);
+		//그룹의 데이터를 얻어온다 값은 dto로 담긴다.
+		managingService.getGroupData(num, request);
 		return "group/group_joinform";
 	}
 	

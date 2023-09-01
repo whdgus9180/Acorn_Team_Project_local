@@ -568,6 +568,9 @@ public class GroupServiceImpl implements GroupService{
 		//만들어낸 dto를 가지고 getData작업을 시행하고 resultDto에 담는다.
 		//int joinNum의 초기값 설정
 		int joinNum = joindao.getIsJoin(dto);
+		System.out.println(joinNum);
+		System.out.println(num);
+		System.out.println(id);
 		if(joinNum == 1 || joinNum == 2 || joinNum == 3) {
 			//request영역에 jjim이라는 이름으로 resultDto를 담는다.
 			request.setAttribute("knowJoin", joinNum);
