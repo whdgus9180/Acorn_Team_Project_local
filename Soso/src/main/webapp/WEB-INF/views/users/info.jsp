@@ -21,8 +21,8 @@
 					<div>
 						<c:choose>
 							<c:when test="${empty dto.profile }">
-								<div>
-									<i class="bi bi-person-circle" style="font-size:100px" id="profileImage"></i>
+								<div style="margin: 70px 100px">
+									<i class="bi-person-circle" style="font-size:130px" id="profileImage"></i>
 								</div>
 							</c:when>
 							<c:otherwise>
