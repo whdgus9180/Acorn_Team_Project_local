@@ -81,14 +81,14 @@
 		</c:if>
 		<h6 style="font-weight: bold;">댓글 쓰기</h6>
 		<!-- 원글에 댓글을 작성할 폼 -->
-		<form class="comment-form insert-form" action="comment_insert" method="post">
+		<form id="insertComment" class="comment-form insert-form" action="comment_insert" method="post">
 			<!-- 원글의 글번호가 댓글의 ref_group 번호가 된다. -->
 			<input type="hidden" name="comu_num" value="${cafeDto.comu_num}"/>
 			<input type="hidden" name="group_num" value="${cafeDto.group_num}"/>
 			<!-- 원글의 작성자가 댓글의 대상자가 된다. -->
 			<input type="hidden" name="target_id" value="${cafeDto.writer}"/>
-			<textarea name="content" style="font-size: small;"></textarea>
-			<button type="submit">쓰 기</button>
+			<textarea id="textContent" name="content" style="font-size: small;"></textarea>
+			<button id="insertButton" type="submit">쓰 기</button>
 		</form>
 		
 		<!-- 댓글 목록 -->
@@ -170,6 +170,15 @@
 	</div>
 	<script src="${pageContext.request.contextPath}/resources/js/gura_util.js"></script>
 	<script>
+	 $("#insertButton").click(function(){
+		    if($.trim($("#textContent").val())==''){
+		      alert("댓글을 입력해주세요.");
+		      return false;
+		    } 
+		    $("#insertComment").submit();
+		  });
+	
+	
 		//클라이언트가 로그인 했는지 여부
 		let isLogin=${ not empty id };
 		document.querySelector(".insert-form")
