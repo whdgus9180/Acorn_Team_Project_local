@@ -59,7 +59,12 @@ body {
     border-color: rgb(191, 191, 191);
 }
 
+
 .signup_checkbox{
 	width: 20px;
 	height: 20px;
+	
+.profileImg {
+	text-align: -webkit-center;
+	margin-bottom: 1rem;
 }

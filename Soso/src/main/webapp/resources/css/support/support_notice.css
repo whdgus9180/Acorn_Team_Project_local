@@ -88,7 +88,7 @@
 		
 	}
 	.main_content{
-		margin: 100px auto 90px;
+		margin: 100px auto 0;
 	    box-sizing: border-box;
 	    width: 100%;
 	    min-height: 260px;
@@ -96,6 +96,7 @@
 	/* 공지사항 테이블 레이아웃 */
 	h3.title{
 		font-size: 20px;
+		font-weight: bold;
 	}
 	table .notice{
 		margin-top: 16px;
@@ -143,16 +144,25 @@
 	th.date{
 		width: 200px;
 	}
-	/*관리 버튼 (admin 계정일때만 보임)*/
-	.notice_management{
-		width: 240px;
-	    height: 60px;
-	    margin: 0 auto;
-	    display: block;
-	    border: 1px solid gray;
-	    border-radius: 30px;
-	    background-color: gray;
-	    color: white;
-	    font-size: 18px;
+	/* 관리자 메뉴 css (admin 계정일때만 보임) */
+	.admin_menu{
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+	.admin_button{
+		width: 130px;
+	    height: 48px;
+	    display: inline-block;
+	    border-radius: 0;
+	    border: 1px solid #d8d8d8;
+	    background-color: #f7f7f7;
 	    text-align: center;
+	    line-height: 48px;
+	    font-size: 14px;
+	    color: #333;
+	}
+	.admin_button:hover{
+		color: rgb(157 128 63);
+		font-weight: 600;
 	}
