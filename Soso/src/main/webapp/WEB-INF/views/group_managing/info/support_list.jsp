@@ -10,17 +10,18 @@
 	<table class="table table-striped">
 		<thead class="table-dark">
 			<tr>
-				<th>소모임 명</th>
-				<th>글 제목</th>
+				<th>문의 번호</th>
+				<th>문의 제목</th>
 				<th>작성일</th>
 			</tr>
 		</thead>
 		<tbody>
+			
 			<c:forEach var="tmp" items="${list }">
 				<tr>
-					<td>${tmp.group_num}</td>
+					<td>${tmp.num }</td>
 					<td>
-						<a href="${pageContext.request.contextPath}/cafe/detail?comu_num=${tmp.num}&group_num=${tmp.group_num}">${tmp.title }</a>
+						<a href="">${tmp.title }</a>
 					</td>
 					<td>${tmp.regdate }</td>
 				</tr>

@@ -20,10 +20,11 @@
 		<div class="admin_container">
 		<div id="admin_header">
 			<div class="title">Kicked Member</div>
+			<div class="group_name">${dto.name}</div>
 		</div>
 		<div id="menus">
 			<div><a href="${pageContext.request.contextPath}/group_managing/memberList?group_num=${group_num}">참여 중</a></div>
-			<div><a href="${pageContext.request.contextPath}/group_managing/kickedMemberList?group_num=${group_num}">강퇴</a></div>
+			<div><a class="active" href="${pageContext.request.contextPath}/group_managing/kickedMemberList?group_num=${group_num}">강퇴</a></div>
 		</div>
 		<div class="wrapper">
 			<c:forEach var="tmp" items="${list}">

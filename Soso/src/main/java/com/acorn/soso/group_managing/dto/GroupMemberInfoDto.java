@@ -1,4 +1,4 @@
-package com.acorn.soso.cafe.dto;
+package com.acorn.soso.group_managing.dto;
 
 import org.apache.ibatis.type.Alias;
 
@@ -11,20 +11,16 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Alias("cafeDto")
-public class CafeDto {
-	private int comu_num;
+@Alias("GroupMemberInfoDto")
+public class GroupMemberInfoDto {
+	private int num;
 	private String writer;
 	private String title;
-	private String content;
-	private String header;
-	private int viewCount;
 	private String regdate;
 	private int group_num;
+	
 	private int startRowNum;
 	private int endRowNum;
 	private int prevNum;  //이전글의 글번호
 	private int nextNum;  //다음글의 글번호
-
-	
 }

@@ -14,8 +14,7 @@
 		<input type="hidden" name="comu_num" value="${dto.comu_num }" />
 		<input type="hidden"  id="group_num" name="group_num" value="${group_num }" />
 		<div>
-			<label for="writer">작성자</label>
-			<input type="text" id="writer" value="${dto.writer }" disabled/>
+			<input type="hidden" id="writer" value="${dto.writer }" disabled/>
 		</div>
 		<div>
 			<label for="title">제목</label>
