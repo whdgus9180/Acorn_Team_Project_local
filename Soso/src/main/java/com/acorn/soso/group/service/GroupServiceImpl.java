@@ -600,7 +600,12 @@ public class GroupServiceImpl implements GroupService{
 	}
 	
 	@Override
-	public void groupFAQInsert(GroupFAQDto dto) {		
+	public void groupFAQInsert(GroupFAQDto dto) {
+		//A_writer도 같이 넣어주자
+		//dto의 그룹 넘으로 groupDto를 얻어와
+		GroupDto groupDto = dao.getData(dto.getGroup_num());
+		//매니저 아이디 넣어주자.
+		dto.setA_writer(groupDto.getManager_id());
 		//dao를 통해 db에 값 집어넣기
 		groupfaqdao.insert(dto);
 	}
@@ -692,8 +697,13 @@ public class GroupServiceImpl implements GroupService{
 		GroupFAQDto resultDto=groupfaqdao.getData(num);
 		//id를 가져온다.
 		String id =(String)request.getSession().getAttribute("id");
-		//가져온 값을 토대로 id검증을 한다.
-		if(resultDto.getQ_writer().equals(id)) {
+		
+		//관리자 id를 얻어와서 관리자 삭제&수정 기능을 추가할 준비
+		GroupDto groupDto = dao.getData(resultDto.getGroup_num());
+		String manager = groupDto.getManager_id();
+		
+		//가져온 값을 토대로 id검증을 한다. 작성자거나, 소모임의 관리자면 삭제.
+		if(resultDto.getQ_writer().equals(id) || manager.equals(id)) {
 			groupfaqdao.update(dto);
 		}else {
 			throw new DontEqualException("다른 사람의 글은 수정할 수 없습니다.");
@@ -707,10 +717,16 @@ public class GroupServiceImpl implements GroupService{
 		//id를 가져온다.
 		String id =(String)request.getSession().getAttribute("id");
 		//가져온 값을 토대로 id검증을 한다.(일단 관리자 삭제 위해 주석처리)
-//		if(dto.getQ_writer().equals(id)) {
-//			throw new DontEqualException("다른 사람의 글은 삭제할 수 없습니다.");
-//		}
-		groupfaqdao.delete(num);
+		
+		//관리자 id를 얻어와서 관리자 삭제&수정 기능을 추가할 준비
+		GroupDto groupDto = dao.getData(dto.getGroup_num());
+		String manager = groupDto.getManager_id();
+		
+		if(dto.getQ_writer().equals(id)|| manager.equals(id)) {
+			groupfaqdao.delete(num);
+		}else {
+			throw new DontEqualException("다른 사람의 글은 삭제할 수 없습니다.");
+		}
 	}
 	
 	//소모임 문의 답변하기
