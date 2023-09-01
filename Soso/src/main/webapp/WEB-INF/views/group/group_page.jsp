@@ -162,17 +162,21 @@
 							</c:when>
 							<c:otherwise>
 								<c:choose>
-									<c:when test="${knowJoin == 0 || empty knowJoin}">
+									<c:when test="${knowJoin == -1}">
 										<button type="button" class="join">
 											<a href="${pageContext.request.contextPath}/group/group_joinform?num=${dto.num }">가입하기</a>
 										</button>
 									</c:when>
+									<c:when test="${knowJoin == 1 }">
+										<button type="button" class="cancle" id="cancleBtn" name="cancleBtn">신청 취소</button>
+									</c:when>
 									<c:when test="${knowJoin == 2 }">
 										<button type="button">가입 거부</button>
 									</c:when>
-									<c:otherwise>
-										<button type="button" class="cancle" id="cancleBtn" name="cancleBtn">신청 취소</button>
-									</c:otherwise>
+									<c:when test="${knowJoin == 3 }">
+									</c:when>
+									<c:when test="${knowJoin == 4 }">
+									</c:when>
 								</c:choose>
 							</c:otherwise>
 						</c:choose>
