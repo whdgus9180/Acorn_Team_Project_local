@@ -75,7 +75,7 @@
 							</c:choose>
 						</span>
 						<p>
-							<a href="${pageContext.request.contextPath }/support/support_faq">${tmp.question }</a>
+							<a class="faq_question" href="${pageContext.request.contextPath }/support/support_faq">${tmp.question }</a>
 						</p>
 					</li>
 				</c:forEach>
@@ -88,7 +88,7 @@
 				<ul>
 					<c:forEach var="tmp" items="${notice_list }">
 					<li>
-						<a href="${pageContext.request.contextPath }/support/support_notice_detail?notice_num=${tmp.notice_num}">${tmp.title}</a>
+						<a class="notice_title" href="${pageContext.request.contextPath }/support/support_notice_detail?notice_num=${tmp.notice_num}">${tmp.title}</a>
 					</li>
 					</c:forEach>
 				</ul>
