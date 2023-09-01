@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 body{ background-color:#f5f6f7;}
+pre{white-space: pre-wrap;}  
 /* title */
 h3.title{font-size:1.3rem; font-weight: 500;}
 .sub_link ul{display:flex; margin-bottom: 2%;}
@@ -13,7 +14,7 @@ h3.title{font-size:1.3rem; font-weight: 500;}
 .contents .sub_title{display:flex; border-bottom:1px solid #ccc; padding-bottom: 2%; justify-content: space-between;}
 .contents .sub_title .sub{width:50%;}
 .contents .sub_title .sub span{margin-right:1%;}
-.contents .contents_content{padding:5% 0; border-bottom:1px solid #ccc; }
+.contents .contents_content{padding:5% 0; border-bottom:1px solid #ccc; white-space: pre-wrap; line-height: 1.5rem; }
 .contents .contents_btn{display:flex; width: 50%; justify-content: flex-end;}
 .contents .contents_btn a{ display:block; margin-left: 3%; color: #6f6f6f;}
 .contents .contents_btn a:hover{text-decoration:underline;}
@@ -22,12 +23,14 @@ h3.title{font-size:1.3rem; font-weight: 500;}
 .contents .contents_page a:hover{color:rgb(209 199 177); text-decoration:underline;}
 
 /* comments */
-.comments{ background-color:#f1f1f1; padding:3%; border:1px solid #ccc;}
-.comment-form{ display: none; box-sizing:border-box; display: flex; justify-content: space-between;  margin-bottom: 3%;}
-.comment-form textarea{ background-color:#fff; padding:3%; border:1px solid #ccc; font-size: 0.8rem; width:80%;}
-.comment-form button{background-color: #f1f1f1; width: 19%;border: 1px solid #ccc; }
-.comment-form button:hover{background-color: rgb(209 199 177 / 64%);  color:#fff; font-weight:bold;}
+.comments{ background-color:rgb(242 242 242); padding:3%; border:1px solid #ccc;}
+.comment-form, .re-insert-form, .update-form, .insert-form{ display:block; box-sizing:border-box; margin-top: 3%; margin-bottom: 3%; height: 0;min-height: 100px;}
+.re-insert-form, .update-form{display:none;}
+.insert-form textarea, .update-form textarea, .re-insert-form textarea, .comment-form textarea{ height: 0;min-height: 100px; background-color:#fff; padding:3%; border:1px solid #ccc; font-size: 0.8rem; width:80%;}
+.insert-form button, .update-form button, .re-insert-form button, .comment-form button{ height: 100%;float:right;background-color: #f1f1f1; width: 18%;border: 1px solid #ccc; }
+.insert-form button:hover, .update-form button:hover, .re-insert-form button:hover, .comment-form button:hover{background-color: rgb(209 199 177 / 64%);   color:#fff; font-weight:bold;}
 .comment_profile_left { display: flex;width: 70%;}
+.comment_profile_left .re{padding: 0 3% 0 5%;font-size: 2rem;color: #c0c0c0;}
 .comments .comment_profile{display:flex; align-items: center; justify-content: space-between;}
 .comments .comment_profile .profile-image{padding: 3px; position: relative; object-fit: cover; overflow: hidden; width:40px; height:40px; border-radius:50%; border: 2px solid #dcd1b9; background-clip: content-box, border-box; margin-right:2%; }
 .comments .comment_profile .regdate{font-weight:300;font-size:0.7rem;margin-left:2%;}
@@ -36,17 +39,10 @@ h3.title{font-size:1.3rem; font-weight: 500;}
 .comments .comment_profile .comment_btn a:hover{color:rgb(209 199 177); text-decoration:underline; }
 .comments .comments_content{padding:2% 0;}
 .comments .comment{padding:2% 0; border-bottom: 1px solid #c6c6c6;}
-
-
+.target_id {display:flex; align-items: center; color: #e4a2a2; margin-right: 2%;}
+.target_id i {color: #e4a2a2;}
 .loader{text-align: center; display: none;}   
-.loader svg{
-   animation: rotateAni 1s ease-out infinite;
-}
-/* 댓글에 댓글을 다는 폼과 수정폼은 일단 숨긴다. */
-.comments .comment-form{
-   display: none;
-}
-
+.loader svg{animation: rotateAni 1s ease-out infinite;}
 
 @keyframes rotateAni{
    0%{

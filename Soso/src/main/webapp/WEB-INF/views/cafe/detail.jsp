@@ -42,7 +42,7 @@
 						</c:if>
 					</div>
 				</div>
-				<div class="contents_content">${cafeDto.content}</div>
+				<pre class="contents_content">${cafeDto.content}</pre>
 				<div class="contents_page">
 					<%-- 만일 이전글(더 옛날글)의 글번호가 0 가 아니라면(이전글이 존재 한다면) --%>
 					<c:if test="${cafeDto.prevNum ne 0}">
@@ -74,12 +74,7 @@
 							<div>삭제된 댓글 입니다.</div>
 						</c:when>
 						<c:otherwise>
-							<c:if test="${tmp.comment_num eq tmp.comment_group }">
-								<div id="reli${tmp.comment_num }"></div>
-							</c:if>
-							<c:if test="${tmp.comment_num ne tmp.comment_group }">
-								<div id="reli${tmp.comment_num }" style="padding-left:50px;">┖</div>
-							</c:if>
+							
 							<!-- 프로필 사진 없을 때 -->
 							<c:if test="${ empty tmp.profile }">
 								<svg class="profile-image" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -94,6 +89,12 @@
 							<div class="comment">
 								<div class="comment_profile">
 									<div class="comment_profile_left">
+										<c:if test="${tmp.comment_num eq tmp.comment_group }">
+											<div id="reli${tmp.comment_num }"></div>
+										</c:if>
+										<c:if test="${tmp.comment_num ne tmp.comment_group }">
+											<div id="reli${tmp.comment_num }" class="re">ㄴ</div>
+										</c:if>
 										<img class="profile-image" src="${pageContext.request.contextPath}${tmp.profile }"/>
 										<span><b>${tmp.writer }</b></span>
 										<span class="regdate">${tmp.regdate }</span>
@@ -105,40 +106,43 @@
 										</div>
 									</c:if>
 								</div>
-								<pre id="pre${tmp.comment_num }" class="comments_content">${tmp.content }</pre>
-								<a data-num="${tmp.comment_num }" href="javascript:" class="reply-link">답글 달기</a>
+								<div style="display:flex">
+									<c:if test="${tmp.comment_num ne tmp.comment_group }">
+										<div style="margin-right:12%"></div>
+									</c:if>
+									<c:if test="${tmp.comment_num ne tmp.comment_group }">
+										<div class="target_id">@<i>${tmp.target_id }</i></div>
+									</c:if>
+									<pre id="pre${tmp.comment_num }" class="comments_content">${tmp.content }</pre>
+								</div>
+								<div style="display:flex">
+									<c:if test="${tmp.comment_num ne tmp.comment_group }">
+										<div style="margin-right:12%"></div>
+									</c:if>
+									<a data-num="${tmp.comment_num }" href="javascript:" class="reply-link">답글 달기</a>
+								</div>				
 							</div>
 							</c:if>
-							
-							<c:if test="${tmp.comment_num ne tmp.comment_group }">
-								@<i>${tmp.target_id }</i>
-							</c:if>
-							
-							
-							
-
-													
-
-									<!-- 대댓글 작성 폼 (가려져 있으나 클릭 이벤트를 통해 보이게 표시됨) -->
-									<form id="reForm${tmp.comment_num }" class="animate__animated comment-form re-insert-form" action="comment_insert" method="post">
-										<!-- 원글의 번호 -->
-										<input type="hidden" name="comu_num" value="${cafeDto.comu_num }"/>
-										<!-- 대댓글 등록 후 해당 게시글을 리다이렉트 할때 필요한 소모임 번호 -->
-										<input type="hidden" name="group_num" value="${cafeDto.group_num }"/>
-										<!-- 대댓글의 대상이 되는 댓글의 작성자 명 -->
-										<input type="hidden" name="target_id" value="${tmp.writer }"/>
-										<!-- 대댓글의 그룹번호는 대댓글을 작성하는 댓글의 그룹번호를 배정 -->
-										<input type="hidden" name="comment_group" value="${tmp.comment_group }"/>
-										<textarea name="content"></textarea>
-										<button type="submit">등록</button>
-									</form>
-								<c:if test="${tmp.writer eq id }">
-									<form id="updateForm${tmp.comment_num }" class="comment-form update-form" action="comment_update" method="post">
-										<input type="hidden" name="comment_num" value="${tmp.comment_num }" />
-										<textarea name="content">${tmp.content }</textarea>
-										<button type="submit">수정</button>
-									</form>
-								</c:if>	
+							<!-- 대댓글 작성 폼 (가려져 있으나 클릭 이벤트를 통해 보이게 표시됨) -->
+							<form id="reForm${tmp.comment_num }" class="re-insert-form" action="comment_insert" method="post">
+								<!-- 원글의 번호 -->
+								<input type="hidden" name="comu_num" value="${cafeDto.comu_num }"/>
+								<!-- 대댓글 등록 후 해당 게시글을 리다이렉트 할때 필요한 소모임 번호 -->
+								<input type="hidden" name="group_num" value="${cafeDto.group_num }"/>
+								<!-- 대댓글의 대상이 되는 댓글의 작성자 명 -->
+								<input type="hidden" name="target_id" value="${tmp.writer }"/>
+								<!-- 대댓글의 그룹번호는 대댓글을 작성하는 댓글의 그룹번호를 배정 -->
+								<input type="hidden" name="comment_group" value="${tmp.comment_group }"/>
+								<textarea name="content"></textarea>
+								<button type="submit">등록</button>
+							</form>
+							<c:if test="${tmp.writer eq id }">
+								<form id="updateForm${tmp.comment_num }" class="update-form" action="comment_update" method="post">
+									<input type="hidden" name="comment_num" value="${tmp.comment_num }" />
+									<textarea name="content">${tmp.content }</textarea>
+									<button type="submit">수정</button>
+								</form>
+							</c:if>	
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
