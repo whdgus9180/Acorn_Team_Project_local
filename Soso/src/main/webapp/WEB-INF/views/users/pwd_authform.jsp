@@ -36,8 +36,10 @@
                 </div>
                 <button class="btn btn-outline-secondary bi-eye-slash" type="button" id="openpwd"></button>
             </div>
-            <button class="btn btn-join" type="submit">확인</button>
-            <button class="btn btn-cancle" type="reset">리셋</button>
+            <div class="d-flex justify-content-center mt-4">
+            	<button class="btn btn-join me-2" type="submit">확인</button>
+            	<button class="btn btn-cancle" type="reset">리셋</button>
+            </div>
         </form>
     </div>
     
