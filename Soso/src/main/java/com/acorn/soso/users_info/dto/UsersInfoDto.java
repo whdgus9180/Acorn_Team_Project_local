@@ -14,10 +14,13 @@ import lombok.NoArgsConstructor;
 @Alias("usersInfoDto")
 public class UsersInfoDto {
 	private int num;
+	private String group_name;
 	private String writer;
 	private String title;
 	private String regdate;
 	private int group_num;
+	
+	private int cs_num;
 	
 	private int startRowNum;
 	private int endRowNum;

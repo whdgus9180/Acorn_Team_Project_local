@@ -18,16 +18,19 @@
 	</jsp:include>
 	<div class="container">
 		<p class="title">회원정보 수정</p>
-		<a id="profileLink" href="javascript:">
-			<c:choose>
-				<c:when test="${ empty dto.profile }">
-					<i class="bi bi-person-circle" style="font-size:100px" id="profileImage"></i>
-				</c:when>
-				<c:otherwise>
-					<img id="profileImage" src="${pageContext.request.contextPath}${dto.profile}">
-				</c:otherwise>
-			</c:choose>
-		</a>
+		<div class="profileImg">
+			<a id="profileLink" href="javascript:">
+				<c:choose>
+					<c:when test="${ empty dto.profile }">
+						<i class="bi bi-person-circle" style="font-size:100px" id="profileImage"></i>
+					</c:when>
+					<c:otherwise>
+						<img id="profileImage" src="${pageContext.request.contextPath}${dto.profile}">
+					</c:otherwise>
+				</c:choose>
+			</a>
+			<label for="profileLink">이미지 클릭 시 프로필 사진 변경이 가능합니다.</label>
+		</div>
 		<form action="${pageContext.request.contextPath}/users/update" method="post">		
 			<input type="hidden" name="profile" 
 				value="${ empty dto.profile ? 'empty' : dto.profile }"/>		
