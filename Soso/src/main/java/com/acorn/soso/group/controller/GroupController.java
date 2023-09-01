@@ -195,6 +195,13 @@ public class GroupController {
 		return map;
 	}
 	
+	//소모임 가입 신청 폼
+	@GetMapping("/group/group_joinform")
+	public String groupIn(HttpServletRequest request, int num) {
+		request.setAttribute("num", num);
+		return "group/group_joinform";
+	}
+	
 	//소모임 가입 신청
 	@PostMapping("/group/join")
 	//num값을 가져오기 위한 request
@@ -237,12 +244,6 @@ public class GroupController {
 		model.addAttribute("jjimCount", service.jjimCount(request));
 		return "group/group_page";
 
-	}
-	
-	@GetMapping("/group/group_in")
-	public String groupIn(HttpServletRequest request, int num) {
-		request.setAttribute("num", num);
-		return "group/group_in";
 	}
 	
 	//리뷰 삭제
