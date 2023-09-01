@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @Alias("usersInfoDto")
 public class UsersInfoDto {
 	private int num;
+	private String group_name;
 	private String writer;
 	private String title;
 	private String regdate;
