@@ -207,7 +207,7 @@ footer br { display: none; }
 
 
 /*=========================== mobile ==============================*/
-@media screen and (max-width: 767px){
+@media screen and (max-width: 768px){
     *{ font-size: 16px; }
     header{ padding: 20px 10px; }
     
@@ -216,6 +216,7 @@ footer br { display: none; }
     .pGnb li{ margin-bottom: 30px; }
     .pGnb .subNav{ padding: 0 30px; }
     .pGnb .subNav li{line-height: 60px; width: 100%; }
+
 
 
     footer .inner-wrap { display: flex; flex-direction: column; align-items: center; }
