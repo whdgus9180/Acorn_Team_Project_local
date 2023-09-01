@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/support_inquire</title>
+<title>문의하기</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/support/support_inquire.css" />
@@ -60,6 +60,11 @@
 					<li>
 						<a class="my_inquire" href="${pageContext.request.contextPath }/support/support_inquire_MyInquire">나의 문의내역</a>
 					</li>
+					<c:if test="${isAdmin }">
+						<li>
+							<a class="cs_inquire" href="${pageContext.request.contextPath }/support/support_inquire_inquireStatus">문의 접수 내역</a>
+						</li>
+					</c:if>
 				</ul>
 				<h3 class="main_title">1:1 문의하기</h3>
 				<form action="${pageContext.request.contextPath}/support/support_inquire_insert" class="area_form" method="post">

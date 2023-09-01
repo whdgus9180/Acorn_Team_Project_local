@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/support_faq_insertform</title>
+<title>공지사항</title>
 <style>
 	.noticeBtn{
 	width: 240px;
