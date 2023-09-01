@@ -77,29 +77,24 @@
 						<a href="${pageContext.request.contextPath }/support/support_notice_detail?notice_num=${tmp.notice_num}">${tmp.title }</a>
 						</td>
 						<td>${tmp.regdate }</td>
-							<td>
-							<c:if test="${isAdmin }">
-								<a data-num="${tmp.notice_num }" href="${pageContext.request.contextPath }/support/support_notice_updateform?notice_num=${tmp.notice_num}">수정</a>
-							</c:if>
-							
-							</td>
-		
-							<td>
-							<c:if test="${isAdmin }">
-								<button data-num="${tmp.notice_num }"type="submit" class="delete-btn">삭제</button>
-							</c:if>
-							</td>
+						
 					</tr>
 					</c:forEach>
 				</tbody>
 			</table>
-			<c:if test="${isAdmin}">
-			<a href="${pageContext.request.contextPath }/support/support_notice_insertform" class="notice_management">Notice 관리</a>
-			</c:if>
+			<!-- 관리자 메뉴 -->
+			<div class="admin_menu">
+				<c:if test="${isAdmin}">
+					<a href="${pageContext.request.contextPath }/support/support_notice_insertform" class="admin_button">공지 등록</a>
+				</c:if>
+				<c:if test="${isAdmin }">
+					<button data-num="${tmp.notice_num }"type="submit" class="admin_button" id="delete-btn">삭제</button>
+				</c:if>
+			</div>
 		</div>
 	</div>
 	<script>
-		document.querySelectorAll(".delete-btn").forEach((item)=>{
+		document.querySelectorAll("#delete-btn").forEach((item)=>{
 			item.addEventListener("click", (e)=>{
 				e.preventDefault();
 				const isTrue = confirm("공지사항을 삭제하시겠습니까?")
