@@ -32,4 +32,10 @@ public class GroupMemberInfoController {
 		groupMemberInfoService.getGroupMemberWritingList(dto, model);
 		return "group_managing/info/writing_list";
 	}
+	
+	@GetMapping("/group_managing/info/comment_list")
+	public String group_memberComment_list(GroupMemberInfoDto dto, Model model, HttpSession session) {
+		groupMemberInfoService.getGroupMemberCommentList(dto, model);
+		return "group_managing/info/comment_list";
+	}
 }

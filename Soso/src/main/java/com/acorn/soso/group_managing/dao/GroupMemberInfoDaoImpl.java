@@ -21,20 +21,17 @@ public class GroupMemberInfoDaoImpl implements GroupMemberInfoDao{
 
 	@Override
 	public List<GroupMemberInfoDto> getGroupMemberCommentList(GroupMemberInfoDto dto) {
-		// TODO Auto-generated method stub
-		return null;
+		return session.selectList("groupMemberInfo.getCommentList", dto);
 	}
 
 	@Override
 	public int getGroupMemberWCount(GroupMemberInfoDto dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		return session.selectOne("groupMemberInfo.getWCount", dto);
 	}
 
 	@Override
 	public int getGroupMemberCCount(GroupMemberInfoDto dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		return session.selectOne("groupMemberInfo.getCCount", dto);
 	}
 	
 }

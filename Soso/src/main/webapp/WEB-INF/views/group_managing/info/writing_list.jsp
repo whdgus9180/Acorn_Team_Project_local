@@ -10,8 +10,9 @@
 	<table class="table table-striped">
 		<thead class="table-dark">
 			<tr>
-				<th>글 번호</th>
-				<th>글 제목</th>
+				<th>번호</th>
+				<th>구분</th>
+				<th>제목</th>
 				<th>작성일</th>
 			</tr>
 		</thead>
@@ -20,19 +21,31 @@
 				<tr>
 					<td>${tmp.num}</td>
 					<td>
+						<c:choose>
+							<c:when test="${tmp.header == 1}">
+								책 제목
+							</c:when>
+							<c:when test="${tmp.header == 2}">
+								사진 / 영상
+							</c:when>
+							<c:when test="${tmp.header == 3}">
+								수다
+							</c:when>
+							<c:when test="${tmp.header == 4}">
+								정보 / 일정
+							</c:when>
+						</c:choose>
+					</td>
+					<td>
 						<a href="${pageContext.request.contextPath}/cafe/detail?comu_num=${tmp.num}&group_num=${tmp.group_num}">${tmp.title }</a>
 					</td>
-					<td>${tmp.regdate }</td>
+					<td>${tmp.regdate}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-	<nav>
+	<nav class="d-flex justify-content-center">
 		<ul class="pagination">
-			<%--
-				startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
-				&condition=${condition}&keyword=${encodedK}
-			 --%>
 			<c:if test="${startPageNum ne 1 }">
 				<li class="page-item">
 					<a class="page-link animate__animated" href="list?pageNum=${startPageNum-1 }&condition=${condition}&keyword=${encodedK}">Prev</a>
@@ -43,9 +56,6 @@
 					<a class="page-link animate__animated" href="list?pageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
 				</li>
 			</c:forEach>
-			<%--
-				마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
-			 --%>
 			<c:if test="${endPageNum lt totalPageCount }">
 				<li class="page-item">
 					<a class="page-link animate__animated" href="list?pageNum=${endPageNum+1 }&condition=${condition}&keyword=${encodedK}">Next</a>
