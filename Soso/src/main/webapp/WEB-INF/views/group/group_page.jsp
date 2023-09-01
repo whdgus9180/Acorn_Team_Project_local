@@ -162,14 +162,21 @@
 							</c:when>
 							<c:otherwise>
 								<c:choose>
-									<c:when test="${knowJoin == -1 || empty knowJoin}">
+									<c:when test="${knowJoin == -1}">
 										<button type="button" class="join">
 											<a href="${pageContext.request.contextPath}/group/group_joinform?num=${dto.num }">가입하기</a>
 										</button>
 									</c:when>
-									<c:otherwise>
+									<c:when test="${knowJoin == 1 }">
 										<button type="button" class="cancle" id="cancleBtn" name="cancleBtn">신청 취소</button>
-									</c:otherwise>
+									</c:when>
+									<c:when test="${knowJoin == 2 }">
+										<button type="button">가입 거부</button>
+									</c:when>
+									<c:when test="${knowJoin == 3 }">
+									</c:when>
+									<c:when test="${knowJoin == 4 }">
+									</c:when>
 								</c:choose>
 							</c:otherwise>
 						</c:choose>
@@ -235,9 +242,7 @@
 			  // 서버에서 반환된 응답 데이터를 이용하여 원하는 처리를 한다.
 			  // data 여부에 따라 클라이언트에게 표시해준다.
 			  if (data.isSuccess == true) {	
-			    	// 찜 추가되었습니다.
-					alert("찜 추가되었습니다.");
-					
+			    	
 			    	// div의 클래스를 'emptyHeart'에서 'heart'로 변경
 					$(".heart").removeClass("emptyHeart").addClass("heart");
 					
@@ -249,8 +254,6 @@
 					`);
 					} else {
 					
-						// 찜 취소하셨습니다.
-					alert("찜 취소하셨습니다.");
 					
 					// 하트의 모양을 비워지게 변경
 					$(".heart").html(`
