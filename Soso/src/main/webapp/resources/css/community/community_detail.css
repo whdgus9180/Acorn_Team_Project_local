@@ -2,24 +2,49 @@
 
 body{ background-color:#f5f6f7;}
 /* title */
-h3.white{ color: #fff; }
-h3.black{ color: #333; }
-
+h3.title{font-size:1.3rem; font-weight: 500;}
+.sub_link ul{display:flex; margin-bottom: 2%;}
+.commu .inner-wrap{width:55%;}
 /* contents */
-.contents, .comment-form textarea{ margin-bottom: 3%; background-color:#fff; padding:3%; border:1px solid #ccc;}
-.contents .contents_title{ margin-bottom: 3%; font-family: 'Montserrat', 'Noto Sans KR', sans-serif; font-size: 2.3rem; font-weight: 500; }
-.contents .contents_num{display:none; }
-.contents .sub_title{display:flex; border-bottom:1px solid #ccc;  padding-bottom: 2%;}
-.contents .contents_btn{display:flex;}
+.contents{ margin-bottom: 3%; background-color:#fff; padding:3%; border:1px solid #ccc;}
 
+.contents .contents_title{margin-bottom: 2%; font-family: 'Montserrat', 'Noto Sans KR', sans-serif; font-size: 1.4rem; font-weight: 500; border-top: 2px solid rgb(172 136 104); padding-top: 3%; }
+.contents .contents_num{display:none; }
+.contents .sub_title{display:flex; border-bottom:1px solid #ccc; padding-bottom: 2%; justify-content: space-between;}
+.contents .sub_title .sub{width:50%;}
+.contents .sub_title .sub span{margin-right:1%;}
+.contents .contents_content{padding:5% 0; border-bottom:1px solid #ccc; }
+.contents .contents_btn{display:flex; width: 50%; justify-content: flex-end;}
+.contents .contents_btn a{ display:block; margin-left: 3%; color: #6f6f6f;}
+.contents .contents_btn a:hover{text-decoration:underline;}
+.contents .contents_page{display:flex; justify-content: center; }
+.contents .contents_page a{display:block; margin: 2% 2% 0 2%;}
+.contents .contents_page a:hover{color:rgb(209 199 177); text-decoration:underline;}
 
 /* comments */
 .comments{ background-color:#f1f1f1; padding:3%; border:1px solid #ccc;}
-.comments .comment-form{ display: none;}
-.comments .profile-image {padding: 3px; }
-.comments .profile-image {padding: 3px; position: relative; object-fit: cover; overflow: hidden; width:95px; height:95px; border-radius:50%; background-image: linear-gradient(#fff, #fff), linear-gradient(to right, rgb(172 136 104) 0%, #dcd1b9 100%); background-clip: content-box, border-box; }
+.comment-form{ display: none; box-sizing:border-box; display: flex; justify-content: space-between;  margin-bottom: 3%;}
+.comment-form textarea{ background-color:#fff; padding:3%; border:1px solid #ccc; font-size: 0.8rem; width:80%;}
+.comment-form button{background-color: #f1f1f1; width: 19%;border: 1px solid #ccc; }
+.comment-form button:hover{background-color: rgb(209 199 177 / 64%);  color:#fff; font-weight:bold;}
+.comment_profile_left { display: flex;width: 70%;}
+.comments .comment_profile{display:flex; align-items: center; justify-content: space-between;}
+.comments .comment_profile .profile-image{padding: 3px; position: relative; object-fit: cover; overflow: hidden; width:40px; height:40px; border-radius:50%; border: 2px solid #dcd1b9; background-clip: content-box, border-box; margin-right:2%; }
+.comments .comment_profile .regdate{font-weight:300;font-size:0.7rem;margin-left:2%;}
+.comments .comment_profile .comment_btn{display:flex; align-items: center;width: 30%; justify-content: flex-end;}
+.comments .comment_profile .comment_btn a{padding-left:6%;}
+.comments .comment_profile .comment_btn a:hover{color:rgb(209 199 177); text-decoration:underline; }
+.comments .comments_content{padding:2% 0;}
+.comments .comment{padding:2% 0; border-bottom: 1px solid #c6c6c6;}
+
+
+.loader{text-align: center; display: none;}   
 .loader svg{
    animation: rotateAni 1s ease-out infinite;
+}
+/* 댓글에 댓글을 다는 폼과 수정폼은 일단 숨긴다. */
+.comments .comment-form{
+   display: none;
 }
 
 
