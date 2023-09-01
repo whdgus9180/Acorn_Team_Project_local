@@ -108,8 +108,15 @@
 	           </div>
         	</c:forEach>	
         </div>
+        <div class="fab-container">
+			<div class="iconbutton">
+				<a href="${pageContext.request.contextPath}/group_managing/group_insertForm">+</a>
+			</div>
+			<div class="fab-text">
+				 북메이트 개설하기
+			</div>
+		</div>
         <div id="Parse_Area"gt;lt;></div>
-        
     </section>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
     <script>
