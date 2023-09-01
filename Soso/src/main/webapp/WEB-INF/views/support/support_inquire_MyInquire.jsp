@@ -55,17 +55,21 @@
 		<div class="body_area">
 			<div class="main_content">
 				<ul class="inquire_navi">
-					<li>
-						<a href="${pageContext.request.contextPath }/support/support_inquire">1:1 문의하기</a>
-					</li>
-					<li>
-						<a class="my_inquire" href="${pageContext.request.contextPath }/support/support_inquire_MyInquire">나의 문의내역</a>
-					</li>
-					<c:if test="${isAdmin }">
-						<li>
-							<a class="cs_inquire" href="${pageContext.request.contextPath }/support/support_inquire_inquireStatus">문의 접수 내역</a>
-						</li>
-					</c:if>
+					<c:choose>
+						<c:when test="${isAdmin }">
+							<li>
+								<a class="cs_inquire" href="${pageContext.request.contextPath }/support/support_inquire_inquireStatus">문의 접수 내역</a>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li>
+								<a href="${pageContext.request.contextPath }/support/support_inquire">1:1 문의하기</a>
+							</li>
+							<li>
+								<a class="my_inquire" href="${pageContext.request.contextPath }/support/support_inquire_MyInquire">나의 문의내역</a>
+							</li>
+						</c:otherwise>
+					</c:choose>
 				</ul>
 				<h3 class="title">나의 문의내역</h3>
 				<table class="table-data">

@@ -57,7 +57,7 @@
 				<ul class="inquire_navi">
 					<c:if test="${isAdmin }">
 						<li>
-							<a class="cs_inquire" href="${pageContext.request.contextPath }/support/support_inquire_MyInquire">문의 접수 내역</a>
+							<a class="cs_inquire" href="${pageContext.request.contextPath }/support/support_inquire_inquireStatus">문의 접수 내역</a>
 						</li>
 					</c:if>
 				</ul>
