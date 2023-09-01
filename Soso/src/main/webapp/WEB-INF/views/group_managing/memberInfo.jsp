@@ -21,7 +21,9 @@
 				<div>
 					<c:choose>
 						<c:when test="${empty dto.profile }">
-							<i class="bi bi-person-circle" style="font-size:100px" id="profileImage"></i>
+							<div style="margin: 70px 100px">
+								<i class="bi-person-circle" style="font-size:130px" id="profileImage"></i>
+							</div>
 						</c:when>
 						<c:otherwise>
 							<div><img class="card-image" src="${pageContext.request.contextPath}${dto.profile}" /></div>
@@ -101,14 +103,13 @@
         	});
 			$(this).attr("class","nav-link active")
 			$("#commentList").attr("class","nav-link");
-			$("#supportList").attr("class","nav-link");
 		});
 		
 		//작성 댓글 클릭 시 comment_list 페이지 로딩
 		$("#commentList").click(function() {
 	        $.ajax({
 	            type : "GET", //전송방식을 지정한다 (POST,GET)
-	            url : "${pageContext.request.contextPath}/users/info/comment_list",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+	            url : "${pageContext.request.contextPath}/group_managing/info/comment_list?writer=${dto.user_id}&group_num=${dto.group_num}",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
 	            dataType : "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
 	            error : function(){
 	                console.log("통신실패");
@@ -116,12 +117,10 @@
 	            success : function(Parse_data){
 	                $("#Parse_Area").html(Parse_data); //div에 받아온 값을 넣는다.
 	            }
-	            
         	});
 	        
 	        $(this).attr("class","nav-link active");
 	        $("#writingList").attr("class","nav-link");
-	        $("#supportList").attr("class","nav-link");
 		})
 		//화면 로딩 시 해당 소모임에서 작성자가 작성한 게시글 list 페이지 로딩
 		$(document).ready(function() {

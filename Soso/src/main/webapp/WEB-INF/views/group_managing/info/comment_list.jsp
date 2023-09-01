@@ -10,19 +10,18 @@
 	<table class="table table-striped">
 		<thead class="table-dark">
 			<tr>
-				<th>소모임 명</th>
+				<th>원글 번호</th>
 				<th>원글 제목</th>
 				<th>댓글 내용</th>
 				<th>댓글 작성일</th>
 			</tr>
 		</thead>
 		<tbody>
-			
 			<c:forEach var="tmp" items="${list }">
 				<tr>
-					<td>${tmp.group_num }</td>
+					<td>${tmp.comu_num }</td>
 					<td>
-						<a href="${pageContext.request.contextPath}/cafe/detail?num=${tmp.num }">${tmp.title }</a>
+						<a href="${pageContext.request.contextPath}/cafe/detail?comu_num=${tmp.comu_num}&group_num=${tmp.group_num}">${tmp.title }</a>
 					</td>
 					<td>${tmp.content }</td>
 					<td>${tmp.regdate }</td>
@@ -30,7 +29,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<nav>
+	<nav class="d-flex justify-content-center">
 		<ul class="pagination">
 			<%--
 				startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
