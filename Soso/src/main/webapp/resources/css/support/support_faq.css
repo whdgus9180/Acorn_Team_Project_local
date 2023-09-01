@@ -103,6 +103,10 @@
 	    justify-content: center;
 	    align-items: center;
 	}
+	.tab_menu li.active{
+		color: rgb(157 128 63);
+		font-weight: 600;
+	}
 	/* FAQ 메인 컨첸츠 레이아웃 */
 	.faq{
 		display: inline-block;
@@ -153,7 +157,7 @@
 		overflow: hidden;
 		display: inline-block;
 	}
-	.detail:hover{
+	.detail:hover,.tab_menu li:hover{
 		text-decoration:underline;
 	}
 	/*페이지 네이션*/

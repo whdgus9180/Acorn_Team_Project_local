@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/support_main</title>
+<title>고객센터</title>
 <style>
 	.area_faq ul li.faq_category{
 		margin-right: 40px;
