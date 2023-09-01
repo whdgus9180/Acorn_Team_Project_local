@@ -23,7 +23,7 @@
         	<input type="radio" name="rate" value="1" id="rate5"><label for="rate5">⭐</label>
          </fieldset>
          <br />
-         <textarea name="content">${empty id ? '리뷰 작성을 위해 로그인이 필요 합니다.' : '' }</textarea>
+         <textarea name="review_content" id="review_content">${empty id ? '리뷰 작성을 위해 로그인이 필요 합니다.' : '' }</textarea>
          <button type="submit">등록</button>
       </form>
     </div>
