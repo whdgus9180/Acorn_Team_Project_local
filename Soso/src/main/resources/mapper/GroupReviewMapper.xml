@@ -40,7 +40,7 @@
    <insert id="insert" parameterType="reviewDto">
    	  INSERT INTO GROUP_REVIEW_TB
    	  (review_num, writer, content, group_num, rate, regdate)
-   	  VALUES(#{review_num}, #{writer}, #{content}, #{group_num}, #{rate}, SYSDATE)
+   	  VALUES(#{review_num}, #{writer}, #{content}, #{group_num}, #{rate}, TO_DATE(TO_CHAR(SYSDATE, 'RR/MM/DD'), 'RR/MM/DD'))
    </insert>
    <select id="getSequence" resultType="int">
       SELECT review_seq.NEXTVAL
